@@ -85,6 +85,15 @@ function evidenceUrl(item) {
   return `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Open source</a>`;
 }
 
+function renderAnswerText(text) {
+  return String(text || "")
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+
 function renderEvidenceItem(item, index) {
   const title = item.citation?.title || item.metadata?.sourceId || "Untitled source";
   const section = item.citation?.section || "source passage";
@@ -104,89 +113,26 @@ function renderEvidenceItem(item, index) {
   `;
 }
 
-function renderRefinements(session) {
-  const chips = session.refinementChips || [];
-  if (session.evidence?.length) return "";
-  if (!chips.length) return "";
-  return `
-    <div class="refinements">
-      ${chips.map((chip) => `<button class="refinement-chip" type="button" data-query="${escapeHtml(chip.query)}">${escapeHtml(chip.label)}</button>`).join("")}
-    </div>
-  `;
-}
-
-function renderSearchDetails(session) {
-  const diagnostics = session.diagnostics || {};
-  const filters = session.filters || {};
-  const sourceTypes = filters.sourceTypes?.length ? filters.sourceTypes.join(", ") : "all public sources";
-  const intent = filters.focus && filters.focus !== "all" ? filters.focus : "general";
-  const resultCount = diagnostics.retrieval?.resultCount ?? session.evidence?.length ?? 0;
-  const status = session.queryQuality?.status || diagnostics.qualityStatus || "unknown";
-  return `
-    <details class="details-panel">
-      <summary>How searched</summary>
-      <dl>
-        <div><dt>Intent</dt><dd>${escapeHtml(intent)}</dd></div>
-        <div><dt>Query status</dt><dd>${escapeHtml(status)}</dd></div>
-        <div><dt>Sources</dt><dd>${escapeHtml(sourceTypes)}</dd></div>
-        <div><dt>Results</dt><dd>${escapeHtml(resultCount)}</dd></div>
-      </dl>
-    </details>
-  `;
-}
-
-function answerSectionBody(session, id) {
-  const sections = session.answerDraft?.sections || [];
-  return sections.find((section) => section.id === id)?.body || "";
-}
-
 function renderSimpleAnswer(session) {
   const evidence = session.evidence || [];
-  const focus = session.filters?.focus || "all";
   const writtenAnswer = session.answerDraft?.text || "";
-  const patternSummary = answerSectionBody(session, "pattern-summary");
-  const guidance = session.guidance?.body || "";
   let title = "Answer";
-  let body = writtenAnswer || patternSummary || guidance || "I need a little more context before searching.";
-
-  if (writtenAnswer) {
-    title = "Answer";
-  } else if (focus === "cases") {
-    title = "Case search";
-    body = evidence.length
-      ? "I searched for case-style evidence and forum examples. The citations below are the useful starting points."
-      : "I searched for case-style evidence and forum examples, but did not find a strong cited match. Try adding the condition, intervention, or exact Kruse term.";
-  } else if (focus === "citations") {
-    title = "Source search";
-    body = evidence.length
-      ? "I searched for directly citable source passages. Start with the cited matches below."
-      : "I searched for directly citable passages, but did not find a strong match.";
-  } else if (focus === "contradictions") {
-    title = "Caveat search";
-    body = evidence.length
-      ? "I searched for caveats, conflicts, and source passages that may qualify the claim."
-      : "I searched for caveats and conflicts, but did not find a strong cited match.";
-  } else if (focus === "protocols") {
-    title = "Protocol-source search";
-    body = evidence.length
-      ? "I searched for source passages that point to protocols or candidate interventions."
-      : "I searched for protocol-style passages, but did not find a strong cited match.";
-  }
+  const body = writtenAnswer
+    ? renderAnswerText(writtenAnswer)
+    : evidence.length
+      ? "<p>The answer writer is not configured for this deployment. I found cited source matches below.</p>"
+      : "<p>I did not find cited sources for that question.</p>";
 
   return `
     <section class="answer-section">
       <h2>${escapeHtml(title)}</h2>
-      <p>${escapeHtml(body)}</p>
+      ${body}
     </section>
   `;
 }
 
 function renderAssistant(session) {
   const evidence = session.evidence || [];
-  const notice = session.notice
-    ? `<p class="notice-line"><strong>${escapeHtml(session.notice.title)}:</strong> ${escapeHtml(session.notice.body)}</p>`
-    : "";
-
   const evidenceBlock = evidence.length
     ? `
       <details class="details-panel evidence-panel" open>
@@ -199,11 +145,8 @@ function renderAssistant(session) {
     : "";
 
   return `
-    ${notice}
     ${renderSimpleAnswer(session)}
-    ${renderRefinements(session)}
     ${evidenceBlock}
-    ${renderSearchDetails(session)}
   `;
 }
 
@@ -211,14 +154,14 @@ function setBusy(isBusy) {
   state.busy = isBusy;
   sendButton.disabled = isBusy;
   queryInput.disabled = isBusy;
-  sendButton.textContent = isBusy ? "Searching" : "Ask";
+  sendButton.textContent = isBusy ? "Answering" : "Ask";
 }
 
 async function runQuery(query) {
   const payload = buildPayload(query);
   state.lastQuery = query;
   appendMessage("user", `<p>${escapeHtml(query)}</p>`);
-  const loading = appendMessage("assistant", "<p>Searching the indexed sources...</p>", "loading-message");
+  const loading = appendMessage("assistant", "<p>Answering from indexed sources...</p>", "loading-message");
   setBusy(true);
 
   try {
@@ -269,13 +212,6 @@ queryInput.addEventListener("keydown", (event) => {
     event.preventDefault();
     chatForm.requestSubmit();
   }
-});
-
-chatLog.addEventListener("click", (event) => {
-  const button = event.target.closest(".refinement-chip");
-  if (!button || state.busy) return;
-  const query = button.dataset.query || button.textContent || "";
-  if (query.trim()) runQuery(query.trim());
 });
 
 resizeInput();
