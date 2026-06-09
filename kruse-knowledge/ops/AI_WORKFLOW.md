@@ -198,15 +198,15 @@ Public-site/GitHub Pages deployment:
    - The implementation worker owns the first review handoff. After the draft PR exists, the worker must immediately create or request a combined review-fix-merge lane titled `review-fix/pr-<number>-<short-scope>`, link it in the PR/issue status, and make the next owner explicit.
    - If the worker cannot create the review-fix lane, it must write `Reviewer blocked: <exact blocker>` in the PR or issue status and name who owns the next action. "Needs reviewer" without a lane or blocker is stale work, not a handoff.
    - A coordinator who finds an open PR with no review-fix lane, human reviewer, explicit reviewer pass, or reviewer blocker should create or nudge the review-fix lane immediately instead of asking Guy to notice it.
-   - Reviewer checks the PR, tests, scope, and external-impact rules.
-   - Reviewer does not own implementation fixes by default. If review finds issues, the implementation worker owns the fix loop, pushes updates to the same PR, reruns required checks, and asks the reviewer to re-check.
-   - Reviewer owns missing-test review.
+   - The review-fix lane checks the PR, tests, scope, and external-impact rules.
+   - The review-fix lane is not review-only. If it finds issues, it fixes safe findings directly on the PR branch, pushes updates to the same PR, reruns required checks, and verifies the result.
+   - The review-fix lane owns missing-test review.
    - Coordinator accepts missing-test exceptions only by posting or approving a PR comment titled `TEST GAP ACCEPTED`.
 
 10. Merge and closeout
-   - The implementation worker owns merge after reviewer pass, required checks, and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
-   - Reviewer should state whether the PR can be marked ready, but should not become the fix owner or merge owner unless the coordinator explicitly reassigns ownership.
-   - Coordinator may merge only when the implementation worker is unavailable or stale and merge eligibility is explicit.
+   - The review-fix lane owns marking ready, merge, branch cleanup, and closeout after review, required checks, and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
+   - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, or an explicit ownership conflict.
+   - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
    - Coordinator closes/updates issues, archives stale chats, and writes final issue/project status.
 
@@ -309,10 +309,10 @@ For PR review handoff failures, the immediate fix is to create or nudge the comb
 
 For post-review ownership confusion, the durable rule is:
 
-- Implementation worker fixes reviewer findings.
-- Reviewer verifies fixes and gives pass/fail.
-- Implementation worker marks ready and merges after pass and green required checks.
-- Coordinator takes over merge only when the implementation worker is stale, unavailable, or explicitly handed off.
+- The review-fix lane fixes safe findings directly on the PR branch.
+- The review-fix lane reruns checks, verifies fixes, and gives pass/fail.
+- The review-fix lane marks ready and merges after pass and green required checks.
+- Coordinator takes over merge only when the review-fix lane is stale, unavailable, or explicitly handed off.
 
 ## Documentation Locations
 

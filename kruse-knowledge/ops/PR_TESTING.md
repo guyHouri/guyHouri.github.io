@@ -22,7 +22,7 @@ Every PR should include:
 
 Do not mark a PR ready if the worker did not run tests and did not explain why.
 Do not leave a draft PR sitting at "needs review." The worker must create the combined `review-fix/pr-<number>-<short-scope>` lane after the PR exists, link it in the PR or issue status, or write the exact reviewer-handoff blocker.
-Do not leave post-review ownership implicit. The implementation worker owns reviewer-requested fixes and merge after pass/green checks unless the coordinator explicitly reassigns it.
+Do not leave post-review ownership implicit. The combined `review-fix/pr-<number>-<short-scope>` lane owns review, safe fixes on the PR branch, check reruns, ready/merge, and cleanup unless it reports a concrete blocker.
 
 ## Worker Test Responsibility
 
@@ -111,7 +111,7 @@ Reviewer should check:
 - Is the PR small enough to review safely?
 - Is there an independent reviewer pass?
 - Was the `review-fix/pr-<number>-<short-scope>` lane opened by the implementation worker or coordinator, rather than left as an unowned future action?
-- Are post-review fixes and merge owned by the implementation worker or an explicitly named replacement owner?
+- Are post-review fixes and merge owned by the `review-fix/` quality lane or an explicitly named replacement owner?
 - Are issue/project status and links updated?
 
 ## Ready To Merge
@@ -131,4 +131,4 @@ A PR is ready to merge only when:
 - No unrelated dirty-root changes are included.
 - Public-site/GitHub Pages changes passed `npm run prod-check` from `kruse-summary/`, or no public-site/GitHub Pages code/config changed.
 
-The implementation worker should merge once ready unless Guy or the coordinator has put a hold on it. Reviewer should verify and state pass/fail; reviewer does not become the default fix or merge owner.
+The `review-fix/` quality lane should merge once ready unless Guy or the coordinator has put a hold on it. Reviewer-only lanes verify and state pass/fail; they do not become the default fix or merge owner.
