@@ -1,0 +1,124 @@
+{
+  "type": "kruse-daily-report",
+  "date": "2026-05-23",
+  "title": "Kruse Report 2026-05-23",
+  "headline": "Cancer fat metabolism rebuttal, PMLE as deuterium flash-evaporation, and triplet oxygen collagen defects",
+  "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-05-23.html",
+  "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-23.json",
+  "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-23.md",
+  "source": {
+    "curated_json": "summary/kruse-summary/curated/2026-05-23.json",
+    "html": "summary/kruse-summary/out/2026-05-23.html"
+  },
+  "summary_available": true,
+  "sections": [
+    {
+      "title": "Research & Mechanisms",
+      "cards": [
+        {
+          "tag": "Cancer Fat Oxidation",
+          "lead": "Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation",
+          "body_markdown": "The Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform fatty acid oxidation. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt beta-oxidation pathways, CPT1A transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: 'cut glucose, eat saturated fat, kill cancer' protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.",
+          "body_text": "The Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform fatty acid oxidation. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt beta-oxidation pathways, CPT1A transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: 'cut glucose, eat saturated fat, kill cancer' protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.",
+          "points": [],
+          "source_quote": "",
+          "source_ids": [
+            "2058164146147872779"
+          ],
+          "source_urls": [
+            "https://x.com/i/status/2058164146147872779"
+          ],
+          "citations": [],
+          "concepts": {
+            "fatty acid oxidation": {
+              "level": "noob",
+              "text": "The process of breaking down fats into acetyl-CoA inside mitochondria to generate ATP through the electron transport chain."
+            },
+            "beta-oxidation": {
+              "level": "pro",
+              "text": "The mitochondrial pathway that breaks down fatty acids into two-carbon acetyl-CoA units for the Krebs cycle."
+            },
+            "CPT1A": {
+              "level": "pro",
+              "text": "Carnitine palmitoyltransferase 1A, the enzyme that transports long-chain fatty acids into mitochondria for beta-oxidation."
+            }
+          }
+        },
+        {
+          "tag": "Triplet Oxygen Collagen",
+          "lead": "Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding",
+          "body_markdown": "Triplet oxygen is ground-state molecular oxygen with two unpaired electrons in parallel spin. Type 1 collagen synthesis requires oxygen for hydroxylation of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the sagittal suture, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.",
+          "body_text": "Triplet oxygen is ground-state molecular oxygen with two unpaired electrons in parallel spin. Type 1 collagen synthesis requires oxygen for hydroxylation of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the sagittal suture, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.",
+          "points": [],
+          "source_quote": "Lack of triplet oxygen and it affects Type 1 collagen.",
+          "source_ids": [
+            "2058174219972722789"
+          ],
+          "source_urls": [
+            "https://x.com/i/status/2058174219972722789"
+          ],
+          "citations": [],
+          "concepts": {
+            "Triplet oxygen": {
+              "level": "pro",
+              "text": "Ground-state molecular oxygen with two unpaired electrons in parallel spin, the form of oxygen used in aerobic respiration and enzymatic reactions."
+            },
+            "Type 1 collagen": {
+              "level": "noob",
+              "text": "The most abundant structural protein in the body, found in skin, bones, tendons, ligaments, and connective tissue."
+            },
+            "hydroxylation": {
+              "level": "pro",
+              "text": "The enzymatic addition of a hydroxyl group to proline or lysine in collagen, required for stable triple-helix formation and cross-linking."
+            },
+            "sagittal suture": {
+              "level": "noob",
+              "text": "The fibrous joint between the two parietal bones at the top of the skull, running front to back."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "forum": {
+    "bullets": [
+      {
+        "title": "SUN ALLERGY........IS IT REALLY?",
+        "summary_markdown": "Kruse reframes PMLE as a deuterium flash-evaporation event, not a sun allergy. Winter's low-light, low-grounding environment allows heavy deuterium to accumulate in the skin's extracellular matrix. The vagus drain pipe and ventricular drainage become lattice locked by the isotopic load, forcing the skin to act as backup exhaust. When a patient takes doxycycline, the molecule's four-ring hydronaphthacene nucleus packed with delocalized electron clouds intercalates into the skin's water-rich extracellular matrix and hyper-accelerates the flash-evaporation event. This forces a choice between systemic Matrix Fire or activation of the POMC-melanin shield. Doxycycline acts as a light-harvesting molecular antenna that forces the system to resolve the deuterium overload, not as a photosensitizing allergen.",
+        "summary_text": "Kruse reframes PMLE as a deuterium flash-evaporation event, not a sun allergy. Winter's low-light, low-grounding environment allows heavy deuterium to accumulate in the skin's extracellular matrix. The vagus drain pipe and ventricular drainage become lattice locked by the isotopic load, forcing the skin to act as backup exhaust. When a patient takes doxycycline, the molecule's four-ring hydronaphthacene nucleus packed with delocalized electron clouds intercalates into the skin's water-rich extracellular matrix and hyper-accelerates the flash-evaporation event. This forces a choice between systemic Matrix Fire or activation of the POMC-melanin shield. Doxycycline acts as a light-harvesting molecular antenna that forces the system to resolve the deuterium overload, not as a photosensitizing allergen.",
+        "thread_url": "https://forum.jackkruse.com/threads/sun-allergy-is-it-really.32491/",
+        "concepts": {
+          "PMLE": {
+            "level": "noob",
+            "text": "Polymorphous Light Eruption, a skin condition where red, itchy bumps or blisters appear after sun exposure, typically in spring or early summer."
+          },
+          "deuterium flash-evaporation": {
+            "level": "pro",
+            "text": "Rapid phase transition of heavy water from the skin's extracellular matrix when exposed to light and heat, releasing stored isotopic load."
+          },
+          "vagus drain pipe": {
+            "level": "pro",
+            "text": "The vagus nerve as a primary drainage pathway for metabolic waste, deuterium, and electromagnetic charge."
+          },
+          "lattice lock": {
+            "level": "pro",
+            "text": "Rigidity in the water structure of tissue caused by heavy deuterium or electromagnetic interference, blocking normal drainage and signaling."
+          },
+          "hydronaphthacene nucleus": {
+            "level": "pro",
+            "text": "The four-ring aromatic structure of tetracycline antibiotics like doxycycline, containing delocalized electrons that absorb and transfer light energy."
+          },
+          "Matrix Fire": {
+            "level": "pro",
+            "text": "Systemic inflammation and oxidative stress caused by unresolved deuterium or electromagnetic overload in the extracellular matrix."
+          },
+          "POMC-melanin shield": {
+            "level": "pro",
+            "text": "Pro-opiomelanocortin is a precursor system tied to melanin biology; in this framing, melanin absorbs and dissipates light energy to protect tissue."
+          }
+        }
+      }
+    ]
+  },
+  "markdown": "# Kruse Report 2026-05-23\n\nDate: 2026-05-23\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-23.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-23.json\n\n## Headline\n\nCancer fat metabolism rebuttal, PMLE as deuterium flash-evaporation, and triplet oxygen collagen defects\n\n## Research & Mechanisms\n\n### Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation\n\nTag: Cancer Fat Oxidation\n\nThe Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform fatty acid oxidation. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt beta-oxidation pathways, CPT1A transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: 'cut glucose, eat saturated fat, kill cancer' protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.\n\nSources:\n- https://x.com/i/status/2058164146147872779\n\nConcepts:\n- fatty acid oxidation (noob): The process of breaking down fats into acetyl-CoA inside mitochondria to generate ATP through the electron transport chain.\n- beta-oxidation (pro): The mitochondrial pathway that breaks down fatty acids into two-carbon acetyl-CoA units for the Krebs cycle.\n- CPT1A (pro): Carnitine palmitoyltransferase 1A, the enzyme that transports long-chain fatty acids into mitochondria for beta-oxidation.\n\n### Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding\n\nTag: Triplet Oxygen Collagen\n\nTriplet oxygen is ground-state molecular oxygen with two unpaired electrons in parallel spin. Type 1 collagen synthesis requires oxygen for hydroxylation of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the sagittal suture, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.\n\nSource quote: \"Lack of triplet oxygen and it affects Type 1 collagen.\"\n\nSources:\n- https://x.com/i/status/2058174219972722789\n\nConcepts:\n- Triplet oxygen (pro): Ground-state molecular oxygen with two unpaired electrons in parallel spin, the form of oxygen used in aerobic respiration and enzymatic reactions.\n- Type 1 collagen (noob): The most abundant structural protein in the body, found in skin, bones, tendons, ligaments, and connective tissue.\n- hydroxylation (pro): The enzymatic addition of a hydroxyl group to proline or lysine in collagen, required for stable triple-helix formation and cross-linking.\n- sagittal suture (noob): The fibrous joint between the two parietal bones at the top of the skull, running front to back.\n\n## Forum Bullets\n\n### SUN ALLERGY........IS IT REALLY?\n\nKruse reframes PMLE as a deuterium flash-evaporation event, not a sun allergy. Winter's low-light, low-grounding environment allows heavy deuterium to accumulate in the skin's extracellular matrix. The vagus drain pipe and ventricular drainage become lattice locked by the isotopic load, forcing the skin to act as backup exhaust. When a patient takes doxycycline, the molecule's four-ring hydronaphthacene nucleus packed with delocalized electron clouds intercalates into the skin's water-rich extracellular matrix and hyper-accelerates the flash-evaporation event. This forces a choice between systemic Matrix Fire or activation of the POMC-melanin shield. Doxycycline acts as a light-harvesting molecular antenna that forces the system to resolve the deuterium overload, not as a photosensitizing allergen.\n\nThread: https://forum.jackkruse.com/threads/sun-allergy-is-it-really.32491/\n\nConcepts:\n- PMLE (noob): Polymorphous Light Eruption, a skin condition where red, itchy bumps or blisters appear after sun exposure, typically in spring or early summer.\n- deuterium flash-evaporation (pro): Rapid phase transition of heavy water from the skin's extracellular matrix when exposed to light and heat, releasing stored isotopic load.\n- vagus drain pipe (pro): The vagus nerve as a primary drainage pathway for metabolic waste, deuterium, and electromagnetic charge.\n- lattice lock (pro): Rigidity in the water structure of tissue caused by heavy deuterium or electromagnetic interference, blocking normal drainage and signaling.\n- hydronaphthacene nucleus (pro): The four-ring aromatic structure of tetracycline antibiotics like doxycycline, containing delocalized electrons that absorb and transfer light energy.\n- Matrix Fire (pro): Systemic inflammation and oxidative stress caused by unresolved deuterium or electromagnetic overload in the extracellular matrix.\n- POMC-melanin shield (pro): Pro-opiomelanocortin is a precursor system tied to melanin biology; in this framing, melanin absorbs and dissipates light energy to protect tissue.\n"
+}

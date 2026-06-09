@@ -1,0 +1,409 @@
+{
+  "type": "kruse-daily-report",
+  "date": "2026-06-02",
+  "title": "Kruse Report 2026-06-02",
+  "headline": "Deuterium enrichment in HFCS, DHA as quantum spintronic mediator, and environmental lattice-lock mechanisms",
+  "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-02.html",
+  "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-02.json",
+  "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-02.md",
+  "source": {
+    "curated_json": "summary/kruse-summary/curated/2026-06-02.json",
+    "html": "summary/kruse-summary/out/2026-06-02.html"
+  },
+  "summary_available": true,
+  "sections": [
+    {
+      "title": "Twitter Updates",
+      "cards": [
+        {
+          "tag": "Sweetener deuterium load",
+          "lead": "HFCS carries far higher deuterium than sucrose due to corn's water-conserving photosynthesis and industrial enzymatic processing",
+          "body_markdown": "High-fructose corn syrup (HFCS) concentrates deuterium through two pathways absent in beet sugar. Corn uses C4 photosynthesis, which conserves water and traps heavy hydrogen in plant tissues; beets use C3 photosynthesis, which transpires freely and sheds deuterium. During HFCS production, enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips the lighter protium due to higher bond-breaking energy for deuterium, progressively enriching the syrup. HFCS-55 also contains 24% processed bulk water already heavy with deuterium. This deuterium load enters intracellular water as 'silt,' jamming mitochondrial Fo rotor function and dropping dielectric constant from 160 to 78, driving metabolic decline.",
+          "body_text": "High-fructose corn syrup (HFCS) concentrates deuterium through two pathways absent in beet sugar. Corn uses C4 photosynthesis, which conserves water and traps heavy hydrogen in plant tissues; beets use C3 photosynthesis, which transpires freely and sheds deuterium. During HFCS production, enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips the lighter protium due to higher bond-breaking energy for deuterium, progressively enriching the syrup. HFCS-55 also contains 24% processed bulk water already heavy with deuterium. This deuterium load enters intracellular water as 'silt,' jamming mitochondrial Fo rotor function and dropping dielectric constant from 160 to 78, driving metabolic decline.",
+          "points": [
+            "**Photosynthetic pathway.** C4 plants (corn, sugar cane) retain deuterium via low transpiration; C3 plants (beets) exhaust it via high transpiration.",
+            "**Enzymatic fractionation.** Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via kinetic isotope effect.",
+            "**Water matrix.** HFCS-55 is a free mixture of glucose and fructose in 24% deuterated water; sucrose is a tightly bound disaccharide excluding free water.",
+            "**Mitochondrial impact.** Deuterium in intracellular water blocks Fo rotor spinning and collapses dielectric constant, impairing ATP synthesis and metabolic function."
+          ],
+          "source_quote": "This high absolute load of deuterium directly enters your intracellular water table, acting as \"silt\" that jams the Fo spinning heads of your mitochondria, dropping your internal dielectric constant from 160 down to 78, and causing the focal lattice lock that drives metabolic decline.",
+          "source_ids": [
+            "2061615494764109866"
+          ],
+          "source_urls": [
+            "https://twitter.com/DrJackKruse/status/2061615494764109866",
+            "https://x.com/i/status/2061615494764109866"
+          ],
+          "citations": [],
+          "concepts": {
+            "C4 photosynthesis": {
+              "level": "noob",
+              "text": "A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, which means it retains more deuterium in its tissues."
+            },
+            "C3 photosynthesis": {
+              "level": "noob",
+              "text": "A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape into the air."
+            },
+            "protium": {
+              "level": "noob",
+              "text": "The common, light form of hydrogen with one proton and no neutrons. It is faster and more reactive than deuterium."
+            },
+            "alpha-amylase": {
+              "level": "pro",
+              "text": "An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch."
+            },
+            "glucoamylase": {
+              "level": "pro",
+              "text": "An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production."
+            },
+            "glucose isomerase": {
+              "level": "pro",
+              "text": "An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind."
+            },
+            "kinetic isotope effect": {
+              "level": "pro",
+              "text": "The difference in reaction rate or pathway when a heavier isotope (deuterium) is substituted for a lighter one (protium). Bonds with deuterium require more energy to break, so enzymes preferentially use protium, leaving deuterium behind."
+            },
+            "disaccharide": {
+              "level": "noob",
+              "text": "A sugar made of two monosaccharides linked together by a covalent bond. Sucrose is a disaccharide of glucose and fructose."
+            },
+            "Fo rotor": {
+              "level": "pro",
+              "text": "Part of ATP synthase in the mitochondrial inner membrane. It spins to generate the energy needed to make ATP. Deuterium in surrounding water can jam this rotor."
+            },
+            "dielectric constant": {
+              "level": "pro",
+              "text": "A measure of a material's ability to store electrical energy. Water normally has a dielectric constant of 160; deuterated water drops it to 78, impairing electrical signaling in cells."
+            },
+            "deuterium (heavy hydrogen)": {
+              "level": "noob",
+              "text": "A heavier form of hydrogen. Kruse uses deuterium load as a water-chemistry and mitochondrial-efficiency variable, especially when discussing deuterium-depleted water or proton flow."
+            },
+            "transpiration": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"transpiration\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "HFCS-55": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"HFCS-55\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "intracellular water": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"intracellular water\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Forum Updates",
+      "cards": [
+        {
+          "tag": "Mechanism",
+          "lead": "DHA is a highly specialized, non-linear signal-conducting membranes and all-optical spintronic waveguide designed to maximize macrophage M1-to-M2 inversion",
+          "body_markdown": "Docosahexaenoid acid (DHA) and its specialized pro-resolving mediators (maresins, protectins, resolvins) operate as quantum semiconductors and optical spintronic waveguides via Maxwellian electrodynamics and solid-state spin chemistry. This quantum framework explains how DHA orchestrates macrophage polarization from pro-inflammatory (M1) to pro-resolving (M2) state through mechanisms far beyond classical receptor signaling and cytokine downregulation. Centralized biochemistry treats DHA as a generic membrane-fluidity nutrient, missing its role as a quantum-scale electromagnetic mediator.",
+          "body_text": "Docosahexaenoid acid (DHA) and its specialized pro-resolving mediators (maresins, protectins, resolvins) operate as quantum semiconductors and optical spintronic waveguides via Maxwellian electrodynamics and solid-state spin chemistry. This quantum framework explains how DHA orchestrates macrophage polarization from pro-inflammatory (M1) to pro-resolving (M2) state through mechanisms far beyond classical receptor signaling and cytokine downregulation. Centralized biochemistry treats DHA as a generic membrane-fluidity nutrient, missing its role as a quantum-scale electromagnetic mediator.",
+          "points": [
+            "**Quantum mechanism.** DHA is a non-linear quantum semiconductor with spintronic properties, not a passive structural lipid.",
+            "**SPM function.** Maresins, protectins, and resolvins operate via Maxwellian electrodynamics and solid-state spin chemistry, not classical biochemical receptor pathways.",
+            "**Macrophage switching.** DHA-derived SPMs drive M1-to-M2 macrophage inversion through quantum electromagnetic mechanisms.",
+            "**Biochemistry gap.** Standard textbooks miss DHA's quantum role, treating it only as an omega-3 for membrane liquidity and generic anti-inflammatory signaling."
+          ],
+          "source_quote": "New Shake Rattle & Roll “Tools” Jack Kruse Jack Kruse DHA is a magnetic fat........",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/new-shake-rattle-roll-%E2%80%9Ctools%E2%80%9D.32863/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "Docosahexaenoid acid": {
+              "level": "noob",
+              "text": "A long-chain omega-3 fatty acid found in fish and algae. Kruse frames it as a quantum device that orchestrates immune cell signaling, not just a structural nutrient."
+            },
+            "specialized pro-resolving mediators": {
+              "level": "pro",
+              "text": "Signaling molecules derived from omega-3 fatty acids (maresins, protectins, resolvins) that promote resolution of inflammation and immune cell switching from pro-inflammatory to pro-healing states."
+            },
+            "maresins": {
+              "level": "pro",
+              "text": "A class of specialized pro-resolving mediators derived from DHA. They promote macrophage switching from M1 to M2 and tissue repair."
+            },
+            "protectins": {
+              "level": "pro",
+              "text": "A class of specialized pro-resolving mediators derived from DHA. They protect tissues and promote resolution of inflammation."
+            },
+            "resolvins": {
+              "level": "pro",
+              "text": "A class of specialized pro-resolving mediators derived from DHA. They resolve inflammation by promoting macrophage switching and clearance of dead cells."
+            },
+            "Maxwellian electrodynamics": {
+              "level": "pro",
+              "text": "Classical electromagnetic theory describing how electric and magnetic fields interact. Kruse applies it to cellular signaling at the quantum scale, suggesting DHA mediates electromagnetic interactions between cells."
+            },
+            "solid-state spin chemistry": {
+              "level": "pro",
+              "text": "The study of electron spin states in solid materials and how they affect chemical reactions. Kruse applies it to DHA's role in cellular signaling, proposing that electron spin orientation in DHA affects immune cell polarization."
+            },
+            "macrophage": {
+              "level": "noob",
+              "text": "An immune cell that engulfs pathogens and dead cells. M1 macrophages are pro-inflammatory; M2 macrophages promote healing and resolution of inflammation."
+            },
+            "quantum semiconductor": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"quantum semiconductor\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "spintronic waveguide": {
+              "level": "pro",
+              "text": "Coordinated spin behavior in particles such as electrons or protons; Kruse uses it as part of his magnetic and mitochondrial signaling language."
+            }
+          }
+        },
+        {
+          "tag": "HFCS deuterium enrichment",
+          "lead": "Deuterium enrichment in HFCS via C4 photosynthesis and enzymatic processing (forum version)",
+          "body_markdown": "High-fructose corn syrup concentrates deuterium through three mechanisms: (1) C4 photosynthesis in corn conserves water and traps deuterium in plant tissues, while C3 photosynthesis in beets transpires freely and sheds deuterium; (2) enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips protium due to higher activation energy for deuterium bonds, progressively enriching the syrup via kinetic isotope effect; (3) HFCS-55 contains 24% processed bulk water already heavy with deuterium, creating a free-floating glucose-fructose mixture in a deuterated matrix. Sucrose, by contrast, is a tightly bound disaccharide with low free water. This structural and compositional difference means HFCS delivers absolute deuterium directly into beverages and intracellular water.",
+          "body_text": "High-fructose corn syrup concentrates deuterium through three mechanisms: (1) C4 photosynthesis in corn conserves water and traps deuterium in plant tissues, while C3 photosynthesis in beets transpires freely and sheds deuterium; (2) enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips protium due to higher activation energy for deuterium bonds, progressively enriching the syrup via kinetic isotope effect; (3) HFCS-55 contains 24% processed bulk water already heavy with deuterium, creating a free-floating glucose-fructose mixture in a deuterated matrix. Sucrose, by contrast, is a tightly bound disaccharide with low free water. This structural and compositional difference means HFCS delivers absolute deuterium directly into beverages and intracellular water.",
+          "points": [
+            "**Photosynthetic pathway.** C4 plants (corn) retain deuterium via low transpiration; C3 plants (beets) exhaust it via high transpiration.",
+            "**Enzymatic fractionation.** Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via kinetic isotope effect.",
+            "**Molecular structure.** Sucrose is a disaccharide with covalent glycosidic bond and low free water; HFCS-55 is a free mixture with 24% deuterated water.",
+            "**Delivery mechanism.** HFCS's free monomers and high water content serve as a liquid vector introducing deuterium directly into the beverage and intracellular water table."
+          ],
+          "source_quote": "C4 plants (like corn and sugar cane) are evolved for hot, arid conditions. Their physical mechanics prioritize water conservation, meaning they transpire far less than C3 plants. Because light hydrogen (protium, evaporates faster during transpiration, C4 plants retain and concentrate heavy hydrogen (deuterium, inside their tissues and carbohydrate stores.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/the-photosynthesis-of-deuterium-in-sugar-vs-hfcs.32888/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "C4 photosynthesis": {
+              "level": "noob",
+              "text": "A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, retaining more deuterium."
+            },
+            "C3 photosynthesis": {
+              "level": "noob",
+              "text": "A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape."
+            },
+            "protium": {
+              "level": "noob",
+              "text": "The common, light form of hydrogen. Enzymes preferentially use protium over deuterium because deuterium bonds require more energy to break."
+            },
+            "alpha-amylase": {
+              "level": "pro",
+              "text": "An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch."
+            },
+            "glucoamylase": {
+              "level": "pro",
+              "text": "An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production."
+            },
+            "glucose isomerase": {
+              "level": "pro",
+              "text": "An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind."
+            },
+            "kinetic isotope effect": {
+              "level": "pro",
+              "text": "The difference in reaction rate when a heavier isotope (deuterium) is substituted for a lighter one (protium). Enzymes preferentially use protium, leaving deuterium behind."
+            },
+            "disaccharide": {
+              "level": "noob",
+              "text": "A sugar made of two monosaccharides linked together. Sucrose is a disaccharide of glucose and fructose."
+            },
+            "glycosidic bond": {
+              "level": "pro",
+              "text": "A covalent bond linking glucose and fructose in sucrose. This tight bond excludes free water and creates a dry crystalline structure."
+            },
+            "deuterium (heavy hydrogen)": {
+              "level": "noob",
+              "text": "A heavier form of hydrogen. Kruse uses deuterium load as a water-chemistry and mitochondrial-efficiency variable, especially when discussing deuterium-depleted water or proton flow."
+            },
+            "transpiration": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"transpiration\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "HFCS-55": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"HFCS-55\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        },
+        {
+          "tag": "Mechanism",
+          "lead": "UPR (unfolded protein response) is a cellular stress-response pathway activated when misfolded proteins accumulate",
+          "body_markdown": "When you activate the unfolded protein response (UPR) while your intracellular water table remains deuterated, expect temporary negative symptoms. This mechanism explains why deuterium-depleted water supplementation alone may cause initial worsening - the UPR is triggered to clear misfolded proteins, but the surrounding water environment is still heavy with deuterium, slowing resolution. Full symptom improvement requires both UPR activation and sustained deuterium depletion of the water table.",
+          "body_text": "When you activate the unfolded protein response (UPR) while your intracellular water table remains deuterated, expect temporary negative symptoms. This mechanism explains why deuterium-depleted water supplementation alone may cause initial worsening - the UPR is triggered to clear misfolded proteins, but the surrounding water environment is still heavy with deuterium, slowing resolution. Full symptom improvement requires both UPR activation and sustained deuterium depletion of the water table.",
+          "points": [
+            "**UPR activation.** DDW triggers cellular stress response as misfolded proteins accumulate and are cleared.",
+            "**Water environment.** If intracellular and extracellular water remain deuterated, UPR activation causes temporary symptoms (fatigue, malaise).",
+            "**Timeline expectation.** Negative symptoms should resolve as deuterium depletion progresses; they are a sign of cellular work, not DDW failure.",
+            "**Dual requirement.** Full resolution requires both UPR activation and sustained deuterium depletion of the water table."
+          ],
+          "source_quote": "When you have activates your UPR response and the water table is deuterated this initial response should be expected.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/negative-symptoms-after-drinking-ddw.32887/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "unfolded protein response": {
+              "level": "pro",
+              "text": "A cellular stress-response pathway activated when misfolded proteins accumulate in the endoplasmic reticulum. It triggers protein degradation and synthesis of chaperone proteins to restore cellular order."
+            },
+            "deuterated": {
+              "level": "noob",
+              "text": "Containing deuterium. Deuterated water has a higher concentration of heavy hydrogen than normal water."
+            },
+            "deuterium-depleted water": {
+              "level": "noob",
+              "text": "Water with reduced deuterium content. Used to lower deuterium levels in the body."
+            },
+            "deuterium depletion": {
+              "level": "noob",
+              "text": "The process of reducing deuterium concentration in the body's water. Requires both DDW supplementation and time for cellular water to equilibrate."
+            },
+            "intracellular water table": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"intracellular water table\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "misfolded proteins": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"misfolded proteins\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        },
+        {
+          "tag": "Azores plate tectonics",
+          "lead": "Azores sits on the Nubian plate boundary, an active tectonic zone with implications for water and electromagnetic environment",
+          "body_markdown": "The Azores archipelago sits directly in front of the Nubian plate unzipping in the East African Rift. This active plate boundary means the region sits on geologically dynamic terrain where new oceanic crust is being created. The tectonic activity affects water chemistry, mineral content, geothermal activity, and the Earth's magnetic field in the region. Understanding this geological context is relevant to water quality assessment and electromagnetic environment optimization for health.",
+          "body_text": "The Azores archipelago sits directly in front of the Nubian plate unzipping in the East African Rift. This active plate boundary means the region sits on geologically dynamic terrain where new oceanic crust is being created. The tectonic activity affects water chemistry, mineral content, geothermal activity, and the Earth's magnetic field in the region. Understanding this geological context is relevant to water quality assessment and electromagnetic environment optimization for health.",
+          "points": [
+            "**Tectonic setting.** Azores sits on the Mid-Atlantic Ridge, a divergent plate boundary where the Nubian plate is actively separating from the African plate.",
+            "**Water environment.** Active tectonics affect water chemistry, mineral content, and geothermal properties in the region.",
+            "**Electromagnetic context.** Plate movement and geothermal activity influence the Earth's magnetic field and electromagnetic environment.",
+            "**Health relevance.** Geological context informs water quality assessment and site selection for health optimization."
+          ],
+          "source_quote": "Azores sits right in front of the Nubian plate unzipping in East Africa. That plate would put portugal under two miles of water.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/improving-before-2nd-rh-pregnancy-granuloma-annulare-uric-acid-crystals-xanthelasma-lmhr-on-keto.32879/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "Nubian plate": {
+              "level": "pro",
+              "text": "A tectonic plate underlying much of northeastern Africa. It is actively separating from the African plate as part of the East African Rift system."
+            },
+            "East African Rift": {
+              "level": "pro",
+              "text": "A major geological feature where the African plate is splitting apart. It extends from the Red Sea through East Africa and is associated with volcanic and geothermal activity."
+            },
+            "plate boundary": {
+              "level": "noob",
+              "text": "The edge where two tectonic plates meet. At divergent boundaries like the Mid-Atlantic Ridge, plates move apart and new crust forms."
+            },
+            "plate tectonics": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"plate tectonics\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "Mid-Atlantic Ridge": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"Mid-Atlantic Ridge\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        },
+        {
+          "tag": "Arterial calcification reversal",
+          "lead": "ACA (arterial calcification) grade 1-4 improvement via 3% NaCl infusions",
+          "body_markdown": "Hypertonic saline (3% sodium chloride) infusions improve arterial calcification} (ACA) grades 1-4. This is an established medical intervention that MDs use but few connect to the broader lattice-lock mechanism - deuterium-induced stiffening and calcification of tissues. The osmotic and ionic properties of 3% saline appear to reverse calcium deposition in arterial walls, suggesting that sodium chloride concentration affects the biophysical state of the arterial matrix.",
+          "body_text": "Hypertonic saline (3% sodium chloride) infusions improve arterial calcification} (ACA) grades 1-4. This is an established medical intervention that MDs use but few connect to the broader lattice-lock mechanism - deuterium-induced stiffening and calcification of tissues. The osmotic and ionic properties of 3% saline appear to reverse calcium deposition in arterial walls, suggesting that sodium chloride concentration affects the biophysical state of the arterial matrix.",
+          "points": [
+            "**Treatment.** 3% NaCl infusions improve arterial calcification grades 1-4.",
+            "**Mechanism.** Osmotic and ionic effects of hypertonic saline reverse calcium deposition in arterial walls.",
+            "**Lattice-lock connection.** This intervention addresses the same pathology (tissue stiffening and calcification) that Kruse links to deuterium accumulation.",
+            "**Clinical gap.** MDs use this treatment but rarely connect it to the broader deuterium-driven lattice-lock mechanism."
+          ],
+          "source_quote": "Anyone with ACA grade 1-4 is improved by 3% NaCl infusions. This is what MDs already know but few are putting it all together as I have. that lady should not have died but her docs never read these papers.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/lattice-locked-accidents-track-the-zipcode.32644/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "saline": {
+              "level": "noob",
+              "text": "A solution of salt (sodium chloride) and water. 3% saline is hypertonic, meaning it has a higher salt concentration than normal body fluids."
+            },
+            "sodium chloride": {
+              "level": "noob",
+              "text": "Common table salt. In 3% solution, it creates an osmotic gradient that draws water out of tissues."
+            },
+            "arterial calcification": {
+              "level": "noob",
+              "text": "The buildup of calcium deposits in artery walls, causing stiffening and reduced blood flow. Graded 1-4 by severity."
+            },
+            "lattice-lock": {
+              "level": "pro",
+              "text": "Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes."
+            },
+            "infusion": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"infusion\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "osmotic": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"osmotic\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        },
+        {
+          "tag": "Case signal",
+          "lead": "Juvenile polyposis syndrome as tissue-water structure-lock in gut; zipcode tracking for environmental correlation",
+          "body_markdown": "A child with colon polyps and juvenile polyposis syndrome (negative on genetic tests) has a gut that is lattice-locked - stiffened and calcified by deuterium and other environmental factors. This case reframes the condition from a genetic disorder to an environmentally driven pathology. The child's zipcode (water quality, EM exposure, geomagnetic environment) is the primary driver, not genetic mutation. Tracking the zipcode and addressing water deuterium content and environmental EM exposure becomes the therapeutic focus.",
+          "body_text": "A child with colon polyps and juvenile polyposis syndrome (negative on genetic tests) has a gut that is lattice-locked - stiffened and calcified by deuterium and other environmental factors. This case reframes the condition from a genetic disorder to an environmentally driven pathology. The child's zipcode (water quality, EM exposure, geomagnetic environment) is the primary driver, not genetic mutation. Tracking the zipcode and addressing water deuterium content and environmental EM exposure becomes the therapeutic focus.",
+          "points": [
+            "**Mechanism.** Juvenile polyposis is not genetic but reflects lattice-lock (deuterium-induced stiffening) in gut epithelium.",
+            "**Environmental driver.** Zipcode factors (water deuterium, EM exposure, geomagnetic environment) cause polyp formation.",
+            "**Genetic misdirection.** Negative genetic tests confirm the condition is environmentally driven, not inherited.",
+            "**Therapeutic focus.** Address water quality (DDW), EM exposure reduction, and geomagnetic environment rather than genetic intervention."
+          ],
+          "source_quote": "Your daughter's zipcode should be added to this thread. Her gut is lattice locked.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/colon-polyps-in-kids-juvenile-polyposis-syndrome-negative-on-gene-tests.32881/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "juvenile polyposis syndrome": {
+              "level": "noob",
+              "text": "A condition in which multiple polyps (benign growths) form in the colon, usually in children. Often assumed to be genetic, but Kruse links it to environmental lattice-lock."
+            },
+            "lattice-lock": {
+              "level": "pro",
+              "text": "Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes."
+            },
+            "zipcode": {
+              "level": "noob",
+              "text": "Geographic location, used here to refer to the local water quality, electromagnetic environment, and geomagnetic factors that affect health."
+            },
+            "lattice-locked": {
+              "level": "pro",
+              "text": "Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes."
+            },
+            "colon polyps": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"colon polyps\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            },
+            "gut epithelium": {
+              "level": "noob",
+              "text": "A technical term used by the selected source. The report keeps \"gut epithelium\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "forum": {
+    "bullets": []
+  },
+  "markdown": "# Kruse Report 2026-06-02\n\nDate: 2026-06-02\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-02.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-02.json\n\n## Headline\n\nDeuterium enrichment in HFCS, DHA as quantum spintronic mediator, and environmental lattice-lock mechanisms\n\n## Twitter Updates\n\n### HFCS carries far higher deuterium than sucrose due to corn's water-conserving photosynthesis and industrial enzymatic processing\n\nTag: Sweetener deuterium load\n\nHigh-fructose corn syrup (HFCS) concentrates deuterium through two pathways absent in beet sugar. Corn uses C4 photosynthesis, which conserves water and traps heavy hydrogen in plant tissues; beets use C3 photosynthesis, which transpires freely and sheds deuterium. During HFCS production, enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips the lighter protium due to higher bond-breaking energy for deuterium, progressively enriching the syrup. HFCS-55 also contains 24% processed bulk water already heavy with deuterium. This deuterium load enters intracellular water as 'silt,' jamming mitochondrial Fo rotor function and dropping dielectric constant from 160 to 78, driving metabolic decline.\n\nKey points:\n- **Photosynthetic pathway.** C4 plants (corn, sugar cane) retain deuterium via low transpiration; C3 plants (beets) exhaust it via high transpiration.\n- **Enzymatic fractionation.** Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via kinetic isotope effect.\n- **Water matrix.** HFCS-55 is a free mixture of glucose and fructose in 24% deuterated water; sucrose is a tightly bound disaccharide excluding free water.\n- **Mitochondrial impact.** Deuterium in intracellular water blocks Fo rotor spinning and collapses dielectric constant, impairing ATP synthesis and metabolic function.\n\nSource quote: \"This high absolute load of deuterium directly enters your intracellular water table, acting as \"silt\" that jams the Fo spinning heads of your mitochondria, dropping your internal dielectric constant from 160 down to 78, and causing the focal lattice lock that drives metabolic decline.\"\n\nSources:\n- https://twitter.com/DrJackKruse/status/2061615494764109866\n- https://x.com/i/status/2061615494764109866\n\nConcepts:\n- C4 photosynthesis (noob): A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, which means it retains more deuterium in its tissues.\n- C3 photosynthesis (noob): A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape into the air.\n- protium (noob): The common, light form of hydrogen with one proton and no neutrons. It is faster and more reactive than deuterium.\n- alpha-amylase (pro): An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch.\n- glucoamylase (pro): An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production.\n- glucose isomerase (pro): An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind.\n- kinetic isotope effect (pro): The difference in reaction rate or pathway when a heavier isotope (deuterium) is substituted for a lighter one (protium). Bonds with deuterium require more energy to break, so enzymes preferentially use protium, leaving deuterium behind.\n- disaccharide (noob): A sugar made of two monosaccharides linked together by a covalent bond. Sucrose is a disaccharide of glucose and fructose.\n- Fo rotor (pro): Part of ATP synthase in the mitochondrial inner membrane. It spins to generate the energy needed to make ATP. Deuterium in surrounding water can jam this rotor.\n- dielectric constant (pro): A measure of a material's ability to store electrical energy. Water normally has a dielectric constant of 160; deuterated water drops it to 78, impairing electrical signaling in cells.\n- deuterium (heavy hydrogen) (noob): A heavier form of hydrogen. Kruse uses deuterium load as a water-chemistry and mitochondrial-efficiency variable, especially when discussing deuterium-depleted water or proton flow.\n- transpiration (noob): A technical term used by the selected source. The report keeps \"transpiration\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- HFCS-55 (noob): A technical term used by the selected source. The report keeps \"HFCS-55\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- intracellular water (noob): A technical term used by the selected source. The report keeps \"intracellular water\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n## Forum Updates\n\n### DHA is a highly specialized, non-linear signal-conducting membranes and all-optical spintronic waveguide designed to maximize macrophage M1-to-M2 inversion\n\nTag: Mechanism\n\nDocosahexaenoid acid (DHA) and its specialized pro-resolving mediators (maresins, protectins, resolvins) operate as quantum semiconductors and optical spintronic waveguides via Maxwellian electrodynamics and solid-state spin chemistry. This quantum framework explains how DHA orchestrates macrophage polarization from pro-inflammatory (M1) to pro-resolving (M2) state through mechanisms far beyond classical receptor signaling and cytokine downregulation. Centralized biochemistry treats DHA as a generic membrane-fluidity nutrient, missing its role as a quantum-scale electromagnetic mediator.\n\nKey points:\n- **Quantum mechanism.** DHA is a non-linear quantum semiconductor with spintronic properties, not a passive structural lipid.\n- **SPM function.** Maresins, protectins, and resolvins operate via Maxwellian electrodynamics and solid-state spin chemistry, not classical biochemical receptor pathways.\n- **Macrophage switching.** DHA-derived SPMs drive M1-to-M2 macrophage inversion through quantum electromagnetic mechanisms.\n- **Biochemistry gap.** Standard textbooks miss DHA's quantum role, treating it only as an omega-3 for membrane liquidity and generic anti-inflammatory signaling.\n\nSource quote: \"New Shake Rattle & Roll “Tools” Jack Kruse Jack Kruse DHA is a magnetic fat........\"\n\nSources:\n- https://forum.jackkruse.com/threads/new-shake-rattle-roll-%E2%80%9Ctools%E2%80%9D.32863/unread\n\nConcepts:\n- Docosahexaenoid acid (noob): A long-chain omega-3 fatty acid found in fish and algae. Kruse frames it as a quantum device that orchestrates immune cell signaling, not just a structural nutrient.\n- specialized pro-resolving mediators (pro): Signaling molecules derived from omega-3 fatty acids (maresins, protectins, resolvins) that promote resolution of inflammation and immune cell switching from pro-inflammatory to pro-healing states.\n- maresins (pro): A class of specialized pro-resolving mediators derived from DHA. They promote macrophage switching from M1 to M2 and tissue repair.\n- protectins (pro): A class of specialized pro-resolving mediators derived from DHA. They protect tissues and promote resolution of inflammation.\n- resolvins (pro): A class of specialized pro-resolving mediators derived from DHA. They resolve inflammation by promoting macrophage switching and clearance of dead cells.\n- Maxwellian electrodynamics (pro): Classical electromagnetic theory describing how electric and magnetic fields interact. Kruse applies it to cellular signaling at the quantum scale, suggesting DHA mediates electromagnetic interactions between cells.\n- solid-state spin chemistry (pro): The study of electron spin states in solid materials and how they affect chemical reactions. Kruse applies it to DHA's role in cellular signaling, proposing that electron spin orientation in DHA affects immune cell polarization.\n- macrophage (noob): An immune cell that engulfs pathogens and dead cells. M1 macrophages are pro-inflammatory; M2 macrophages promote healing and resolution of inflammation.\n- quantum semiconductor (noob): A technical term used by the selected source. The report keeps \"quantum semiconductor\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- spintronic waveguide (pro): Coordinated spin behavior in particles such as electrons or protons; Kruse uses it as part of his magnetic and mitochondrial signaling language.\n\n### Deuterium enrichment in HFCS via C4 photosynthesis and enzymatic processing (forum version)\n\nTag: HFCS deuterium enrichment\n\nHigh-fructose corn syrup concentrates deuterium through three mechanisms: (1) C4 photosynthesis in corn conserves water and traps deuterium in plant tissues, while C3 photosynthesis in beets transpires freely and sheds deuterium; (2) enzymatic hydrolysis (alpha-amylase, glucoamylase, glucose isomerase) selectively strips protium due to higher activation energy for deuterium bonds, progressively enriching the syrup via kinetic isotope effect; (3) HFCS-55 contains 24% processed bulk water already heavy with deuterium, creating a free-floating glucose-fructose mixture in a deuterated matrix. Sucrose, by contrast, is a tightly bound disaccharide with low free water. This structural and compositional difference means HFCS delivers absolute deuterium directly into beverages and intracellular water.\n\nKey points:\n- **Photosynthetic pathway.** C4 plants (corn) retain deuterium via low transpiration; C3 plants (beets) exhaust it via high transpiration.\n- **Enzymatic fractionation.** Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via kinetic isotope effect.\n- **Molecular structure.** Sucrose is a disaccharide with covalent glycosidic bond and low free water; HFCS-55 is a free mixture with 24% deuterated water.\n- **Delivery mechanism.** HFCS's free monomers and high water content serve as a liquid vector introducing deuterium directly into the beverage and intracellular water table.\n\nSource quote: \"C4 plants (like corn and sugar cane) are evolved for hot, arid conditions. Their physical mechanics prioritize water conservation, meaning they transpire far less than C3 plants. Because light hydrogen (protium, evaporates faster during transpiration, C4 plants retain and concentrate heavy hydrogen (deuterium, inside their tissues and carbohydrate stores.\"\n\nSources:\n- https://forum.jackkruse.com/threads/the-photosynthesis-of-deuterium-in-sugar-vs-hfcs.32888/unread\n\nConcepts:\n- C4 photosynthesis (noob): A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, retaining more deuterium.\n- C3 photosynthesis (noob): A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape.\n- protium (noob): The common, light form of hydrogen. Enzymes preferentially use protium over deuterium because deuterium bonds require more energy to break.\n- alpha-amylase (pro): An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch.\n- glucoamylase (pro): An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production.\n- glucose isomerase (pro): An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind.\n- kinetic isotope effect (pro): The difference in reaction rate when a heavier isotope (deuterium) is substituted for a lighter one (protium). Enzymes preferentially use protium, leaving deuterium behind.\n- disaccharide (noob): A sugar made of two monosaccharides linked together. Sucrose is a disaccharide of glucose and fructose.\n- glycosidic bond (pro): A covalent bond linking glucose and fructose in sucrose. This tight bond excludes free water and creates a dry crystalline structure.\n- deuterium (heavy hydrogen) (noob): A heavier form of hydrogen. Kruse uses deuterium load as a water-chemistry and mitochondrial-efficiency variable, especially when discussing deuterium-depleted water or proton flow.\n- transpiration (noob): A technical term used by the selected source. The report keeps \"transpiration\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- HFCS-55 (noob): A technical term used by the selected source. The report keeps \"HFCS-55\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n### UPR (unfolded protein response) is a cellular stress-response pathway activated when misfolded proteins accumulate\n\nTag: Mechanism\n\nWhen you activate the unfolded protein response (UPR) while your intracellular water table remains deuterated, expect temporary negative symptoms. This mechanism explains why deuterium-depleted water supplementation alone may cause initial worsening - the UPR is triggered to clear misfolded proteins, but the surrounding water environment is still heavy with deuterium, slowing resolution. Full symptom improvement requires both UPR activation and sustained deuterium depletion of the water table.\n\nKey points:\n- **UPR activation.** DDW triggers cellular stress response as misfolded proteins accumulate and are cleared.\n- **Water environment.** If intracellular and extracellular water remain deuterated, UPR activation causes temporary symptoms (fatigue, malaise).\n- **Timeline expectation.** Negative symptoms should resolve as deuterium depletion progresses; they are a sign of cellular work, not DDW failure.\n- **Dual requirement.** Full resolution requires both UPR activation and sustained deuterium depletion of the water table.\n\nSource quote: \"When you have activates your UPR response and the water table is deuterated this initial response should be expected.\"\n\nSources:\n- https://forum.jackkruse.com/threads/negative-symptoms-after-drinking-ddw.32887/unread\n\nConcepts:\n- unfolded protein response (pro): A cellular stress-response pathway activated when misfolded proteins accumulate in the endoplasmic reticulum. It triggers protein degradation and synthesis of chaperone proteins to restore cellular order.\n- deuterated (noob): Containing deuterium. Deuterated water has a higher concentration of heavy hydrogen than normal water.\n- deuterium-depleted water (noob): Water with reduced deuterium content. Used to lower deuterium levels in the body.\n- deuterium depletion (noob): The process of reducing deuterium concentration in the body's water. Requires both DDW supplementation and time for cellular water to equilibrate.\n- intracellular water table (noob): A technical term used by the selected source. The report keeps \"intracellular water table\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- misfolded proteins (noob): A technical term used by the selected source. The report keeps \"misfolded proteins\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n### Azores sits on the Nubian plate boundary, an active tectonic zone with implications for water and electromagnetic environment\n\nTag: Azores plate tectonics\n\nThe Azores archipelago sits directly in front of the Nubian plate unzipping in the East African Rift. This active plate boundary means the region sits on geologically dynamic terrain where new oceanic crust is being created. The tectonic activity affects water chemistry, mineral content, geothermal activity, and the Earth's magnetic field in the region. Understanding this geological context is relevant to water quality assessment and electromagnetic environment optimization for health.\n\nKey points:\n- **Tectonic setting.** Azores sits on the Mid-Atlantic Ridge, a divergent plate boundary where the Nubian plate is actively separating from the African plate.\n- **Water environment.** Active tectonics affect water chemistry, mineral content, and geothermal properties in the region.\n- **Electromagnetic context.** Plate movement and geothermal activity influence the Earth's magnetic field and electromagnetic environment.\n- **Health relevance.** Geological context informs water quality assessment and site selection for health optimization.\n\nSource quote: \"Azores sits right in front of the Nubian plate unzipping in East Africa. That plate would put portugal under two miles of water.\"\n\nSources:\n- https://forum.jackkruse.com/threads/improving-before-2nd-rh-pregnancy-granuloma-annulare-uric-acid-crystals-xanthelasma-lmhr-on-keto.32879/unread\n\nConcepts:\n- Nubian plate (pro): A tectonic plate underlying much of northeastern Africa. It is actively separating from the African plate as part of the East African Rift system.\n- East African Rift (pro): A major geological feature where the African plate is splitting apart. It extends from the Red Sea through East Africa and is associated with volcanic and geothermal activity.\n- plate boundary (noob): The edge where two tectonic plates meet. At divergent boundaries like the Mid-Atlantic Ridge, plates move apart and new crust forms.\n- plate tectonics (noob): A technical term used by the selected source. The report keeps \"plate tectonics\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- Mid-Atlantic Ridge (noob): A technical term used by the selected source. The report keeps \"Mid-Atlantic Ridge\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n### ACA (arterial calcification) grade 1-4 improvement via 3% NaCl infusions\n\nTag: Arterial calcification reversal\n\nHypertonic saline (3% sodium chloride) infusions improve arterial calcification} (ACA) grades 1-4. This is an established medical intervention that MDs use but few connect to the broader lattice-lock mechanism - deuterium-induced stiffening and calcification of tissues. The osmotic and ionic properties of 3% saline appear to reverse calcium deposition in arterial walls, suggesting that sodium chloride concentration affects the biophysical state of the arterial matrix.\n\nKey points:\n- **Treatment.** 3% NaCl infusions improve arterial calcification grades 1-4.\n- **Mechanism.** Osmotic and ionic effects of hypertonic saline reverse calcium deposition in arterial walls.\n- **Lattice-lock connection.** This intervention addresses the same pathology (tissue stiffening and calcification) that Kruse links to deuterium accumulation.\n- **Clinical gap.** MDs use this treatment but rarely connect it to the broader deuterium-driven lattice-lock mechanism.\n\nSource quote: \"Anyone with ACA grade 1-4 is improved by 3% NaCl infusions. This is what MDs already know but few are putting it all together as I have. that lady should not have died but her docs never read these papers.\"\n\nSources:\n- https://forum.jackkruse.com/threads/lattice-locked-accidents-track-the-zipcode.32644/unread\n\nConcepts:\n- saline (noob): A solution of salt (sodium chloride) and water. 3% saline is hypertonic, meaning it has a higher salt concentration than normal body fluids.\n- sodium chloride (noob): Common table salt. In 3% solution, it creates an osmotic gradient that draws water out of tissues.\n- arterial calcification (noob): The buildup of calcium deposits in artery walls, causing stiffening and reduced blood flow. Graded 1-4 by severity.\n- lattice-lock (pro): Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes.\n- infusion (noob): A technical term used by the selected source. The report keeps \"infusion\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- osmotic (noob): A technical term used by the selected source. The report keeps \"osmotic\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n### Juvenile polyposis syndrome as tissue-water structure-lock in gut; zipcode tracking for environmental correlation\n\nTag: Case signal\n\nA child with colon polyps and juvenile polyposis syndrome (negative on genetic tests) has a gut that is lattice-locked - stiffened and calcified by deuterium and other environmental factors. This case reframes the condition from a genetic disorder to an environmentally driven pathology. The child's zipcode (water quality, EM exposure, geomagnetic environment) is the primary driver, not genetic mutation. Tracking the zipcode and addressing water deuterium content and environmental EM exposure becomes the therapeutic focus.\n\nKey points:\n- **Mechanism.** Juvenile polyposis is not genetic but reflects lattice-lock (deuterium-induced stiffening) in gut epithelium.\n- **Environmental driver.** Zipcode factors (water deuterium, EM exposure, geomagnetic environment) cause polyp formation.\n- **Genetic misdirection.** Negative genetic tests confirm the condition is environmentally driven, not inherited.\n- **Therapeutic focus.** Address water quality (DDW), EM exposure reduction, and geomagnetic environment rather than genetic intervention.\n\nSource quote: \"Your daughter's zipcode should be added to this thread. Her gut is lattice locked.\"\n\nSources:\n- https://forum.jackkruse.com/threads/colon-polyps-in-kids-juvenile-polyposis-syndrome-negative-on-gene-tests.32881/unread\n\nConcepts:\n- juvenile polyposis syndrome (noob): A condition in which multiple polyps (benign growths) form in the colon, usually in children. Often assumed to be genetic, but Kruse links it to environmental lattice-lock.\n- lattice-lock (pro): Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes.\n- zipcode (noob): Geographic location, used here to refer to the local water quality, electromagnetic environment, and geomagnetic factors that affect health.\n- lattice-locked (pro): Kruse's term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes.\n- colon polyps (noob): A technical term used by the selected source. The report keeps \"colon polyps\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n- gut epithelium (noob): A technical term used by the selected source. The report keeps \"gut epithelium\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n"
+}

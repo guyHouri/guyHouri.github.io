@@ -1,0 +1,45 @@
+# Kruse Daily Reports
+
+> Daily source-bound summaries from Jack Kruse tweets, forum activity, podcasts, Q&A mentions, and blog updates.
+
+Base URL: https://guyhouri.github.io/kruse-knowledge/
+Sitemap: https://guyhouri.github.io/kruse-knowledge/sitemap.xml
+Machine-readable index: https://guyhouri.github.io/kruse-knowledge/ai-index.json
+Reports API: https://guyhouri.github.io/kruse-knowledge/api/reports.json
+Latest summary JSON: https://guyhouri.github.io/kruse-knowledge/api/latest.json
+Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.md
+Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
+Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
+RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-09.html
+
+## Core Pages
+
+- [Report archive](https://guyhouri.github.io/kruse-knowledge/): Browse every daily report.
+- [Latest report](https://guyhouri.github.io/kruse-knowledge/latest/): Redirects to the newest report.
+- [Latest plain summary](https://guyhouri.github.io/kruse-knowledge/latest-summary.html): Static no-JavaScript HTML with the full latest summary.
+- [Latest summary Markdown](https://guyhouri.github.io/kruse-knowledge/latest-summary.md): Static Markdown alias for direct AI fetching.
+- [Unsubscribe](https://guyhouri.github.io/kruse-knowledge/unsubscribe/): Email unsubscribe form.
+
+## Daily Reports
+
+- [2026-06-09 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-09.html): Geomagnetic storms, cellular resonance, and UV apoptosis: mechanisms linking magnetism, isotopes, and disease
+- [2026-06-08 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-08.html): Deuterium depletion, vagal tone, and CO2-driven water structuring; DDW contraindicated in pregnancy and lactation.
+- [2026-06-07 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-07.html): Water research validation: DDW exclusion zone mechanism confirmed
+- [2026-06-06 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-06.html): Insulinoma as dielectric breakdown; fat-1 mouse proof of obesity mechanism; Soviet Gazirovka as magnetic-excursion hack; deuterium-driven Type II diabetes reversal; 3% NaCl as bicarbonate-clearance tool; MoOCl₂ crystal as model of cellular water structure.
+- [2026-06-05 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-05.html): Deuterium-driven cellular lattice lock, phase-conjugate electromagnetic repair, and megalith-geomagnetic correlations
+- [2026-06-04 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-04.html): Mitochondrial escapement, planetary magnetic decline, and isotopic backwash: mechanism, geography, and ancient empirical solutions
+- [2026-06-03 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-03.html): Beta cell deuterium pathology, castor oil sourcing, and Lakhovsky copper ring resonance as cellular frequency restoration
+- [2026-06-02 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-02.html): Deuterium enrichment in HFCS, DHA as quantum spintronic mediator, and environmental lattice-lock mechanisms
+- [2026-06-01 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-01.html): Castor oil navel application, nocturnal melanin polarity flip, Earth's core-mantle decoupling, and high-latitude biphasic sleep.
+- [2026-05-31 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-31.html): Quantum spin chemistry, magnetic fats, and mitochondrial voltage in aging; deuterium trap mechanisms in scoliosis, food allergies, and SSRI toxicity
+- [2026-05-30 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-30.html): Today's signal: hair and tissue loss, tooth enamel changes, mastic gum, spine surgery caution, GLP-1 drug concerns, the Rescuing Hug story, and SSRI risk
+- [2026-05-29 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-29.html): Geomagnetic excursions, deuterium overload, and quantum cellular collapse: ancient architecture, modern arrhythmias, and GLP-1 agonist mechanisms
+- [2026-05-28 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-28.html): High-protein diets trigger deuterium trap and singlet oxygen damage; RETA complications; planetary magnetic decoupling; citrus disease as water table collapse
+- [2026-05-27 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-27.html): Deuterium-driven tissue collapse across GI, vascular, mitochondrial, and athletic systems; Florida citrus greening as water table biophysics
+- [2026-05-26 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-26.html): Yucatán's subsurface water system and EDS charge dysregulation
+- [2026-05-25 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-25.html): Optical switch dysfunction, deuterium tolerance, and skin cancer treatment preference
+- [2026-05-24 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-24.html): Cancer fat-burning, NAD blood myth, glycolysis as isotope filter.
+- [2026-05-23 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-23.html): Cancer fat metabolism rebuttal, PMLE as deuterium flash-evaporation, and triplet oxygen collagen defects
+- [2026-05-22 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-22.html): Solid-state biology, tumor physics, geomagnetic noise. No fluff.
+- [2026-05-21 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-05-21.html): Daily Kruse report
