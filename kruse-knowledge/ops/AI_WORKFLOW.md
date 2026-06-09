@@ -17,6 +17,7 @@ This document defines how Guy and AI assistants plan, execute, review, and close
 - If public-site or GitHub Pages code/config changed, deployment after merge is expected once checks pass and no hold remains.
 - Workers must add or update tests for code they add, including unit tests and integration/smoke tests where the repo has a reasonable test surface.
 - Workers cannot waive their own missing tests. Reviewer checks test gaps; coordinator accepts exceptions when justified.
+- Opening a PR and opening its combined review-fix-merge lane are one handoff. A worker must not stop at "reviewer needed"; it must create or request the `review-fix/pr-<number>-<short-scope>` lane, link it in PR/issue status, or record the exact blocker before ending the turn.
 - Status must be concrete: who owns the next action, what is blocked, and what exact decision is needed.
 
 ## How A Chat Knows How To Behave
@@ -194,12 +195,18 @@ Public-site/GitHub Pages deployment:
 
 9. Review
    - Every PR gets a reviewer chat or explicit reviewer pass.
+   - The implementation worker owns the first review handoff. After the draft PR exists, the worker must immediately create or request a combined review-fix-merge lane titled `review-fix/pr-<number>-<short-scope>`, link it in the PR/issue status, and make the next owner explicit.
+   - If the worker cannot create the review-fix lane, it must write `Reviewer blocked: <exact blocker>` in the PR or issue status and name who owns the next action. "Needs reviewer" without a lane or blocker is stale work, not a handoff.
+   - A coordinator who finds an open PR with no review-fix lane, human reviewer, explicit reviewer pass, or reviewer blocker should create or nudge the review-fix lane immediately instead of asking Guy to notice it.
    - Reviewer checks the PR, tests, scope, and external-impact rules.
+   - Reviewer does not own implementation fixes by default. If review finds issues, the implementation worker owns the fix loop, pushes updates to the same PR, reruns required checks, and asks the reviewer to re-check.
    - Reviewer owns missing-test review.
    - Coordinator accepts missing-test exceptions only by posting or approving a PR comment titled `TEST GAP ACCEPTED`.
 
 10. Merge and closeout
-   - The reviewer should merge after checks pass and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
+   - The implementation worker owns merge after reviewer pass, required checks, and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
+   - Reviewer should state whether the PR can be marked ready, but should not become the fix owner or merge owner unless the coordinator explicitly reassigns ownership.
+   - Coordinator may merge only when the implementation worker is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
    - Coordinator closes/updates issues, archives stale chats, and writes final issue/project status.
 
@@ -239,6 +246,7 @@ Long-running workers must update status when they finish a meaningful step or hi
 
 - It has been working for more than 2 hours without a useful issue comment.
 - The PR or branch changed but the issue was not updated.
+- A PR exists but no `review-fix/pr-<number>-<short-scope>` lane, human reviewer, explicit reviewer pass, or reviewer blocker is linked in the same worker closeout.
 - The issue says active but no worker thread or PR is moving.
 - The worker is blocked but did not name the exact blocker.
 
@@ -275,6 +283,7 @@ Coordinator responsibilities:
 - Audit active issues, PRs, branches, checks, and stale workers.
 - Keep Project status aligned with issue/PR state.
 - Find PRs ready to merge.
+- Find open PRs missing a `review-fix/pr-<number>-<short-scope>` lane and create or nudge that lane immediately. Do not classify this as `Waiting on Guy` unless the missing piece is a specific human decision.
 - Find exact decisions needed from Guy.
 - Park or replace unclear workers.
 - Run `tools/mission-control.ps1` for a read-only GitHub audit when a quick queue check is needed.
@@ -286,6 +295,24 @@ Coordinator responsibilities:
 - Treat `PR Ops Guard` failures as merge blockers.
 
 Planner may create docs, issues, project entries, and worker prompts. Planner should not silently merge, deploy, spend money, write live Supabase, send email, or do destructive cleanup.
+
+## Process Feedback Escalation
+
+When Guy flags a workflow failure or says something should not happen again, the coordinator must turn that correction into durable behavior before moving on.
+
+1. Restate the failure in concrete terms.
+2. Fix the current stuck item when the next action is clear.
+3. Decide where the durable rule belongs: `AGENTS.md`, this workflow doc, a guard/check, a local Codex skill, or a worker prompt template.
+4. Open a PR for repo rules/tooling when the repo should carry the behavior, or record why the fix belongs only in local Codex configuration.
+
+For PR review handoff failures, the immediate fix is to create or nudge the combined `review-fix/pr-<number>-<short-scope>` lane. The durable fix is to make future workers treat PR creation plus review-fix-merge lane creation as one atomic closeout.
+
+For post-review ownership confusion, the durable rule is:
+
+- Implementation worker fixes reviewer findings.
+- Reviewer verifies fixes and gives pass/fail.
+- Implementation worker marks ready and merges after pass and green required checks.
+- Coordinator takes over merge only when the implementation worker is stale, unavailable, or explicitly handed off.
 
 ## Documentation Locations
 

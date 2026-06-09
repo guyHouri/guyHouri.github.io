@@ -16,10 +16,13 @@ Every PR should include:
 - Known test gaps.
 - Risk notes.
 - External-impact and deployment impact.
-- Reviewer assignment or reviewer chat link.
+- Reviewer assignment, `review-fix/pr-<number>-<short-scope>` lane link, or explicit reviewer-handoff blocker.
+- Post-review fix owner and merge owner.
 - Worker lease comment link.
 
 Do not mark a PR ready if the worker did not run tests and did not explain why.
+Do not leave a draft PR sitting at "needs review." The worker must create the combined `review-fix/pr-<number>-<short-scope>` lane after the PR exists, link it in the PR or issue status, or write the exact reviewer-handoff blocker.
+Do not leave post-review ownership implicit. The implementation worker owns reviewer-requested fixes and merge after pass/green checks unless the coordinator explicitly reassigns it.
 
 ## Worker Test Responsibility
 
@@ -107,6 +110,8 @@ Reviewer should check:
 - Are docs updated if workflow, commands, or user-facing behavior changed?
 - Is the PR small enough to review safely?
 - Is there an independent reviewer pass?
+- Was the `review-fix/pr-<number>-<short-scope>` lane opened by the implementation worker or coordinator, rather than left as an unowned future action?
+- Are post-review fixes and merge owned by the implementation worker or an explicitly named replacement owner?
 - Are issue/project status and links updated?
 
 ## Ready To Merge
@@ -116,6 +121,8 @@ A PR is ready to merge only when:
 - Linked issue acceptance criteria are met.
 - `TASK_ID` is present and matches the branch issue number.
 - Worker lease comment is linked.
+- `review-fix/pr-<number>-<short-scope>` lane, human reviewer, explicit reviewer pass, or exact reviewer-handoff blocker is linked.
+- Post-review fix owner and merge owner are named.
 - Required tests/checks pass or documented exceptions are accepted by reviewer/coordinator in a `TEST GAP ACCEPTED` PR comment.
 - `PR Ops Guard` passes.
 - Reviewer or coordinator is satisfied.
@@ -124,4 +131,4 @@ A PR is ready to merge only when:
 - No unrelated dirty-root changes are included.
 - Public-site/GitHub Pages changes passed `npm run prod-check` from `kruse-summary/`, or no public-site/GitHub Pages code/config changed.
 
-Reviewer should merge once ready unless Guy or the coordinator has put a hold on it.
+The implementation worker should merge once ready unless Guy or the coordinator has put a hold on it. Reviewer should verify and state pass/fail; reviewer does not become the default fix or merge owner.

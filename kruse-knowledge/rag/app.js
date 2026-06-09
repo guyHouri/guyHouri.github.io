@@ -143,12 +143,15 @@ function answerSectionBody(session, id) {
 function renderSimpleAnswer(session) {
   const evidence = session.evidence || [];
   const focus = session.filters?.focus || "all";
+  const writtenAnswer = session.answerDraft?.text || "";
   const patternSummary = answerSectionBody(session, "pattern-summary");
   const guidance = session.guidance?.body || "";
   let title = "Answer";
-  let body = patternSummary || guidance || "I need a little more context before searching.";
+  let body = writtenAnswer || patternSummary || guidance || "I need a little more context before searching.";
 
-  if (focus === "cases") {
+  if (writtenAnswer) {
+    title = "Answer";
+  } else if (focus === "cases") {
     title = "Case search";
     body = evidence.length
       ? "I searched for case-style evidence and forum examples. The citations below are the useful starting points."

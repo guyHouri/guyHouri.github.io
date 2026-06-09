@@ -2,16 +2,19 @@
 
 This repo uses `gh` for issues, PRs, labels, workflows, and GitHub Projects.
 
-## Codex Shim Problem
+## Codex Token Problem
 
-In Codex desktop threads, `gh` may be a Codex shim, not a normal GitHub CLI login:
+In Codex desktop threads, `gh` may be a Codex shim, or it may be the real
+GitHub CLI running with `GH_TOKEN`/`GITHUB_TOKEN` injected into the process:
 
 ```text
 C:\Users\<user>\.codex\tmp\...\gh.cmd
 C:\Users\<user>\AppData\Local\OpenAI\Codex\bin\...\gh.cmd
+C:\Users\<user>\AppData\Local\Programs\GitHub CLI\bin\gh.exe
 ```
 
-That shim can inject a limited `GH_TOKEN` even when `$env:GH_TOKEN` is empty.
+Those token paths can expose only a limited token even when ordinary git
+commands can still push through Git Credential Manager.
 
 Symptoms:
 
@@ -22,6 +25,16 @@ Symptoms:
 - `gh auth refresh ...` says it cannot refresh while `GH_TOKEN` is used.
 
 Do not keep retrying Project commands in this state. It is an auth-scope blocker, not a workflow-design problem.
+
+For the full diagnosis, run:
+
+```powershell
+tools/ensure-gh-auth.ps1 -RequireProject
+```
+
+When `GH_TOKEN` is the active auth source, the preflight also checks whether a
+stored `gh` login exists after removing token env vars, and whether the Git
+Credential Manager token has broader scopes. It never prints token values.
 
 ## Required Preflight
 
@@ -47,8 +60,12 @@ Use one of these repairs:
 
 ```powershell
 Remove-Item Env:GH_TOKEN -ErrorAction SilentlyContinue
+Remove-Item Env:GITHUB_TOKEN -ErrorAction SilentlyContinue
 gh auth login --hostname github.com --web --git-protocol https --scopes repo,workflow,read:org,read:project,project,read:discussion
 tools/ensure-gh-auth.ps1 -RequireProject
 ```
 
-If the preflight still reports `(GH_TOKEN)` from a Codex shim, the command is still running through the limited Codex token.
+If the preflight still reports `(GH_TOKEN)`, the command is still running
+through a limited environment token. If it reports the Git Credential Manager
+token with only `gist, repo, workflow`, Git operations are using the same
+limited token and Project sync must stay blocked until auth is refreshed.
