@@ -9,7 +9,7 @@
     "sitemap": "https://guyhouri.github.io/kruse-knowledge/sitemap.xml",
     "llms": "https://guyhouri.github.io/kruse-knowledge/llms.txt",
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml",
-    "latest_report": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-10.html",
+    "latest_report": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-09.html",
     "latest_json": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown": "https://guyhouri.github.io/kruse-knowledge/api/latest.md",
     "latest_plain_html": "https://guyhouri.github.io/kruse-knowledge/latest-summary.html",
@@ -28,8 +28,8 @@
       "type": "latest",
       "title": "Latest Kruse Report",
       "url": "https://guyhouri.github.io/kruse-knowledge/latest/",
-      "canonical_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-10.html",
-      "description": "Redirects to the 2026-06-10 daily report."
+      "canonical_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-09.html",
+      "description": "Redirects to the 2026-06-09 daily report."
     },
     {
       "type": "unsubscribe",
@@ -39,15 +39,6 @@
     }
   ],
   "reports": [
-    {
-      "type": "daily-report",
-      "date": "2026-06-10",
-      "title": "Kruse Report 2026-06-10",
-      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-10.html",
-      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-10.json",
-      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-10.md",
-      "headline": "Deuterium-singlet oxygen coupling in depression pathophysiology"
-    },
     {
       "type": "daily-report",
       "date": "2026-06-09",
