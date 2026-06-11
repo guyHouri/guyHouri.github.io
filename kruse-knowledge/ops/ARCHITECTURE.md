@@ -47,7 +47,7 @@ GitHub Issues are the single task object. TFS-style hierarchy is represented wit
 - External-impact operation issue = live operation that needs boundary approval.
 - Cleanup issue = maintenance or repo hygiene.
 
-Standalone task and bug issues are allowed. Bigger work must use a mission issue with linked child user stories/tasks. If GitHub sub-issues are available, use them; otherwise put parent/child links in the issue body.
+Standalone task and bug issues are allowed. Bigger work must use a mission issue with linked child user stories/tasks. Use GitHub sub-issues for live hierarchy; the `Parent: #<issue-number>` line is the human-readable fallback. Missions can be nested under missions when the work is itself a larger outcome.
 
 Any non-standalone story, task, bug, research, cleanup, or external operation must include `Parent: #<issue-number>` in the issue body. Standalone work must explicitly say `Parent: standalone`. The coordinator audit flags missing parent signals.
 
@@ -99,9 +99,11 @@ Use these approved day-one project fields:
 - Area: scraper, summary, site, data, docs, infra, ops.
 - Owner: human or AI worker responsible for next action.
 - Worker Thread: Codex/chat link or ID when applicable.
-- Reviewer: reviewer chat or human reviewer.
+- Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
 - Last Useful Update: timestamp of the last concrete issue comment.
 - External Impact: none, pending approval, approved, completed.
+
+The GitHub Project is the live taskboard. Active queue views should show `Ready`, `Active`, `Review`, and `Blocked` work. `Done` work should be visually separate as a closed/history lane or filtered view so completed missions do not look like current work. The Project's built-in `Parent issue` and `Sub-issues progress` fields carry hierarchy/progress for nested missions once the issues are linked with GitHub sub-issues.
 
 Use these approved day-one labels when project-field automation is unavailable or when PR checks need easy signals:
 

@@ -24,6 +24,9 @@ These questions refine the AI workflow. Answered decisions should be folded into
 - GitHub Project work must pass `tools/ensure-gh-auth.ps1 -RequireProject` before a coordinator attempts Project mutation.
 - GitHub issue number is the task ID. Workers must claim one issue before implementation edits.
 - `main` branch protection is enabled with PR review, conversation resolution, no force pushes/deletions, and required checks.
+- GitHub Projects is the live taskboard; committed docs explain the system but do not hold live task state.
+- Done missions/tasks should be visually separate from active work through a `Done` lane/section or done/history view.
+- Mission nesting uses GitHub sub-issues plus the Project's built-in `Parent issue` and `Sub-issues progress` fields.
 
 ## Approved Day-One GitHub Setup
 
@@ -34,7 +37,7 @@ These are approved day-one GitHub Project fields:
 - Area: scraper, summary, site, data, docs, infra, ops.
 - Owner: human or AI worker responsible for the next action.
 - Worker Thread: Codex/chat link or ID.
-- Reviewer: reviewer chat or human reviewer.
+- Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
 - Last Useful Update: timestamp of the latest concrete issue comment.
 - External Impact: none, pending approval, approved, completed.
 

@@ -59,9 +59,17 @@ Issue types:
 - Research: investigation that produces a decision, report, or next task list.
 - Cleanup: maintenance or repo hygiene.
 
-Standalone issues are allowed. Not every issue needs a parent mission. For bigger work, link children from the mission issue. If GitHub sub-issues are available, use them; otherwise use issue links.
+Standalone issues are allowed. Not every issue needs a parent mission. For bigger work, link children from the mission issue with GitHub sub-issues, not just body text. Missions can be nested under missions this way.
 
 Every non-standalone story, task, bug, research, cleanup, or external operation must include `Parent: #<issue-number>` in the issue body. Standalone work must explicitly say `Parent: standalone`.
+
+`Parent: #<issue-number>` is the human-readable fallback, not the live hierarchy. After creating or reparenting an issue, run:
+
+```powershell
+tools/link-issue-parent.ps1 -Parent <parent-issue-number> -Child <child-issue-number>
+```
+
+Use `-ReplaceParent` only when intentionally moving a child from one parent to another. GitHub Projects then populates the built-in `Parent issue` and `Sub-issues progress` fields.
 
 Every issue should include:
 
@@ -103,9 +111,27 @@ Use these approved project fields once available in GitHub Projects:
 - Area: scraper, summary, site, data, docs, infra, ops.
 - Owner: human or AI worker responsible for the next action.
 - Worker Thread: Codex/chat link or ID.
-- Reviewer: reviewer chat or human reviewer.
+- Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
 - Last Useful Update: timestamp of the latest concrete issue comment.
 - External Impact: none, pending approval, approved, completed.
+
+## Taskboard Operating Model
+
+The GitHub Project is the live taskboard. It should answer what is ready, active, in review, blocked, and done without reading old chats.
+
+Use the board like this:
+
+- `Ready` is the launch queue.
+- `Active` is work currently owned by a worker or coordinator.
+- `Review` is work waiting on a reviewer or review-fix lane.
+- `Blocked` is work with a named blocker and next owner.
+- `Done` is closed/completed history, not part of the active queue.
+
+Done missions and tasks should be visually separate from live work. The preferred board view groups or filters by `Status` so `Done` appears as its own lane/section or in a dedicated done/history view. Do not mix done missions into the active mission list except when auditing history.
+
+Mission nesting uses GitHub sub-issues. The Project's built-in `Parent issue` and `Sub-issues progress` fields show hierarchy/progress once `tools/link-issue-parent.ps1` has linked the issues. A mission can contain child missions, stories, tasks, bugs, research issues, cleanup issues, or external-impact operations.
+
+The taskboard does not replace issue bodies or PRs. Issue bodies define scope and acceptance criteria, PRs hold review/check evidence, and the Project holds queue state.
 
 Use the approved labels as durable signals and as a fallback when Project automation is awkward:
 
@@ -288,8 +314,9 @@ Coordinator responsibilities:
 - Park or replace unclear workers.
 - Run `tools/mission-control.ps1` for a read-only GitHub audit when a quick queue check is needed.
 - Run `tools/claim-task.ps1` or require the worker to run it before implementation edits.
+- Run `tools/link-issue-parent.ps1 -Parent <parent> -Child <child>` when a task, story, research issue, or mission belongs under another issue.
 - Use `tools/safe-gh-write.ps1` for multiline issue/comment writes.
-- Run `tools/ensure-gh-auth.ps1 -RequireProject` before Project mutations. A failed preflight is an auth-scope blocker, not a workflow-design question.
+- Run `tools/ensure-gh-auth.ps1 -RequireProject` before Project mutations. A failed preflight is an auth-scope blocker, not a workflow-design question. GitHub may report the broader `project` scope instead of `read:project`; that is sufficient.
 - Run `tools/sync-github-project-fields.ps1 -ProjectNumber <number>` to create approved Project fields after `gh` has Project scopes.
 - Flag missing parent signals, missing worker status comments, missing linked issues, missing PR checklist signals, missing `TEST GAP ACCEPTED` comments, and stale workers.
 - Treat `PR Ops Guard` failures as merge blockers.
