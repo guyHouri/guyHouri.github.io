@@ -234,6 +234,7 @@ Public-site/GitHub Pages deployment:
    - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, or an explicit ownership conflict.
    - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
+   - When a worker or review-fix lane is complete and can only request archiving, its final chat response must include `ARCHIVE_OK: yes/no`. GitHub issue or PR comments may mirror this marker, but they do not replace the final-chat requirement.
    - Coordinator closes/updates issues, archives stale chats, and writes final issue/project status.
 
 ## Worker Status Updates
