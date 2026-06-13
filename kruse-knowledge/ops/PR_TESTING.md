@@ -12,6 +12,7 @@ Every PR should include:
 - Summary of changes.
 - Unit tests added or updated for new logic.
 - Integration, smoke, or end-to-end checks when the code crosses module boundaries.
+- A behavior-coverage note naming which test, fixture, smoke path, integration path, or manual check exercises the actual changed behavior.
 - Exact commands run.
 - Known test gaps.
 - Risk notes.
@@ -21,12 +22,13 @@ Every PR should include:
 - Worker lease comment link.
 
 Do not mark a PR ready if the worker did not run tests and did not explain why.
+Do not mark a PR ready when the only verification is generic green checks that do not exercise the changed behavior.
 Do not leave a draft PR sitting at "needs review." The worker must create the combined `review-fix/pr-<number>-<short-scope>` lane after the PR exists, link it in the PR or issue status, or write the exact reviewer-handoff blocker.
 Do not leave post-review ownership implicit. The combined `review-fix/pr-<number>-<short-scope>` lane owns review, safe fixes on the PR branch, check reruns, ready/merge, and cleanup unless it reports a concrete blocker.
 
 ## Worker Test Responsibility
 
-When a worker adds code, the worker is responsible for adding or updating tests for that code.
+When a worker adds code, the worker is responsible for adding or updating tests for that code. Tests should prove the new or changed behavior works and should be narrow enough that a future regression would fail.
 
 Expected pattern:
 
@@ -41,6 +43,7 @@ If there is no existing test harness, the worker should add the smallest reasona
 A worker cannot waive its own missing tests. Missing-test handling:
 
 - Worker documents the gap and the reason.
+- Worker documents why the available checks do or do not exercise the changed behavior.
 - Reviewer decides whether the missing test is acceptable or requests changes.
 - Coordinator can accept an exception for docs-only, tooling-only, low-risk changes, or places with no practical test surface.
 - Accepted exceptions must be recorded in a PR comment titled `TEST GAP ACCEPTED` with reviewer, coordinator, exact risk, and why no better test exists.
@@ -97,10 +100,11 @@ Reviewer should check:
 
 - Does the PR match the linked issue?
 - Are there unrelated file changes?
-- Is the branch named for the issue, preferably `codex/issue-<number>-<short-slug>`?
+- Is the branch named for the issue with the repo's task prefixes, such as `feat/issue-<number>-<short-slug>`, `fix/issue-<number>-<short-slug>`, or `docs/issue-<number>-<short-slug>`?
 - Does `TASK_ID` match the branch issue number?
 - Is there a worker lease comment link?
 - Are tests meaningful for the changed behavior?
+- Would at least one focused test, fixture, smoke path, integration path, or documented manual check fail or reveal the problem if the worker's change were absent or broken?
 - Did the worker add unit and integration/smoke coverage where reasonable?
 - If tests are missing, is the exception acceptable?
 - If tests are missing, is there a `TEST GAP ACCEPTED` PR comment?
@@ -124,6 +128,7 @@ A PR is ready to merge only when:
 - `review-fix/pr-<number>-<short-scope>` lane, human reviewer, explicit reviewer pass, or exact reviewer-handoff blocker is linked.
 - Post-review fix owner and merge owner are named.
 - Required tests/checks pass or documented exceptions are accepted by reviewer/coordinator in a `TEST GAP ACCEPTED` PR comment.
+- Verification evidence names the specific changed behavior that was exercised.
 - `PR Ops Guard` passes.
 - Reviewer or coordinator is satisfied.
 - No unresolved external-impact approval remains.

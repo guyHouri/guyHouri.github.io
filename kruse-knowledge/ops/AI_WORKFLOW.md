@@ -16,6 +16,7 @@ This document defines how Guy and AI assistants plan, execute, review, and close
 - Routine repo work does not need conversational permission. External-impact work still needs explicit approval at the point where it affects real money, production data, real users, secrets, or destructive external state.
 - If public-site or GitHub Pages code/config changed, deployment after merge is expected once checks pass and no hold remains.
 - Workers must add or update tests for code they add, including unit tests and integration/smoke tests where the repo has a reasonable test surface.
+- Worker test evidence must prove the changed behavior, not only show that broad or unrelated checks are green.
 - Workers cannot waive their own missing tests. Reviewer checks test gaps; coordinator accepts exceptions when justified.
 - Opening a PR and opening its combined review-fix-merge lane are one handoff. A worker must not stop at "reviewer needed"; it must create or request the `review-fix/pr-<number>-<short-scope>` lane, link it in PR/issue status, or record the exact blocker before ending the turn.
 - Status must be concrete: who owns the next action, what is blocked, and what exact decision is needed.
@@ -202,7 +203,7 @@ Public-site/GitHub Pages deployment:
 6. Worker start
    - One worker gets one issue.
    - The issue number is the worker's `TASK_ID`.
-   - Branch name should be `codex/issue-<number>-<short-slug>`.
+   - Branch name should use the repo's task prefixes, usually `feat/issue-<number>-<short-slug>`, `fix/issue-<number>-<short-slug>`, or `docs/issue-<number>-<short-slug>`.
    - Worker claims the issue before editing by running `tools/claim-task.ps1 -Issue <number> -WorkerThread <thread-id> -Branch <branch>`.
    - Use a fresh worktree for implementation when practical.
    - If Codex/worktree creation is unstable, use the fallback ladder in `ARCHITECTURE.md`.
