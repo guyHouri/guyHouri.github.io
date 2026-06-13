@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-06-12",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-12.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-12.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-12.md",
+    "date": "2026-06-13",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-06-13",
+      "title": "Kruse Report 2026-06-13",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.md",
+      "headline": "Off-patent tetracyclines as spintronic tools; primary water and CO2 retention as decentralized physics alternatives"
+    },
     {
       "type": "daily-report",
       "date": "2026-06-12",
