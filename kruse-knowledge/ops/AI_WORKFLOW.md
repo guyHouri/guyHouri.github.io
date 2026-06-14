@@ -39,6 +39,11 @@ A repo-scoped chat should read:
 3. The linked GitHub issue or mission doc
 4. The linked PR, branch, or worker prompt when present
 
+Project-specific AI workflow skills belong in tracked repo files under
+`.agents/skills/`. Local `~/.codex/skills` copies are personal/runtime
+convenience only; if a rule must shape future repo work, land it in the repo
+instead of leaving it only in a local skill.
+
 Projectless chats do not automatically know repo rules unless they are opened under a parent folder with its own `AGENTS.md` or are explicitly pointed at this repo. Existing chats may also have stale context. When continuing an old chat, send it a short current-rules update instead of assuming it has reloaded instructions.
 
 ## Chat Roles
@@ -392,13 +397,16 @@ action.
    - If the worker cannot create the review-fix lane, it must write `Reviewer blocked: <exact blocker>` in the PR or issue status and name who owns the next action. "Needs reviewer" without a lane or blocker is stale work, not a handoff.
    - A coordinator who finds an open PR with no review-fix lane, human reviewer, explicit reviewer pass, or reviewer blocker should create or nudge the review-fix lane immediately instead of asking Guy to notice it.
    - The review-fix lane checks the PR, tests, scope, and external-impact rules.
-   - The review-fix lane is not review-only. If it finds issues, it fixes safe findings directly on the PR branch, pushes updates to the same PR, reruns required local checks, and verifies the result.
+   - The review-fix lane is not review-only. If it finds issues, it fixes safe findings directly on the PR branch by default, pushes updates to the same PR, reruns required local checks, and verifies the result.
+   - A finding is safe for the review-fix lane to fix when it stays inside the approved PR scope, does not require missing domain context, does not touch live/external boundaries, does not conflict with another worker's claimed files, and does not materially change the approved approach.
+   - If a required check fails, the review-fix lane must triage it before handing off: reproduce on the PR branch, compare with `origin/main` when practical, and classify the failure as PR-related, already present on `origin/main`, or unproven.
+   - A `blocked` review-fix closeout is valid only after the lane explains why it cannot safely fix the remaining issue itself and names the exact next owner. A failed check by itself is not a blocker report.
    - The review-fix lane owns missing-test review.
    - Coordinator accepts missing-test exceptions only by posting or approving a PR comment titled `TEST GAP ACCEPTED`.
 
 10. Merge and closeout
    - The review-fix lane owns marking ready, merge, branch cleanup, and closeout after review, required local checks, and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
-   - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, or an explicit ownership conflict.
+   - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, an explicit ownership conflict, or an issue the review-fix lane has proven it cannot fix safely itself.
    - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
    - After successful merge, branch cleanup, and final status, the review-fix lane must archive the parent implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID` and no unresolved parent work remains. If it cannot archive the parent directly, it must send the coordinator the exact parent-chat archive request/command.
@@ -569,8 +577,12 @@ lane as missing until that repair succeeds.
 
 For post-review ownership confusion, the durable rule is:
 
-- The review-fix lane fixes safe findings directly on the PR branch.
+- The review-fix lane fixes safe findings directly on the PR branch by default.
 - The review-fix lane reruns local checks, verifies fixes, and gives pass/fail.
+- The review-fix lane classifies remaining check failures as PR-related,
+  already present on `origin/main`, or unproven before handing off.
+- The review-fix lane may close as blocked only after it explains why it cannot
+  safely fix the remaining issue itself and names the exact next owner.
 - The review-fix lane marks ready and merges after required local checks pass.
 - After merge, branch cleanup, and final status, the review-fix lane archives
   the parent implementation worker chat or sends the coordinator an exact
@@ -586,5 +598,6 @@ For post-review ownership confusion, the durable rule is:
 - `docs/ops/PR_TESTING.md`: PR and testing requirements.
 - `docs/ops/GITHUB_AUTH.md`: GitHub CLI/Codex token scope preflight and repair.
 - `docs/ops/OPEN_QUESTIONS.md`: unresolved design questions and pending approvals.
+- `.agents/skills/`: repo-scoped AI skills for durable project workflow behavior.
 - GitHub Issues/Projects: source of truth for tasks and statuses.
 - Optional generated docs: mission closeouts and postmortems. Do not use committed docs as the live status board.

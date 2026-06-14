@@ -172,11 +172,11 @@ Never let two implementation workers edit the same dirty tree.
 
 ### Reviewer Chat
 
-Every PR should get independent review. The reviewer checks scope, tests, risks, and merge readiness.
+Every PR should get independent review. The reviewer checks scope, tests, risks, and merge readiness. A `review-fix/` reviewer also fixes safe findings directly on the PR branch by default, reruns checks, and may report blocked only after explaining why it cannot safely fix the remaining issue itself and naming the next owner.
 
 Reviewer owns missing-test review. A worker can explain a test gap, but the worker cannot waive it. The reviewer must request changes when reasonable tests are missing. The coordinator can accept a documented exception for low-risk, docs-only, tooling-only, or no-existing-harness cases. The exception must be recorded in a PR comment titled `TEST GAP ACCEPTED` with reviewer, coordinator, risk, and reason. Guy is needed only when accepting the gap changes product, data, public-site, cost, or operational risk.
 
-Reviewer should merge after checks pass and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
+Reviewer should merge after checks pass and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge. If checks fail, the review-fix lane must classify the failure as PR-related, already present on `origin/main`, or unproven before handing off.
 
 Hard merge blockers:
 

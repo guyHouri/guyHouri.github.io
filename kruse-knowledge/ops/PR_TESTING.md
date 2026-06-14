@@ -36,7 +36,7 @@ Every PR should include:
 Do not mark a PR ready if the worker did not run tests and did not explain why.
 Do not mark a PR ready when the only verification is generic green checks that do not exercise the changed behavior.
 Do not leave a draft PR sitting at "needs review." The worker must create the combined `review-fix/pr-<number>-<short-scope>` lane after the PR exists, link it in the PR or issue status, or write the exact reviewer-handoff blocker.
-Do not leave post-review ownership implicit. The combined `review-fix/pr-<number>-<short-scope>` lane owns review, safe fixes on the PR branch, check reruns, ready/merge, and cleanup unless it reports a concrete blocker.
+Do not leave post-review ownership implicit. The combined `review-fix/pr-<number>-<short-scope>` lane owns review, safe fixes on the PR branch, check reruns, ready/merge, and cleanup. A concrete blocker is valid only after the lane explains why it cannot safely fix the remaining issue itself, classifies any remaining check failure as PR-related, already present on `origin/main`, or unproven, and names the exact next owner.
 
 ## Worker Test Responsibility
 
@@ -128,6 +128,8 @@ Reviewer should check:
 - Is there an independent reviewer pass?
 - Was the `review-fix/pr-<number>-<short-scope>` lane opened by the implementation worker or coordinator, rather than left as an unowned future action?
 - Are post-review fixes and merge owned by the `review-fix/` quality lane or an explicitly named replacement owner?
+- Did the review-fix lane fix every safe finding directly on the PR branch, or explain why each remaining issue was unsafe to fix?
+- If any required check failed, did the review-fix lane classify it as PR-related, already present on `origin/main`, or unproven before handing off?
 - Are issue/project status and links updated?
 
 ## Ready To Merge
@@ -143,6 +145,7 @@ A PR is ready to merge only when:
 - Verification evidence names the specific changed behavior that was exercised.
 - Local PR guard passes. While the GitHub Actions pause is active, `PR Ops Guard` Action status is not required.
 - Reviewer or coordinator is satisfied.
+- Any remaining review-fix blocker names why the lane could not safely fix it itself and who owns the next action.
 - No unresolved external-impact approval remains.
 - No `hold:guy` or `hold:coordinator` label remains.
 - No unrelated dirty-root changes are included.
