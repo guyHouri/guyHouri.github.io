@@ -27,7 +27,7 @@ GitHub is the durable operating layer:
 - GitHub Issue comments hold worker status updates and stale-check evidence.
 - Git branches/worktrees isolate execution.
 - PRs hold code review, checks, and merge state.
-- GitHub Actions holds CI/build/test evidence.
+- GitHub Actions holds CI/build/test evidence when Actions are enabled. While Actions minutes are exhausted, PR evidence comes from local checks documented in the PR.
 
 Chats are not the source of truth. Chats are workers, planners, reviewers, or coordinators that update GitHub state.
 
@@ -190,8 +190,9 @@ Hard merge blockers:
 - Public-site/GitHub Pages code changed without required production check.
 - Unrelated dirty-root changes included.
 
-The `PR Ops Guard` GitHub Action enforces linked issue, parent signal, required checklist completion, hold labels, and `TEST GAP ACCEPTED` comment shape for new or updated PRs.
-It also enforces `TASK_ID`, branch issue-number match, and a worker lease comment link.
+The `PR Ops Guard` GitHub Action enforces linked issue, parent signal, required checklist completion, hold labels, and `TEST GAP ACCEPTED` comment shape for new or updated PRs when Actions are enabled.
+While the June 14, 2026 Actions-minute pause is active, the same gates are enforced by local PR review and `node tools/pr-check.mjs --base origin/main`; PRs must not wait for or rerun GitHub Actions.
+It also enforces `TASK_ID`, branch issue-number match, and a worker lease comment link when enabled.
 
 ### Coordinator
 
@@ -289,7 +290,7 @@ Public-site/GitHub Pages deployment rule:
 After the manual workflow proves itself:
 
 - Create/sync the approved GitHub Project fields with `tools/sync-github-project-fields.ps1`.
-- Keep GitHub Actions checks for linked issue and PR checklist completion active.
+- Re-enable GitHub Actions checks for linked issue and PR checklist completion only after Guy lifts the Actions-minute pause.
 - Create a `kruse-mission-planner` skill.
 - Extend `tools/mission-control.ps1` to read GitHub Project fields when GitHub Project API access is available.
 - Consider a dashboard only after the GitHub-only workflow works for real missions.

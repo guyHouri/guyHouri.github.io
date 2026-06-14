@@ -2,6 +2,17 @@
 
 This document defines the minimum checks expected before a PR is ready to merge.
 
+## GitHub Actions Pause
+
+Effective June 14, 2026, PR-triggered GitHub Actions are paused while Actions
+minutes are exhausted. Do not open, rerun, dispatch, wait for, or require
+GitHub Actions for PR work unless Guy explicitly lifts the pause.
+
+PRs still need verification. Use local evidence instead: `node
+tools/pr-body-check.mjs --body-file <pr-body.md>`, `node tools/pr-check.mjs
+--base origin/main`, relevant focused tests, and `npm run prod-check` from
+`kruse-summary/` when production site/email/workflow paths are affected.
+
 ## Every PR
 
 Every PR should include:
@@ -14,6 +25,7 @@ Every PR should include:
 - Integration, smoke, or end-to-end checks when the code crosses module boundaries.
 - A behavior-coverage note naming which test, fixture, smoke path, integration path, or manual check exercises the actual changed behavior.
 - Exact commands run.
+- A note that GitHub Actions were not used while the Actions pause was active.
 - Known test gaps.
 - Risk notes.
 - External-impact and deployment impact.
@@ -108,7 +120,7 @@ Reviewer should check:
 - Did the worker add unit and integration/smoke coverage where reasonable?
 - If tests are missing, is the exception acceptable?
 - If tests are missing, is there a `TEST GAP ACCEPTED` PR comment?
-- Did required checks pass?
+- Did required local checks pass?
 - Are external-impact boundaries respected?
 - Is deployment impact correctly stated?
 - Are docs updated if workflow, commands, or user-facing behavior changed?
@@ -129,7 +141,7 @@ A PR is ready to merge only when:
 - Post-review fix owner and merge owner are named.
 - Required tests/checks pass or documented exceptions are accepted by reviewer/coordinator in a `TEST GAP ACCEPTED` PR comment.
 - Verification evidence names the specific changed behavior that was exercised.
-- `PR Ops Guard` passes.
+- Local PR guard passes. While the GitHub Actions pause is active, `PR Ops Guard` Action status is not required.
 - Reviewer or coordinator is satisfied.
 - No unresolved external-impact approval remains.
 - No `hold:guy` or `hold:coordinator` label remains.
