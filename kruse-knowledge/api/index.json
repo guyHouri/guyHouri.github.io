@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-06-13",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.md",
+    "date": "2026-06-15",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-15.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-15.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-15.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-06-15",
+      "title": "Kruse Report 2026-06-15",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-06-15.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-15.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-15.md",
+      "headline": "June 15, 2026: Multi-system disease reversal via circadian protocol; tirzepitide adverse effects and POTS/ADHD resolution; North Atlantic cold blob linked to geomagnetic anomaly."
+    },
     {
       "type": "daily-report",
       "date": "2026-06-13",

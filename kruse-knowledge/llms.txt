@@ -11,7 +11,7 @@ Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.m
 Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
 Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
 RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
-Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-15.html
 
 ## Core Pages
 
@@ -23,6 +23,7 @@ Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.htm
 
 ## Daily Reports
 
+- [2026-06-15 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-15.html): June 15, 2026: Multi-system disease reversal via circadian protocol; tirzepitide adverse effects and POTS/ADHD resolution; North Atlantic cold blob linked to geomagnetic anomaly.
 - [2026-06-13 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html): No high-signal updates passed the report gate for 2026-06-13.
 - [2026-06-12 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-12.html): Lakhovsky copper ring mechanism, Maya magnetic excursion engineering, and phycocyanin light-harvesting biology
 - [2026-06-11 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-06-11.html): Tetracyclines as light-harvesting antennas for magnetic resilience; ancient neck-ring physics meets modern biophysics

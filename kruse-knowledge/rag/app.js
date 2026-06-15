@@ -61,7 +61,7 @@ function buildPayload(query) {
       sourceTypes: selectedTypes.length ? selectedTypes : intent.sourceTypes,
       focus: intent.focus,
       exactCitationsOnly: false,
-      limit: 5
+      limit: 40
     }
   };
 }

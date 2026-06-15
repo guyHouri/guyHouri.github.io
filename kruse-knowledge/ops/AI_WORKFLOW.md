@@ -17,8 +17,13 @@ summaries in sync.
 - A chat is an execution surface, not the system of record.
 - `origin/main` is law. Local worktrees, worker chats, and experiments are
   disposable until reviewed through a PR and merged.
+- The shared root checkout is for sync, inspection, and quarantine only. It is
+  not a task workspace and must not accumulate task edits, deliverables,
+  generated files, or PR bodies.
 - Task work must not happen directly on `main` or in the shared root checkout.
   Use one branch and one worktree per task, based on current `origin/main`.
+- A saved file is not done until it is either committed/pushed to a reviewable
+  branch or called out in handoff with a real access route.
 - Plain "yes", "ok", "go", "approved", or equivalent from Guy is approval for the current proposed scope. Do not require formal approval phrases.
 - Mission approval approves direction and task planning. Task approval approves named task issues or a named batch for execution.
 - Routine repo work does not need conversational permission. External-impact work still needs explicit approval at the point where it affects real money, production data, real users, secrets, or destructive external state.
@@ -115,6 +120,35 @@ future-protection expectation, PR/status reporting requirements, and final
 
 One delegated worker owns one branch/worktree and one path scope unless there
 is an explicit handoff.
+
+## Artifact And Checkout Hygiene
+
+Main is the source of truth, not a scratchpad. Agents must keep the shared root
+checkout clean enough that Guy can trust it as a sync and inspection point.
+
+- Do not create, edit, or save task files in the shared root checkout unless
+  the explicit task is root-checkout cleanup. Use the task worktree.
+- Do not leave final deliverables only in hidden or local-only paths such as
+  `.codex-worktrees/`, temp folders, Downloads, or ad hoc root folders.
+- PR bodies, task notes, screenshots, generated reports, dry-run outputs,
+  patches, and analysis artifacts belong in one of three places: committed to
+  the task branch when they are part of the reviewable result, attached or
+  linked through GitHub/public output when appropriate, or deleted before
+  handoff when they are disposable scratch.
+- If an artifact cannot be committed or published yet, the handoff must say so
+  with the `File reference`, `Availability`, and `Open it here` block from
+  this workflow. `worker worktree only` is allowed only as a temporary state
+  with the absolute worktree path and owning thread or worktree id.
+- Before final handoff, audit both places when accessible:
+  `git status --short --branch` in the task worktree, and
+  `git status --short --branch` in the shared root checkout. Any task-created
+  dirty file in root must be moved into the task worktree, committed/pushed, or
+  deleted if disposable.
+- If the shared root checkout already has unrelated dirty files, do not touch
+  them. Report them as unrelated quarantine state only when they affect the
+  task or artifact findability.
+- A handoff is incomplete when it says "saved locally" without a committed PR
+  branch, published URL, or exact worktree-only access route.
 
 ## Task Cards And Queue Reports
 
@@ -376,11 +410,16 @@ action.
    - Branch name should use the repo's task prefixes, usually `feat/issue-<number>-<short-slug>`, `fix/issue-<number>-<short-slug>`, or `docs/issue-<number>-<short-slug>`.
    - Worker claims the issue before editing by running `tools/claim-task.ps1 -Issue <number> -WorkerThread <thread-id> -Branch <branch>`.
    - Use a fresh worktree for implementation when practical.
+   - Treat the shared root checkout as read-only quarantine for task work. If
+     the task needs files, create or use the task worktree first.
    - If Codex/worktree creation is unstable, use the fallback ladder in `ARCHITECTURE.md`.
    - Never let two workers edit the same dirty tree.
 
 7. Implementation
    - Worker implements scope only.
+   - Worker saves task deliverables in tracked repo paths inside the task
+     worktree. Local scratch files must be deleted, committed, pushed, or
+     explicitly referenced before handoff.
    - Worker adds or updates unit tests and integration/smoke tests for code it adds.
    - Worker posts useful status updates as issue comments. Active implementation without a useful issue comment is non-compliant.
    - Worker updates PR status as it goes.
@@ -409,6 +448,9 @@ action.
    - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, an explicit ownership conflict, or an issue the review-fix lane has proven it cannot fix safely itself.
    - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
+   - Worker or review-fix closeout must include an artifact audit: task
+     worktree status, shared root status when accessible, and the access route
+     for any file Guy or another chat is expected to find.
    - After successful merge, branch cleanup, and final status, the review-fix lane must archive the parent implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID` and no unresolved parent work remains. If it cannot archive the parent directly, it must send the coordinator the exact parent-chat archive request/command.
    - When a worker or review-fix lane is complete and can only request archiving, its final chat response must include `ARCHIVE_OK: yes/no`. GitHub issue or PR comments may mirror this marker, but they do not replace the final-chat requirement.
    - Coordinator closes/updates issues, archives stale chats, and writes final issue/project status.
@@ -420,6 +462,8 @@ Every PR should pass local gates before opening or marking ready:
 - Local PR body preflight: `node tools/pr-body-check.mjs --body-file <pr-body.md>`.
 - Local PR guard preflight: `node tools/pr-check.mjs --base origin/main`.
 - Relevant package tests.
+- Artifact hygiene audit: `git status --short --branch` in the task worktree
+  and, when accessible, in the shared root checkout.
 - Secret, local junk, and old URL scans when the touched area warrants them.
 - `npm run prod-check` from `summary/kruse-summary/` for site, email,
   workflow, deploy, docs, or report-rendering changes.
@@ -479,6 +523,10 @@ available through an external URL.
 Do not tell another worker to rely on a branch-only or worktree-only file unless
 the handoff includes the exact branch, PR, worktree path, and owning thread
 context needed to access it.
+
+If a handoff names a generated artifact, PR body, report, screenshot, or task
+note, it must be either committed/pushed, published, or listed with this block.
+Do not say "saved locally" as the only access instruction.
 
 ## Safe GitHub Writes
 
@@ -568,6 +616,12 @@ When Guy flags a workflow failure or says something should not happen again, the
 4. Open a PR for repo rules/tooling when the repo should carry the behavior, or record why the fix belongs only in local Codex configuration.
 
 For PR review handoff failures, the immediate fix is to create or nudge the combined `review-fix/pr-<number>-<short-scope>` lane. The durable fix is to make future workers treat PR creation plus review-fix-merge lane creation as one atomic closeout.
+
+For artifact and worktree hygiene failures, the immediate fix is to locate the
+stranded file, move it into the proper task branch or publishable route, and
+clean any task-created root dirt. The durable fix is to make future workers
+audit task worktree status, shared root status, and file access routes before
+handoff.
 
 For review lane title failures, the immediate fix is to rename the stored
 Codex thread title to `review-fix/pr-<number>-<short-scope>`. The durable fix is

@@ -5,7 +5,7 @@ Some modules and data have a sensitive copyright or terms-of-service posture and
 The private repository is attached as one git submodule at:
 
 ```text
-scrapers/private/
+private/
 ```
 
 The public repo stores only the submodule pointer. Anyone without access to the private repo sees the path but not its contents.
@@ -14,14 +14,14 @@ The public repo stores only the submodule pointer. Anyone without access to the 
 
 ```text
 kruse-knowledge/
+├── private/                 submodule -> kruse-knowledge-private
+│   └── kemono_to_md/         private blog/archive scraper
 ├── scrapers/
 │   ├── forum_to_md/
 │   ├── twitter_to_md/
 │   ├── linkedin_to_md/
 │   ├── free_blogs_md/
 │   ├── website_to_md/
-│   └── private/                 submodule -> kruse-knowledge-private
-│       └── kemono_to_md/         private blog/archive scraper
 ├── summary/kruse-summary/
 └── rag/
 ```
@@ -30,7 +30,7 @@ kruse-knowledge/
 
 | Module | Why private |
 |---|---|
-| `scrapers/private/kemono_to_md/` | The source posture is copyright/ToS sensitive, so scraper code and data stay outside the public repo. |
+| `private/kemono_to_md/` | The source posture is copyright/ToS sensitive, so scraper code and data stay outside the public repo. |
 | future paid Q&A/audio modules | Raw audio, paid transcripts, and private exports should not be committed publicly. |
 
 ## Contributor Workflow
@@ -40,7 +40,7 @@ Without access:
 ```sh
 git clone https://github.com/guyHouri/kruse-knowledge.git
 cd kruse-knowledge
-# public scrapers and summary code work without initializing scrapers/private/
+# public scrapers and summary code work without initializing private/
 ```
 
 With access:
@@ -56,7 +56,7 @@ git submodule update --init --recursive
 Commit private changes inside the submodule first:
 
 ```sh
-cd scrapers/private
+cd private
 git add .
 git commit -m "..."
 git push
@@ -65,8 +65,8 @@ git push
 Then bump the pointer in the public repo:
 
 ```sh
-cd ../..
-git add scrapers/private
+cd ..
+git add private
 git commit -m "Bump private module pointer"
 git push
 ```
