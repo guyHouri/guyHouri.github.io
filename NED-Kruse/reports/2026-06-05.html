@@ -1,0 +1,1400 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kruse Report 05/06/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Dark theme (default) */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151c2c;
+      --card-border: #202b42;
+      --card-border-hover: #2e3e5f;
+      --section-rule: #24314b;
+      --text-color: #f3f4f6;
+      --text-soft: #cbd5e1;
+      --text-body: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-color: #3b82f6;
+      --accent-hover: #60a5fa;
+      --locked-color: #4b5563;
+      --tag-bg: #1e293b;
+      --quote-bg: #0f1524;
+      --quote-rule: #4b5563;
+      --expanded-bg: #0f1524;
+      --locked-grad-start: #151c2c;
+      --locked-grad-end: #111622;
+      --locked-dash: #2d3748;
+      --locked-badge-bg: #27272a;
+      --locked-badge-fg: #a1a1aa;
+      --footer-color: #6b7280;
+      --toggle-bg: rgba(255,255,255,0.06);
+      --toggle-border: rgba(255,255,255,0.12);
+    }
+    /* Light theme â€” toggled by class on <body> */
+    body.light {
+      --bg-color: #f9fafb;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --card-border-hover: #cbd5e1;
+      --section-rule: #e5e7eb;
+      --text-color: #0f172a;
+      --text-soft: #334155;
+      --text-body: #1f2937;
+      --text-muted: #6b7280;
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --locked-color: #94a3b8;
+      --tag-bg: #eff6ff;
+      --quote-bg: #f1f5f9;
+      --quote-rule: #cbd5e1;
+      --expanded-bg: #f1f5f9;
+      --locked-grad-start: #ffffff;
+      --locked-grad-end: #f3f4f6;
+      --locked-dash: #cbd5e1;
+      --locked-badge-bg: #e5e7eb;
+      --locked-badge-fg: #475569;
+      --footer-color: #94a3b8;
+      --toggle-bg: rgba(0,0,0,0.04);
+      --toggle-border: rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-color); padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; transition: background-color 0.2s ease, color 0.2s ease; }
+    .container { width: 100%; max-width: 650px; display: flex; flex-direction: column; gap: 20px; }
+    header { text-align: center; margin-bottom: 10px; position: relative; padding-top: 48px; }
+    h1 { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(45deg, #3b82f6, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; margin-bottom: 4px; }
+    .subtitle { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
+    .theme-toggle { position: absolute; top: 0; right: 0; background: var(--toggle-bg); border: 1px solid var(--toggle-border); color: var(--text-color); cursor: pointer; padding: 6px 10px; border-radius: 20px; font-size: 0.85rem; line-height: 1; transition: background 0.2s ease; }
+    .theme-toggle:hover { background: var(--card-border); }
+    .level-toggle { position: absolute; top: 0; left: 0; display: flex; gap: 4px; background: var(--toggle-bg); border: 1px solid var(--toggle-border); border-radius: 20px; padding: 3px; }
+    .level-toggle button { background: transparent; color: var(--text-muted); border: none; cursor: pointer; padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; transition: background 0.15s ease, color 0.15s ease; }
+    .level-toggle button.active { background: var(--accent-color); color: #fff; }
+    .level-toggle button:hover:not(.active) { color: var(--text-color); }
+    /* Concept-level gating: pro reader hides noob-only chips; hacker hides all. */
+    body.level-pro .expandable-concept[data-concept-level="noob"],
+    body.level-hacker .expandable-concept[data-concept-level] {
+      color: inherit; border-bottom: none; cursor: default; font-weight: inherit; pointer-events: none;
+    }
+    body.level-pro .expanded-content[data-concept-level="noob"],
+    body.level-hacker .expanded-content { display: none !important; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
+    .card-points ul { margin: 0; }
+    .card:hover { border-color: var(--card-border-hover); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .source-link { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; border-bottom: 1px dashed var(--text-muted); transition: all 0.2s ease; }
+    .source-link:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .item-text { font-size: 1rem; line-height: 1.45; color: var(--text-body); }
+    .source-quote { background: var(--quote-bg); border-left: 3px solid var(--quote-rule); border-radius: 4px 8px 8px 4px; padding: 10px 14px; font-style: italic; font-size: 0.92rem; color: var(--text-muted); }
+    .citations { padding: 8px 12px; background: var(--quote-bg); border-radius: 8px; }
+    .citations-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-hover); letter-spacing: 0.04em; margin-bottom: 6px; }
+    .citations ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .citation-paper { font-size: 0.85rem; color: var(--text-body); font-weight: 600; }
+    .citation-claim { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+    .bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { position: relative; padding-left: 18px; line-height: 1.45; font-size: 1rem; }
+    .bullet-list li::before { content: "â€¢"; color: var(--accent-color); font-weight: bold; position: absolute; left: 0; top: 0; }
+    .forum-item { display: flex; flex-direction: column; gap: 4px; }
+    .forum-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .expandable-concept { color: var(--accent-hover); border-bottom: 1px dashed var(--accent-hover); cursor: pointer; font-weight: 600; }
+    .expanded-content { max-height: 0; overflow: hidden; background-color: var(--expanded-bg); border-radius: 6px; padding: 0 12px; margin: 0; transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease; font-size: 0.9rem; color: var(--text-soft); }
+    .expanded-content.open { max-height: 500px; padding: 10px 12px; margin-top: 4px; margin-bottom: 4px; border-left: 3px solid var(--accent-color); }
+    .locked-section { background: linear-gradient(180deg, var(--locked-grad-start) 0%, var(--locked-grad-end) 100%); border: 1px dashed var(--locked-dash); border-radius: 12px; padding: 24px; text-align: center; opacity: 0.85; }
+    .locked-title { font-size: 1.1rem; font-weight: 600; color: var(--locked-color); margin-bottom: 4px; }
+    .locked-badge { font-size: 0.7rem; background-color: var(--locked-badge-bg); color: var(--locked-badge-fg); padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px; }
+    footer { text-align: center; color: var(--footer-color); font-size: 0.75rem; margin-top: 12px; }
+    footer a { color: var(--footer-color); }
+  </style>
+  <link rel="canonical" href="https://guyhouri.github.io/NED-Kruse/reports/2026-06-05.html" />
+
+<style>
+    html { scroll-behavior: smooth; }
+    body {
+      --site-bg: #0b0f19;
+      --site-panel: #121a2a;
+      --site-panel-2: #0d1422;
+      --site-border: #26334d;
+      --site-text: #f4f7fb;
+      --site-soft: #c6d2e1;
+      --site-muted: #8fa0b5;
+      --site-accent: #4ea1ff;
+      --site-success: #7bdcb5;
+      --site-danger: #ffbd7a;
+      --site-button-text: #06101d;
+      padding: 32px 16px 48px !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+    body.light {
+      --site-bg: #f7f9fc;
+      --site-panel: #ffffff;
+      --site-panel-2: #f8fafc;
+      --site-border: #d8e0ea;
+      --site-text: #111827;
+      --site-soft: #334155;
+      --site-muted: #64748b;
+      --site-accent: #2563eb;
+      --site-success: #047857;
+      --site-danger: #b45309;
+      --site-button-text: #ffffff;
+    }
+    body.site-drawer-open { overflow: hidden; }
+    .container {
+      max-width: 690px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .site-menu-button {
+      position: fixed;
+      top: 16px;
+      left: max(16px, calc((100vw - 690px) / 2 - 112px));
+      z-index: 80;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-menu-icon { font-size: 1.35rem; line-height: 1; }
+    .site-menu-label { letter-spacing: 0; }
+    .site-report-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 88;
+      background: rgba(3,7,18,0.58);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+    .site-report-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 90;
+      width: min(320px, calc(100vw - 48px));
+      padding: 18px;
+      background: var(--site-bg);
+      border-right: 1px solid var(--site-border);
+      transform: translateX(-105%);
+      transition: transform 0.2s ease;
+      box-shadow: 24px 0 60px rgba(0,0,0,0.38);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body.site-drawer-open .site-report-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.site-drawer-open .site-report-drawer { transform: translateX(0); }
+    .site-drawer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--site-border);
+    }
+    .site-drawer-kicker {
+      margin-bottom: 4px;
+      color: var(--site-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .site-drawer-title { color: var(--site-text); font-size: 1rem; font-weight: 850; line-height: 1.25; }
+    .site-drawer-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .site-drawer-link {
+      display: block;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      text-decoration: none;
+    }
+    .site-drawer-link.site-drawer-primary {
+      border-color: transparent;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+    }
+    .site-drawer-link.site-drawer-primary span {
+      color: color-mix(in srgb, var(--site-button-text) 82%, transparent);
+    }
+    .site-drawer-link strong { display: block; font-size: 0.95rem; }
+    .site-drawer-link span { display: block; margin-top: 3px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.35; }
+    .site-top-subscribe {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 80;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-mobile-subscribe {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 78;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+    }
+    .site-report-footer {
+      width: min(690px, calc(100% - 32px));
+      margin: 34px auto 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .site-report-panel {
+      padding: 18px;
+      background: var(--site-panel);
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      color: var(--site-text);
+    }
+    .site-report-panel h2 {
+      margin: 0 0 8px;
+      color: var(--site-text);
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+    .site-report-panel p { margin: 0 0 14px; color: var(--site-soft); line-height: 1.45; }
+    .site-report-panel label { display: block; margin: 10px 0 6px; color: var(--site-muted); font-size: 0.82rem; font-weight: 800; }
+    .site-report-panel input,
+    .site-report-panel textarea,
+    .site-report-panel select {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--site-border);
+      border-radius: 6px;
+      background: var(--site-panel-2);
+      color: var(--site-text);
+      padding: 0 10px;
+      font: inherit;
+    }
+    .site-report-panel textarea { min-height: 118px; padding: 10px; resize: vertical; }
+    .site-report-panel button {
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .site-report-panel button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .site-report-panel .form-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .site-report-form-note { margin-top: 12px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.4; }
+    .site-report-form-success { margin-top: 12px; color: var(--site-success); font-size: 0.88rem; font-weight: 800; }
+    .site-report-form-error { margin-top: 12px; color: var(--site-danger); font-size: 0.88rem; font-weight: 800; }
+    .site-report-credits {
+      grid-column: 1 / -1;
+      color: var(--site-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .card-votes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--card-border, var(--site-border));
+      color: var(--text-muted, var(--site-muted));
+      font-size: 0.78rem;
+    }
+    .card-votes-label { font-weight: 800; color: var(--text-soft, var(--site-soft)); }
+    .card-votes button {
+      width: auto;
+      min-height: 30px;
+      margin: 0;
+      padding: 4px 9px;
+      border: 1px solid var(--card-border, var(--site-border));
+      border-radius: 999px;
+      background: var(--quote-bg, var(--site-panel-2));
+      color: var(--text-body, var(--site-text));
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .card-votes button.active,
+    .card-votes button:hover {
+      border-color: var(--accent-color, var(--site-accent));
+      color: var(--accent-color, var(--site-accent));
+    }
+    .card-vote-status { min-height: 1em; color: var(--text-muted, var(--site-muted)); }
+    @media (max-width: 760px) {
+      body { padding: 24px 12px 88px !important; }
+      .site-menu-button { top: 12px; left: 12px; }
+      .site-top-subscribe { display: none; }
+      .site-mobile-subscribe { display: flex; }
+      .container header { padding-top: 92px !important; }
+      .container .level-toggle { top: 48px !important; left: 0 !important; }
+      .container .theme-toggle { top: 48px !important; right: 0 !important; }
+      .site-report-footer { width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="site-menu-button" id="siteMenuButton" aria-label="Open report menu" aria-controls="siteReportDrawer" aria-expanded="false"><span class="site-menu-icon" aria-hidden="true">&#9776;</span><span class="site-menu-label">Menu</span></button>
+  <div class="site-report-backdrop" data-site-menu-close></div>
+  <nav class="site-report-drawer" id="siteReportDrawer" aria-label="Report menu">
+    <div class="site-drawer-header">
+      <div>
+        <div class="site-drawer-kicker">Kruse Report</div>
+        <div class="site-drawer-title">Jun 5, 2026</div>
+      </div>
+      <button type="button" class="site-drawer-close" data-site-menu-close aria-label="Close report menu">&times;</button>
+    </div>
+    <a class="site-drawer-link site-drawer-primary" href="#get-report"><strong>Subscribe to daily email</strong><span>Get the next report in your inbox.</span></a>
+    <a class="site-drawer-link" href="../index.html"><strong>All reports</strong><span>Back to the archive.</span></a>
+    <a class="site-drawer-link" href="../latest/"><strong>Latest report</strong><span>Jump to the newest daily report.</span></a>
+    <a class="site-drawer-link" href="#report-feedback"><strong>Improve this report</strong><span>Leave feedback we can use later for prompt tuning.</span></a>
+    <a class="site-drawer-link" href="../unsubscribe/"><strong>Unsubscribe</strong><span>Remove your email from future sends.</span></a>
+  </nav>
+  <a class="site-top-subscribe" href="#get-report">Subscribe</a>
+  <a class="site-mobile-subscribe" href="#get-report">Subscribe to daily email</a>
+
+  <div class="container">
+    <header>
+      <div class="level-toggle" role="tablist" aria-label="Reader knowledge level">
+        <button type="button" data-level="noob"   aria-pressed="false">Noob</button>
+        <button type="button" data-level="pro"    aria-pressed="true">Pro</button>
+        <button type="button" data-level="hacker" aria-pressed="false">Hacker</button>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">ðŸŒ™ Dark</button>
+      <h1>Kruse Report 05/06/2026</h1>
+      <div class="subtitle">Deuterium-driven cellular lattice lock, phase-conjugate electromagnetic repair, and megalith-geomagnetic correlations</div>
+    </header>
+      <div class="section-title">Twitter Updates</div>
+      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-06-05-13bfnkg"><div class="card-header"><span class="tag">Spirulina light-harvesting mechanism</span><a href="https://x.com/i/status/2062703838222578064" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Spirulina&#39;s phycocyanin acts as a molecular solar panel that restores electromagnetic coherence in the gut and vascular system</strong> Spirulina operates as a concentrated, living <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Lakhovsky coil</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">phycocyanin</span>-driven <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">energy density capacitor</span>. The dominant light-harvesting pigment, phycocyanin, features an open-chain <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">tetrapyrrole</span> crystalline structure that mirrors human <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">bilirubin</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">melanin</span>&#39;s core ring. When consumed, phycocyanin&#39;s massive <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">electronic polarizability</span> acts as a molecular solar panel inside the gut and vascular matrix, establishing the perfect <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">fine-structure constant</span> electromagnetic grip (1/137) needed to exclude heavy isotopes and maintain cellular water dielectric.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>Lakhovsky coil:</strong> A geometric electromagnetic resonance device using concentric rings or spirals to concentrate and organize electromagnetic fields; used historically for biological signaling.
+    </div>
+<div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>phycocyanin:</strong> A light-harvesting pigment in cyanobacteria with an open-chain tetrapyrrole structure; acts as a molecular antenna for photon capture and energy transfer.
+    </div>
+<div id="concept-2" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>energy density capacitor:</strong> A technical term used by the selected source. The report keeps &quot;energy density capacitor&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-3" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>tetrapyrrole:</strong> A four-ring organic structure made of pyrrole units; the core scaffold of heme, chlorophyll, and bilirubin molecules.
+    </div>
+<div id="concept-4" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>bilirubin:</strong> An orange-yellow pigment produced from the breakdown of hemoglobin; has a tetrapyrrole core structure similar to phycocyanin.
+    </div>
+<div id="concept-5" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>melanin:</strong> A dark pigment in skin, hair, and eyes; acts as a CISS semiconductor that organizes cellular water and coordinates metal centers on the Inner Mitochondrial Membrane.
+    </div>
+<div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>electronic polarizability:</strong> The ability of electrons in a molecule to shift in response to an electric field; creates electromagnetic grip and coherence.
+    </div>
+<div id="concept-7" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>fine-structure constant:</strong> A dimensionless physical constant (â‰ˆ1/137) that characterizes the strength of electromagnetic interaction between elementary charged particles; central to quantum electrodynamics.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Phycocyanin&#39;s tetrapyrrole structure creates electronic polarizability that establishes fine-structure constant (1/137) electromagnetic grip in gut and vascular tissue, restoring the dielectric coherence needed for deuterium exclusion.</li><li><strong>Structure.</strong> Phycocyanin&#39;s open-chain tetrapyrrole crystalline geometry mirrors both human bilirubin and melanin&#39;s core ring, suggesting evolutionary conservation of light-harvesting architecture.</li><li><strong>Practical meaning.</strong> Spirulina is not a generic supplement but a structured light-harvesting pigment that restores electromagnetic coherence in the gut and vascular system, particularly relevant for deuterium exclusion and redox recovery.</li></ul></div><div class="source-quote">Phycocyanin possesses a massive electronic polarizability. When consumed, it acts as a molecular &quot;solar panel&quot; inside the human gut and vascular matrix, establishing a perfect (1/137) electromagnetic grip (alpha{bio}).</div></div>
+      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-06-05-2hqg8n"><div class="card-header"><span class="tag">CME ice expansion and cellular fat accumulation</span><a href="https://x.com/i/status/2062702566664708194" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Volume isotope slowdown and tissue-water structure Lock: CME-driven ice expansion mirrors cellular fat accumulation</strong> When a <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">Coronal Mass Ejection</span> strikes the magnetosphere, it drives an immense influx of solar spin-quanta, high-energy protons, and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">cosmogenic deuterium</span> and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">tritium</span> into local precipitation and water lines. The anomalous <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">Volume Isotope Effect</span> (VIE) forces ice to expand as deuterium replaces light hydrogen in the frozen water lattice. The same quantum mechanical constraint forces human cells to expand and accumulate fat when the planetary shield drops. In both cases, the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">dielectric constant</span> of water collapses from k=160 (structured) to k=78 (bulk), preventing tight molecular packing. In ice, this manifests as physical swelling and pipe ruptures in cities like NYC. In <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">adipocytes</span>, this manifests as obesity, cellular hypertrophy, and water retention - a protective response where the body dumps excess deuterium mass into fat tissue to shield the nervous system and heart.</div><div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>Coronal Mass Ejection:</strong> A sudden, violent release of plasma and magnetic field from the sun&#39;s corona that can reach Earth and disrupt the magnetosphere.
+    </div>
+<div id="concept-9" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>cosmogenic deuterium:</strong> Deuterium produced in the upper atmosphere by cosmic-ray interactions; increases dramatically during geomagnetic excursions; falls in precipitation.
+    </div>
+<div id="concept-10" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>tritium:</strong> A technical term used by the selected source. The report keeps &quot;tritium&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-11" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>Volume Isotope Effect:</strong> A quantum mechanical phenomenon where substituting a heavy isotope (like deuterium) for a light isotope (like protium) alters the zero-point energy and causes structural volume changes in crystalline lattices.
+    </div>
+<div id="concept-12" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric constant:</strong> A measure of a material&#39;s ability to store electrical energy in an electric field; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78; lower values indicate loss of coherence.
+    </div>
+<div id="concept-13" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>adipocytes:</strong> Fat cells; specialized cells that store energy as triglycerides; expand when exposed to deuterium and dielectric collapse.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> CME -&gt; cosmogenic deuterium/tritium influx -&gt; heavy water enters cells/pipes -&gt; anomalous VIE -&gt; hydrogen bond geometry expands -&gt; ice swells; in cells: dielectric collapse (k=160-&gt;78) -&gt; adipocytes expand as protective dump for D+ -&gt; obesity and water retention.</li><li><strong>Abiotic-biotic unity.</strong> The physics of ice expansion during electromagnetic surge is identical to the physics of cellular fat accumulation during magnetic excursion; both are manifestations of <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">lattice lock</span> at different scales.</li><li><strong>Practical meaning.</strong> Weight gain and water retention during magnetic excursions are not metabolic dysfunction but protective cellular responses to deuterium overload and dielectric collapse. Ice maker behavior is a direct physical analogue of cellular lattice lock.</li></ul><div id="concept-14" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse; prevents normal cellular function.
+    </div></div><div class="source-quote">When deuterium replaces light hydrogen inside a frozen water lattice, the quantum-mechanical nature of the hydrogen bonds alters, forcing a distinct structural volume expansion. This is exactly what D+ does to Brown fat and WAT cells.</div></div>
+      <div class="card" data-card-id="card-2" data-vote-card-id="kruse-2026-06-05-164rykn"><div class="card-header"><span class="tag">Type II diabetes beta-cell burnout mechanism</span><a href="https://x.com/i/status/2062688384565248379" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Type II diabetes beta-cell burnout: deuterium-driven ATP synthase stalling and Landauer liquidation</strong> Chronic accumulation of deuterium from high-sugar diet under isolated artificial blue light acts as a direct physical cause for burnout and death of pancreatic beta cells in Type II diabetes. Processed sugars (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">sucrose</span>, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">high-fructose corn syrup</span>) are highly deuterated; blue light exposure shatters the hydrogen-bond matrix of cellular water, collapsing the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">dielectric constant</span> from k=160 (structured) to k=78 (bulk). Deuterium enters the mitochondrial matrix and stalls the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">ATP synthase</span> rotor - a spinning quantum nanomotor engineered to run exclusively on light, single-proton hydrogen (H+). When heavy deuterium (D+) enters the channel, its double inertial mass shatters the frictionless <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">Brachistochrone cycloid</span> track, causing immediate physical and quantum friction. The rotor lags, stalls, or breaks mechanically. Because <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">ATP</span> production collapses, the ATP/ADP ratio fails to spike, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">K+ channels</span> cannot close, the membrane cannot depolarize, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">Ca2+ channels</span> cannot open, and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">insulin exocytosis</span> fails. Simultaneously, the stalled <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">electron transport chain</span> leaks uncoupled energy as <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">singlet oxygen</span> fire, triggering the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">Unfolded Protein Response</span> and beta-cell <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">apoptosis</span>. The <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">bicarbonate</span> exhaust pipe - the vagal clearance pathway for deuterium - becomes jammed by dielectric collapse, preventing deuterium removal. Reversal is possible via deuterium depletion (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">DDW</span>), 3% NaCl infusions, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">triplet oxygen</span>, and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">phase-conjugate</span> electromagnetic fields (Leptin Rx, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">Melanin Renovation Rx</span>, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">Spurling</span>/<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-34" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">Lakhovsky</span> coils) that restore the dielectric and clear the vagal exhaust.</div><div id="concept-15" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>sucrose:</strong> Table sugar; a disaccharide made of glucose and fructose; highly deuterated in processed foods.
+    </div>
+<div id="concept-16" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>high-fructose corn syrup:</strong> A sweetener made from corn starch; contains high levels of fructose; highly deuterated; used in many processed foods and beverages.
+    </div>
+<div id="concept-17" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric constant:</strong> A measure of a material&#39;s ability to store electrical energy in an electric field; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78.
+    </div>
+<div id="concept-18" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>ATP synthase:</strong> A spinning quantum nanomotor in the inner mitochondrial membrane that converts the proton gradient into ATP; engineered to run on light, single-proton hydrogen (H+); stalls when deuterium (D+) enters due to inertial mass.
+    </div>
+<div id="concept-19" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Brachistochrone cycloid:</strong> A frictionless curved path that minimizes travel time under gravity; the theoretical track along which ATP synthase rotor spins; disrupted by deuterium&#39;s inertial mass.
+    </div>
+<div id="concept-20" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>ATP:</strong> Adenosine triphosphate; the energy currency of cells; produced by ATP synthase in mitochondria.
+    </div>
+<div id="concept-21" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>K+ channels:</strong> Ion channels that allow potassium ions to cross the cell membrane; ATP-sensitive K+ channels close when ATP/ADP ratio rises, depolarizing the beta cell membrane.
+    </div>
+<div id="concept-22" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Ca2+ channels:</strong> Ion channels that allow calcium ions to cross the cell membrane; voltage-gated Ca2+ channels open when the membrane depolarizes, triggering insulin release.
+    </div>
+<div id="concept-23" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>insulin exocytosis:</strong> The process by which insulin granules fuse with the cell membrane and release insulin into the bloodstream; triggered by calcium influx.
+    </div>
+<div id="concept-24" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>electron transport chain:</strong> A series of protein complexes in the inner mitochondrial membrane that transfer electrons and pump protons to create the ATP-generating gradient.
+    </div>
+<div id="concept-25" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> A highly reactive, excited state of oxygen that cannot be used by the electron transport chain; accumulates when mitochondrial voltage drops; causes oxidative damage and triggers cell death.
+    </div>
+<div id="concept-26" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Unfolded Protein Response:</strong> A cellular stress response triggered by accumulation of misfolded proteins; activates apoptosis if stress cannot be resolved.
+    </div>
+<div id="concept-27" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>apoptosis:</strong> Programmed cell death; a controlled process where cells self-destruct in response to severe stress or damage.
+    </div>
+<div id="concept-28" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>bicarbonate:</strong> A negatively charged ion (HCO3-) that buffers protons and binds heavy isotopes like deuterium; produced by carbonic anhydrase; critical for vagal exhaust clearance.
+    </div>
+<div id="concept-29" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>DDW:</strong> Deuterium-depleted water; water with reduced deuterium content; used to reverse deuterium accumulation and restore cellular function.
+    </div>
+<div id="concept-30" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet oxygen:</strong> The ground state of molecular oxygen with parallel electron spins; paramagnetic; can be used by the electron transport chain; pulled into cells by strong mitochondrial magnetic fields.
+    </div>
+<div id="concept-31" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>phase-conjugate:</strong> A wave-compression technique where chaotic, transverse electromagnetic noise is compressed into coherent, longitudinal waves through geometric resonance.
+    </div>
+<div id="concept-32" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Melanin Renovation Rx:</strong> A protocol for restoring melanin function and CISS semiconductor properties through solar exposure and electromagnetic optimization.
+    </div>
+<div id="concept-33" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Spurling:</strong> An ancient geometric electromagnetic resonance device using concentric loops; used historically for biological signaling and healing.
+    </div>
+<div id="concept-34" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>Lakhovsky:</strong> A geometric electromagnetic resonance device using concentric rings or spirals; used historically for biological signaling and healing.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> High-sugar diet (D+ load) + blue light (dielectric crash k=160-&gt;78) -&gt; deuterium enters beta cell mitochondria -&gt; ATP synthase rotor stalled by D+ inertial mass -&gt; ATP/ADP ratio fails -&gt; K+ channels cannot close -&gt; membrane cannot depolarize -&gt; Ca2+ channels cannot open -&gt; insulin exocytosis fails. Stalled ETC -&gt; uncoupled energy -&gt; singlet oxygen fire -&gt; UPR activation -&gt; beta cell apoptosis.</li><li><strong>Vagal exhaust pathway.</strong> Bicarbonate (HCO3-) produced by <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">carbonic anhydrase</span> in the vagus-innervated pancreas binds deuterium and sweeps it out through pancreatic ducts. When dielectric collapses, carbonic anhydrase loses quantum spin-alignment and cannot produce bicarbonate; deuterium backs up into mitochondria, stalling ATP synthase.</li><li><strong>Reversal pathways.</strong> (1) Phase-conjugate electromagnetic systems (Leptin Rx, Melanin Renovation Rx, Spurling/Lakhovsky coils over <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-36" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">vagal</span> choke point at neck and solar plexus) restore dielectric and clear deuterium. (2) DDW, 3% NaCl, triplet oxygen cause viscosity drop, clear carbonic anhydrase friction, bicarbonate production skyrockets, trapped deuterium is bound and dragged out through pancreatic exhaust, ATP synthase resumes spinning, insulin sensitivity restores spontaneously.</li><li><strong>Clinical implication.</strong> Type II diabetes is not irreversible genetic failure but reversible quantum mechanical stalling of ATP synthase rotor caused by deuterium mass and dielectric collapse.</li></ul><div id="concept-35" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>carbonic anhydrase:</strong> An enzyme that converts CO2 and water into bicarbonate; critical for clearing deuterium through the vagal exhaust pathway; loses function when dielectric collapses.
+    </div><div id="concept-36" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>vagal:</strong> Relating to the vagus nerve, the tenth cranial nerve; heavily innervates the pancreas and controls bicarbonate secretion.
+    </div></div><div class="source-quote">When a heavy deuterium ion (D+) enters the channel, its double inertial mass shatters the frictionless Brachistochrone cycloid track of the IMJ. The rotor experiences immediate physical and quantum friction, causing the nanomotor to lag, stall, or mechanically break.</div></div>
+      <div class="card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-05-erzekq"><div class="card-header"><span class="tag">PhiRay phase-conjugate plasma technology</span><a href="https://x.com/i/status/2062664731811291403" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Dan Winter&#39;s PhiRay uses golden-ratio plasma pulses and moveable magnetic coils to compress chaotic electromagnetic noise into coherent longitudinal waves, mirroring ancient Spurling and Lakhovsky devices</strong> PhiRay technology - which uses dual <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">noble-gas plasma</span> tubes, precise <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-38" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">golden-ratio</span> (Phi) <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">heterodynes</span> synced to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-40" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">Schumann resonance</span>, and a moveable <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">phase-conjugate</span> magnetic coil - operates on the identical geometric and wave-mechanics principle as ancient mercury-and-hardwood bio-shields. When plasma is pulsed with golden-ratio heterodynes synchronized to Schumann resonance, it forces chaotic electricity to cascade inward, creating a <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">centripetal</span> implosion of charge. The moveable phase-conjugate magnetic coil steers and focuses the resulting <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">longitudinal wave</span> column directly into target biological tissue. This is the exact high-tech equivalent of taking a <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">Spurling loop</span> or <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-45" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">Lakhovsky coil</span> and manually positioning it over the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-46" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">vagus nerve</span> or the root system of a <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-47" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">Vitis vinifera</span> vine. By adjusting the geometric focal point, both systems compress the surrounding electromagnetic environment, forcing a radical spike in local <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-48" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">energy density</span> to alter time flow and support tissue repair.</div><div id="concept-37" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>noble-gas plasma:</strong> Ionized gas made from noble gases (helium, neon, argon); used in PhiRay technology to generate coherent electromagnetic fields.
+    </div>
+<div id="concept-38" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>golden-ratio:</strong> A mathematical proportion (approximately 1.618) found throughout nature; used in PhiRay heterodynes to create resonant frequencies.
+    </div>
+<div id="concept-39" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>heterodynes:</strong> Electromagnetic frequencies created by combining two different frequencies; used in PhiRay to generate precise resonant patterns.
+    </div>
+<div id="concept-40" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>Schumann resonance:</strong> The fundamental electromagnetic frequency of Earth&#39;s ionosphere-surface cavity system, approximately 7.83 Hz; associated with biological coherence and healing.
+    </div>
+<div id="concept-41" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>phase-conjugate:</strong> A wave-compression technique where chaotic, transverse electromagnetic noise is compressed into coherent, longitudinal waves through geometric resonance; creates centripetal implosion of charge.
+    </div>
+<div id="concept-42" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>centripetal:</strong> A technical term used by the selected source. The report keeps &quot;centripetal&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-43" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>longitudinal wave:</strong> A wave where particle motion is parallel to the direction of wave propagation; carries coherent, organized energy; contrasts with transverse waves (perpendicular motion).
+    </div>
+<div id="concept-44" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>Spurling loop:</strong> An ancient geometric electromagnetic resonance device using concentric loops to concentrate and organize electromagnetic fields; used historically for biological signaling and healing.
+    </div>
+<div id="concept-45" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>Lakhovsky coil:</strong> A geometric electromagnetic resonance device using concentric rings or spirals to concentrate and organize electromagnetic fields; used historically for biological signaling.
+    </div>
+<div id="concept-46" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>vagus nerve:</strong> The tenth cranial nerve; the longest nerve in the body; controls parasympathetic functions including heart rate, digestion, and breathing.
+    </div>
+<div id="concept-47" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>Vitis vinifera:</strong> The common grapevine; used as an example of a biological system that responds to phase-conjugate electromagnetic fields.
+    </div>
+<div id="concept-48" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>energy density:</strong> The amount of energy stored per unit volume; higher energy density alters local time flow and supports biological repair.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Chaotic <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-49" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">transverse</span> electromagnetic noise -&gt; phase-conjugate compression (golden-ratio heterodynes + Schumann resonance + moveable magnetic coil) -&gt; coherent longitudinal wave column -&gt; centripetal implosion of charge -&gt; localized energy density spike -&gt; time dilation -&gt; tissue repair.</li><li><strong>Ancient-modern equivalence.</strong> PhiRay is a modern implementation of ancient phase-conjugate principles; both ancient Spurling/Lakhovsky devices and modern PhiRay use geometric positioning and resonance to compress chaotic noise into ordered longitudinal waves.</li><li><strong>Practical meaning.</strong> Geometric positioning of electromagnetic fields (whether ancient mercury-filled andirons or modern plasma coils) can compress chaotic noise into ordered longitudinal waves that alter local energy density and support biological repair.</li></ul><div id="concept-49" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>transverse:</strong> A wave where particle motion is perpendicular to the direction of wave propagation; chaotic, disorganized; contrasts with longitudinal waves.
+    </div></div><div class="source-quote">When the plasma is pulsed with precise, golden-ratio (Phi) heterodynes synced to the Schumann resonance, it forces the chaotic electricity to cascade inward, creating a centripetal implosion of charge.</div></div>
+      <div class="card" data-card-id="card-4" data-vote-card-id="kruse-2026-06-05-voxf3e"><div class="card-header"><span class="tag">Mercury-filled fireplace andirons as thermal batteries</span><a href="https://x.com/i/status/2062650069371773394" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Historic fireplace andirons filled with mercury functioned as household electromagnetic and thermal devices, organizing infrared radiation into coherent longitudinal waves</strong> Mercury-filled vessels in historic hearths (<span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-50" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-50" aria-expanded="false">andirons</span> or <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-51" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-51" aria-expanded="false">chenets</span>) served functional thermodynamic and electromagnetic purposes beyond decoration. <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-52" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-52" aria-expanded="false">Mercury</span>&#39;s massive <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-53" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-53" aria-expanded="false">atomic density</span> (13.53 g/cmÂ³) and tightly contracted <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-54" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-54" aria-expanded="false">relativistic</span> electron shell create extraordinary capacity to absorb, store, and structurally organize thermal and radiative energy from the fireplace. Instead of letting radiant energy dissipate through the chimney, the mercury-filled container acts as a dense thermal battery, absorbing raw kinetic excitation and smoothing it into a highly ordered, stable column of radiant energy. The <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-55" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-55" aria-expanded="false">chiral</span>, helical, fluted geometric shape of the andirons acts as a passive <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-56" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-56" aria-expanded="false">waveguide</span>, filtering the chaotic <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-57" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-57" aria-expanded="false">transverse</span> electromagnetic noise of combustion and projecting it outward as a clean <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-58" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-58" aria-expanded="false">longitudinal scalar wave</span> field. This ordered field raises the ambient water <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-59" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-59" aria-expanded="false">dielectric constant</span> from bulk state (k=78) toward the protective baseline (k=160), <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-60" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-60" aria-expanded="false">de-fragging</span> <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-61" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-61" aria-expanded="false">lattice lock</span> at the fireside and protecting the household&#39;s base oscillators from the entropic cold of winter wilderness.</div><div id="concept-50" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>andirons:</strong> Metal supports used to hold logs in a fireplace; often decorative; historically filled with mercury to organize electromagnetic fields.
+    </div>
+<div id="concept-51" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>chenets:</strong> Decorative fireplace andirons; from French; historically filled with mercury for functional electromagnetic purposes.
+    </div>
+<div id="concept-52" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>Mercury:</strong> A liquid metal with massive atomic density (13.53 g/cmÂ³) and relativistic electron shell; used by ancients and moderns to organize electromagnetic fields and increase local energy density.
+    </div>
+<div id="concept-53" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>atomic density:</strong> The mass per unit volume of an atom or element; mercury&#39;s high atomic density (13.53 g/cmÂ³) gives it unique electromagnetic properties.
+    </div>
+<div id="concept-54" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>relativistic:</strong> Relating to effects that occur at speeds approaching the speed of light; mercury&#39;s electron shell is tightly contracted due to relativistic effects, giving it unique electromagnetic properties.
+    </div>
+<div id="concept-55" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>chiral:</strong> Having a geometric structure that is not superimposable on its mirror image; chiral shapes (like twisted andirons) organize electromagnetic fields through geometric resonance.
+    </div>
+<div id="concept-56" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>waveguide:</strong> A geometric structure that channels and organizes electromagnetic waves; the chiral shape of andirons acts as a passive waveguide, filtering chaotic noise into coherent waves.
+    </div>
+<div id="concept-57" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>transverse:</strong> A wave where particle motion is perpendicular to the direction of wave propagation; chaotic, disorganized; contrasts with longitudinal waves.
+    </div>
+<div id="concept-58" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>longitudinal scalar wave:</strong> A coherent, organized wave where particle motion is parallel to propagation direction; carries ordered energy; produced by phase-conjugate compression of chaotic transverse noise.
+    </div>
+<div id="concept-59" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric constant:</strong> A measure of a material&#39;s ability to store electrical energy in an electric field; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78.
+    </div>
+<div id="concept-60" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>de-fragging:</strong> Kruse shorthand borrowed from computer defragmentation: making a disordered system more coherent again. In these reports it usually points to restoring organized tissue water, charge flow, or signal coherence.
+    </div>
+<div id="concept-61" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse; prevents normal cellular function; can be de-fragged by raising local energy density.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Fireplace <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-62" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-62" aria-expanded="false">infrared radiation</span> -&gt; mercury absorption (relativistic electron shell + massive density) -&gt; thermal energy storage and organization -&gt; chiral geometry waveguide -&gt; chaotic transverse noise filtered into longitudinal scalar waves -&gt; ambient water dielectric raised (k=78-&gt;160) -&gt; lattice lock de-fragged -&gt; household base oscillators protected.</li><li><strong>Material computation.</strong> Mercury&#39;s relativistic electron shell and massive atomic density act as a physical boundary condition that dynamically organizes electromagnetic fields without algorithmic intermediary; the matter itself does the work instantly and without friction.</li><li><strong>Household protection.</strong> Ancient builders used mercury-filled andirons to raise the ambient dielectric constant of living spaces, protecting inhabitants&#39; biological water tables and base oscillators during winter cold and magnetic excursions.</li></ul><div id="concept-62" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>infrared radiation:</strong> Light just beyond visible red. In biology discussions it usually points to heat, mitochondrial signaling, and water-structure effects rather than vitamin-D production.
+    </div></div><div class="source-quote">Because mercury sits at a massive atomic density of (13.53 g/cm^3) and features a tightly contracted, relativistic electron shell, it possesses an extraordinary capacity to absorb, store, and structurally organize thermal and radiative energy.</div></div>
+      <div class="card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-05-1f99wp8"><div class="card-header"><span class="tag">Ancient material-first engineering vs. algorithmic thinking</span><a href="https://x.com/i/status/2062617095557562504" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Ancient builders used physical boundary conditions and material properties to compute solutions directly; modern science inverts this by using algorithms to simulate physics</strong> Ancient builders used physical boundary conditions, not algorithms. A master blacksmith doesn&#39;t consult an <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-63" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-63" aria-expanded="false">iron-carbon phase diagram</span> to forge a sword; they watch the changing color of light emitted from heated iron and feel the metal&#39;s resistance against the hammer, remaining phase-locked directly to the material&#39;s atomic shift. The builders of <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-64" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-64" aria-expanded="false">Teotihuacan</span> didn&#39;t write code to calculate magnetic drift during the <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-65" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-65" aria-expanded="false">Gothenburg excursion</span>; they dug down to underground springs, placed <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-66" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-66" aria-expanded="false">mica</span> shielding, and poured liquid mercury. The <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-67" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-67" aria-expanded="false">relativistic</span> fluid metal dynamically pinned the <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-68" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-68" aria-expanded="false">field lines</span> because its atomic configuration is the calculation. Matter itself does the work, instantly and without friction. When biology is viewed through light, water, and magnetism, the modern obsession with information theory is stripped away and <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-69" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-69" aria-expanded="false">thermodynamic</span> reality returns. The cell nucleus is not a digital hard drive running an algorithmic script; it is a physical <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-70" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-70" aria-expanded="false">LC oscillator</span> vibrating inside a <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-71" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-71" aria-expanded="false">liquid-crystalline</span> water table, governed by the mass of protons, the spin of electrons, and the grip of the <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-72" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-72" aria-expanded="false">fine-structure constant</span>. Replacing biological and physical reality with algorithms loses <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-73" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-73" aria-expanded="false">magnetic sovereignty</span>; it trades the sun, structured water, and raw earth for digital abstraction that bogs down the base oscillator with ungrounded synthetic noise.</div><div id="concept-63" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>iron-carbon phase diagram:</strong> A technical term used by the selected source. The report keeps &quot;iron-carbon phase diagram&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-64" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>Teotihuacan:</strong> An ancient Mesoamerican city near Mexico City; known for sophisticated engineering and use of mercury and mica for electromagnetic shielding.
+    </div>
+<div id="concept-65" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      <strong>Gothenburg excursion:</strong> A geomagnetic excursion approximately 12,500 years ago when Earth&#39;s magnetic field weakened dramatically; associated with increased cosmic-ray influx and elevated deuterium in precipitation.
+    </div>
+<div id="concept-66" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>mica:</strong> A silicate mineral with layered crystal structure; used by ancient builders as electromagnetic shielding; has paramagnetic properties that help organize local magnetic fields.
+    </div>
+<div id="concept-67" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>relativistic:</strong> A technical term used by the selected source. The report keeps &quot;relativistic&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-68" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>field lines:</strong> A technical term used by the selected source. The report keeps &quot;field lines&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-69" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>thermodynamic:</strong> A technical term used by the selected source. The report keeps &quot;thermodynamic&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-70" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      <strong>LC oscillator:</strong> An electrical circuit with inductance (L) and capacitance (C) that oscillates at a resonant frequency; the cell nucleus functions as an LC oscillator vibrating in the cellular water table.
+    </div>
+<div id="concept-71" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>liquid-crystalline:</strong> A technical term used by the selected source. The report keeps &quot;liquid-crystalline&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-72" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      <strong>fine-structure constant:</strong> A dimensionless physical constant (â‰ˆ1/137) that characterizes the strength of electromagnetic interaction; governs how tightly electrons are bound to nuclei and how matter organizes.
+    </div>
+<div id="concept-73" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>magnetic sovereignty:</strong> A technical term used by the selected source. The report keeps &quot;magnetic sovereignty&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Material computation.</strong> Ancient builders let physics compute itself through matter; mercury pinning field lines, mica shielding, blacksmith color-reading - all direct material-first solutions without algorithmic intermediary.</li><li><strong>Thermodynamic reality.</strong> Biology is governed by LC oscillators, water dielectric, proton mass, electron spin, and fine-structure constant - not by information theory or digital algorithms.</li><li><strong><span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-74" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-74" aria-expanded="false">Decentralized</span> vs. centralized.</strong> Algorithmic abstraction centralizes knowledge in digital systems and introduces noise; material-first approaches remain decentralized and preserve magnetic coherence.</li></ul><div id="concept-74" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>Decentralized:</strong> A technical term used by the selected source. The report keeps &quot;decentralized&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">The relativistic fluid metal dynamically pinned the field lines because its atomic configuration is the calculation. The matter itself does the work, instantly and without friction.</div></div>
+      <div class="card" data-card-id="card-6" data-vote-card-id="kruse-2026-06-05-1sea78f"><div class="card-header"><span class="tag">Mercury-filled skateboard wheels for deuterium depletion</span><a href="https://x.com/i/status/2062606278963466459" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Modify skateboard wheels with liquid mercury to amplify micro-vibration deuterium depletion effects</strong> To enhance skateboarding&#39;s <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-75" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-75" aria-expanded="false">deuterium depletion</span> effect via <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-76" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-76" aria-expanded="false">micro-vibrations</span>, modify <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-77" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-77" aria-expanded="false">polyurethane</span> wheels by cutting them in half, hollowing them out, filling them with liquid <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-78" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-78" aria-expanded="false">mercury</span>, and resealing them. The micro-vibrations from skateboarding combined with mercury&#39;s relativistic electron shell and massive <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-79" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-79" aria-expanded="false">atomic density</span> (13.53 g/cmÂ³) amplify the local <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-80" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-80" aria-expanded="false">energy density</span> and electromagnetic coherence, accelerating deuterium depletion. This principle mirrors ancient practice: excavations under the <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-81" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-81" aria-expanded="false">Temple of the Feathered Serpent</span> in <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-82" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-82" aria-expanded="false">Teotihuacan</span> have unearthed large quantities of liquid mercury, which the ancients used to increase energy density and slow time flow during magnetic excursions.</div><div id="concept-75" class="expanded-content" data-card-id="card-6" data-concept-level="pro" aria-hidden="true">
+      <strong>deuterium depletion:</strong> The process of reducing deuterium (heavy hydrogen) concentration in cells and tissues; achieved through micro-vibrations, phase-conjugate fields, DDW, or other mechanisms.
+    </div>
+<div id="concept-76" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>micro-vibrations:</strong> Small, rapid oscillations; produced by skateboarding, exercise, or mechanical devices; can deplete deuterium from cells.
+    </div>
+<div id="concept-77" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>polyurethane:</strong> A technical term used by the selected source. The report keeps &quot;polyurethane&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-78" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>mercury:</strong> A liquid metal with massive atomic density (13.53 g/cmÂ³) and relativistic electron shell; used by ancients and moderns to organize electromagnetic fields and increase local energy density.
+    </div>
+<div id="concept-79" class="expanded-content" data-card-id="card-6" data-concept-level="pro" aria-hidden="true">
+      <strong>atomic density:</strong> The mass per unit volume of an atom or element; mercury&#39;s high atomic density (13.53 g/cmÂ³) gives it unique electromagnetic properties.
+    </div>
+<div id="concept-80" class="expanded-content" data-card-id="card-6" data-concept-level="pro" aria-hidden="true">
+      <strong>energy density:</strong> The amount of energy stored per unit volume; higher energy density alters local time flow and supports biological repair.
+    </div>
+<div id="concept-81" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>Temple of the Feathered Serpent:</strong> A major pyramid structure in Teotihuacan; excavations have revealed large quantities of liquid mercury used for electromagnetic shielding.
+    </div>
+<div id="concept-82" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>Teotihuacan:</strong> A technical term used by the selected source. The report keeps &quot;Teotihuacan&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Protocol.</strong> Cut polyurethane skateboard wheels in half, hollow them out, fill with liquid mercury, reseal. Skateboard micro-vibrations + mercury&#39;s relativistic properties -&gt; enhanced energy density -&gt; deuterium depletion acceleration.</li><li><strong>Ancient precedent.</strong> Teotihuacan builders used mercury to increase energy density and slow time flow during magnetic excursions; modern skateboard modification applies the same principle at personal scale.</li><li><strong>Practical meaning.</strong> If using skateboarding for deuterium depletion, mercury-filled wheels amplify the micro-vibration effect and increase local energy density.</li></ul></div><div class="source-quote">I&#39;d buy some polyurethane wheels and cut them in half hollow them out and then fill them with liquid mercury and then re seal them. Then you start cooking with gas.</div></div>
+      <div class="card" data-card-id="card-7" data-vote-card-id="kruse-2026-06-05-px8naw"><div class="card-header"><span class="tag">Hydrogen isotope quality in water products</span><a href="https://x.com/i/status/2062638331083604397" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Hydrogen water products only work if the hydrogen is protium (light isotope); deuterium-containing products provide no benefit</strong> <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-83" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-83" aria-expanded="false">Hydrogen water</span> products only work if the H+ is <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-84" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-84" aria-expanded="false">protium</span> (light hydrogen), not deuterium (heavy hydrogen). Many companies selling hydrogen water do not perform <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-85" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-85" aria-expanded="false">isotopic quality assurance</span>, so buyers are being sold ineffective or harmful products. Without isotopic verification, the product is unreliable and may contain deuterium instead of the beneficial protium.</div><div id="concept-83" class="expanded-content" data-card-id="card-7" data-concept-level="noob" aria-hidden="true">
+      <strong>Hydrogen water:</strong> A technical term used by the selected source. The report keeps &quot;hydrogen water&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-84" class="expanded-content" data-card-id="card-7" data-concept-level="noob" aria-hidden="true">
+      <strong>protium:</strong> The light isotope of hydrogen with one proton and no neutrons; the most common form of hydrogen; supports cellular function when present in water.
+    </div>
+<div id="concept-85" class="expanded-content" data-card-id="card-7" data-concept-level="pro" aria-hidden="true">
+      <strong>isotopic quality assurance:</strong> Laboratory testing to verify the isotopic composition of a product; essential for hydrogen water to confirm presence of protium rather than deuterium.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Treatment requirement.</strong> Hydrogen water only provides benefit if H+ is protium (light isotope), not deuterium (heavy isotope).</li><li><strong>Quality assurance gap.</strong> Most companies selling hydrogen water do not perform isotopic quality assurance; buyers cannot verify whether they are receiving protium or deuterium.</li><li><strong>Action.</strong> If considering hydrogen water products, demand isotopic quality assurance from manufacturer. Without isotopic verification, the product is unreliable.</li></ul></div><div class="source-quote">Only works if the H+ is protium. The company he uses does not do isotopic Q/A so he is being sold a line of BS</div></div>
+      <div class="card" data-card-id="card-8" data-vote-card-id="kruse-2026-06-05-xdxifk"><div class="card-header"><span class="tag">Megalith construction timing and geomagnetic excursions</span><a href="https://x.com/i/status/2062385167029727373" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Megalith construction bursts correlate precisely with paleomagnetic excursion windows when time flow slowed, enabling &#39;impossible&#39; architectural achievements</strong> Megalith construction bursts (<span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-86" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-86" aria-expanded="false">GÃ¶bekli Tepe</span>, <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-87" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-87" aria-expanded="false">Neolithic</span> European <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-88" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-88" aria-expanded="false">dolmens</span>, <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-89" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-89" aria-expanded="false">Malta temples</span>) correlate exactly with <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-90" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-90" aria-expanded="false">paleomagnetic</span> <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-91" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-91" aria-expanded="false">excursion</span> windows. During weak-field <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-92" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-92" aria-expanded="false">geomagnetic excursions</span> (<span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-93" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-93" aria-expanded="false">Gothenburg</span> ~12,494 - 13,081 cal BP, mid-Holocene ~5 - 5.5 ka BP, <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-94" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-94" aria-expanded="false">Sterno-Etrussia</span> ~2700 BP), <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-95" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-95" aria-expanded="false">cosmic-ray</span> influx increases local <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-96" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-96" aria-expanded="false">energy density</span>, slowing <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-97" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-97" aria-expanded="false">time flow</span> according to the relationship t_flow = k/E_d. Humans experience more subjective time per calendar year, enabling sophisticated <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-98" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-98" aria-expanded="false">negentropic</span> structuring (megalith construction) in what appears as &#39;impossible&#39; short absolute time. Megaliths themselves may be deliberate <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-99" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-99" aria-expanded="false">Î¾M-field</span> <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-100" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-100" aria-expanded="false">tuning forks</span> - massive <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-101" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-101" aria-expanded="false">chiral</span> stone arrays that concentrate solar charge, boost local energy density, and maintain <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-102" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-102" aria-expanded="false">lattice lock</span> at community scale, exactly as <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-103" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-103" aria-expanded="false">melanin</span> and <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-104" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-104" aria-expanded="false">collagen</span> do inside cells. Archaeological record shows tight correlations (â‰¥80% overlap) between megalith clusters and paleomagnetic anomalies. No major megalith clusters appear during confirmed long stable high-intensity intervals. This provides a testable hypothesis: map all dated megalith sites against <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-105" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-105" aria-expanded="false">Holocene</span> paleomagnetic records to verify the energy-density/time-flow mechanism.</div><div id="concept-86" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>GÃ¶bekli Tepe:</strong> An ancient archaeological site in Turkey with sophisticated T-shaped stone pillars; built approximately 11,600 years ago during the Gothenburg geomagnetic excursion.
+    </div>
+<div id="concept-87" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>Neolithic:</strong> The New Stone Age; a prehistoric period characterized by the development of agriculture and stone tools.
+    </div>
+<div id="concept-88" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>dolmens:</strong> Megalithic tombs made of large stone slabs; common in Neolithic Europe; built during mid-Holocene geomagnetic excursions.
+    </div>
+<div id="concept-89" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>Malta temples:</strong> Ancient megalithic structures on the island of Malta; built approximately 3600 - 2500 BCE during mid-Holocene geomagnetic excursions.
+    </div>
+<div id="concept-90" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>paleomagnetic:</strong> Relating to Earth&#39;s magnetic field in the past; paleomagnetic records show periods of weak field (excursions) and strong field (stable intervals).
+    </div>
+<div id="concept-91" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>excursion:</strong> A period when Earth&#39;s magnetic field weakens dramatically, directional anomalies occur, and cosmic-ray influx increases.
+    </div>
+<div id="concept-92" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>geomagnetic excursions:</strong> Periods when Earth&#39;s magnetic field weakens dramatically; associated with elevated deuterium in precipitation and altered time flow.
+    </div>
+<div id="concept-93" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>Gothenburg:</strong> A geomagnetic excursion approximately 12,500 years ago when Earth&#39;s magnetic field weakened dramatically.
+    </div>
+<div id="concept-94" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>Sterno-Etrussia:</strong> A geomagnetic excursion approximately 2700 years ago (750 BCE) when Earth&#39;s magnetic field weakened and directional anomalies occurred.
+    </div>
+<div id="concept-95" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>cosmic-ray:</strong> High-energy particles from space that strike Earth&#39;s atmosphere; normally blocked by strong magnetosphere; increase dramatically during geomagnetic excursions.
+    </div>
+<div id="concept-96" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>energy density:</strong> The amount of energy stored per unit volume; higher energy density alters local time flow and supports biological repair.
+    </div>
+<div id="concept-97" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>time flow:</strong> A technical term used by the selected source. The report keeps &quot;time flow&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-98" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>negentropic:</strong> Relating to negentropy; the tendency toward order and organization; opposite of entropy (disorder).
+    </div>
+<div id="concept-99" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>Î¾M-field:</strong> The sea of unbound energy density in Uniphics framework; the substrate from which all forces emerge; modulated by geomagnetic excursions and energy density gradients.
+    </div>
+<div id="concept-100" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>tuning forks:</strong> Devices that vibrate at specific frequencies; megaliths may function as Î¾M-field tuning forks, concentrating solar charge and organizing local electromagnetic fields.
+    </div>
+<div id="concept-101" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>chiral:</strong> Having a geometric structure that is not superimposable on its mirror image; chiral stone arrays organize electromagnetic fields through geometric resonance.
+    </div>
+<div id="concept-102" class="expanded-content" data-card-id="card-8" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse; can be maintained at community scale by megaliths.
+    </div>
+<div id="concept-103" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>melanin:</strong> A dark pigment in skin, hair, and eyes; acts as a CISS semiconductor that organizes cellular water and coordinates metal centers.
+    </div>
+<div id="concept-104" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>collagen:</strong> A structural protein in connective tissue; organized by melanin and electromagnetic fields; maintains tissue coherence.
+    </div>
+<div id="concept-105" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
+      <strong>Holocene:</strong> The current geological epoch; began approximately 11,700 years ago after the last ice age.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Geomagnetic excursion (weak field) -&gt; cosmic-ray influx -&gt; elevated energy density -&gt; slowed time flow (t_flow = k/E_d) -&gt; humans experience more subjective time per calendar year -&gt; sophisticated negentropic structuring (megalith construction) appears in &#39;short&#39; absolute time.</li><li><strong>Megalith function.</strong> Megaliths may be deliberate Î¾M-field tuning forks - chiral stone arrays that concentrate solar charge, boost local energy density, and maintain lattice lock at community scale, exactly as melanin/collagen do inside cells.</li><li><strong>Testable prediction.</strong> Map all dated megalith sites against Holocene paleomagnetic records; expect tight correlations (â‰¥80% overlap) between megalith clusters and excursion windows. No major megalith clusters should appear during confirmed long stable high-intensity intervals.</li><li><strong>Archaeological resolution.</strong> The 7,000-year gap between GÃ¶bekli Tepe and Egypt is not a mystery of lost civilizations or aliens; it is an illusion of variable time flow. During excursions, time flowed slowly, allowing more subjective time for construction. During stable periods, time flowed faster, allowing consolidation and scaling of prior knowledge.</li></ul></div><div class="source-quote">If we map every known megalith cluster against the Holocene paleomagnetic record, we should see tight correlations with excursion lows. That would be a spectacular experimental test of this Uniphics idea.</div></div>
+      <div class="card" data-card-id="card-9" data-vote-card-id="kruse-2026-06-05-1i744rq"><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2062395335402455417" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Idiopathic subglottic stenosis (iSGS): focal tissue-water structure lock in low-melanin airway tissue</strong> <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-106" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-106" aria-expanded="false">Idiopathic subglottic stenosis</span> (iSGS) - rare airway narrowing affecting ~98% Caucasian women - is a focal <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-107" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-107" aria-expanded="false">lattice lock</span> of the <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-108" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-108" aria-expanded="false">subglottic space</span> water table. The subglottic space is the most critical aerodynamic and thermodynamic bottleneck in the respiratory tract, with the highest mitochondrial density. Mechanism: low <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-109" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-109" aria-expanded="false">melanin</span> baseline + blue light exposure + nnEMF -&gt; loss of <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-110" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-110" aria-expanded="false">CISS</span> semiconductor function -&gt; <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-111" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-111" aria-expanded="false">mitochondrial voltage</span> drop in subglottic space -&gt; inability to pull <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-112" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-112" aria-expanded="false">triplet oxygen</span> -&gt; <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-113" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-113" aria-expanded="false">singlet oxygen</span> accumulation -&gt; <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-114" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-114" aria-expanded="false">Unfolded Protein Response</span> activation -&gt; <span class="expandable-concept" data-card-id="card-9" data-concept-target="concept-115" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-115" aria-expanded="false">collagen</span> scarring and stenosis.</div><div id="concept-106" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>Idiopathic subglottic stenosis:</strong> A rare condition causing narrowing of the airway just below the vocal cords; affects ~98% Caucasian women; cause unknown in conventional medicine.
+    </div>
+<div id="concept-107" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse; prevents normal cellular function.
+    </div>
+<div id="concept-108" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>subglottic space:</strong> The region of the airway just below the vocal cords; has the highest mitochondrial density in the respiratory tract; critical aerodynamic and thermodynamic bottleneck.
+    </div>
+<div id="concept-109" class="expanded-content" data-card-id="card-9" data-concept-level="noob" aria-hidden="true">
+      <strong>melanin:</strong> A dark pigment in skin, hair, and eyes; acts as a CISS semiconductor that organizes cellular water and coordinates metal centers on the Inner Mitochondrial Membrane.
+    </div>
+<div id="concept-110" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>CISS:</strong> Chiral Induced Spin Selectivity; a quantum mechanical effect where chiral molecules (like melanin) preferentially transmit electrons of one spin direction; critical for organizing cellular water.
+    </div>
+<div id="concept-111" class="expanded-content" data-card-id="card-9" data-concept-level="noob" aria-hidden="true">
+      <strong>mitochondrial voltage:</strong> A technical term used by the selected source. The report keeps &quot;mitochondrial voltage&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-112" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet oxygen:</strong> The ground state of molecular oxygen with parallel electron spins; paramagnetic; can be used by the electron transport chain; pulled into cells by strong mitochondrial magnetic fields.
+    </div>
+<div id="concept-113" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> An excited state of oxygen with antiparallel electron spins; diamagnetic; cannot be used by the electron transport chain; accumulates when mitochondrial voltage drops; causes oxidative damage.
+    </div>
+<div id="concept-114" class="expanded-content" data-card-id="card-9" data-concept-level="pro" aria-hidden="true">
+      <strong>Unfolded Protein Response:</strong> A cellular stress response triggered by accumulation of misfolded proteins; activates apoptosis if stress cannot be resolved.
+    </div>
+<div id="concept-115" class="expanded-content" data-card-id="card-9" data-concept-level="noob" aria-hidden="true">
+      <strong>collagen:</strong> A structural protein in connective tissue; organized by electromagnetic fields; excessive collagen deposition causes airway scarring in iSGS.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Low melanin (genetic baseline) + blue light (dielectric crash k=160-&gt;78) + nnEMF (high-frequency jitter) -&gt; CISS loss -&gt; mitochondrial voltage drop in subglottic space -&gt; singlet oxygen accumulation (paramagnetic oxygen cannot be pulled) -&gt; UPR activation -&gt; collagen scarring.</li><li><strong>Genetic clue.</strong> iSGS affects ~98% Caucasian women; this is the ultimate genetic clue that it is a disease of low-melanin, low-voltage on the Inner Mitochondrial Membrane due to NADD+ and no triplet state oxygen.</li><li><strong>Reversal pathway 1: Vagal activation.</strong> Mastic gum (cranial piezoelectric spark) + transuricular VNS + hexane-free castor oil in umbilicus + 40 - 256 Hz tuning fork over sternum + Tibetan sound bowls -&gt; restore vagal exhaust -&gt; clear deuterium -&gt; restore dielectric.</li><li><strong>Reversal pathway 2: Grounding.</strong> Volcanic crust (El Salvador) -&gt; dampen atmospheric high-frequency jitter -&gt; stabilize Radical Pair Mechanism -&gt; allow triplet oxygen pulling.</li><li><strong>Reversal pathway 3: Solar re-exposure.</strong> Morning 0.66 eV infrared pulse + Chappuis ozone shadow (no contacts/glasses) -&gt; restore SCN contrast -&gt; restore melanin synthesis -&gt; restore CISS function.</li></ul></div><div class="source-quote">The fact that iSGS almost exclusively strikes Caucasian women (âˆ¼98% of cases) is the ultimate genetic clue, it is a disease of low-melanin, low-voltage on the IMM due to NADD+ and no triplet state oxygen, and failed isotopic fractionation of D+ in the gut.</div></div>
+      <div class="section-title">Forum Updates</div>
+      <div class="card" data-card-id="card-10" data-vote-card-id="kruse-2026-06-05-1etvrq0"><div class="card-header"><span class="tag">Mitochondrial escapement wheel and aging reversal</span><a href="https://forum.jackkruse.com/threads/sun-allergy-is-it-really.32491/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Singh et al. 2018 study shows mitochondrial DNA polymerase (POLG1) is the escapement wheel governing biological clock; restoring POLG1 function reverses wrinkles, hair loss, and inflammation</strong> The <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-116" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-116" aria-expanded="false">Singh et al. 2018</span> study provides macroscopic confirmation that the mitochondrial <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-117" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-117" aria-expanded="false">escapement wheel</span> (<span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-118" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-118" aria-expanded="false">POLG1</span> gene) governs the <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-119" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-119" aria-expanded="false">biological clock</span> and controls aging phenotypes. When the dominant-negative POLG1 mutation is turned on, <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-120" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-120" aria-expanded="false">mitochondrial genome</span> replication collapses, the <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-121" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-121" aria-expanded="false">electron transport chain</span> (<span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-122" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-122" aria-expanded="false">OXPHOS</span> complexes I - V) fails to assemble, electron current drops to zero, deuterium cannot be spun out, cellular water <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-123" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-123" aria-expanded="false">dielectric</span> collapses (k=160-&gt;78), <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-124" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-124" aria-expanded="false">singlet oxygen</span> accumulates, and aging phenotypes (wrinkles, hair loss, inflammation) appear. When POLG1 is restored, the escapement wheel resumes, electron current restores, deuterium is expelled, dielectric is maintained, and aging phenotypes reverse. This is the physical demonstration of reversing a focal <span class="expandable-concept" data-card-id="card-10" data-concept-target="concept-125" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-125" aria-expanded="false">lattice lock</span> through restoration of mitochondrial function.</div><div id="concept-116" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>Singh et al. 2018:</strong> A peer-reviewed study demonstrating that turning off a dominant-negative POLG1 mutation reverses wrinkles, hair loss, and inflammation in aged mice; published in Cell Death &amp; Disease.
+    </div>
+<div id="concept-117" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>escapement wheel:</strong> A mechanical device that regulates energy transfer in a clock; in cells, mitochondria act as the escapement wheel, converting continuous energy into periodic pulses that govern the biological clock.
+    </div>
+<div id="concept-118" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>POLG1:</strong> Mitochondrial DNA polymerase gamma; the enzyme responsible for replicating mitochondrial DNA; mutations in POLG1 cause mitochondrial dysfunction and aging phenotypes.
+    </div>
+<div id="concept-119" class="expanded-content" data-card-id="card-10" data-concept-level="noob" aria-hidden="true">
+      <strong>biological clock:</strong> A technical term used by the selected source. The report keeps &quot;biological clock&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-120" class="expanded-content" data-card-id="card-10" data-concept-level="noob" aria-hidden="true">
+      <strong>mitochondrial genome:</strong> The circular DNA molecule inside mitochondria that encodes 13 proteins of the electron transport chain; replication requires POLG1.
+    </div>
+<div id="concept-121" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>electron transport chain:</strong> A series of protein complexes in the inner mitochondrial membrane that transfer electrons and pump protons to create the ATP-generating gradient.
+    </div>
+<div id="concept-122" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>OXPHOS:</strong> Oxidative phosphorylation; the process by which the electron transport chain generates the proton gradient used to make ATP.
+    </div>
+<div id="concept-123" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric:</strong> A measure of a material&#39;s ability to store electrical energy; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78; lower values indicate loss of coherence.
+    </div>
+<div id="concept-124" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> An excited state of oxygen that cannot be used by the electron transport chain; accumulates when mitochondrial voltage drops; causes oxidative damage.
+    </div>
+<div id="concept-125" class="expanded-content" data-card-id="card-10" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse; prevents normal cellular function.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> POLG1 function -&gt; mitochondrial genome replication -&gt; OXPHOS assembly -&gt; electron current -&gt; deuterium spin-out -&gt; dielectric maintenance (k=160) -&gt; singlet oxygen prevention -&gt; aging prevention. POLG1 loss -&gt; no genome replication -&gt; no OXPHOS -&gt; no electron current -&gt; deuterium accumulation -&gt; dielectric collapse (k=160-&gt;78) -&gt; singlet oxygen accumulation -&gt; aging phenotypes.</li><li><strong>Research signal.</strong> Singh et al. 2018 demonstrates that wrinkles, hair loss, and inflammation are manifestations of focal lattice lock caused by deuterium accumulation and dielectric collapse, not genetic programming errors.</li><li><strong>Reversal implication.</strong> Restoration of POLG1 function (or equivalent mitochondrial repair mechanisms) can reverse aging phenotypes by restoring the escapement wheel and clearing deuterium.</li></ul></div><div class="citations"><div class="citations-label">Citations</div><ul><li class="citation"><div class="citation-paper">Singh et al. 2018</div><div class="citation-claim">Turning off dominant-negative POLG1 mutation reverses wrinkles, hair loss, and inflammation, demonstrating that mitochondrial escapement wheel governs biological clock and aging phenotypes.</div></li></ul></div><div class="source-quote">The 2018 study by Singh et al. is the absolute macroscopic confirmation of the mitochondrial &quot;escapement wheel&quot; ruling the biological clock.</div></div>
+      <div class="card" data-card-id="card-11" data-vote-card-id="kruse-2026-06-05-1vbn310"><div class="card-header"><span class="tag">Type II diabetes reversal via deuterium depletion</span><a href="https://forum.jackkruse.com/threads/an-elegant-formula-from-picard%E2%80%A6.31727/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Type II diabetes is reversible via deuterium depletion</strong> Type II diabetes is reversible via <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-126" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-126" aria-expanded="false">deuterium depletion</span>. Two macro-scale reversal pathways exist: (1) Active <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-127" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-127" aria-expanded="false">phase-conjugate</span> systems (Leptin Rx, <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-128" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-128" aria-expanded="false">Melanin Renovation Rx</span>, <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-129" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-129" aria-expanded="false">Spurling</span>/<span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-130" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-130" aria-expanded="false">Lakhovsky</span> electromagnetic resonance fields positioned over the <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-131" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-131" aria-expanded="false">vagal</span> choke point at neck and <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-132" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-132" aria-expanded="false">solar plexus</span>) introduce highly ordered <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-133" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-133" aria-expanded="false">longitudinal wave</span> columns to restore <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-134" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-134" aria-expanded="false">dielectric</span> and clear deuterium. (2) Introduction of <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-135" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-135" aria-expanded="false">DDW</span>, 3% NaCl, and <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-136" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-136" aria-expanded="false">triplet oxygen</span> cause an instant drop in viscosity, clear friction in the <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-137" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-137" aria-expanded="false">carbonic anhydrase</span> pathway, <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-138" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-138" aria-expanded="false">bicarbonate</span> production skyrockets, trapped deuterium is bound and dragged out through the pancreatic exhaust, <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-139" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-139" aria-expanded="false">ATP synthase</span> motors resume spinning at near-superfluid speeds, and <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-140" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-140" aria-expanded="false">insulin sensitivity</span> restores spontaneously.</div><div id="concept-126" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>deuterium depletion:</strong> Lowering the amount of deuterium, the heavy isotope of hydrogen, in water or the body. Kruse links lower deuterium load to mitochondrial and water-chemistry effects.
+    </div>
+<div id="concept-127" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>phase-conjugate:</strong> A wave-compression technique where chaotic, transverse electromagnetic noise is compressed into coherent, longitudinal waves through geometric resonance.
+    </div>
+<div id="concept-128" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>Melanin Renovation Rx:</strong> A protocol for restoring melanin function and CISS semiconductor properties through solar exposure and electromagnetic optimization.
+    </div>
+<div id="concept-129" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>Spurling:</strong> An ancient geometric electromagnetic resonance device using concentric loops; used historically for biological signaling and healing.
+    </div>
+<div id="concept-130" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>Lakhovsky:</strong> A geometric electromagnetic resonance device using concentric rings or spirals; used historically for biological signaling and healing.
+    </div>
+<div id="concept-131" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>vagal:</strong> Relating to the vagus nerve, the tenth cranial nerve; heavily innervates the pancreas and controls bicarbonate secretion.
+    </div>
+<div id="concept-132" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>solar plexus:</strong> A technical term used by the selected source. The report keeps &quot;solar plexus&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-133" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>longitudinal wave:</strong> A wave where particle motion is parallel to the direction of wave propagation; carries coherent, organized energy.
+    </div>
+<div id="concept-134" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric:</strong> A measure of a material&#39;s ability to store electrical energy; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78.
+    </div>
+<div id="concept-135" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>DDW:</strong> Deuterium-depleted water; water with reduced deuterium content; used to reverse deuterium accumulation and restore cellular function.
+    </div>
+<div id="concept-136" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet oxygen:</strong> The ground state of molecular oxygen with parallel electron spins; paramagnetic; can be used by the electron transport chain.
+    </div>
+<div id="concept-137" class="expanded-content" data-card-id="card-11" data-concept-level="pro" aria-hidden="true">
+      <strong>carbonic anhydrase:</strong> An enzyme that converts CO2 and water into bicarbonate; critical for clearing deuterium through the vagal exhaust pathway.
+    </div>
+<div id="concept-138" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>bicarbonate:</strong> A negatively charged ion (HCO3-) that buffers protons and binds heavy isotopes like deuterium; produced by carbonic anhydrase.
+    </div>
+<div id="concept-139" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>ATP synthase:</strong> A technical term used by the selected source. The report keeps &quot;ATP synthase&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-140" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>insulin sensitivity:</strong> A technical term used by the selected source. The report keeps &quot;insulin sensitivity&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Reversal pathway 1: Electromagnetic.</strong> Phase-conjugate fields (Leptin Rx, Melanin Renovation Rx, Spurling/Lakhovsky coils over vagal choke point) -&gt; ordered longitudinal waves -&gt; dielectric restoration (k=160) -&gt; carbonic anhydrase activation -&gt; bicarbonate production -&gt; deuterium clearance.</li><li><strong>Reversal pathway 2: Chemical.</strong> DDW + 3% NaCl + triplet oxygen -&gt; viscosity drop -&gt; carbonic anhydrase friction relief -&gt; bicarbonate production -&gt; deuterium binding and clearance -&gt; ATP synthase restoration -&gt; insulin sensitivity restoration.</li><li><strong>Mechanism.</strong> Both pathways work by restoring the <span class="expandable-concept" data-card-id="card-11" data-concept-target="concept-141" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-141" aria-expanded="false">bicarbonate</span> exhaust pathway and clearing trapped deuterium from the pancreatic beta cells, allowing ATP synthase to resume function and insulin secretion to restore.</li></ul><div id="concept-141" class="expanded-content" data-card-id="card-11" data-concept-level="noob" aria-hidden="true">
+      <strong>bicarbonate:</strong> A negatively charged ion (HCO3-) that buffers protons and binds heavy isotopes like deuterium; produced by carbonic anhydrase.
+    </div></div><div class="source-quote">An elegant formula from Picardâ€¦ Jack Kruse Jessnet3 HOW HUMANS GET DIABETES AND HOW TO TREAT IT WITHIN DECENTRALIZED MEDICINE The lesson in tweet format: https://x.com/DrJackKruse/status/2062685122135032301 Yes, the chronic accumulation of deuterium from a high-sugar diet under i</div></div>
+      <div class="card" data-card-id="card-12" data-vote-card-id="kruse-2026-06-05-11pfshp"><div class="card-header"><span class="tag">Cradle cap as magnetic excursion biomarker</span><a href="https://forum.jackkruse.com/threads/cradle-cap-jaundice.32694/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Cradle cap (seborrheic dermatitis) will increase dramatically during magnetic excursions as early biomarker of infant deuterium accumulation</strong> <span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-142" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-142" aria-expanded="false">Cradle cap</span> (<span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-143" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-143" aria-expanded="false">seborrheic dermatitis</span>) will &#39;explode&#39; (increase dramatically) during a <span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-144" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-144" aria-expanded="false">magnetic excursion</span> before skull elongation occurs in infants. This suggests cradle cap is an early biomarker of deuterium accumulation and <span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-145" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-145" aria-expanded="false">lattice lock</span> in infants exposed to a weakened magnetosphere during gestation or early life. The increased prevalence of cradle cap during geomagnetic instability periods may serve as a population-level indicator of <span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-146" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-146" aria-expanded="false">cosmogenic deuterium</span> exposure.</div><div id="concept-142" class="expanded-content" data-card-id="card-12" data-concept-level="noob" aria-hidden="true">
+      <strong>Cradle cap:</strong> Seborrheic dermatitis affecting infants; characterized by red, scaly patches on the scalp; may be an early sign of deuterium accumulation.
+    </div>
+<div id="concept-143" class="expanded-content" data-card-id="card-12" data-concept-level="noob" aria-hidden="true">
+      <strong>seborrheic dermatitis:</strong> An inflammatory skin condition characterized by red, scaly patches; commonly affects the scalp in infants (cradle cap) and adults.
+    </div>
+<div id="concept-144" class="expanded-content" data-card-id="card-12" data-concept-level="pro" aria-hidden="true">
+      <strong>magnetic excursion:</strong> A period when Earth&#39;s magnetic field weakens dramatically, directional anomalies occur, and cosmic-ray influx increases.
+    </div>
+<div id="concept-145" class="expanded-content" data-card-id="card-12" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse.
+    </div>
+<div id="concept-146" class="expanded-content" data-card-id="card-12" data-concept-level="pro" aria-hidden="true">
+      <strong>cosmogenic deuterium:</strong> Deuterium produced in the upper atmosphere by cosmic-ray interactions; increases dramatically during geomagnetic excursions; falls in precipitation.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Biomarker signal.</strong> Cradle cap prevalence increases during magnetic excursions, suggesting it is an early manifestation of deuterium accumulation and lattice lock in infants.</li><li><strong>Mechanism.</strong> Magnetic excursion (weak field) -&gt; cosmogenic deuterium/<span class="expandable-concept" data-card-id="card-12" data-concept-target="concept-147" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-147" aria-expanded="false">tritium</span> influx -&gt; infant exposure in utero or early life -&gt; deuterium accumulation in skin and scalp -&gt; lattice lock -&gt; seborrheic dermatitis (cradle cap).</li><li><strong>Population tracking.</strong> Monitor cradle cap prevalence during periods of geomagnetic instability as indicator of population-level deuterium exposure and magnetic excursion impact on infants.</li></ul><div id="concept-147" class="expanded-content" data-card-id="card-12" data-concept-level="noob" aria-hidden="true">
+      <strong>tritium:</strong> A technical term used by the selected source. The report keeps &quot;tritium&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">Cradle Cap will explode in an excursion before the skulls elongate.</div></div>
+      <div class="card" data-card-id="card-13" data-vote-card-id="kruse-2026-06-05-ld6xkc"><div class="card-header"><span class="tag">3% NaCl infusions for acute coronary artery disease</span><a href="https://forum.jackkruse.com/threads/lattice-locked-accidents-track-the-zipcode.32644/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>3% NaCl infusions improve acute coronary artery (ACA) grades 1-4</strong> Anyone with <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-148" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-148" aria-expanded="false">ACA</span> (acute coronary artery disease) grades 1-4 is improved by 3% <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-149" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-149" aria-expanded="false">NaCl</span> infusions. This is a treatment that MDs already understand but few are implementing in the context of <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-150" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-150" aria-expanded="false">lattice lock</span> and deuterium clearance. The <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-151" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-151" aria-expanded="false">osmotic gradient</span> created by hypertonic saline reduces <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-152" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-152" aria-expanded="false">viscosity</span>, activates <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-153" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-153" aria-expanded="false">carbonic anhydrase</span>, increases <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-154" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-154" aria-expanded="false">bicarbonate</span> production, and clears trapped deuterium from the vascular system, restoring <span class="expandable-concept" data-card-id="card-13" data-concept-target="concept-155" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-155" aria-expanded="false">dielectric</span> and improving coronary artery function.</div><div id="concept-148" class="expanded-content" data-card-id="card-13" data-concept-level="noob" aria-hidden="true">
+      <strong>ACA:</strong> Acute coronary artery disease; narrowing or blockage of coronary arteries; graded 1-4 by severity.
+    </div>
+<div id="concept-149" class="expanded-content" data-card-id="card-13" data-concept-level="noob" aria-hidden="true">
+      <strong>NaCl:</strong> Sodium chloride (salt); 3% NaCl is hypertonic saline, used medically to create osmotic gradients and reduce cellular swelling.
+    </div>
+<div id="concept-150" class="expanded-content" data-card-id="card-13" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice lock:</strong> A state where cellular water becomes viscous and disordered due to deuterium accumulation and dielectric collapse.
+    </div>
+<div id="concept-151" class="expanded-content" data-card-id="card-13" data-concept-level="pro" aria-hidden="true">
+      <strong>osmotic gradient:</strong> A difference in solute concentration across a membrane; drives water movement and can reduce cellular swelling and viscosity.
+    </div>
+<div id="concept-152" class="expanded-content" data-card-id="card-13" data-concept-level="noob" aria-hidden="true">
+      <strong>viscosity:</strong> A technical term used by the selected source. The report keeps &quot;viscosity&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-153" class="expanded-content" data-card-id="card-13" data-concept-level="pro" aria-hidden="true">
+      <strong>carbonic anhydrase:</strong> An enzyme that converts CO2 and water into bicarbonate; critical for clearing deuterium through the vagal exhaust pathway.
+    </div>
+<div id="concept-154" class="expanded-content" data-card-id="card-13" data-concept-level="noob" aria-hidden="true">
+      <strong>bicarbonate:</strong> A negatively charged ion (HCO3-) that buffers protons and binds heavy isotopes like deuterium; produced by carbonic anhydrase.
+    </div>
+<div id="concept-155" class="expanded-content" data-card-id="card-13" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric:</strong> A measure of a material&#39;s ability to store electrical energy; structured cellular water has kâ‰ˆ160, bulk water has kâ‰ˆ78.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Treatment.</strong> 3% NaCl infusions improve ACA grades 1-4 by creating osmotic gradient that reduces viscosity and clears deuterium.</li><li><strong>Mechanism.</strong> 3% NaCl infusion -&gt; osmotic gradient -&gt; viscosity reduction -&gt; carbonic anhydrase activation -&gt; bicarbonate production -&gt; deuterium clearance -&gt; dielectric restoration -&gt; ACA improvement.</li><li><strong>Clinical gap.</strong> MDs know about 3% NaCl infusions but few understand the mechanism as deuterium clearance and dielectric restoration via osmotic gradient and bicarbonate production.</li></ul></div><div class="source-quote">Anyone with ACA grade 1-4 is improved by 3% NaCl infusions. This is what MDs already know but few are putting it all together as I have.</div></div>
+      <div class="section-title">Blog Updates</div>
+      <div class="card empty-signal-card" data-vote-card-id="kruse-2026-06-05-eujk7x">
+        <div class="card-header"><span class="tag">No selected signal</span></div>
+        <div class="item-text">No new Jack Kruse blog. No new source-bound protocol, treatment, cited research, mechanism, or case detail passed the report gate for this section.</div>
+        <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
+      </div>
+      <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
+      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-06-05-1jv9xz6">
+        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
+        <div class="item-text">No new Jack Kruse podcast.</div>
+        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once the audio extraction pipeline has a new source to process.</div>
+      </div>
+    <div class="locked-section">
+      <div class="locked-title">
+        <span>Interact with Report (Ask AI)</span>
+        <span class="locked-badge">Soon</span>
+      </div>
+    </div>
+    <footer>
+      Prepared for NED.
+      Source: <a href="https://x.com/DrJackKruse">@DrJackKruse</a>.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      function targetFor(chip) {
+        if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
+        var targetId = chip.getAttribute('data-concept-target');
+        if (!targetId) return null;
+        var panel = document.getElementById(targetId);
+        var card = chip.closest && chip.closest('.card');
+        if (!panel || !card || panel.closest('.card') !== card) return null;
+        if (chip.getAttribute('data-card-id') !== panel.getAttribute('data-card-id')) return null;
+        return panel;
+      }
+      function toggleChip(chip) {
+        var panel = targetFor(chip);
+        if (!panel) return;
+        var open = !panel.classList.contains('open');
+        panel.classList.toggle('open', open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        chip.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      document.addEventListener('click', function (event) {
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        toggleChip(chip);
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        event.preventDefault();
+        toggleChip(chip);
+      });
+    })();
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var saved = null;
+      try { saved = localStorage.getItem('kruse-theme'); } catch (e) {}
+      if (saved === 'light') document.body.classList.add('light');
+      function syncLabel() {
+        if (!btn) return;
+        btn.textContent = document.body.classList.contains('light') ? 'â˜€ Light' : 'ðŸŒ™ Dark';
+      }
+      syncLabel();
+      if (btn) btn.addEventListener('click', function () {
+        document.body.classList.toggle('light');
+        try { localStorage.setItem('kruse-theme', document.body.classList.contains('light') ? 'light' : 'dark'); } catch (e) {}
+        syncLabel();
+      });
+    })();
+    (function () {
+      var savedLevel = null;
+      try { savedLevel = localStorage.getItem('kruse-level'); } catch (e) {}
+      var initial = (savedLevel === 'noob' || savedLevel === 'pro' || savedLevel === 'hacker') ? savedLevel : 'pro';
+      function apply(level) {
+        document.body.classList.remove('level-noob', 'level-pro', 'level-hacker');
+        document.body.classList.add('level-' + level);
+        var btns = document.querySelectorAll('.level-toggle button');
+        for (var i = 0; i < btns.length; i++) {
+          var on = btns[i].getAttribute('data-level') === level;
+          btns[i].classList.toggle('active', on);
+          btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+        var chips = document.querySelectorAll('.expandable-concept[data-concept-target]');
+        for (var j = 0; j < chips.length; j++) {
+          var disabled = level === 'hacker' || (level === 'pro' && chips[j].getAttribute('data-concept-level') === 'noob');
+          chips[j].setAttribute('aria-disabled', disabled ? 'true' : 'false');
+          chips[j].setAttribute('tabindex', disabled ? '-1' : '0');
+        }
+        try { localStorage.setItem('kruse-level', level); } catch (e) {}
+      }
+      apply(initial);
+      var btns = document.querySelectorAll('.level-toggle button');
+      for (var i = 0; i < btns.length; i++) {
+        (function (b) {
+          b.addEventListener('click', function () { apply(b.getAttribute('data-level')); });
+        })(btns[i]);
+      }
+    })();
+  </script>
+<div class="site-report-footer">
+    <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
+      <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
+      <p>Get the next daily report by email.</p>
+      <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
+        <input type="hidden" name="form_type" value="kruse-report-interest" />
+        <input type="hidden" name="report_date" value="2026-06-05" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/NED-Kruse/reports/2026-06-05.html" />
+        <p style="display:none"><label>Company <input name="company" /></label></p>
+        <label for="report-first-name-2026-06-05">First name</label>
+        <input id="report-first-name-2026-06-05" name="first_name" autocomplete="given-name" />
+        <label for="report-last-name-2026-06-05">Last name</label>
+        <input id="report-last-name-2026-06-05" name="last_name" autocomplete="family-name" />
+        <label for="report-email-2026-06-05">Email</label>
+        <input id="report-email-2026-06-05" name="email" type="email" autocomplete="email" required />
+        <label for="report-frequency-2026-06-05">Delivery</label>
+        <select id="report-frequency-2026-06-05" name="frequency">
+          <option>Daily</option>
+          <option>Only strong signal days</option>
+          <option>Weekly digest</option>
+        </select>
+        <label for="report-comments-2026-06-05">Comments</label>
+        <textarea id="report-comments-2026-06-05" name="comments"></textarea>
+        <button type="submit">Subscribe</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately to the mailing list.</div>
+    </section>
+    <section class="site-report-panel" id="report-feedback" aria-labelledby="report-feedback-title">
+      <h2 id="report-feedback-title">Improve future reports</h2>
+      <p>Tell us what was useful, confusing, missing, or too AI-ish. We will use this later to tune prompts.</p>
+      <form name="kruse-report-feedback" method="POST" data-supabase-form="feedback">
+        <input type="hidden" name="form_type" value="kruse-report-feedback" />
+        <input type="hidden" name="report_date" value="2026-06-05" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/NED-Kruse/reports/2026-06-05.html" />
+        <p style="display:none"><label>Website <input name="website" /></label></p>
+        <label for="feedback-first-name-2026-06-05">First name</label>
+        <input id="feedback-first-name-2026-06-05" name="first_name" autocomplete="given-name" />
+        <label for="feedback-last-name-2026-06-05">Last name</label>
+        <input id="feedback-last-name-2026-06-05" name="last_name" autocomplete="family-name" />
+        <label for="feedback-rating-2026-06-05">Overall</label>
+        <select id="feedback-rating-2026-06-05" name="rating">
+          <option>Useful</option>
+          <option>Mixed</option>
+          <option>Bad</option>
+        </select>
+        <label for="feedback-text-2026-06-05">Feedback</label>
+        <textarea id="feedback-text-2026-06-05" name="comments" required></textarea>
+        <label for="feedback-email-2026-06-05">Email (optional)</label>
+        <input id="feedback-email-2026-06-05" name="email" type="email" autocomplete="email" />
+        <button type="submit">Send feedback</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Thank you.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately for prompt tuning.</div>
+    </section>
+    <div class="site-report-credits">Credits: Guy Houri and DrJackKruse.</div>
+  </div>
+<script>
+    (function () {
+      var button = document.getElementById('siteMenuButton');
+      var drawer = document.getElementById('siteReportDrawer');
+      if (!button || !drawer) return;
+
+      function setOpen(open) {
+        document.body.classList.toggle('site-drawer-open', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          var focusTarget = drawer.querySelector('a, button');
+          if (focusTarget) focusTarget.focus();
+        } else {
+          button.focus();
+        }
+      }
+
+      button.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('site-drawer-open'));
+      });
+
+      var closeTargets = document.querySelectorAll('[data-site-menu-close], .site-drawer-link');
+      for (var i = 0; i < closeTargets.length; i++) {
+        closeTargets[i].addEventListener('click', function () { setOpen(false); });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_SUPABASE = {"url":"https://zpxhovwsswnjdjibcvsh.supabase.co","key":"sb_publishable_afhmZKXzerLWNYENUqsaFg_XfVWjODD","tables":{"mailingList":"kruse_mailing_list","feedback":"kruse_report_feedback","cardVotes":"kruse_card_votes","cardVoteCounts":"kruse_card_vote_counts"}};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      if (!config || !config.url || !config.key) return;
+
+      function value(form, name) {
+        var field = form.querySelector('[name="' + name + '"]');
+        return field ? String(field.value || '').trim() : '';
+      }
+
+      function nullable(value) {
+        return value ? value : null;
+      }
+
+      function show(form, selector, text) {
+        var node = form.querySelector(selector);
+        if (!node) return;
+        if (text) node.textContent = text;
+        node.hidden = false;
+      }
+
+      function hide(form, selector) {
+        var node = form.querySelector(selector);
+        if (node) node.hidden = true;
+      }
+
+      function payloadFor(form, kind) {
+        var common = {
+          first_name: value(form, 'first_name'),
+          last_name: value(form, 'last_name'),
+          email: value(form, 'email').toLowerCase(),
+          comments: value(form, 'comments'),
+          report_date: nullable(value(form, 'report_date')),
+          report_url: nullable(value(form, 'report_url')),
+          page_url: window.location.href,
+          source: 'public-site'
+        };
+        if (kind === 'unsubscribe') {
+          return {
+            first_name: '',
+            last_name: '',
+            email: common.email,
+            comments: 'Unsubscribe request',
+            frequency: 'Unsubscribe',
+            report_date: null,
+            report_url: null,
+            page_url: common.page_url,
+            source: 'unsubscribe'
+          };
+        }
+        if (kind === 'mailing-list') {
+          common.frequency = value(form, 'frequency') || 'Daily';
+          return common;
+        }
+        return {
+          first_name: common.first_name,
+          last_name: common.last_name,
+          email: nullable(common.email),
+          rating: value(form, 'rating') || 'Useful',
+          comments: common.comments,
+          report_date: common.report_date,
+          report_url: common.report_url,
+          page_url: common.page_url,
+          source: common.source
+        };
+      }
+
+      async function submitToSupabase(form, kind) {
+        var table = kind === 'feedback' ? config.tables.feedback : config.tables.mailingList;
+        var payload = payloadFor(form, kind);
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          var text = await response.text();
+          throw new Error(text || ('Supabase returned ' + response.status));
+        }
+      }
+
+      document.addEventListener('submit', async function (event) {
+        var form = event.target;
+        if (!form || !form.hasAttribute('data-supabase-form')) return;
+        event.preventDefault();
+
+        hide(form, '[data-form-success]');
+        hide(form, '[data-form-error]');
+
+        var trap = form.querySelector('input[name="company"], input[name="website"]');
+        if (trap && trap.value) {
+          form.reset();
+          show(form, '[data-form-success]');
+          return;
+        }
+
+        var button = form.querySelector('button[type="submit"]');
+        if (button) button.disabled = true;
+        try {
+          await submitToSupabase(form, form.getAttribute('data-supabase-form'));
+          form.reset();
+          show(form, '[data-form-success]');
+        } catch (err) {
+          console.error(err);
+          show(form, '[data-form-error]', 'Could not save. Please try again.');
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_REPORT = {"date":"2026-06-05","url":"https://guyhouri.github.io/NED-Kruse/reports/2026-06-05.html"};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      var report = window.__KRUSE_REPORT || {};
+      var table = config && config.tables && config.tables.cardVotes;
+      if (!config || !config.url || !config.key || !table) return;
+
+      function text(node) {
+        return node ? String(node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      }
+
+      function storageKey(cardId) {
+        return 'kruse-card-vote:' + cardId;
+      }
+
+      function getStored(cardId) {
+        try { return localStorage.getItem(storageKey(cardId)); } catch (e) { return null; }
+      }
+
+      function setStored(cardId, vote) {
+        try { localStorage.setItem(storageKey(cardId), vote); } catch (e) {}
+      }
+
+      function voterId() {
+        var key = 'kruse-vote-browser-id';
+        try {
+          var existing = localStorage.getItem(key);
+          if (existing) return existing;
+          var generated = (window.crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+          localStorage.setItem(key, generated);
+          return generated;
+        } catch (e) {
+          return 'ephemeral-' + Math.random().toString(36).slice(2);
+        }
+      }
+
+      function sourceUrl(card) {
+        var link = card.querySelector('.source-link[href]');
+        return link ? link.href : null;
+      }
+
+      function cardLabel(card) {
+        var tag = text(card.querySelector('.tag'));
+        var body = text(card.querySelector('.item-text')).slice(0, 180);
+        return [tag, body].filter(Boolean).join(': ');
+      }
+
+      function votePayload(card, vote) {
+        return {
+          card_id: card.getAttribute('data-vote-card-id'),
+          vote_type: vote,
+          report_date: report.date || null,
+          card_label: cardLabel(card),
+          source_url: sourceUrl(card),
+          voter_id: voterId(),
+          page_url: window.location.href,
+          source: 'report-card'
+        };
+      }
+
+      function setCount(card, vote, count) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (node) node.textContent = String(count || 0);
+      }
+
+      function increment(card, vote) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (!node) return;
+        var next = (parseInt(node.textContent || '0', 10) || 0) + 1;
+        node.textContent = String(next);
+      }
+
+      function setStatus(card, message) {
+        var node = card.querySelector('[data-card-vote-status]');
+        if (node) node.textContent = message || '';
+      }
+
+      function setActive(card, vote) {
+        var buttons = card.querySelectorAll('[data-card-vote]');
+        for (var i = 0; i < buttons.length; i++) {
+          var active = buttons[i].getAttribute('data-card-vote') === vote;
+          buttons[i].classList.toggle('active', active);
+          buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+        }
+      }
+
+      function shouldLoadRemoteCounts() {
+        return /^https?:$/.test(window.location.protocol)
+          && window.location.hostname !== 'localhost'
+          && window.location.hostname !== '127.0.0.1';
+      }
+
+      function installControls(cards) {
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          var cardId = card.getAttribute('data-vote-card-id');
+          if (!cardId || card.querySelector('.card-votes')) continue;
+          var controls = document.createElement('div');
+          controls.className = 'card-votes';
+          controls.innerHTML = '<span class="card-votes-label">Was this useful?</span>' +
+            '<button type="button" data-card-vote="up" aria-label="Upvote this card" aria-pressed="false">&#9650; <span data-card-vote-count="up">0</span></button>' +
+            '<button type="button" data-card-vote="down" aria-label="Downvote this card" aria-pressed="false">&#9660; <span data-card-vote-count="down">0</span></button>' +
+            '<span class="card-vote-status" data-card-vote-status aria-live="polite"></span>';
+          card.appendChild(controls);
+          var stored = getStored(cardId);
+          if (stored) setActive(card, stored);
+        }
+      }
+
+      async function loadCounts(cards) {
+        var ids = [];
+        for (var i = 0; i < cards.length; i++) {
+          var id = cards[i].getAttribute('data-vote-card-id');
+          if (id) ids.push(id);
+        }
+        if (!ids.length) return;
+        var countSource = (config.tables && config.tables.cardVoteCounts) || table;
+        var url = config.url + '/rest/v1/' + encodeURIComponent(countSource)
+          + '?select=card_id,vote_type,votes'
+          + '&card_id=in.(' + ids.map(encodeURIComponent).join(',') + ')';
+        if (report.date) url += '&report_date=eq.' + encodeURIComponent(report.date);
+        try {
+          var response = await fetch(url, {
+            headers: {
+              apikey: config.key,
+              authorization: 'Bearer ' + config.key
+            }
+          });
+          if (!response.ok) return;
+          var rows = await response.json();
+          var counts = {};
+          for (var r = 0; r < rows.length; r++) {
+            var row = rows[r] || {};
+            if (!row.card_id || !row.vote_type) continue;
+            counts[row.card_id] = counts[row.card_id] || { up: 0, down: 0 };
+            if (row.vote_type === 'up' || row.vote_type === 'down') {
+              counts[row.card_id][row.vote_type] += Number(row.votes || 1);
+            }
+          }
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            var cardCounts = counts[card.getAttribute('data-vote-card-id')] || { up: 0, down: 0 };
+            setCount(card, 'up', cardCounts.up);
+            setCount(card, 'down', cardCounts.down);
+          }
+        } catch (e) {}
+      }
+
+      async function saveVote(card, vote) {
+        var cardId = card.getAttribute('data-vote-card-id');
+        var existing = getStored(cardId);
+        if (existing) {
+          setStatus(card, existing === vote ? 'Already saved.' : 'Vote already saved.');
+          setActive(card, existing);
+          return;
+        }
+        setStatus(card, 'Saving...');
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(votePayload(card, vote))
+        });
+        if (!response.ok) throw new Error(await response.text());
+        setStored(cardId, vote);
+        setActive(card, vote);
+        increment(card, vote);
+        setStatus(card, 'Saved.');
+      }
+
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('[data-card-vote]');
+        if (!button) return;
+        var card = button.closest && button.closest('.card[data-vote-card-id]');
+        if (!card) return;
+        var vote = button.getAttribute('data-card-vote');
+        if (vote !== 'up' && vote !== 'down') return;
+        saveVote(card, vote).catch(function () {
+          setStatus(card, 'Could not save vote.');
+        });
+      });
+
+      var cards = Array.from(document.querySelectorAll('.card[data-vote-card-id]'));
+      installControls(cards);
+      if (shouldLoadRemoteCounts()) loadCounts(cards);
+    })();
+  </script>
+
+</body>
+</html>

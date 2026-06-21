@@ -1,0 +1,68 @@
+﻿{
+  "type": "kruse-daily-report",
+  "date": "2026-06-07",
+  "title": "Kruse Report 2026-06-07",
+  "headline": "Water research validation: DDW exclusion zone mechanism confirmed",
+  "html_url": "https://guyhouri.github.io/NED-Kruse/reports/2026-06-07.html",
+  "json_url": "https://guyhouri.github.io/NED-Kruse/api/reports/2026-06-07.json",
+  "markdown_url": "https://guyhouri.github.io/NED-Kruse/api/reports/2026-06-07.md",
+  "source": {
+    "curated_json": "summary/kruse-summary/curated/2026-06-07.json",
+    "html": "summary/kruse-summary/out/2026-06-07.html"
+  },
+  "summary_available": true,
+  "sections": [
+    {
+      "title": "Twitter Updates",
+      "cards": []
+    },
+    {
+      "title": "Forum Updates",
+      "cards": [
+        {
+          "tag": "Water structure mechanism",
+          "lead": "low-deuterium water exclusion zone larger than standard water",
+          "body_markdown": "Jack Kruse states that Gerald Pollack has completed research validating Kruse's long-standing prediction about deuterium-depleted water (DDW). The key finding: DDW produces a larger exclusion zone compared to standard water at 150 ppm. This research addresses what Kruse describes as incomplete prior work on water structure, now showing that deuterium depletion directly affects the size of the water's organized boundary layer.",
+          "body_text": "Jack Kruse states that Gerald Pollack has completed research validating Kruse's long-standing prediction about deuterium-depleted water (DDW). The key finding: DDW produces a larger exclusion zone compared to standard water at 150 ppm. This research addresses what Kruse describes as incomplete prior work on water structure, now showing that deuterium depletion directly affects the size of the water's organized boundary layer.",
+          "points": [
+            "**Mechanism.** Deuterium depletion increases the size of the exclusion zone - the organized water layer at interfaces - compared to normal water.",
+            "**Research validation.** Pollack's updated research confirms Kruse's 2013 prediction about DDW's effect on water structure.",
+            "**Practical meaning.** DDW's biological benefit may relate to its capacity to form larger, more stable water exclusion zones in the body."
+          ],
+          "source_quote": "DDW makes a large exclusion zone that 150 ppm water, just as I expected.",
+          "source_ids": [],
+          "source_urls": [
+            "https://forum.jackkruse.com/threads/ez-water-fraud-or-breakthrough.24079/unread"
+          ],
+          "citations": [],
+          "concepts": {
+            "deuterium-depleted water": {
+              "level": "noob",
+              "text": "Water with reduced levels of deuterium, a heavy isotope of hydrogen. DDW is used in some biohacking protocols to support cellular function."
+            },
+            "exclusion zone": {
+              "level": "pro",
+              "text": "An organized layer of water molecules at interfaces (such as cell membranes or colloidal surfaces) that exhibits different properties than bulk water. Larger exclusion zones are associated with better water structure and cellular function."
+            },
+            "150 ppm": {
+              "level": "noob",
+              "text": "Parts per million - a measurement of concentration. In this context, 150 ppm refers to the deuterium concentration in standard water, which is used as a comparison baseline to show that DDW (with lower deuterium levels) creates larger exclusion zones."
+            },
+            "Pollack": {
+              "level": "noob",
+              "text": "Gerald Pollack, a water researcher whose work on water structure and exclusion zones has been referenced by Kruse since 2013. Pollack's recent findings now support Kruse's earlier predictions about how deuterium depletion affects water organization."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Blog Updates",
+      "cards": []
+    }
+  ],
+  "forum": {
+    "bullets": []
+  },
+  "markdown": "# Kruse Report 2026-06-07\n\nDate: 2026-06-07\nHTML: https://guyhouri.github.io/NED-Kruse/reports/2026-06-07.html\nJSON: https://guyhouri.github.io/NED-Kruse/api/reports/2026-06-07.json\n\n## Headline\n\nWater research validation: DDW exclusion zone mechanism confirmed\n\n## Twitter Updates\n\n_No selected source-bound cards for this section._\n\n## Forum Updates\n\n### low-deuterium water exclusion zone larger than standard water\n\nTag: Water structure mechanism\n\nJack Kruse states that Gerald Pollack has completed research validating Kruse's long-standing prediction about deuterium-depleted water (DDW). The key finding: DDW produces a larger exclusion zone compared to standard water at 150 ppm. This research addresses what Kruse describes as incomplete prior work on water structure, now showing that deuterium depletion directly affects the size of the water's organized boundary layer.\n\nKey points:\n- **Mechanism.** Deuterium depletion increases the size of the exclusion zone - the organized water layer at interfaces - compared to normal water.\n- **Research validation.** Pollack's updated research confirms Kruse's 2013 prediction about DDW's effect on water structure.\n- **Practical meaning.** DDW's biological benefit may relate to its capacity to form larger, more stable water exclusion zones in the body.\n\nSource quote: \"DDW makes a large exclusion zone that 150 ppm water, just as I expected.\"\n\nSources:\n- https://forum.jackkruse.com/threads/ez-water-fraud-or-breakthrough.24079/unread\n\nConcepts:\n- deuterium-depleted water (noob): Water with reduced levels of deuterium, a heavy isotope of hydrogen. DDW is used in some biohacking protocols to support cellular function.\n- exclusion zone (pro): An organized layer of water molecules at interfaces (such as cell membranes or colloidal surfaces) that exhibits different properties than bulk water. Larger exclusion zones are associated with better water structure and cellular function.\n- 150 ppm (noob): Parts per million - a measurement of concentration. In this context, 150 ppm refers to the deuterium concentration in standard water, which is used as a comparison baseline to show that DDW (with lower deuterium levels) creates larger exclusion zones.\n- Pollack (noob): Gerald Pollack, a water researcher whose work on water structure and exclusion zones has been referenced by Kruse since 2013. Pollack's recent findings now support Kruse's earlier predictions about how deuterium depletion affects water organization.\n\n## Blog Updates\n\n_No selected source-bound cards for this section._\n"
+}

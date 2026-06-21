@@ -1,0 +1,1094 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kruse Report 02/06/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Dark theme (default) */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151c2c;
+      --card-border: #202b42;
+      --card-border-hover: #2e3e5f;
+      --section-rule: #24314b;
+      --text-color: #f3f4f6;
+      --text-soft: #cbd5e1;
+      --text-body: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-color: #3b82f6;
+      --accent-hover: #60a5fa;
+      --locked-color: #4b5563;
+      --tag-bg: #1e293b;
+      --quote-bg: #0f1524;
+      --quote-rule: #4b5563;
+      --expanded-bg: #0f1524;
+      --locked-grad-start: #151c2c;
+      --locked-grad-end: #111622;
+      --locked-dash: #2d3748;
+      --locked-badge-bg: #27272a;
+      --locked-badge-fg: #a1a1aa;
+      --footer-color: #6b7280;
+      --toggle-bg: rgba(255,255,255,0.06);
+      --toggle-border: rgba(255,255,255,0.12);
+    }
+    /* Light theme â€” toggled by class on <body> */
+    body.light {
+      --bg-color: #f9fafb;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --card-border-hover: #cbd5e1;
+      --section-rule: #e5e7eb;
+      --text-color: #0f172a;
+      --text-soft: #334155;
+      --text-body: #1f2937;
+      --text-muted: #6b7280;
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --locked-color: #94a3b8;
+      --tag-bg: #eff6ff;
+      --quote-bg: #f1f5f9;
+      --quote-rule: #cbd5e1;
+      --expanded-bg: #f1f5f9;
+      --locked-grad-start: #ffffff;
+      --locked-grad-end: #f3f4f6;
+      --locked-dash: #cbd5e1;
+      --locked-badge-bg: #e5e7eb;
+      --locked-badge-fg: #475569;
+      --footer-color: #94a3b8;
+      --toggle-bg: rgba(0,0,0,0.04);
+      --toggle-border: rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-color); padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; transition: background-color 0.2s ease, color 0.2s ease; }
+    .container { width: 100%; max-width: 650px; display: flex; flex-direction: column; gap: 20px; }
+    header { text-align: center; margin-bottom: 10px; position: relative; padding-top: 48px; }
+    h1 { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(45deg, #3b82f6, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; margin-bottom: 4px; }
+    .subtitle { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
+    .theme-toggle { position: absolute; top: 0; right: 0; background: var(--toggle-bg); border: 1px solid var(--toggle-border); color: var(--text-color); cursor: pointer; padding: 6px 10px; border-radius: 20px; font-size: 0.85rem; line-height: 1; transition: background 0.2s ease; }
+    .theme-toggle:hover { background: var(--card-border); }
+    .level-toggle { position: absolute; top: 0; left: 0; display: flex; gap: 4px; background: var(--toggle-bg); border: 1px solid var(--toggle-border); border-radius: 20px; padding: 3px; }
+    .level-toggle button { background: transparent; color: var(--text-muted); border: none; cursor: pointer; padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; transition: background 0.15s ease, color 0.15s ease; }
+    .level-toggle button.active { background: var(--accent-color); color: #fff; }
+    .level-toggle button:hover:not(.active) { color: var(--text-color); }
+    /* Concept-level gating: pro reader hides noob-only chips; hacker hides all. */
+    body.level-pro .expandable-concept[data-concept-level="noob"],
+    body.level-hacker .expandable-concept[data-concept-level] {
+      color: inherit; border-bottom: none; cursor: default; font-weight: inherit; pointer-events: none;
+    }
+    body.level-pro .expanded-content[data-concept-level="noob"],
+    body.level-hacker .expanded-content { display: none !important; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
+    .card-points ul { margin: 0; }
+    .card:hover { border-color: var(--card-border-hover); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .source-link { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; border-bottom: 1px dashed var(--text-muted); transition: all 0.2s ease; }
+    .source-link:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .item-text { font-size: 1rem; line-height: 1.45; color: var(--text-body); }
+    .source-quote { background: var(--quote-bg); border-left: 3px solid var(--quote-rule); border-radius: 4px 8px 8px 4px; padding: 10px 14px; font-style: italic; font-size: 0.92rem; color: var(--text-muted); }
+    .citations { padding: 8px 12px; background: var(--quote-bg); border-radius: 8px; }
+    .citations-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-hover); letter-spacing: 0.04em; margin-bottom: 6px; }
+    .citations ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .citation-paper { font-size: 0.85rem; color: var(--text-body); font-weight: 600; }
+    .citation-claim { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+    .bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { position: relative; padding-left: 18px; line-height: 1.45; font-size: 1rem; }
+    .bullet-list li::before { content: "â€¢"; color: var(--accent-color); font-weight: bold; position: absolute; left: 0; top: 0; }
+    .forum-item { display: flex; flex-direction: column; gap: 4px; }
+    .forum-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .expandable-concept { color: var(--accent-hover); border-bottom: 1px dashed var(--accent-hover); cursor: pointer; font-weight: 600; }
+    .expanded-content { max-height: 0; overflow: hidden; background-color: var(--expanded-bg); border-radius: 6px; padding: 0 12px; margin: 0; transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease; font-size: 0.9rem; color: var(--text-soft); }
+    .expanded-content.open { max-height: 500px; padding: 10px 12px; margin-top: 4px; margin-bottom: 4px; border-left: 3px solid var(--accent-color); }
+    .locked-section { background: linear-gradient(180deg, var(--locked-grad-start) 0%, var(--locked-grad-end) 100%); border: 1px dashed var(--locked-dash); border-radius: 12px; padding: 24px; text-align: center; opacity: 0.85; }
+    .locked-title { font-size: 1.1rem; font-weight: 600; color: var(--locked-color); margin-bottom: 4px; }
+    .locked-badge { font-size: 0.7rem; background-color: var(--locked-badge-bg); color: var(--locked-badge-fg); padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px; }
+    footer { text-align: center; color: var(--footer-color); font-size: 0.75rem; margin-top: 12px; }
+    footer a { color: var(--footer-color); }
+  </style>
+  <link rel="canonical" href="https://guyhouri.github.io/NED-Kruse/reports/2026-06-02.html" />
+
+<style>
+    html { scroll-behavior: smooth; }
+    body {
+      --site-bg: #0b0f19;
+      --site-panel: #121a2a;
+      --site-panel-2: #0d1422;
+      --site-border: #26334d;
+      --site-text: #f4f7fb;
+      --site-soft: #c6d2e1;
+      --site-muted: #8fa0b5;
+      --site-accent: #4ea1ff;
+      --site-success: #7bdcb5;
+      --site-danger: #ffbd7a;
+      --site-button-text: #06101d;
+      padding: 32px 16px 48px !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+    body.light {
+      --site-bg: #f7f9fc;
+      --site-panel: #ffffff;
+      --site-panel-2: #f8fafc;
+      --site-border: #d8e0ea;
+      --site-text: #111827;
+      --site-soft: #334155;
+      --site-muted: #64748b;
+      --site-accent: #2563eb;
+      --site-success: #047857;
+      --site-danger: #b45309;
+      --site-button-text: #ffffff;
+    }
+    body.site-drawer-open { overflow: hidden; }
+    .container {
+      max-width: 690px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .site-menu-button {
+      position: fixed;
+      top: 16px;
+      left: max(16px, calc((100vw - 690px) / 2 - 112px));
+      z-index: 80;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-menu-icon { font-size: 1.35rem; line-height: 1; }
+    .site-menu-label { letter-spacing: 0; }
+    .site-report-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 88;
+      background: rgba(3,7,18,0.58);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+    .site-report-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 90;
+      width: min(320px, calc(100vw - 48px));
+      padding: 18px;
+      background: var(--site-bg);
+      border-right: 1px solid var(--site-border);
+      transform: translateX(-105%);
+      transition: transform 0.2s ease;
+      box-shadow: 24px 0 60px rgba(0,0,0,0.38);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body.site-drawer-open .site-report-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.site-drawer-open .site-report-drawer { transform: translateX(0); }
+    .site-drawer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--site-border);
+    }
+    .site-drawer-kicker {
+      margin-bottom: 4px;
+      color: var(--site-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .site-drawer-title { color: var(--site-text); font-size: 1rem; font-weight: 850; line-height: 1.25; }
+    .site-drawer-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .site-drawer-link {
+      display: block;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      text-decoration: none;
+    }
+    .site-drawer-link.site-drawer-primary {
+      border-color: transparent;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+    }
+    .site-drawer-link.site-drawer-primary span {
+      color: color-mix(in srgb, var(--site-button-text) 82%, transparent);
+    }
+    .site-drawer-link strong { display: block; font-size: 0.95rem; }
+    .site-drawer-link span { display: block; margin-top: 3px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.35; }
+    .site-top-subscribe {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 80;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-mobile-subscribe {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 78;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+    }
+    .site-report-footer {
+      width: min(690px, calc(100% - 32px));
+      margin: 34px auto 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .site-report-panel {
+      padding: 18px;
+      background: var(--site-panel);
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      color: var(--site-text);
+    }
+    .site-report-panel h2 {
+      margin: 0 0 8px;
+      color: var(--site-text);
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+    .site-report-panel p { margin: 0 0 14px; color: var(--site-soft); line-height: 1.45; }
+    .site-report-panel label { display: block; margin: 10px 0 6px; color: var(--site-muted); font-size: 0.82rem; font-weight: 800; }
+    .site-report-panel input,
+    .site-report-panel textarea,
+    .site-report-panel select {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--site-border);
+      border-radius: 6px;
+      background: var(--site-panel-2);
+      color: var(--site-text);
+      padding: 0 10px;
+      font: inherit;
+    }
+    .site-report-panel textarea { min-height: 118px; padding: 10px; resize: vertical; }
+    .site-report-panel button {
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .site-report-panel button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .site-report-panel .form-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .site-report-form-note { margin-top: 12px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.4; }
+    .site-report-form-success { margin-top: 12px; color: var(--site-success); font-size: 0.88rem; font-weight: 800; }
+    .site-report-form-error { margin-top: 12px; color: var(--site-danger); font-size: 0.88rem; font-weight: 800; }
+    .site-report-credits {
+      grid-column: 1 / -1;
+      color: var(--site-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .card-votes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--card-border, var(--site-border));
+      color: var(--text-muted, var(--site-muted));
+      font-size: 0.78rem;
+    }
+    .card-votes-label { font-weight: 800; color: var(--text-soft, var(--site-soft)); }
+    .card-votes button {
+      width: auto;
+      min-height: 30px;
+      margin: 0;
+      padding: 4px 9px;
+      border: 1px solid var(--card-border, var(--site-border));
+      border-radius: 999px;
+      background: var(--quote-bg, var(--site-panel-2));
+      color: var(--text-body, var(--site-text));
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .card-votes button.active,
+    .card-votes button:hover {
+      border-color: var(--accent-color, var(--site-accent));
+      color: var(--accent-color, var(--site-accent));
+    }
+    .card-vote-status { min-height: 1em; color: var(--text-muted, var(--site-muted)); }
+    @media (max-width: 760px) {
+      body { padding: 24px 12px 88px !important; }
+      .site-menu-button { top: 12px; left: 12px; }
+      .site-top-subscribe { display: none; }
+      .site-mobile-subscribe { display: flex; }
+      .container header { padding-top: 92px !important; }
+      .container .level-toggle { top: 48px !important; left: 0 !important; }
+      .container .theme-toggle { top: 48px !important; right: 0 !important; }
+      .site-report-footer { width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="site-menu-button" id="siteMenuButton" aria-label="Open report menu" aria-controls="siteReportDrawer" aria-expanded="false"><span class="site-menu-icon" aria-hidden="true">&#9776;</span><span class="site-menu-label">Menu</span></button>
+  <div class="site-report-backdrop" data-site-menu-close></div>
+  <nav class="site-report-drawer" id="siteReportDrawer" aria-label="Report menu">
+    <div class="site-drawer-header">
+      <div>
+        <div class="site-drawer-kicker">Kruse Report</div>
+        <div class="site-drawer-title">Jun 2, 2026</div>
+      </div>
+      <button type="button" class="site-drawer-close" data-site-menu-close aria-label="Close report menu">&times;</button>
+    </div>
+    <a class="site-drawer-link site-drawer-primary" href="#get-report"><strong>Subscribe to daily email</strong><span>Get the next report in your inbox.</span></a>
+    <a class="site-drawer-link" href="../index.html"><strong>All reports</strong><span>Back to the archive.</span></a>
+    <a class="site-drawer-link" href="../latest/"><strong>Latest report</strong><span>Jump to the newest daily report.</span></a>
+    <a class="site-drawer-link" href="#report-feedback"><strong>Improve this report</strong><span>Leave feedback we can use later for prompt tuning.</span></a>
+    <a class="site-drawer-link" href="../unsubscribe/"><strong>Unsubscribe</strong><span>Remove your email from future sends.</span></a>
+  </nav>
+  <a class="site-top-subscribe" href="#get-report">Subscribe</a>
+  <a class="site-mobile-subscribe" href="#get-report">Subscribe to daily email</a>
+
+  <div class="container">
+    <header>
+      <div class="level-toggle" role="tablist" aria-label="Reader knowledge level">
+        <button type="button" data-level="noob"   aria-pressed="false">Noob</button>
+        <button type="button" data-level="pro"    aria-pressed="true">Pro</button>
+        <button type="button" data-level="hacker" aria-pressed="false">Hacker</button>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">ðŸŒ™ Dark</button>
+      <h1>Kruse Report 02/06/2026</h1>
+      <div class="subtitle">Deuterium enrichment in HFCS, DHA as quantum spintronic mediator, and environmental lattice-lock mechanisms</div>
+    </header>
+      <div class="section-title">Twitter Updates</div>
+      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-06-02-7jf0mi"><div class="card-header"><span class="tag">Sweetener deuterium load</span><a href="https://twitter.com/DrJackKruse/status/2061615494764109866" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>HFCS carries far higher deuterium than sucrose due to corn&#39;s water-conserving photosynthesis and industrial enzymatic processing</strong> High-fructose corn syrup (HFCS) concentrates deuterium through two pathways absent in beet sugar. Corn uses <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">C4 photosynthesis</span>, which conserves water and traps heavy hydrogen in plant tissues; beets use <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">C3 photosynthesis</span>, which transpires freely and sheds deuterium. During HFCS production, enzymatic hydrolysis (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">alpha-amylase</span>, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">glucoamylase</span>, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">glucose isomerase</span>) selectively strips the lighter <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">protium</span> due to higher bond-breaking energy for deuterium, progressively enriching the syrup. <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">HFCS-55</span> also contains 24% processed bulk water already heavy with deuterium. This deuterium load enters <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">intracellular water</span> as &#39;silt,&#39; jamming mitochondrial <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">Fo rotor</span> function and dropping <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">dielectric constant</span> from 160 to 78, driving metabolic decline.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>C4 photosynthesis:</strong> A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, which means it retains more deuterium in its tissues.
+    </div>
+<div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>C3 photosynthesis:</strong> A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape into the air.
+    </div>
+<div id="concept-2" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>alpha-amylase:</strong> An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch.
+    </div>
+<div id="concept-3" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>glucoamylase:</strong> An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production.
+    </div>
+<div id="concept-4" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>glucose isomerase:</strong> An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind.
+    </div>
+<div id="concept-5" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>protium:</strong> The common, light form of hydrogen with one proton and no neutrons. It is faster and more reactive than deuterium.
+    </div>
+<div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>HFCS-55:</strong> A technical term used by the selected source. The report keeps &quot;HFCS-55&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-7" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>intracellular water:</strong> A technical term used by the selected source. The report keeps &quot;intracellular water&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-8" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>Fo rotor:</strong> Part of ATP synthase in the mitochondrial inner membrane. It spins to generate the energy needed to make ATP. Deuterium in surrounding water can jam this rotor.
+    </div>
+<div id="concept-9" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric constant:</strong> A measure of a material&#39;s ability to store electrical energy. Water normally has a dielectric constant of 160; deuterated water drops it to 78, impairing electrical signaling in cells.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Photosynthetic pathway.</strong> C4 plants (corn, sugar cane) retain deuterium via low <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">transpiration</span>; C3 plants (beets) exhaust it via high transpiration.</li><li><strong>Enzymatic fractionation.</strong> Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">kinetic isotope effect</span>.</li><li><strong>Water matrix.</strong> HFCS-55 is a free mixture of glucose and fructose in 24% deuterated water; sucrose is a tightly bound <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-12" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">disaccharide</span> excluding free water.</li><li><strong>Mitochondrial impact.</strong> Deuterium in intracellular water blocks Fo rotor spinning and collapses dielectric constant, impairing ATP synthesis and metabolic function.</li></ul><div id="concept-10" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>transpiration:</strong> A technical term used by the selected source. The report keeps &quot;transpiration&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div><div id="concept-11" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>kinetic isotope effect:</strong> The difference in reaction rate or pathway when a heavier isotope (deuterium) is substituted for a lighter one (protium). Bonds with deuterium require more energy to break, so enzymes preferentially use protium, leaving deuterium behind.
+    </div><div id="concept-12" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>disaccharide:</strong> A sugar made of two monosaccharides linked together by a covalent bond. Sucrose is a disaccharide of glucose and fructose.
+    </div></div><div class="source-quote">This high absolute load of deuterium directly enters your intracellular water table, acting as &quot;silt&quot; that jams the Fo spinning heads of your mitochondria, dropping your internal dielectric constant from 160 down to 78, and causing the focal lattice lock that drives metabolic decline.</div></div>
+      <div class="section-title">Forum Updates</div>
+      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-06-02-k9kydr"><div class="card-header"><span class="tag">Mechanism</span><a href="https://forum.jackkruse.com/threads/new-shake-rattle-roll-%E2%80%9Ctools%E2%80%9D.32863/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>DHA is a highly specialized, non-linear signal-conducting membranes and all-optical spintronic waveguide designed to maximize macrophage M1-to-M2 inversion</strong> <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">Docosahexaenoid acid</span> (DHA) and its <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">specialized pro-resolving mediators</span> (<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">maresins</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">protectins</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">resolvins</span>) operate as quantum semiconductors and optical spintronic waveguides via <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">Maxwellian electrodynamics</span> and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">solid-state spin chemistry</span>. This quantum framework explains how DHA orchestrates <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">macrophage</span> polarization from pro-inflammatory (M1) to pro-resolving (M2) state through mechanisms far beyond classical receptor signaling and cytokine downregulation. Centralized biochemistry treats DHA as a generic membrane-fluidity nutrient, missing its role as a quantum-scale electromagnetic mediator.</div><div id="concept-13" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>Docosahexaenoid acid:</strong> A long-chain omega-3 fatty acid found in fish and algae. Kruse frames it as a quantum device that orchestrates immune cell signaling, not just a structural nutrient.
+    </div>
+<div id="concept-14" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>specialized pro-resolving mediators:</strong> Signaling molecules derived from omega-3 fatty acids (maresins, protectins, resolvins) that promote resolution of inflammation and immune cell switching from pro-inflammatory to pro-healing states.
+    </div>
+<div id="concept-15" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>maresins:</strong> A class of specialized pro-resolving mediators derived from DHA. They promote macrophage switching from M1 to M2 and tissue repair.
+    </div>
+<div id="concept-16" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>protectins:</strong> A class of specialized pro-resolving mediators derived from DHA. They protect tissues and promote resolution of inflammation.
+    </div>
+<div id="concept-17" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>resolvins:</strong> A class of specialized pro-resolving mediators derived from DHA. They resolve inflammation by promoting macrophage switching and clearance of dead cells.
+    </div>
+<div id="concept-18" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>Maxwellian electrodynamics:</strong> Classical electromagnetic theory describing how electric and magnetic fields interact. Kruse applies it to cellular signaling at the quantum scale, suggesting DHA mediates electromagnetic interactions between cells.
+    </div>
+<div id="concept-19" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>solid-state spin chemistry:</strong> The study of electron spin states in solid materials and how they affect chemical reactions. Kruse applies it to DHA&#39;s role in cellular signaling, proposing that electron spin orientation in DHA affects immune cell polarization.
+    </div>
+<div id="concept-20" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>macrophage:</strong> An immune cell that engulfs pathogens and dead cells. M1 macrophages are pro-inflammatory; M2 macrophages promote healing and resolution of inflammation.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Quantum mechanism.</strong> DHA is a non-linear <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">quantum semiconductor</span> with spintronic properties, not a passive structural lipid.</li><li><strong>SPM function.</strong> Maresins, protectins, and resolvins operate via Maxwellian electrodynamics and solid-state spin chemistry, not classical biochemical receptor pathways.</li><li><strong>Macrophage switching.</strong> DHA-derived SPMs drive M1-to-M2 macrophage inversion through quantum electromagnetic mechanisms.</li><li><strong>Biochemistry gap.</strong> Standard textbooks miss DHA&#39;s quantum role, treating it only as an omega-3 for membrane liquidity and generic anti-inflammatory signaling.</li></ul><div id="concept-21" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>quantum semiconductor:</strong> A technical term used by the selected source. The report keeps &quot;quantum semiconductor&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">New Shake Rattle &amp; Roll â€œToolsâ€ Jack Kruse Jack Kruse DHA is a magnetic fat........</div></div>
+      <div class="card" data-card-id="card-2" data-vote-card-id="kruse-2026-06-02-1yx13xz"><div class="card-header"><span class="tag">HFCS deuterium enrichment</span><a href="https://forum.jackkruse.com/threads/the-photosynthesis-of-deuterium-in-sugar-vs-hfcs.32888/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Deuterium enrichment in HFCS via C4 photosynthesis and enzymatic processing (forum version)</strong> High-fructose corn syrup concentrates deuterium through three mechanisms: (1) <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">C4 photosynthesis</span> in corn conserves water and traps deuterium in plant tissues, while <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">C3 photosynthesis</span> in beets transpires freely and sheds deuterium; (2) enzymatic hydrolysis (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">alpha-amylase</span>, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">glucoamylase</span>, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">glucose isomerase</span>) selectively strips <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">protium</span> due to higher activation energy for deuterium bonds, progressively enriching the syrup via <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">kinetic isotope effect</span>; (3) <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">HFCS-55</span> contains 24% processed bulk water already heavy with deuterium, creating a free-floating glucose-fructose mixture in a deuterated matrix. Sucrose, by contrast, is a tightly bound <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">disaccharide</span> with low free water. This structural and compositional difference means HFCS delivers absolute deuterium directly into beverages and intracellular water.</div><div id="concept-22" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>C4 photosynthesis:</strong> A photosynthetic pathway used by plants evolved for hot, dry climates (corn, sugar cane). It conserves water by transpiring less than C3 plants, retaining more deuterium.
+    </div>
+<div id="concept-23" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>C3 photosynthesis:</strong> A photosynthetic pathway used by plants in temperate climates (beets, wheat). It transpires water more freely, allowing deuterium to escape.
+    </div>
+<div id="concept-24" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>alpha-amylase:</strong> An enzyme that breaks down starch into smaller sugar molecules. Used in HFCS production to hydrolyze corn starch.
+    </div>
+<div id="concept-25" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>glucoamylase:</strong> An enzyme that further breaks down starch fragments into individual glucose molecules. Used in HFCS production.
+    </div>
+<div id="concept-26" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>glucose isomerase:</strong> An enzyme that converts glucose into fructose. This is the critical step in HFCS production that increases sweetness. During this conversion, protium is preferentially used, leaving deuterium behind.
+    </div>
+<div id="concept-27" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>protium:</strong> The common, light form of hydrogen. Enzymes preferentially use protium over deuterium because deuterium bonds require more energy to break.
+    </div>
+<div id="concept-28" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>kinetic isotope effect:</strong> The difference in reaction rate when a heavier isotope (deuterium) is substituted for a lighter one (protium). Enzymes preferentially use protium, leaving deuterium behind.
+    </div>
+<div id="concept-29" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>HFCS-55:</strong> A technical term used by the selected source. The report keeps &quot;HFCS-55&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-30" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>disaccharide:</strong> A sugar made of two monosaccharides linked together. Sucrose is a disaccharide of glucose and fructose.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Photosynthetic pathway.</strong> C4 plants (corn) retain deuterium via low <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">transpiration</span>; C3 plants (beets) exhaust it via high transpiration.</li><li><strong>Enzymatic fractionation.</strong> Glucose isomerase and other enzymes selectively use protium during HFCS synthesis, leaving deuterium behind via kinetic isotope effect.</li><li><strong>Molecular structure.</strong> Sucrose is a disaccharide with covalent <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">glycosidic bond</span> and low free water; HFCS-55 is a free mixture with 24% deuterated water.</li><li><strong>Delivery mechanism.</strong> HFCS&#39;s free monomers and high water content serve as a liquid vector introducing deuterium directly into the beverage and intracellular water table.</li></ul><div id="concept-31" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>transpiration:</strong> A technical term used by the selected source. The report keeps &quot;transpiration&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div><div id="concept-32" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>glycosidic bond:</strong> A covalent bond linking glucose and fructose in sucrose. This tight bond excludes free water and creates a dry crystalline structure.
+    </div></div><div class="source-quote">C4 plants (like corn and sugar cane) are evolved for hot, arid conditions. Their physical mechanics prioritize water conservation, meaning they transpire far less than C3 plants. Because light hydrogen (protium, evaporates faster during transpiration, C4 plants retain and concentrate heavy hydrogen (deuterium, inside their tissues and carbohydrate stores.</div></div>
+      <div class="card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-02-1ys5ctf"><div class="card-header"><span class="tag">Mechanism</span><a href="https://forum.jackkruse.com/threads/negative-symptoms-after-drinking-ddw.32887/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>UPR (unfolded protein response) is a cellular stress-response pathway activated when misfolded proteins accumulate</strong> When you activate the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">unfolded protein response</span> (UPR) while your <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">intracellular water table</span> remains <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-35" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">deuterated</span>, expect temporary negative symptoms. This mechanism explains why <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-36" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">deuterium-depleted water</span> supplementation alone may cause initial worsening - the UPR is triggered to clear <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">misfolded proteins</span>, but the surrounding water environment is still heavy with deuterium, slowing resolution. Full symptom improvement requires both UPR activation and sustained <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-38" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">deuterium depletion</span> of the water table.</div><div id="concept-33" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>unfolded protein response:</strong> A cellular stress-response pathway activated when misfolded proteins accumulate in the endoplasmic reticulum. It triggers protein degradation and synthesis of chaperone proteins to restore cellular order.
+    </div>
+<div id="concept-34" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>intracellular water table:</strong> A technical term used by the selected source. The report keeps &quot;intracellular water table&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-35" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>deuterated:</strong> Containing deuterium. Deuterated water has a higher concentration of heavy hydrogen than normal water.
+    </div>
+<div id="concept-36" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>deuterium-depleted water:</strong> Water with reduced deuterium content. Used to lower deuterium levels in the body.
+    </div>
+<div id="concept-37" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>misfolded proteins:</strong> A technical term used by the selected source. The report keeps &quot;misfolded proteins&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-38" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>deuterium depletion:</strong> The process of reducing deuterium concentration in the body&#39;s water. Requires both DDW supplementation and time for cellular water to equilibrate.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>UPR activation.</strong> DDW triggers cellular stress response as misfolded proteins accumulate and are cleared.</li><li><strong>Water environment.</strong> If intracellular and extracellular water remain deuterated, UPR activation causes temporary symptoms (fatigue, malaise).</li><li><strong>Timeline expectation.</strong> Negative symptoms should resolve as deuterium depletion progresses; they are a sign of cellular work, not DDW failure.</li><li><strong>Dual requirement.</strong> Full resolution requires both UPR activation and sustained deuterium depletion of the water table.</li></ul></div><div class="source-quote">When you have activates your UPR response and the water table is deuterated this initial response should be expected.</div></div>
+      <div class="card" data-card-id="card-4" data-vote-card-id="kruse-2026-06-02-loemef"><div class="card-header"><span class="tag">Azores plate tectonics</span><a href="https://forum.jackkruse.com/threads/improving-before-2nd-rh-pregnancy-granuloma-annulare-uric-acid-crystals-xanthelasma-lmhr-on-keto.32879/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Azores sits on the Nubian plate boundary, an active tectonic zone with implications for water and electromagnetic environment</strong> The Azores archipelago sits directly in front of the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">Nubian plate</span> unzipping in the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">East African Rift</span>. This active <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">plate boundary</span> means the region sits on geologically dynamic terrain where new oceanic crust is being created. The tectonic activity affects water chemistry, mineral content, geothermal activity, and the Earth&#39;s magnetic field in the region. Understanding this geological context is relevant to water quality assessment and electromagnetic environment optimization for health.</div><div id="concept-39" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>Nubian plate:</strong> A tectonic plate underlying much of northeastern Africa. It is actively separating from the African plate as part of the East African Rift system.
+    </div>
+<div id="concept-40" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      <strong>East African Rift:</strong> A major geological feature where the African plate is splitting apart. It extends from the Red Sea through East Africa and is associated with volcanic and geothermal activity.
+    </div>
+<div id="concept-41" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>plate boundary:</strong> The edge where two tectonic plates meet. At divergent boundaries like the Mid-Atlantic Ridge, plates move apart and new crust forms.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Tectonic setting.</strong> Azores sits on the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">Mid-Atlantic Ridge</span>, a divergent plate boundary where the Nubian plate is actively separating from the African plate.</li><li><strong>Water environment.</strong> Active tectonics affect water chemistry, mineral content, and geothermal properties in the region.</li><li><strong>Electromagnetic context.</strong> Plate movement and geothermal activity influence the Earth&#39;s magnetic field and electromagnetic environment.</li><li><strong>Health relevance.</strong> Geological context informs water quality assessment and site selection for health optimization.</li></ul><div id="concept-42" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>Mid-Atlantic Ridge:</strong> A technical term used by the selected source. The report keeps &quot;Mid-Atlantic Ridge&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">Azores sits right in front of the Nubian plate unzipping in East Africa. That plate would put portugal under two miles of water.</div></div>
+      <div class="card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-02-1gh2jkd"><div class="card-header"><span class="tag">Arterial calcification reversal</span><a href="https://forum.jackkruse.com/threads/lattice-locked-accidents-track-the-zipcode.32644/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>ACA (arterial calcification) grade 1-4 improvement via 3% NaCl infusions</strong> Hypertonic <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-43" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">saline</span> (3% <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-44" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">sodium chloride</span>) infusions improve <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-45" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">arterial calcification</span>} (ACA) grades 1-4. This is an established medical intervention that MDs use but few connect to the broader <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-46" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">lattice-lock</span> mechanism - deuterium-induced stiffening and calcification of tissues. The <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-47" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">osmotic</span> and ionic properties of 3% saline appear to reverse calcium deposition in arterial walls, suggesting that sodium chloride concentration affects the biophysical state of the arterial matrix.</div><div id="concept-43" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>saline:</strong> A solution of salt (sodium chloride) and water. 3% saline is hypertonic, meaning it has a higher salt concentration than normal body fluids.
+    </div>
+<div id="concept-44" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>sodium chloride:</strong> Common table salt. In 3% solution, it creates an osmotic gradient that draws water out of tissues.
+    </div>
+<div id="concept-45" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>arterial calcification:</strong> The buildup of calcium deposits in artery walls, causing stiffening and reduced blood flow. Graded 1-4 by severity.
+    </div>
+<div id="concept-46" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice-lock:</strong> Kruse&#39;s term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes.
+    </div>
+<div id="concept-47" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>osmotic:</strong> A technical term used by the selected source. The report keeps &quot;osmotic&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Treatment.</strong> 3% NaCl infusions improve arterial calcification grades 1-4.</li><li><strong>Mechanism.</strong> Osmotic and ionic effects of hypertonic saline reverse calcium deposition in arterial walls.</li><li><strong>Lattice-lock connection.</strong> This intervention addresses the same pathology (tissue stiffening and calcification) that Kruse links to deuterium accumulation.</li><li><strong>Clinical gap.</strong> MDs use this treatment but rarely connect it to the broader deuterium-driven lattice-lock mechanism.</li></ul></div><div class="source-quote">Anyone with ACA grade 1-4 is improved by 3% NaCl infusions. This is what MDs already know but few are putting it all together as I have. that lady should not have died but her docs never read these papers.</div></div>
+      <div class="card" data-card-id="card-6" data-vote-card-id="kruse-2026-06-02-1d0e89n"><div class="card-header"><span class="tag">Case signal</span><a href="https://forum.jackkruse.com/threads/colon-polyps-in-kids-juvenile-polyposis-syndrome-negative-on-gene-tests.32881/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source â†’</a></div><div class="card-body"><div class="item-text"><strong>Juvenile polyposis syndrome as tissue-water structure-lock in gut; zipcode tracking for environmental correlation</strong> A child with <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-48" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">colon polyps</span> and <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-49" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">juvenile polyposis syndrome</span> (negative on genetic tests) has a gut that is <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-50" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-50" aria-expanded="false">lattice-locked</span> - stiffened and calcified by deuterium and other environmental factors. This case reframes the condition from a genetic disorder to an environmentally driven pathology. The child&#39;s <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-51" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-51" aria-expanded="false">zipcode</span> (water quality, EM exposure, geomagnetic environment) is the primary driver, not genetic mutation. Tracking the zipcode and addressing water deuterium content and environmental EM exposure becomes the therapeutic focus.</div><div id="concept-48" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>colon polyps:</strong> A technical term used by the selected source. The report keeps &quot;colon polyps&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-49" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>juvenile polyposis syndrome:</strong> A condition in which multiple polyps (benign growths) form in the colon, usually in children. Often assumed to be genetic, but Kruse links it to environmental lattice-lock.
+    </div>
+<div id="concept-50" class="expanded-content" data-card-id="card-6" data-concept-level="pro" aria-hidden="true">
+      <strong>lattice-locked:</strong> Kruse&#39;s term for deuterium-induced stiffening and calcification of tissues. It describes how heavy water jams cellular machinery and causes pathological tissue changes.
+    </div>
+<div id="concept-51" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>zipcode:</strong> Geographic location, used here to refer to the local water quality, electromagnetic environment, and geomagnetic factors that affect health.
+    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Juvenile polyposis is not genetic but reflects lattice-lock (deuterium-induced stiffening) in <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-52" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-52" aria-expanded="false">gut epithelium</span>.</li><li><strong>Environmental driver.</strong> Zipcode factors (water deuterium, EM exposure, geomagnetic environment) cause polyp formation.</li><li><strong>Genetic misdirection.</strong> Negative genetic tests confirm the condition is environmentally driven, not inherited.</li><li><strong>Therapeutic focus.</strong> Address water quality (DDW), EM exposure reduction, and geomagnetic environment rather than genetic intervention.</li></ul><div id="concept-52" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
+      <strong>gut epithelium:</strong> A technical term used by the selected source. The report keeps &quot;gut epithelium&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">Your daughter&#39;s zipcode should be added to this thread. Her gut is lattice locked.</div></div>
+      <div class="section-title">Latest Blog Update</div>
+      <div class="card blog-card" data-vote-card-id="kruse-2026-06-02-pdcszl">
+        <div class="card-header">
+          <span class="tag">CPC#88</span>
+          <a href="https://optimalklubs.com/cpc-88-why-the-elites-always-target-the-heart/" target="_blank" rel="noopener noreferrer" class="source-link">Open blog -&gt;</a>
+        </div>
+        <div class="item-text"><strong>CPC#88: CPC #88: WHY THE ELITES ALWAYS TARGET THE HEART?</strong> Optimal Klubs blog newly surfaced, series CPC, published 2026-05-10.</div>
+        <div class="source-quote">I want to talk about scale and magnetic sense. I believe no one really understands the scale that life fundamentally works at. Most people I survey believe that healthy food and exercise is key part to optimal health. I have not been of that mindset for two decade now because of my first ...</div>
+      </div>
+      <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
+      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-06-02-1ihbxib">
+        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
+        <div class="item-text">No new Jack Kruse podcast.</div>
+        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once the audio extraction pipeline has a new source to process.</div>
+      </div>
+    <div class="locked-section">
+      <div class="locked-title">
+        <span>Interact with Report (Ask AI)</span>
+        <span class="locked-badge">Soon</span>
+      </div>
+    </div>
+    <footer>
+      Prepared for NED.
+      Source: <a href="https://x.com/DrJackKruse">@DrJackKruse</a>.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      function targetFor(chip) {
+        if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
+        var targetId = chip.getAttribute('data-concept-target');
+        if (!targetId) return null;
+        var panel = document.getElementById(targetId);
+        var card = chip.closest && chip.closest('.card');
+        if (!panel || !card || panel.closest('.card') !== card) return null;
+        if (chip.getAttribute('data-card-id') !== panel.getAttribute('data-card-id')) return null;
+        return panel;
+      }
+      function toggleChip(chip) {
+        var panel = targetFor(chip);
+        if (!panel) return;
+        var open = !panel.classList.contains('open');
+        panel.classList.toggle('open', open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        chip.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      document.addEventListener('click', function (event) {
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        toggleChip(chip);
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        event.preventDefault();
+        toggleChip(chip);
+      });
+    })();
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var saved = null;
+      try { saved = localStorage.getItem('kruse-theme'); } catch (e) {}
+      if (saved === 'light') document.body.classList.add('light');
+      function syncLabel() {
+        if (!btn) return;
+        btn.textContent = document.body.classList.contains('light') ? 'â˜€ Light' : 'ðŸŒ™ Dark';
+      }
+      syncLabel();
+      if (btn) btn.addEventListener('click', function () {
+        document.body.classList.toggle('light');
+        try { localStorage.setItem('kruse-theme', document.body.classList.contains('light') ? 'light' : 'dark'); } catch (e) {}
+        syncLabel();
+      });
+    })();
+    (function () {
+      var savedLevel = null;
+      try { savedLevel = localStorage.getItem('kruse-level'); } catch (e) {}
+      var initial = (savedLevel === 'noob' || savedLevel === 'pro' || savedLevel === 'hacker') ? savedLevel : 'pro';
+      function apply(level) {
+        document.body.classList.remove('level-noob', 'level-pro', 'level-hacker');
+        document.body.classList.add('level-' + level);
+        var btns = document.querySelectorAll('.level-toggle button');
+        for (var i = 0; i < btns.length; i++) {
+          var on = btns[i].getAttribute('data-level') === level;
+          btns[i].classList.toggle('active', on);
+          btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+        var chips = document.querySelectorAll('.expandable-concept[data-concept-target]');
+        for (var j = 0; j < chips.length; j++) {
+          var disabled = level === 'hacker' || (level === 'pro' && chips[j].getAttribute('data-concept-level') === 'noob');
+          chips[j].setAttribute('aria-disabled', disabled ? 'true' : 'false');
+          chips[j].setAttribute('tabindex', disabled ? '-1' : '0');
+        }
+        try { localStorage.setItem('kruse-level', level); } catch (e) {}
+      }
+      apply(initial);
+      var btns = document.querySelectorAll('.level-toggle button');
+      for (var i = 0; i < btns.length; i++) {
+        (function (b) {
+          b.addEventListener('click', function () { apply(b.getAttribute('data-level')); });
+        })(btns[i]);
+      }
+    })();
+  </script>
+<div class="site-report-footer">
+    <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
+      <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
+      <p>Get the next daily report by email.</p>
+      <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
+        <input type="hidden" name="form_type" value="kruse-report-interest" />
+        <input type="hidden" name="report_date" value="2026-06-02" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/NED-Kruse/reports/2026-06-02.html" />
+        <p style="display:none"><label>Company <input name="company" /></label></p>
+        <label for="report-first-name-2026-06-02">First name</label>
+        <input id="report-first-name-2026-06-02" name="first_name" autocomplete="given-name" />
+        <label for="report-last-name-2026-06-02">Last name</label>
+        <input id="report-last-name-2026-06-02" name="last_name" autocomplete="family-name" />
+        <label for="report-email-2026-06-02">Email</label>
+        <input id="report-email-2026-06-02" name="email" type="email" autocomplete="email" required />
+        <label for="report-frequency-2026-06-02">Delivery</label>
+        <select id="report-frequency-2026-06-02" name="frequency">
+          <option>Daily</option>
+          <option>Only strong signal days</option>
+          <option>Weekly digest</option>
+        </select>
+        <label for="report-comments-2026-06-02">Comments</label>
+        <textarea id="report-comments-2026-06-02" name="comments"></textarea>
+        <button type="submit">Subscribe</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately to the mailing list.</div>
+    </section>
+    <section class="site-report-panel" id="report-feedback" aria-labelledby="report-feedback-title">
+      <h2 id="report-feedback-title">Improve future reports</h2>
+      <p>Tell us what was useful, confusing, missing, or too AI-ish. We will use this later to tune prompts.</p>
+      <form name="kruse-report-feedback" method="POST" data-supabase-form="feedback">
+        <input type="hidden" name="form_type" value="kruse-report-feedback" />
+        <input type="hidden" name="report_date" value="2026-06-02" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/NED-Kruse/reports/2026-06-02.html" />
+        <p style="display:none"><label>Website <input name="website" /></label></p>
+        <label for="feedback-first-name-2026-06-02">First name</label>
+        <input id="feedback-first-name-2026-06-02" name="first_name" autocomplete="given-name" />
+        <label for="feedback-last-name-2026-06-02">Last name</label>
+        <input id="feedback-last-name-2026-06-02" name="last_name" autocomplete="family-name" />
+        <label for="feedback-rating-2026-06-02">Overall</label>
+        <select id="feedback-rating-2026-06-02" name="rating">
+          <option>Useful</option>
+          <option>Mixed</option>
+          <option>Bad</option>
+        </select>
+        <label for="feedback-text-2026-06-02">Feedback</label>
+        <textarea id="feedback-text-2026-06-02" name="comments" required></textarea>
+        <label for="feedback-email-2026-06-02">Email (optional)</label>
+        <input id="feedback-email-2026-06-02" name="email" type="email" autocomplete="email" />
+        <button type="submit">Send feedback</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Thank you.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately for prompt tuning.</div>
+    </section>
+    <div class="site-report-credits">Credits: Guy Houri and DrJackKruse.</div>
+  </div>
+<script>
+    (function () {
+      var button = document.getElementById('siteMenuButton');
+      var drawer = document.getElementById('siteReportDrawer');
+      if (!button || !drawer) return;
+
+      function setOpen(open) {
+        document.body.classList.toggle('site-drawer-open', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          var focusTarget = drawer.querySelector('a, button');
+          if (focusTarget) focusTarget.focus();
+        } else {
+          button.focus();
+        }
+      }
+
+      button.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('site-drawer-open'));
+      });
+
+      var closeTargets = document.querySelectorAll('[data-site-menu-close], .site-drawer-link');
+      for (var i = 0; i < closeTargets.length; i++) {
+        closeTargets[i].addEventListener('click', function () { setOpen(false); });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_SUPABASE = {"url":"https://zpxhovwsswnjdjibcvsh.supabase.co","key":"sb_publishable_afhmZKXzerLWNYENUqsaFg_XfVWjODD","tables":{"mailingList":"kruse_mailing_list","feedback":"kruse_report_feedback","cardVotes":"kruse_card_votes","cardVoteCounts":"kruse_card_vote_counts"}};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      if (!config || !config.url || !config.key) return;
+
+      function value(form, name) {
+        var field = form.querySelector('[name="' + name + '"]');
+        return field ? String(field.value || '').trim() : '';
+      }
+
+      function nullable(value) {
+        return value ? value : null;
+      }
+
+      function show(form, selector, text) {
+        var node = form.querySelector(selector);
+        if (!node) return;
+        if (text) node.textContent = text;
+        node.hidden = false;
+      }
+
+      function hide(form, selector) {
+        var node = form.querySelector(selector);
+        if (node) node.hidden = true;
+      }
+
+      function payloadFor(form, kind) {
+        var common = {
+          first_name: value(form, 'first_name'),
+          last_name: value(form, 'last_name'),
+          email: value(form, 'email').toLowerCase(),
+          comments: value(form, 'comments'),
+          report_date: nullable(value(form, 'report_date')),
+          report_url: nullable(value(form, 'report_url')),
+          page_url: window.location.href,
+          source: 'public-site'
+        };
+        if (kind === 'unsubscribe') {
+          return {
+            first_name: '',
+            last_name: '',
+            email: common.email,
+            comments: 'Unsubscribe request',
+            frequency: 'Unsubscribe',
+            report_date: null,
+            report_url: null,
+            page_url: common.page_url,
+            source: 'unsubscribe'
+          };
+        }
+        if (kind === 'mailing-list') {
+          common.frequency = value(form, 'frequency') || 'Daily';
+          return common;
+        }
+        return {
+          first_name: common.first_name,
+          last_name: common.last_name,
+          email: nullable(common.email),
+          rating: value(form, 'rating') || 'Useful',
+          comments: common.comments,
+          report_date: common.report_date,
+          report_url: common.report_url,
+          page_url: common.page_url,
+          source: common.source
+        };
+      }
+
+      async function submitToSupabase(form, kind) {
+        var table = kind === 'feedback' ? config.tables.feedback : config.tables.mailingList;
+        var payload = payloadFor(form, kind);
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          var text = await response.text();
+          throw new Error(text || ('Supabase returned ' + response.status));
+        }
+      }
+
+      document.addEventListener('submit', async function (event) {
+        var form = event.target;
+        if (!form || !form.hasAttribute('data-supabase-form')) return;
+        event.preventDefault();
+
+        hide(form, '[data-form-success]');
+        hide(form, '[data-form-error]');
+
+        var trap = form.querySelector('input[name="company"], input[name="website"]');
+        if (trap && trap.value) {
+          form.reset();
+          show(form, '[data-form-success]');
+          return;
+        }
+
+        var button = form.querySelector('button[type="submit"]');
+        if (button) button.disabled = true;
+        try {
+          await submitToSupabase(form, form.getAttribute('data-supabase-form'));
+          form.reset();
+          show(form, '[data-form-success]');
+        } catch (err) {
+          console.error(err);
+          show(form, '[data-form-error]', 'Could not save. Please try again.');
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_REPORT = {"date":"2026-06-02","url":"https://guyhouri.github.io/NED-Kruse/reports/2026-06-02.html"};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      var report = window.__KRUSE_REPORT || {};
+      var table = config && config.tables && config.tables.cardVotes;
+      if (!config || !config.url || !config.key || !table) return;
+
+      function text(node) {
+        return node ? String(node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      }
+
+      function storageKey(cardId) {
+        return 'kruse-card-vote:' + cardId;
+      }
+
+      function getStored(cardId) {
+        try { return localStorage.getItem(storageKey(cardId)); } catch (e) { return null; }
+      }
+
+      function setStored(cardId, vote) {
+        try { localStorage.setItem(storageKey(cardId), vote); } catch (e) {}
+      }
+
+      function voterId() {
+        var key = 'kruse-vote-browser-id';
+        try {
+          var existing = localStorage.getItem(key);
+          if (existing) return existing;
+          var generated = (window.crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+          localStorage.setItem(key, generated);
+          return generated;
+        } catch (e) {
+          return 'ephemeral-' + Math.random().toString(36).slice(2);
+        }
+      }
+
+      function sourceUrl(card) {
+        var link = card.querySelector('.source-link[href]');
+        return link ? link.href : null;
+      }
+
+      function cardLabel(card) {
+        var tag = text(card.querySelector('.tag'));
+        var body = text(card.querySelector('.item-text')).slice(0, 180);
+        return [tag, body].filter(Boolean).join(': ');
+      }
+
+      function votePayload(card, vote) {
+        return {
+          card_id: card.getAttribute('data-vote-card-id'),
+          vote_type: vote,
+          report_date: report.date || null,
+          card_label: cardLabel(card),
+          source_url: sourceUrl(card),
+          voter_id: voterId(),
+          page_url: window.location.href,
+          source: 'report-card'
+        };
+      }
+
+      function setCount(card, vote, count) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (node) node.textContent = String(count || 0);
+      }
+
+      function increment(card, vote) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (!node) return;
+        var next = (parseInt(node.textContent || '0', 10) || 0) + 1;
+        node.textContent = String(next);
+      }
+
+      function setStatus(card, message) {
+        var node = card.querySelector('[data-card-vote-status]');
+        if (node) node.textContent = message || '';
+      }
+
+      function setActive(card, vote) {
+        var buttons = card.querySelectorAll('[data-card-vote]');
+        for (var i = 0; i < buttons.length; i++) {
+          var active = buttons[i].getAttribute('data-card-vote') === vote;
+          buttons[i].classList.toggle('active', active);
+          buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+        }
+      }
+
+      function shouldLoadRemoteCounts() {
+        return /^https?:$/.test(window.location.protocol)
+          && window.location.hostname !== 'localhost'
+          && window.location.hostname !== '127.0.0.1';
+      }
+
+      function installControls(cards) {
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          var cardId = card.getAttribute('data-vote-card-id');
+          if (!cardId || card.querySelector('.card-votes')) continue;
+          var controls = document.createElement('div');
+          controls.className = 'card-votes';
+          controls.innerHTML = '<span class="card-votes-label">Was this useful?</span>' +
+            '<button type="button" data-card-vote="up" aria-label="Upvote this card" aria-pressed="false">&#9650; <span data-card-vote-count="up">0</span></button>' +
+            '<button type="button" data-card-vote="down" aria-label="Downvote this card" aria-pressed="false">&#9660; <span data-card-vote-count="down">0</span></button>' +
+            '<span class="card-vote-status" data-card-vote-status aria-live="polite"></span>';
+          card.appendChild(controls);
+          var stored = getStored(cardId);
+          if (stored) setActive(card, stored);
+        }
+      }
+
+      async function loadCounts(cards) {
+        var ids = [];
+        for (var i = 0; i < cards.length; i++) {
+          var id = cards[i].getAttribute('data-vote-card-id');
+          if (id) ids.push(id);
+        }
+        if (!ids.length) return;
+        var countSource = (config.tables && config.tables.cardVoteCounts) || table;
+        var url = config.url + '/rest/v1/' + encodeURIComponent(countSource)
+          + '?select=card_id,vote_type,votes'
+          + '&card_id=in.(' + ids.map(encodeURIComponent).join(',') + ')';
+        if (report.date) url += '&report_date=eq.' + encodeURIComponent(report.date);
+        try {
+          var response = await fetch(url, {
+            headers: {
+              apikey: config.key,
+              authorization: 'Bearer ' + config.key
+            }
+          });
+          if (!response.ok) return;
+          var rows = await response.json();
+          var counts = {};
+          for (var r = 0; r < rows.length; r++) {
+            var row = rows[r] || {};
+            if (!row.card_id || !row.vote_type) continue;
+            counts[row.card_id] = counts[row.card_id] || { up: 0, down: 0 };
+            if (row.vote_type === 'up' || row.vote_type === 'down') {
+              counts[row.card_id][row.vote_type] += Number(row.votes || 1);
+            }
+          }
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            var cardCounts = counts[card.getAttribute('data-vote-card-id')] || { up: 0, down: 0 };
+            setCount(card, 'up', cardCounts.up);
+            setCount(card, 'down', cardCounts.down);
+          }
+        } catch (e) {}
+      }
+
+      async function saveVote(card, vote) {
+        var cardId = card.getAttribute('data-vote-card-id');
+        var existing = getStored(cardId);
+        if (existing) {
+          setStatus(card, existing === vote ? 'Already saved.' : 'Vote already saved.');
+          setActive(card, existing);
+          return;
+        }
+        setStatus(card, 'Saving...');
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(votePayload(card, vote))
+        });
+        if (!response.ok) throw new Error(await response.text());
+        setStored(cardId, vote);
+        setActive(card, vote);
+        increment(card, vote);
+        setStatus(card, 'Saved.');
+      }
+
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('[data-card-vote]');
+        if (!button) return;
+        var card = button.closest && button.closest('.card[data-vote-card-id]');
+        if (!card) return;
+        var vote = button.getAttribute('data-card-vote');
+        if (vote !== 'up' && vote !== 'down') return;
+        saveVote(card, vote).catch(function () {
+          setStatus(card, 'Could not save vote.');
+        });
+      });
+
+      var cards = Array.from(document.querySelectorAll('.card[data-vote-card-id]'));
+      installControls(cards);
+      if (shouldLoadRemoteCounts()) loadCounts(cards);
+    })();
+  </script>
+
+</body>
+</html>
