@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kruse RAG Chat</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23141820'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23ffffff'%3EK%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar" aria-label="Kruse RAG">
+        <div>
+          <p class="eyebrow">Kruse knowledge</p>
+          <h1>Ask the archive</h1>
+          <p class="lede">A source-grounded chat over forum material, blogs, transcripts, reports, and social archives.</p>
+        </div>
+      </header>
+
+      <main class="chat-shell">
+        <section id="chat-log" class="chat-log" aria-live="polite">
+          <article class="message assistant-message intro-message">
+            <div class="message-body">
+              <p>Ask naturally. I will answer from the indexed Kruse sources and show the citations I used.</p>
+            </div>
+          </article>
+        </section>
+
+        <form id="chat-form" class="composer" autocomplete="off">
+          <div class="input-row">
+            <label class="sr-only" for="query-input">Ask a Kruse research question</label>
+            <textarea id="query-input" rows="1" required></textarea>
+            <button id="send-button" class="send-button" type="submit">Ask</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

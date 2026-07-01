@@ -1,0 +1,19 @@
+{
+  "type": "kruse-daily-report",
+  "date": "2026-05-21",
+  "title": "Kruse Report 2026-05-21",
+  "headline": "Daily Kruse report",
+  "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-05-21.html",
+  "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-21.json",
+  "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-21.md",
+  "source": {
+    "curated_json": "summary/kruse-summary/curated/2026-05-21.json",
+    "html": "summary/kruse-summary/out/2026-05-21.html"
+  },
+  "summary_available": false,
+  "sections": [],
+  "forum": {
+    "bullets": []
+  },
+  "markdown": "# Kruse Report 2026-05-21\n\nDate: 2026-05-21\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-21.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-21.json\n\n## Headline\n\nDaily Kruse report\n"
+}
