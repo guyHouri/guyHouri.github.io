@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-01",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-01.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-01.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-01.md",
+    "date": "2026-07-02",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-02.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-02.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-02.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-02",
+      "title": "Kruse Report 2026-07-02",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-02.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-02.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-02.md",
+      "headline": "Sun avoidance, MITF-AMPAR disruption, and autoimmune gastritis pathogenesis; megaliths as geomagnetic excursion shielding; childhood enuresis as deuterium-induced CSF dysfunction"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-01",
