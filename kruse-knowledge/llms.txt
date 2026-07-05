@@ -11,7 +11,7 @@ Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.m
 Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
 Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
 RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
-Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-04.html
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-05.html
 
 ## Core Pages
 
@@ -23,6 +23,7 @@ Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-04.htm
 
 ## Daily Reports
 
+- [2026-07-05 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-05.html): Lithium isotope disruption, copper biomarkers in brain disease, and the electron spin bottleneck in glioblastoma
 - [2026-07-04 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-04.html): Fine-structure constant (1/137) as the cellular spark plug gap: how potassium, melanin, and magnetic alignment optimize electron-photon coupling and restore frictionless mitochondrial energy production.
 - [2026-07-03 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-03.html): Quantum spin mechanisms in disease; AI as thermodynamic data extraction; Buteyko breathing protocol
 - [2026-07-02 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-02.html): Sun avoidance, MITF-AMPAR disruption, and autoimmune gastritis pathogenesis; megaliths as geomagnetic excursion shielding; childhood enuresis as deuterium-induced CSF dysfunction

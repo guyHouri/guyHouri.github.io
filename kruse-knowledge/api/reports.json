@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-04",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-04.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-04.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-04.md",
+    "date": "2026-07-05",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-05.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-05",
+      "title": "Kruse Report 2026-07-05",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-05.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.md",
+      "headline": "Lithium isotope disruption, copper biomarkers in brain disease, and the electron spin bottleneck in glioblastoma"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-04",
