@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-05",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-05.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-05.md",
+    "date": "2026-07-06",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-06.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-06.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-06.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-06",
+      "title": "Kruse Report 2026-07-06",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-06.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-06.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-06.md",
+      "headline": "Quantum coherence marker in neurological disease; healing geography in Philippines; pediatric T1D protocol with magnetism and environmental factors"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-05",
