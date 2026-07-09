@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-08",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-08.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-08.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-08.md",
+    "date": "2026-07-09",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-09.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-09.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-09.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-09",
+      "title": "Kruse Report 2026-07-09",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-09.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-09.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-09.md",
+      "headline": "Fog microbiome air purification and bicarb timing protocol"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-08",
