@@ -51,6 +51,40 @@ inventory work
   -> report only exceptions or material changes
 ```
 
+## Action Gate
+
+Every patrol run must reduce the work surface or transfer each item to an
+exact owner. A run is incomplete if it only repeats the same blockers.
+
+Each finding must end in one of these states:
+
+- `Done automatically`: the patrol archived, closed, parked, pruned, recovered,
+  title-repaired, or updated durable Project/issue/PR state.
+- `Active owner`: a named worker, review-fix lane, monitor, coordinator, PR, or
+  issue owns the next action, with a real thread id or access route when one is
+  available.
+- `Waiting on Guy`: only a decision, secret, live-action approval, or scope
+  choice Guy alone can provide, written as the exact sentence he can say.
+- `Hard blocker`: an external tool/auth/live-boundary failure with the next
+  owner named.
+
+Do not leave `ARCHIVE_OK: no` as a passive label in patrol output. Any archive-no
+item must say `Guy action: None` or the exact sentence/action Guy must provide,
+what the patrol already handled, the concrete next owner/action, and why the
+patrol could not safely complete or transfer that action first. Routine safe
+cleanup, title repair, board sync, worker nudges, and review-fix recovery should
+be done or transferred before reporting.
+
+If the only cleanup blocker is the active chat holding its own path or worktree
+open, transfer the post-archive cleanup to the coordinator/issue/Project trail
+and let the active chat archive when no other mission remains. The patrol should
+not preserve a deadlock where the chat stays open because it is open.
+
+If the same unchanged finding appears on two consecutive patrols, the patrol
+must take an allowed action, park the item with a specific owner, open or update
+the durable process bug, or pause the heartbeat and report why it cannot reduce
+the surface. Do not keep a heartbeat alive just to say "no material change."
+
 ## Quiet Status Model
 
 Routine status must not spam GitHub issue comments.
@@ -117,6 +151,12 @@ It may:
 - release or replace dead leases,
 - keep unfinished chats open with a recorded next owner,
 - archive chats proven finished,
+- close or park stale draft PRs when the linked issue/PR says they are
+  superseded, explicitly out of scope, or approved for closure,
+- remove clean completed task worktrees under an approved cleanup issue when
+  they are merged, exact `origin/main` ancestors, or tied to closed/superseded
+  work with no dirty state, open PR, active owner, or private submodule risk,
+- run `git worktree prune` after safe worktree removal,
 - add issue or PR comments only for material transitions.
 
 It must stop for explicit approval before:
@@ -125,7 +165,7 @@ It must stop for explicit approval before:
 - live Supabase writes,
 - sending email,
 - changing secrets or variables,
-- destructive cleanup,
+- destructive cleanup outside a named approved cleanup policy,
 - broad live scraping,
 - production resource deletion or rename,
 - ambiguous product or scope decisions.
@@ -255,6 +295,32 @@ Needs Guy:
 ```
 
 If nothing needs Guy, say `None right now`.
+
+## Dry-Run Examples
+
+Dry-run output should show the action gate decision and the safety evidence
+before any automatic cleanup runs:
+
+```text
+Done automatically:
+- Archive-safe chat `codex/issue-123-finished`: PR merged, issue Done,
+  `ARCHIVE_OK: yes`, no unresolved missions found.
+- Stale draft PR #456 parked: linked issue says superseded by #789 and the PR
+  has no active owner.
+- Pruned worktree `.codex-worktrees/issue-222-old-task`: clean, merged, exact
+  `origin/main` ancestor, no open PR, no private submodule state.
+
+Hard blocker:
+- Did not prune `.codex-worktrees/issue-333-unclear`: dirty files and no
+  explicit discard decision. Guy action: None. Already handled: archived the
+  diff and checked PR/issue ownership. Next owner/action: coordinator must
+  create a recover-or-discard card with the exact dirty paths.
+
+Transferred post-archive cleanup:
+- Chat `review-fix/pr-999-example` is safe to archive; only remaining action is
+  deleting the empty active-thread directory after release. Guy action: None.
+  Next owner/action: coordinator deletes `<path>` after the chat is archived.
+```
 
 ## Implementation Contract
 

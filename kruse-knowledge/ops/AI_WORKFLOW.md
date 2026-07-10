@@ -19,6 +19,10 @@ summaries in sync.
 - The GitHub issue number is the task ID. Worker prompts and implementation branches must include it.
 - GitHub Issues are also the TFS-like work items: missions, stories, tasks, bugs, research, docs, and cleanup are all issues with type labels.
 - A chat is an execution surface, not the system of record.
+- When an agent picks up an issue, its first visible action is to claim it on
+  the GitHub Project board: add the issue to the Project if missing, move
+  `Status` to `Active`, set `Owner` and `Worker Thread`, and record the branch
+  in the issue or status trail before implementation edits.
 - `origin/main` is law. Local worktrees, worker chats, and experiments are
   disposable until reviewed through a PR and merged.
 - The shared root checkout is for sync, inspection, and quarantine only. It is
@@ -120,6 +124,14 @@ preview or first line of the delegation body. A review handoff is not complete
 until the stored title itself starts with the intended lane, such as
 `review-fix/pr-<number>-<short-scope>`.
 
+Thread creation and title repair can race app indexing. If `create_thread`
+returns a thread id but `list_threads`, `read_thread`, or `set_thread_title`
+cannot find it yet, wait briefly and retry discovery/rename until the stored
+title reads back correctly, or record the exact blocker. Do not report a
+worker, reviewer, or audit lane as properly launched while the only evidence is
+the returned id, prompt preview, pending worktree id, or an attempted rename
+that has not been read back.
+
 When `create_thread` returns only a pending worktree id, Control Chat must later
 list or read the materialized thread and rename it before presenting the lane as
 active. If the app refuses a rename because a thread is unloaded or
@@ -145,7 +157,8 @@ implementation, safe fixes, or merge unless promoted into a `review-fix/` lane.
 Worker delegation must include the approved task card, worktree, fresh
 `origin/main` base requirement, expected tests, risks, done criteria,
 future-protection expectation, PR/status reporting requirements, and final
-`ARCHIVE_OK: yes/no` closeout rule.
+`ARCHIVE_OK: yes/no` closeout rule, including task worktree cleanup and
+`git worktree prune` expectations.
 
 One delegated worker owns one branch/worktree and one path scope unless there
 is an explicit handoff.
@@ -173,6 +186,13 @@ checkout clean enough that Guy can trust it as a sync and inspection point.
   `git status --short --branch` in the shared root checkout. Any task-created
   dirty file in root must be moved into the task worktree, committed/pushed, or
   deleted if disposable.
+- When an issue, PR, worker chat, review-fix lane, or one-off repo-scoped task
+  finishes, remove the completed task worktree with `git worktree remove
+  <path>` and then run `git worktree prune` from the repo root, after the branch
+  is committed/pushed or merged and no handoff still needs that local checkout.
+- Do not force-remove active, dirty, unpushed, blocked, parked, or transferred
+  worktrees. If cleanup is unsafe, final status must say `worktree cleanup
+  blocked: <reason>` and name the next owner.
 - If the shared root checkout already has unrelated dirty files, do not touch
   them. Report them as unrelated quarantine state only when they affect the
   task or artifact findability.
@@ -200,12 +220,42 @@ If any work remains, end with:
 ARCHIVE_OK: no - <specific reason>; next owner: <worker|review-fix|Guy|coordinator|external blocker>
 ```
 
+`ARCHIVE_OK: no` must never be a naked blocker. The same final response must
+include enough resolution detail that Guy does not have to ask "what should we
+do then?":
+
+- `Guy action`: `None` when no human action is needed, or the exact sentence,
+  decision, secret, approval, or manual step Guy must provide.
+- `Already handled`: what the agent tried, fixed, archived, transferred,
+  linked, or ruled out before stopping.
+- `Next owner/action`: the named owner plus the concrete next action, command,
+  check, thread, issue, PR, path, or access route.
+- `Why not handled now`: only when the current agent cannot safely complete or
+  transfer the next action itself.
+
+If the next owner would be the same worker, reviewer, coordinator, or another
+routine repo agent and the next step is safe, approved, and inside scope, do it
+or transfer it to a tracked owner before final. Do not make Guy infer that a
+routine cleanup, nudge, title repair, board sync, or review-fix recovery should
+happen next.
+
+If the only remaining blocker is caused by the active thread holding its own
+worktree, path, terminal, or app-managed checkout open, transfer the post-archive
+cleanup action to the coordinator, issue, Project row, or parent chat, then mark
+the current chat safe to archive when no other mission remains. Do not keep the
+chat open solely because archiving/releasing it is what makes cleanup possible.
+
 Do not omit `ARCHIVE_OK` because the response feels conversational, because
 the only change was issue/board/thread metadata, or because the answer is a
 process correction. A missing final `ARCHIVE_OK` on a Kruse repo-scoped
 closeout is itself a process bug; correct it immediately and, when needed,
 create or update a durable workflow fix instead of leaving the correction only
 in chat.
+
+If the turn created, used, or closed a task worktree, the closeout self-check
+must also report whether the worktree was removed and `git worktree prune` ran.
+`ARCHIVE_OK: yes` means either cleanup succeeded, no task worktree existed, or
+the remaining worktree was explicitly transferred to a tracked active owner.
 
 ## Task Cards And Queue Reports
 
@@ -285,8 +335,9 @@ ARCHIVE_OK: yes
 GitHub issue or PR closeout comments may mirror it, but they do not replace the
 required marker in the worker or review lane's final chat response.
 
-Review-fix lanes also own parent worker chat closeout. After merge, branch
-cleanup, and final status, the review-fix lane must archive the parent
+Review-fix lanes also own parent worker chat closeout. After merge, branch and
+worktree cleanup, `git worktree prune`, and final status, the review-fix lane
+must archive the parent
 implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID` and
 all closeout conditions are satisfied. If it cannot archive that parent chat
 directly, it must send the coordinator an exact archive request/command naming
@@ -403,6 +454,16 @@ Use the board like this:
 - `Review` is work waiting on a reviewer or review-fix lane.
 - `Blocked` is work with a named blocker and next owner.
 - `Done` is closed/completed history, not part of the active queue.
+
+Claiming an issue is a board update, not only a chat note. When a worker takes
+an issue, before implementation edits or silent local setup it must add the
+issue to the Project if needed, move `Status` to `Active`, set `Owner` and
+`Worker Thread`, and record the branch in the issue body, Project fields where
+available, or the first worker status comment. The worker then posts the
+`LEASE: active` status comment with `tools/claim-task.ps1`. If Project mutation
+is unavailable, the worker must comment with the attempted board update and the
+exact blocker before doing implementation work so the coordinator can repair
+the board.
 
 Done missions and tasks should be visually separate from live work. The preferred board view groups or filters by `Status` so `Done` appears as its own lane/section or in a dedicated done/history view. Active views should be sorted or manually ordered by `Urgency` first: `Urgent`, `High`, `Normal`, then `Later`. Do not mix done missions into the active mission list except when auditing history.
 
@@ -526,7 +587,11 @@ instruction specifically allows that live action.
    - One worker gets one issue.
    - The issue number is the worker's `TASK_ID`.
    - Branch name should use the repo's task prefixes, usually `feat/issue-<number>-<short-slug>`, `fix/issue-<number>-<short-slug>`, or `docs/issue-<number>-<short-slug>`.
-   - Worker claims the issue before editing by running `tools/claim-task.ps1 -Issue <number> -WorkerThread <thread-id> -Branch <branch>`.
+   - The first worker action is the board claim: ensure the issue is on the
+     GitHub Project, move `Status` to `Active`, set `Owner` and `Worker
+     Thread`, and record the branch in the issue/status trail.
+   - After the board claim, worker claims the issue before editing by running
+     `tools/claim-task.ps1 -Issue <number> -WorkerThread <thread-id> -Branch <branch>`.
    - Use a fresh worktree for implementation when practical.
    - Treat the shared root checkout as read-only quarantine for task work. If
      the task needs files, create or use the task worktree first.
@@ -581,14 +646,25 @@ instruction specifically allows that live action.
    - Coordinator accepts missing-test exceptions only by posting or approving a PR comment titled `TEST GAP ACCEPTED`.
 
 10. Merge and closeout
-   - The review-fix lane owns marking ready, merge, branch cleanup, and closeout after review, required local checks, and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge.
+   - The review-fix lane owns marking ready, merge, branch cleanup, task
+     worktree removal, `git worktree prune`, and closeout after review, required
+     local checks, and acceptance criteria are met, unless Guy or the
+     coordinator explicitly holds the merge.
    - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, an explicit ownership conflict, or an issue the review-fix lane has proven it cannot fix safely itself.
    - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
    - Worker or review-fix closeout must include an artifact audit: task
      worktree status, shared root status when accessible, and the access route
      for any file Guy or another chat is expected to find.
-   - After successful merge, branch cleanup, and final status, the review-fix lane must archive the parent implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID` and no unresolved parent work remains. If it cannot archive the parent directly, it must send the coordinator the exact parent-chat archive request/command.
+   - When a task finishes without a PR, the owning worker or coordinator closes
+     the issue/chat only after safe worktree removal and `git worktree prune`, or
+     after reporting the exact cleanup blocker and next owner.
+   - After successful merge, branch and worktree cleanup, `git worktree prune`,
+     and final status, the review-fix lane must archive the parent
+     implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID`
+     and no unresolved parent work remains. If it cannot archive the parent
+     directly, it must send the coordinator the exact parent-chat archive
+     request/command.
    - Every worker, review-fix lane, coordinator turn, support/research answer,
      queue patrol, and one-off process-correction turn covered by
      [Final Response Closeout](#final-response-closeout) must include
@@ -639,6 +715,7 @@ MISSION:
 WORKER THREAD:
 BRANCH:
 WORKTREE:
+WORKTREE CLEANUP:
 LEASE:
 PR:
 CURRENT STEP:
@@ -653,7 +730,10 @@ Useful means it changes what the coordinator knows. "Still working" without
 task ID, worker thread, current step, blocker, next action, and timestamp is
 not useful. Do not add routine "still working" comments.
 
-Use `LEASE: active` when a worker owns the issue. Use a later status comment with `LEASE: released` when the worker is replaced, the task is parked, or the issue is done.
+Use `LEASE: active` when a worker owns the issue. Use a later status comment
+with `LEASE: released` when the worker is replaced, the task is parked, or the
+issue is done. For final closeout, `WORKTREE CLEANUP` says `removed + pruned`,
+`not applicable`, or `blocked: <reason>; next owner: <owner>`.
 
 ## File Reference Access
 
@@ -763,7 +843,11 @@ Coordinator responsibilities:
 - Find exact decisions needed from Guy.
 - Park or replace unclear workers.
 - Run `tools/mission-control.ps1` for a read-only GitHub audit when a quick queue check is needed.
-- Run `tools/claim-task.ps1` or require the worker to run it before implementation edits.
+- Ensure a worker's first visible pickup action is the Project board claim:
+  issue on board, `Status` set to `Active`, `Owner` and `Worker Thread` set,
+  and branch recorded in the issue/status trail before implementation edits.
+- Run `tools/claim-task.ps1` or require the worker to run it immediately after
+  the board claim and before implementation edits.
 - Run `tools/link-issue-parent.ps1 -Parent <parent> -Child <child>` when any non-standalone issue belongs under another issue.
 - Use `tools/safe-gh-write.ps1` for multiline issue/comment writes.
 - Run `tools/ensure-gh-auth.ps1 -RequireProject` before Project mutations. A failed preflight is an auth-scope blocker, not a workflow-design question. GitHub may report the broader `project` scope instead of `read:project`; that is sufficient.
@@ -772,6 +856,42 @@ Coordinator responsibilities:
   issues, missing PR checklist signals, missing `TEST GAP ACCEPTED` comments,
   and stale workers.
 - Treat local PR guard failures as merge blockers. While the GitHub Actions PR pipeline pause is active, do not use `PR Ops Guard` Action status as a merge requirement.
+
+Coordinator passes are governed by the action gate from
+[`docs/ops/AUTOMATIC_COORDINATION_PATROL.md`](AUTOMATIC_COORDINATION_PATROL.md).
+Every item found in a patrol, queue check, heartbeat, or coordinator status
+turn must land in exactly one useful state: `Done automatically`, `Active
+owner`, `Waiting on Guy`, or `Hard blocker`.
+
+Allowed coordinator actions inside an approved scope:
+
+- Archive chats after a mission audit proves they are done, superseded, or
+  transferred with no unique unresolved context.
+- Close or park stale draft PRs only when the linked issue/PR says they are
+  superseded, explicitly out of scope, or already approved for closure.
+- Prune clean completed task worktrees when they are merged, exact
+  `origin/main` ancestors, or tied to closed/superseded work with no dirty
+  state, open PR, active owner, or private submodule risk; then run
+  `git worktree prune`.
+- Nudge or recover stale workers, missing review-fix lanes, malformed titles,
+  and failed worktree starts when the next action is already inside the
+  approved task scope.
+
+Forbidden without explicit approval: dirty, active, open-PR, private, or
+ambiguous worktree deletion; GitHub Actions dispatch/reruns while paused; live
+Supabase writes; email sends; broad scraping; paid API spend; secret/env
+mutation; production resource deletion/rename; or scope/product decisions.
+
+A coordinator that sees the same unchanged finding on two consecutive passes
+must stop repeating passive status. It must take an allowed action, park the
+item with a specific owner, create or update the durable process bug, or pause
+the heartbeat and report the hard blocker.
+
+Coordinator final responses must also follow the no-naked-archive-no rule from
+[Final Response Closeout](#final-response-closeout): `ARCHIVE_OK: no` needs a
+Guy-action line, an already-handled line, a concrete next owner/action, and the
+reason the agent could not safely finish or transfer it first. If no Guy action
+is needed, say `Guy action: None`.
 
 Planner may create docs, issues, project entries, and worker prompts. Planner should not silently merge, deploy, spend money, write live Supabase, send email, or do destructive cleanup.
 
@@ -825,9 +945,10 @@ For post-review ownership confusion, the durable rule is:
 - The review-fix lane may close as blocked only after it explains why it cannot
   safely fix the remaining issue itself and names the exact next owner.
 - The review-fix lane marks ready and merges after required local checks pass.
-- After merge, branch cleanup, and final status, the review-fix lane archives
-  the parent implementation worker chat or sends the coordinator an exact
-  archive request/command naming the parent `CHAT_TITLE` and `THREAD_ID`.
+- After merge, branch and worktree cleanup, `git worktree prune`, and final
+  status, the review-fix lane archives the parent implementation worker chat or
+  sends the coordinator an exact archive request/command naming the parent
+  `CHAT_TITLE` and `THREAD_ID`.
 - Coordinator takes over merge only when the review-fix lane is stale, unavailable, or explicitly handed off.
 
 ## Documentation Locations

@@ -114,6 +114,11 @@ Saved Project views must expose the fields that Guy is expected to scan. `Active
 
 The GitHub Project is the live taskboard. Active queue views should show `Ready`, `Active`, `Review`, and `Blocked` work. `Done` work should be visually separate as a closed/history lane or filtered view so completed missions do not look like current work. The Project's built-in `Parent issue` and `Sub-issues progress` fields carry hierarchy/progress for nested missions once the issues are linked with GitHub sub-issues.
 
+When a worker picks up an issue, the first visible action is a Project board
+claim: add the issue to the Project if missing, set `Status` to `Active`, set
+`Owner` and `Worker Thread`, and record the branch in the issue/status trail
+before implementation edits or silent local setup.
+
 Use these approved day-one labels when project-field automation is unavailable or when PR checks need easy signals:
 
 - Type: `type:mission`, `type:story`, `type:task`, `type:bug`, `type:research`, `type:docs`, `type:cleanup`
@@ -165,7 +170,8 @@ Expected to:
 - Treat the GitHub issue number as `TASK_ID`.
 - Work in a fresh worktree when practical.
 - Use branch name `codex/issue-<number>-<short-slug>`.
-- Claim the issue with `tools/claim-task.ps1` before implementation edits.
+- Claim the Project board row before implementation edits, then post the
+  `LEASE: active` issue status with `tools/claim-task.ps1`.
 - When Codex/app worktree creation fails, run
   `tools/init-task-worktree.ps1 -Issue <number> -Branch <branch> -Path .codex-worktrees/<task-slug>`
   before considering any shared-tree fallback.
@@ -229,7 +235,8 @@ The coordinator keeps the system honest:
 - Replaces or parks unclear workers.
 - Runs or reviews a mission-control audit before claiming the board is current.
 - Uses `tools/safe-gh-write.ps1` for multiline GitHub writes.
-- Requires active implementation workers to claim a task with `tools/claim-task.ps1`.
+- Requires active implementation workers to claim the Project board row before
+  implementation edits and then post the lease with `tools/claim-task.ps1`.
 - Runs `tools/sync-github-project-fields.ps1 -ProjectNumber <number>` after GitHub Project auth scopes are available.
 - Runs `tools/ensure-gh-auth.ps1 -RequireProject` before any GitHub Project mutation. If it reports the Codex `GH_TOKEN` shim problem, do not retry Project commands until auth scopes are fixed.
 
