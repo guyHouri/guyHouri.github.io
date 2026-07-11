@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-10",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-10.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-10.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-10.md",
+    "date": "2026-07-11",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-11.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-11",
+      "title": "Kruse Report 2026-07-11",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-11.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.md",
+      "headline": "Solar quantum yield and melanin isotopic fractionation; geomagnetic field morphogenesis coupling; RF exposure mechanisms in developing brains"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-10",
