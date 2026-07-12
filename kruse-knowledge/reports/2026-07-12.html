@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kruse Report 12/07/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Dark theme (default) */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151c2c;
+      --card-border: #202b42;
+      --card-border-hover: #2e3e5f;
+      --section-rule: #24314b;
+      --text-color: #f3f4f6;
+      --text-soft: #cbd5e1;
+      --text-body: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-color: #3b82f6;
+      --accent-hover: #60a5fa;
+      --locked-color: #4b5563;
+      --tag-bg: #1e293b;
+      --quote-bg: #0f1524;
+      --quote-rule: #4b5563;
+      --expanded-bg: #0f1524;
+      --locked-grad-start: #151c2c;
+      --locked-grad-end: #111622;
+      --locked-dash: #2d3748;
+      --locked-badge-bg: #27272a;
+      --locked-badge-fg: #a1a1aa;
+      --footer-color: #6b7280;
+      --toggle-bg: rgba(255,255,255,0.06);
+      --toggle-border: rgba(255,255,255,0.12);
+    }
+    /* Light theme — toggled by class on <body> */
+    body.light {
+      --bg-color: #f9fafb;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --card-border-hover: #cbd5e1;
+      --section-rule: #e5e7eb;
+      --text-color: #0f172a;
+      --text-soft: #334155;
+      --text-body: #1f2937;
+      --text-muted: #6b7280;
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --locked-color: #94a3b8;
+      --tag-bg: #eff6ff;
+      --quote-bg: #f1f5f9;
+      --quote-rule: #cbd5e1;
+      --expanded-bg: #f1f5f9;
+      --locked-grad-start: #ffffff;
+      --locked-grad-end: #f3f4f6;
+      --locked-dash: #cbd5e1;
+      --locked-badge-bg: #e5e7eb;
+      --locked-badge-fg: #475569;
+      --footer-color: #94a3b8;
+      --toggle-bg: rgba(0,0,0,0.04);
+      --toggle-border: rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-color); padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; transition: background-color 0.2s ease, color 0.2s ease; }
+    .container { width: 100%; max-width: 650px; display: flex; flex-direction: column; gap: 20px; }
+    header { text-align: center; margin-bottom: 10px; position: relative; padding-top: 48px; }
+    h1 { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(45deg, #3b82f6, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; margin-bottom: 4px; }
+    .subtitle { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
+    .theme-toggle { position: absolute; top: 0; right: 0; background: var(--toggle-bg); border: 1px solid var(--toggle-border); color: var(--text-color); cursor: pointer; padding: 6px 10px; border-radius: 20px; font-size: 0.85rem; line-height: 1; transition: background 0.2s ease; }
+    .theme-toggle:hover { background: var(--card-border); }
+    .level-toggle { position: absolute; top: 0; left: 0; display: flex; gap: 4px; background: var(--toggle-bg); border: 1px solid var(--toggle-border); border-radius: 20px; padding: 3px; }
+    .level-toggle button { background: transparent; color: var(--text-muted); border: none; cursor: pointer; padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; transition: background 0.15s ease, color 0.15s ease; }
+    .level-toggle button.active { background: var(--accent-color); color: #fff; }
+    .level-toggle button:hover:not(.active) { color: var(--text-color); }
+    /* Concept-level gating: pro reader hides noob-only chips; hacker hides all. */
+    body.level-pro .expandable-concept[data-concept-level="noob"],
+    body.level-hacker .expandable-concept[data-concept-level] {
+      color: inherit; border-bottom: none; cursor: default; font-weight: inherit; pointer-events: none;
+    }
+    body.level-pro .expanded-content[data-concept-level="noob"],
+    body.level-hacker .expanded-content { display: none !important; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
+    .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
+    .card-points ul { margin: 0; }
+    .card:hover { border-color: var(--card-border-hover); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .source-link { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; border-bottom: 1px dashed var(--text-muted); transition: all 0.2s ease; }
+    .source-link:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .item-text { font-size: 1rem; line-height: 1.45; color: var(--text-body); }
+    .source-quote { background: var(--quote-bg); border-left: 3px solid var(--quote-rule); border-radius: 4px 8px 8px 4px; padding: 10px 14px; font-style: italic; font-size: 0.92rem; color: var(--text-muted); }
+    .citations { padding: 8px 12px; background: var(--quote-bg); border-radius: 8px; }
+    .citations-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-hover); letter-spacing: 0.04em; margin-bottom: 6px; }
+    .citations ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .citation-paper { font-size: 0.85rem; color: var(--text-body); font-weight: 600; }
+    .citation-claim { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+    .bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { position: relative; padding-left: 18px; line-height: 1.45; font-size: 1rem; }
+    .bullet-list li::before { content: "•"; color: var(--accent-color); font-weight: bold; position: absolute; left: 0; top: 0; }
+    .forum-item { display: flex; flex-direction: column; gap: 4px; }
+    .forum-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .expandable-concept { color: var(--accent-hover); border-bottom: 1px dashed var(--accent-hover); cursor: pointer; font-weight: 600; }
+    .expanded-content { max-height: 0; overflow: hidden; background-color: var(--expanded-bg); border-radius: 6px; padding: 0 12px; margin: 0; transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease; font-size: 0.9rem; color: var(--text-soft); }
+    .expanded-content.open { max-height: 500px; padding: 10px 12px; margin-top: 4px; margin-bottom: 4px; border-left: 3px solid var(--accent-color); }
+    .locked-section { background: linear-gradient(180deg, var(--locked-grad-start) 0%, var(--locked-grad-end) 100%); border: 1px dashed var(--locked-dash); border-radius: 12px; padding: 24px; text-align: center; opacity: 0.85; }
+    .locked-title { font-size: 1.1rem; font-weight: 600; color: var(--locked-color); margin-bottom: 4px; }
+    .locked-badge { font-size: 0.7rem; background-color: var(--locked-badge-bg); color: var(--locked-badge-fg); padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px; }
+    footer { text-align: center; color: var(--footer-color); font-size: 0.75rem; margin-top: 12px; }
+    footer a { color: var(--footer-color); }
+  </style>
+  <link rel="canonical" href="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-12.html" />
+  <link rel="sitemap" type="application/xml" href="https://guyhouri.github.io/kruse-knowledge/sitemap.xml" />
+  <link rel="alternate" type="text/plain" href="https://guyhouri.github.io/kruse-knowledge/llms.txt" title="LLM crawl index" />
+  <link rel="alternate" type="application/json" href="https://guyhouri.github.io/kruse-knowledge/ai-index.json" title="Machine-readable crawl index" />
+  <link rel="alternate" type="application/rss+xml" href="https://guyhouri.github.io/kruse-knowledge/feed.xml" title="Kruse Daily Reports feed" />
+  <link rel="alternate" type="text/markdown" href="https://guyhouri.github.io/kruse-knowledge/latest-summary.md" title="Latest summary Markdown" />
+<style>
+    html { scroll-behavior: smooth; }
+    body {
+      --site-bg: #0b0f19;
+      --site-panel: #121a2a;
+      --site-panel-2: #0d1422;
+      --site-border: #26334d;
+      --site-text: #f4f7fb;
+      --site-soft: #c6d2e1;
+      --site-muted: #8fa0b5;
+      --site-accent: #4ea1ff;
+      --site-success: #7bdcb5;
+      --site-danger: #ffbd7a;
+      --site-button-text: #06101d;
+      padding: 32px 16px 48px !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+    body.light {
+      --site-bg: #f7f9fc;
+      --site-panel: #ffffff;
+      --site-panel-2: #f8fafc;
+      --site-border: #d8e0ea;
+      --site-text: #111827;
+      --site-soft: #334155;
+      --site-muted: #64748b;
+      --site-accent: #2563eb;
+      --site-success: #047857;
+      --site-danger: #b45309;
+      --site-button-text: #ffffff;
+    }
+    body.site-drawer-open { overflow: hidden; }
+    .container {
+      max-width: 690px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .site-menu-button {
+      position: fixed;
+      top: 16px;
+      left: max(16px, calc((100vw - 690px) / 2 - 112px));
+      z-index: 80;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-menu-icon { font-size: 1.35rem; line-height: 1; }
+    .site-menu-label { letter-spacing: 0; }
+    .site-report-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 88;
+      background: rgba(3,7,18,0.58);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+    .site-report-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 90;
+      width: min(320px, calc(100vw - 48px));
+      padding: 18px;
+      background: var(--site-bg);
+      border-right: 1px solid var(--site-border);
+      transform: translateX(-105%);
+      transition: transform 0.2s ease;
+      box-shadow: 24px 0 60px rgba(0,0,0,0.38);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body.site-drawer-open .site-report-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.site-drawer-open .site-report-drawer { transform: translateX(0); }
+    .site-drawer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--site-border);
+    }
+    .site-drawer-kicker {
+      margin-bottom: 4px;
+      color: var(--site-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .site-drawer-title { color: var(--site-text); font-size: 1rem; font-weight: 850; line-height: 1.25; }
+    .site-drawer-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .site-drawer-link {
+      display: block;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      text-decoration: none;
+    }
+    .site-drawer-link.site-drawer-primary {
+      border-color: transparent;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+    }
+    .site-drawer-link.site-drawer-primary span {
+      color: color-mix(in srgb, var(--site-button-text) 82%, transparent);
+    }
+    .site-drawer-link strong { display: block; font-size: 0.95rem; }
+    .site-drawer-link span { display: block; margin-top: 3px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.35; }
+    .site-top-subscribe {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 80;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-mobile-subscribe {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 78;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+    }
+    .site-report-footer {
+      width: min(690px, calc(100% - 32px));
+      margin: 34px auto 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .site-report-panel {
+      padding: 18px;
+      background: var(--site-panel);
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      color: var(--site-text);
+    }
+    .site-report-panel h2 {
+      margin: 0 0 8px;
+      color: var(--site-text);
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+    .site-report-panel p { margin: 0 0 14px; color: var(--site-soft); line-height: 1.45; }
+    .site-report-panel label { display: block; margin: 10px 0 6px; color: var(--site-muted); font-size: 0.82rem; font-weight: 800; }
+    .site-report-panel input,
+    .site-report-panel textarea,
+    .site-report-panel select {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--site-border);
+      border-radius: 6px;
+      background: var(--site-panel-2);
+      color: var(--site-text);
+      padding: 0 10px;
+      font: inherit;
+    }
+    .site-report-panel textarea { min-height: 118px; padding: 10px; resize: vertical; }
+    .site-report-panel button {
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .site-report-panel button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .site-report-panel .form-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .site-report-form-note { margin-top: 12px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.4; }
+    .site-report-form-success { margin-top: 12px; color: var(--site-success); font-size: 0.88rem; font-weight: 800; }
+    .site-report-form-error { margin-top: 12px; color: var(--site-danger); font-size: 0.88rem; font-weight: 800; }
+    .site-report-credits {
+      grid-column: 1 / -1;
+      color: var(--site-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .card-votes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--card-border, var(--site-border));
+      color: var(--text-muted, var(--site-muted));
+      font-size: 0.78rem;
+    }
+    .card-votes-label { font-weight: 800; color: var(--text-soft, var(--site-soft)); }
+    .card-votes button {
+      width: auto;
+      min-height: 30px;
+      margin: 0;
+      padding: 4px 9px;
+      border: 1px solid var(--card-border, var(--site-border));
+      border-radius: 999px;
+      background: var(--quote-bg, var(--site-panel-2));
+      color: var(--text-body, var(--site-text));
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .card-votes button.active,
+    .card-votes button:hover {
+      border-color: var(--accent-color, var(--site-accent));
+      color: var(--accent-color, var(--site-accent));
+    }
+    .card-vote-status { min-height: 1em; color: var(--text-muted, var(--site-muted)); }
+    @media (max-width: 760px) {
+      body { padding: 24px 12px 88px !important; }
+      .site-menu-button { top: 12px; left: 12px; }
+      .site-top-subscribe { display: none; }
+      .site-mobile-subscribe { display: flex; }
+      .container header { padding-top: 92px !important; }
+      .container .level-toggle { top: 48px !important; left: 0 !important; }
+      .container .theme-toggle { top: 48px !important; right: 0 !important; }
+      .site-report-footer { width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="site-menu-button" id="siteMenuButton" aria-label="Open report menu" aria-controls="siteReportDrawer" aria-expanded="false"><span class="site-menu-icon" aria-hidden="true">&#9776;</span><span class="site-menu-label">Menu</span></button>
+  <div class="site-report-backdrop" data-site-menu-close></div>
+  <nav class="site-report-drawer" id="siteReportDrawer" aria-label="Report menu">
+    <div class="site-drawer-header">
+      <div>
+        <div class="site-drawer-kicker">Kruse Report</div>
+        <div class="site-drawer-title">Jul 12, 2026</div>
+      </div>
+      <button type="button" class="site-drawer-close" data-site-menu-close aria-label="Close report menu">&times;</button>
+    </div>
+    <a class="site-drawer-link site-drawer-primary" href="#get-report"><strong>Subscribe to daily email</strong><span>Get the next report in your inbox.</span></a>
+    <a class="site-drawer-link" href="../index.html"><strong>All reports</strong><span>Back to the archive.</span></a>
+    <a class="site-drawer-link" href="../latest/"><strong>Latest report</strong><span>Jump to the newest daily report.</span></a>
+    <a class="site-drawer-link" href="#report-feedback"><strong>Improve this report</strong><span>Leave feedback we can use later for prompt tuning.</span></a>
+    <a class="site-drawer-link" href="../unsubscribe/"><strong>Unsubscribe</strong><span>Remove your email from future sends.</span></a>
+  </nav>
+  <a class="site-top-subscribe" href="#get-report">Subscribe</a>
+  <a class="site-mobile-subscribe" href="#get-report">Subscribe to daily email</a>
+
+  <div class="container">
+    <header>
+      <div class="level-toggle" role="tablist" aria-label="Reader knowledge level">
+        <button type="button" data-level="noob"   aria-pressed="false">Noob</button>
+        <button type="button" data-level="pro"    aria-pressed="true">Pro</button>
+        <button type="button" data-level="hacker" aria-pressed="false">Hacker</button>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">🌙 Dark</button>
+      <h1>Kruse Report 12/07/2026</h1>
+      <div class="subtitle">Magnetic coherence and cellular hypoxia; skin atrophy mechanism; RF radiation effects on developing brain; molecular hydrogen for viral stress</div>
+    </header>
+      <div class="section-title">Twitter Updates</div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-12-nmcdgd">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Hypoxia results from magnetic dynamo failure, not oxygen scarcity</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Magnetic field collapse and hypoxia</span><a href="https://x.com/i/status/2076125891961246067" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">iron-neuromelanin semiconductor</span> or Earth&#39;s steady DC magnetic field is jammed by <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">non-native EMF</span>, the cell loses its ability to magnetically pin electron spins. This collapse of the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">magnetic dynamo</span> prevents enforcement of the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">triplet ground state</span> needed for efficient oxygen metabolism. As magnetism fades, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">free radical</span> signals shift from coherent magnetic switches to chaotic <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">singlet oxygen</span> noise. <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">Hydrogen bonds</span> destabilize and unzip. The result is cellular suffocation in an ocean of unutilizable oxygen - hypoxia despite adequate oxygen availability. This mechanism explains why <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">heteroplasmy</span> and disease manifest during magnetic excursions: the cell&#39;s energy processing requires stable magnetic coherence, not just oxygen supply. Mitochondria normally generate free radicals to act as local magnetic switches, manipulating the size, shape, and charge density of the cellular matrix. When these magnetic moments operate coherently, the cell processes energy with zero friction.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>iron-neuromelanin semiconductor:</strong> A biological quantum structure in cells that uses iron and melanin to act as a magnetic dynamo, enforcing coherent electron spin states and enabling efficient energy metabolism.
+    </div>
+<div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>non-native EMF:</strong> Artificial electromagnetic fields from human technology (WiFi, cell towers, power lines) that differ from Earth&#39;s natural magnetic field and can disrupt cellular magnetic coherence.
+    </div>
+<div id="concept-2" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>magnetic dynamo:</strong> The cellular mechanism that generates and maintains a stable local magnetic field, enabling coherent electron spin manipulation and energy processing with zero friction.
+    </div>
+<div id="concept-3" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet ground state:</strong> A quantum state of oxygen where electron spins are aligned in a way that allows efficient energy transfer in mitochondria; requires magnetic field coherence to maintain.
+    </div>
+<div id="concept-4" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>free radical:</strong> Unstable molecules with unpaired electrons; in healthy cells, they act as controlled magnetic switches; in stressed cells, they become chaotic and destructive.
+    </div>
+<div id="concept-5" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> An excited, unstable form of oxygen with paired electron spins; accumulates when magnetic coherence fails and causes oxidative damage and hydrogen bond disruption.
+    </div>
+<div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>Hydrogen bonds:</strong> A technical term used by the selected source. The report keeps &quot;hydrogen bonds&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-7" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>heteroplasmy:</strong> A state where mitochondria contain mixed populations of normal and mutant DNA; disease manifestation depends on magnetic field coherence to suppress pathogenic variants.
+    </div></div><div class="source-quote">If the iron-neuromelanin semiconductor or the Earth&#39;s steady DC magnetic field is jammed by non-native EMFs, the cell loses its ability to magnetically &quot;pin&quot; these spins.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-12-1qo0w0k">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">Geomagnetic field proximity may influence extreme heat events</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Van Allen belts and heat dome correlation</span><a href="https://x.com/i/status/2075945421461913840" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Jack raises a direct question about the relationship between <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">Van Allen radiation belt</span> proximity to Earth and the occurrence of extreme heat domes in the western United States. The incomplete tweet suggests a causal or correlative link between solar and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">geomagnetic</span> activity and the manifestation of dangerous heat extremes. This frames extreme weather not solely as an atmospheric or CO₂ phenomenon, but as a potential <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">geomagnetic excursion</span> effect on Earth&#39;s <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">magnetosphere</span> and biological stress. The signal is to track <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">geomagnetic indices</span> and Van Allen belt position during <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">heat dome</span> events and to understand that cellular magnetic stress during geomagnetic shifts may compound heat-related biological strain.</div><div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>Van Allen radiation belt:</strong> Zones of energetic charged particles trapped by Earth&#39;s magnetic field; their proximity to Earth varies with solar activity and can affect atmospheric and biological conditions.
+    </div>
+<div id="concept-9" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>geomagnetic:</strong> Relating to Earth&#39;s magnetic field; geomagnetic activity includes fluctuations caused by solar wind and cosmic radiation that can affect weather and cellular function.
+    </div>
+<div id="concept-10" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>geomagnetic excursion:</strong> A period when Earth&#39;s magnetic field weakens or shifts, reducing magnetosphere shielding and allowing increased solar radiation penetration; associated with biological stress and disease.
+    </div>
+<div id="concept-11" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>magnetosphere:</strong> A technical term used by the selected source. The report keeps &quot;magnetosphere&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-12" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>geomagnetic indices:</strong> Measurements of Earth&#39;s magnetic field disturbance; the Kp index and Dst index track real-time geomagnetic activity and can be correlated with biological and weather events.
+    </div>
+<div id="concept-13" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>heat dome:</strong> A technical term used by the selected source. The report keeps &quot;heat dome&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div></div><div class="source-quote">https://t.co/DtYfp2yEDF If you are not willing to kill or die for your own most treasured values, you should think carefully before welcoming in migrants who would do both for theirs.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-12-1snkjds">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">2026 review identifies four non-thermal mechanisms of RF damage to neural development</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">RF radiation and developing brain harm</span><a href="https://x.com/i/status/2075926783795368138" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A 2026 review in Current Approaches in Psychiatry analyzed 65 experimental studies on <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">RF radiation</span> exposure (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">2.4 GHz</span> and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">5 GHz</span> frequencies) to developing brains. Across all studies, four consistent mechanisms emerged independent of tissue heating: increased <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">oxidative stress</span>, impaired <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">synaptic plasticity</span>, disrupted <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">neurogenesis</span>, and altered <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">dendritic spine</span> formation. These effects occurred at exposure levels where thermal heating was not the proposed mechanism. The reported outcomes included persistent changes in learning, memory, motor activity, and anxiety behavior after exposure ended. The <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">FCC exposure limits</span>, adopted in 1996 and never updated, are based solely on preventing excessive tissue heating and do not account for these non-thermal biological effects. The practical signal is clear: keep wireless devices away from pregnant belly and off at night; hardwire what you can; distance is free.</div><div id="concept-14" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>RF radiation:</strong> Radiofrequency electromagnetic radiation used by WiFi, cell phones, and wireless devices; operates at 2.4 GHz and 5 GHz frequencies.
+    </div>
+<div id="concept-15" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>2.4 GHz:</strong> A technical term used by the selected source. The report keeps &quot;2.4 GHz&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-16" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>5 GHz:</strong> A technical term used by the selected source. The report keeps &quot;5 GHz&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-17" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>oxidative stress:</strong> An imbalance where free radicals exceed the cell&#39;s antioxidant capacity, causing damage to proteins, lipids, and DNA.
+    </div>
+<div id="concept-18" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>synaptic plasticity:</strong> The ability of synapses (connections between neurons) to strengthen or weaken over time; essential for learning and memory formation.
+    </div>
+<div id="concept-19" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>neurogenesis:</strong> The birth and development of new neurons in the brain; critical during fetal development and early childhood for building neural circuits.
+    </div>
+<div id="concept-20" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>dendritic spine:</strong> Small protrusions on neuron dendrites that receive signals from other neurons; their formation and shape are essential for learning and memory.
+    </div>
+<div id="concept-21" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>FCC exposure limits:</strong> U.S. regulatory standards for safe RF radiation exposure, based on preventing tissue heating; have not been updated since 1996 despite new evidence of non-thermal effects.
+    </div></div><div class="source-quote">Across those 65 studies the same 4 mechanisms kept surfacing: 1⃣Increased oxidative stress 2⃣Impaired synaptic plasticity 3⃣Disrupted neurogenesis 4⃣Altered dendritic spine formation</div></div>
+      </div>
+      <div class="section-title">Forum Updates</div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-12-q48zob">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">Sunglasses and sunscreen trigger skin atrophy through broken optical-magnetic coupling</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://forum.jackkruse.com/threads/optimal-journal.29775/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">Skin atrophy</span> - loss of color and structural integrity - results from a broken <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">planetary dynamo</span> triplet oxygen link. When sunglasses or chemical sunscreen block light from reaching the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">eye-pineal axis</span>, the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">LC oscillator</span> is blinded and the brain fails to upregulate <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">MITF</span>, the master transcription factor for melanin production. Without adequate <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">melanin-copper semiconductor</span> grid formation, incoming light cannot be cleanly routed through the skin. The system loses its <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">fine structure constant</span> (1/137) quantum coherence grip. Local oxygen then drops into volatile, excited <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">singlet oxygen</span>. This disrupts the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">POMC</span> pro-hormone spine cleavage and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">pro-hormone convertases</span>, leading to profound structural liquidation of skin tissue. The signal is that skin paleness is not cosmetic but a marker of broken optical-magnetic-mitochondrial coupling. Restoring direct sun exposure to the eye-pineal axis is the pathway to reverse atrophy.</div><div id="concept-22" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>Skin atrophy:</strong> A technical term used by the selected source. The report keeps &quot;skin atrophy&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+    </div>
+<div id="concept-23" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>planetary dynamo:</strong> Earth&#39;s magnetic field generation system; when cells are disconnected from this field via sunglasses or underground living, systemic dysfunction follows.
+    </div>
+<div id="concept-24" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>eye-pineal axis:</strong> The light-sensing pathway from the eye through the pineal gland; when blocked by sunglasses, it fails to signal the body to produce melanin and maintain skin and systemic coherence.
+    </div>
+<div id="concept-25" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>LC oscillator:</strong> The eye-pineal melanin axis that acts as a light-sensitive oscillator; when blinded by sunglasses, it fails to signal the body to produce melanin and maintain skin coherence.
+    </div>
+<div id="concept-26" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>MITF:</strong> Microphthalmia-associated transcription factor; the master regulator of melanin production and skin pigmentation; requires light signal to the pineal to be upregulated.
+    </div>
+<div id="concept-27" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>melanin-copper semiconductor:</strong> A biological quantum structure in skin that uses melanin and copper to execute common-mode rejection of incoming light and maintain coherent energy processing.
+    </div>
+<div id="concept-28" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>fine structure constant:</strong> A fundamental quantum constant (≈1/137) that governs electromagnetic interactions; biological systems maintain coherence through this constant; loss of magnetic field coherence breaks this grip.
+    </div>
+<div id="concept-29" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> An excited, unstable form of oxygen that accumulates when magnetic coherence fails; causes oxidative damage and disrupts hydrogen bonding in proteins.
+    </div>
+<div id="concept-30" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>POMC:</strong> Pro-opiomelanocortin; a pro-hormone that is cleaved into multiple signaling peptides including α-melanocyte-stimulating hormone; requires proper magnetic coherence for correct cleavage.
+    </div>
+<div id="concept-31" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>pro-hormone convertases:</strong> Enzymes that cleave pro-hormones into active peptides; their function depends on proper cellular magnetic field coherence and singlet oxygen suppression.
+    </div></div><div class="source-quote">Being pale = the largest organ in your body has atrophied for some reason</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-07-12-1o2xigu">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
+          <span class="card-title">Molecular hydrogen machines reduce viral titers and oxidative stress markers</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Molecular hydrogen for viral and oxidative stress</span><a href="https://forum.jackkruse.com/threads/hydrogen-machines-and-capsules.33004/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Jack reports that many people using Tyler LeBrand&#39;s <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-32" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">molecular hydrogen</span> machines have achieved reduced <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-33" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">viral titers</span>, lowered <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">oxidative stress</span> markers, and generally positive health benefits. <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-35" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">Molecular hydrogen</span> acts as a selective <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-36" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">antioxidant</span> and <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">free radical</span> scavenger, reducing the oxidative burden that both viral infection and nnEMF exposure create. The signal is to consider molecular hydrogen machines as an adjunct therapy for viral infections and oxidative stress states. Monitor viral titers and oxidative stress markers (such as 8-OHdG or malondialdehyde) before and after hydrogen therapy to track individual response.</div><div id="concept-32" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>molecular hydrogen:</strong> H₂ gas; a selective antioxidant that crosses the blood-brain barrier and mitochondrial membranes to neutralize harmful free radicals without interfering with beneficial signaling.
+    </div>
+<div id="concept-33" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>viral titers:</strong> The concentration or amount of virus in the body; lower titers indicate reduced viral load and infection burden.
+    </div>
+<div id="concept-34" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>oxidative stress:</strong> An imbalance where free radicals exceed the cell&#39;s antioxidant capacity, causing damage to proteins, lipids, and DNA.
+    </div>
+<div id="concept-35" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>Molecular hydrogen:</strong> H₂ gas; a selective antioxidant that crosses the blood-brain barrier and mitochondrial membranes to neutralize harmful free radicals without interfering with beneficial signaling.
+    </div>
+<div id="concept-36" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>antioxidant:</strong> A substance that neutralizes free radicals and prevents oxidative damage; molecular hydrogen is selective, targeting only the most harmful free radicals.
+    </div>
+<div id="concept-37" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
+      <strong>free radical:</strong> An unstable molecule with unpaired electrons; can damage cells, but some free radicals are necessary for cell signaling.
+    </div></div><div class="source-quote">HYDROGEN MACHINES AND CAPSULES @JillianB Jack Kruse I know so many people following Tyler LeBrand (https://molecularhydrogeninstitute.org/research/) using his machine and they have reduced viral titers, lowered oxidative stress markers, etc.</div></div>
+      </div>
+      <div class="section-title">Blog Updates</div>
+      <div class="card empty-signal-card" data-vote-card-id="kruse-2026-07-12-nwdo5w">
+        <div class="card-header"><span class="tag">No selected signal</span></div>
+        <div class="item-text">No new Jack Kruse blog. No new source-bound protocol, treatment, cited research, mechanism, or case detail passed the report gate for this section.</div>
+        <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
+      </div>
+      <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-12-hpqefp">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
+          <span class="card-title">June 2026 Quantum Biologic PowWow - transcription ready.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-5-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Recording found; Q&amp;A transcription ready.</div><div class="source-quote">June 2026 - Quantum Biologic PowWow music_video Click here to access the Audio MP3 File</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-12-14udwr2">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
+          <span class="card-title">May 2026 Quantum Biologic PowWow - transcription ready.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-6-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Recording found; Q&amp;A transcription ready.</div><div class="source-quote">May 2026 - Quantum Biologic PowWow music_video Click here to access the Audio MP3 File</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-07-12-1hasj23">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
+          <span class="card-title">April 2026 Quantum Biologic PowWow - transcription ready.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-7-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/april-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Recording found; Q&amp;A transcription ready.</div><div class="source-quote">April 2026 - Quantum Biologic PowWow music_video Click here to access the Audio MP3 File</div></div>
+      </div>
+    <div class="locked-section">
+      <div class="locked-title">
+        <span>Interact with Report (Ask AI)</span>
+        <span class="locked-badge">Soon</span>
+      </div>
+    </div>
+    <footer>
+      Auto-generated by <a href="https://github.com/guyHouri/kruse-knowledge">kruse-knowledge</a>.
+      Source: <a href="https://x.com/DrJackKruse">@DrJackKruse</a>.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
+    (function () {
+      function targetFor(chip) {
+        if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
+        var targetId = chip.getAttribute('data-concept-target');
+        if (!targetId) return null;
+        var panel = document.getElementById(targetId);
+        var card = chip.closest && chip.closest('.card');
+        if (!panel || !card || panel.closest('.card') !== card) return null;
+        if (chip.getAttribute('data-card-id') !== panel.getAttribute('data-card-id')) return null;
+        return panel;
+      }
+      function toggleChip(chip) {
+        var panel = targetFor(chip);
+        if (!panel) return;
+        var open = !panel.classList.contains('open');
+        panel.classList.toggle('open', open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        chip.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      document.addEventListener('click', function (event) {
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        toggleChip(chip);
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        event.preventDefault();
+        toggleChip(chip);
+      });
+    })();
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var saved = null;
+      try { saved = localStorage.getItem('kruse-theme'); } catch (e) {}
+      if (saved === 'light') document.body.classList.add('light');
+      function syncLabel() {
+        if (!btn) return;
+        btn.textContent = document.body.classList.contains('light') ? '☀ Light' : '🌙 Dark';
+      }
+      syncLabel();
+      if (btn) btn.addEventListener('click', function () {
+        document.body.classList.toggle('light');
+        try { localStorage.setItem('kruse-theme', document.body.classList.contains('light') ? 'light' : 'dark'); } catch (e) {}
+        syncLabel();
+      });
+    })();
+    (function () {
+      var savedLevel = null;
+      try { savedLevel = localStorage.getItem('kruse-level'); } catch (e) {}
+      var initial = (savedLevel === 'noob' || savedLevel === 'pro' || savedLevel === 'hacker') ? savedLevel : 'pro';
+      function apply(level) {
+        document.body.classList.remove('level-noob', 'level-pro', 'level-hacker');
+        document.body.classList.add('level-' + level);
+        var btns = document.querySelectorAll('.level-toggle button');
+        for (var i = 0; i < btns.length; i++) {
+          var on = btns[i].getAttribute('data-level') === level;
+          btns[i].classList.toggle('active', on);
+          btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+        var chips = document.querySelectorAll('.expandable-concept[data-concept-target]');
+        for (var j = 0; j < chips.length; j++) {
+          var disabled = level === 'hacker' || (level === 'pro' && chips[j].getAttribute('data-concept-level') === 'noob');
+          chips[j].setAttribute('aria-disabled', disabled ? 'true' : 'false');
+          chips[j].setAttribute('tabindex', disabled ? '-1' : '0');
+        }
+        try { localStorage.setItem('kruse-level', level); } catch (e) {}
+      }
+      apply(initial);
+      var btns = document.querySelectorAll('.level-toggle button');
+      for (var i = 0; i < btns.length; i++) {
+        (function (b) {
+          b.addEventListener('click', function () { apply(b.getAttribute('data-level')); });
+        })(btns[i]);
+      }
+    })();
+  </script>
+<div class="site-report-footer">
+    <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
+      <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
+      <p>Get the next daily report by email.</p>
+      <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
+        <input type="hidden" name="form_type" value="kruse-report-interest" />
+        <input type="hidden" name="report_date" value="2026-07-12" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-12.html" />
+        <p style="display:none"><label>Company <input name="company" /></label></p>
+        <label for="report-first-name-2026-07-12">First name</label>
+        <input id="report-first-name-2026-07-12" name="first_name" autocomplete="given-name" />
+        <label for="report-last-name-2026-07-12">Last name</label>
+        <input id="report-last-name-2026-07-12" name="last_name" autocomplete="family-name" />
+        <label for="report-email-2026-07-12">Email</label>
+        <input id="report-email-2026-07-12" name="email" type="email" autocomplete="email" required />
+        <label for="report-frequency-2026-07-12">Delivery</label>
+        <select id="report-frequency-2026-07-12" name="frequency">
+          <option>Daily</option>
+          <option>Only strong signal days</option>
+          <option>Weekly digest</option>
+        </select>
+        <label for="report-comments-2026-07-12">Comments</label>
+        <textarea id="report-comments-2026-07-12" name="comments"></textarea>
+        <button type="submit">Subscribe</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately to the mailing list.</div>
+    </section>
+    <section class="site-report-panel" id="report-feedback" aria-labelledby="report-feedback-title">
+      <h2 id="report-feedback-title">Improve future reports</h2>
+      <p>Tell us what was useful, confusing, missing, or too AI-ish. We will use this later to tune prompts.</p>
+      <form name="kruse-report-feedback" method="POST" data-supabase-form="feedback">
+        <input type="hidden" name="form_type" value="kruse-report-feedback" />
+        <input type="hidden" name="report_date" value="2026-07-12" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-12.html" />
+        <p style="display:none"><label>Website <input name="website" /></label></p>
+        <label for="feedback-first-name-2026-07-12">First name</label>
+        <input id="feedback-first-name-2026-07-12" name="first_name" autocomplete="given-name" />
+        <label for="feedback-last-name-2026-07-12">Last name</label>
+        <input id="feedback-last-name-2026-07-12" name="last_name" autocomplete="family-name" />
+        <label for="feedback-rating-2026-07-12">Overall</label>
+        <select id="feedback-rating-2026-07-12" name="rating">
+          <option>Useful</option>
+          <option>Mixed</option>
+          <option>Bad</option>
+        </select>
+        <label for="feedback-text-2026-07-12">Feedback</label>
+        <textarea id="feedback-text-2026-07-12" name="comments" required></textarea>
+        <label for="feedback-email-2026-07-12">Email (optional)</label>
+        <input id="feedback-email-2026-07-12" name="email" type="email" autocomplete="email" />
+        <button type="submit">Send feedback</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Thank you.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately for prompt tuning.</div>
+    </section>
+    <div class="site-report-credits">Credits: Guy Houri and DrJackKruse.</div>
+  </div>
+<script>
+    (function () {
+      var button = document.getElementById('siteMenuButton');
+      var drawer = document.getElementById('siteReportDrawer');
+      if (!button || !drawer) return;
+
+      function setOpen(open) {
+        document.body.classList.toggle('site-drawer-open', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          var focusTarget = drawer.querySelector('a, button');
+          if (focusTarget) focusTarget.focus();
+        } else {
+          button.focus();
+        }
+      }
+
+      button.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('site-drawer-open'));
+      });
+
+      var closeTargets = document.querySelectorAll('[data-site-menu-close], .site-drawer-link');
+      for (var i = 0; i < closeTargets.length; i++) {
+        closeTargets[i].addEventListener('click', function () { setOpen(false); });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_SUPABASE = {"url":"https://zpxhovwsswnjdjibcvsh.supabase.co","key":"sb_publishable_afhmZKXzerLWNYENUqsaFg_XfVWjODD","tables":{"mailingList":"kruse_mailing_list","feedback":"kruse_report_feedback","cardVotes":"kruse_card_votes","cardVoteCounts":"kruse_card_vote_counts"}};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      if (!config || !config.url || !config.key) return;
+
+      function value(form, name) {
+        var field = form.querySelector('[name="' + name + '"]');
+        return field ? String(field.value || '').trim() : '';
+      }
+
+      function nullable(value) {
+        return value ? value : null;
+      }
+
+      function show(form, selector, text) {
+        var node = form.querySelector(selector);
+        if (!node) return;
+        if (text) node.textContent = text;
+        node.hidden = false;
+      }
+
+      function hide(form, selector) {
+        var node = form.querySelector(selector);
+        if (node) node.hidden = true;
+      }
+
+      function payloadFor(form, kind) {
+        var common = {
+          first_name: value(form, 'first_name'),
+          last_name: value(form, 'last_name'),
+          email: value(form, 'email').toLowerCase(),
+          comments: value(form, 'comments'),
+          report_date: nullable(value(form, 'report_date')),
+          report_url: nullable(value(form, 'report_url')),
+          page_url: window.location.href,
+          source: 'public-site'
+        };
+        if (kind === 'unsubscribe') {
+          return {
+            first_name: '',
+            last_name: '',
+            email: common.email,
+            comments: 'Unsubscribe request',
+            frequency: 'Unsubscribe',
+            report_date: null,
+            report_url: null,
+            page_url: common.page_url,
+            source: 'unsubscribe'
+          };
+        }
+        if (kind === 'mailing-list') {
+          common.frequency = value(form, 'frequency') || 'Daily';
+          return common;
+        }
+        return {
+          first_name: common.first_name,
+          last_name: common.last_name,
+          email: nullable(common.email),
+          rating: value(form, 'rating') || 'Useful',
+          comments: common.comments,
+          report_date: common.report_date,
+          report_url: common.report_url,
+          page_url: common.page_url,
+          source: common.source
+        };
+      }
+
+      async function submitToSupabase(form, kind) {
+        var table = kind === 'feedback' ? config.tables.feedback : config.tables.mailingList;
+        var payload = payloadFor(form, kind);
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          var text = await response.text();
+          throw new Error(text || ('Supabase returned ' + response.status));
+        }
+      }
+
+      document.addEventListener('submit', async function (event) {
+        var form = event.target;
+        if (!form || !form.hasAttribute('data-supabase-form')) return;
+        event.preventDefault();
+
+        hide(form, '[data-form-success]');
+        hide(form, '[data-form-error]');
+
+        var trap = form.querySelector('input[name="company"], input[name="website"]');
+        if (trap && trap.value) {
+          form.reset();
+          show(form, '[data-form-success]');
+          return;
+        }
+
+        var button = form.querySelector('button[type="submit"]');
+        if (button) button.disabled = true;
+        try {
+          await submitToSupabase(form, form.getAttribute('data-supabase-form'));
+          form.reset();
+          show(form, '[data-form-success]');
+        } catch (err) {
+          console.error(err);
+          show(form, '[data-form-error]', 'Could not save. Please try again.');
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_REPORT = {"date":"2026-07-12","url":"https://guyhouri.github.io/kruse-knowledge/reports/2026-07-12.html"};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      var report = window.__KRUSE_REPORT || {};
+      var table = config && config.tables && config.tables.cardVotes;
+      if (!config || !config.url || !config.key || !table) return;
+
+      function text(node) {
+        return node ? String(node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      }
+
+      function storageKey(cardId) {
+        return 'kruse-card-vote:' + cardId;
+      }
+
+      function getStored(cardId) {
+        try { return localStorage.getItem(storageKey(cardId)); } catch (e) { return null; }
+      }
+
+      function setStored(cardId, vote) {
+        try { localStorage.setItem(storageKey(cardId), vote); } catch (e) {}
+      }
+
+      function voterId() {
+        var key = 'kruse-vote-browser-id';
+        try {
+          var existing = localStorage.getItem(key);
+          if (existing) return existing;
+          var generated = (window.crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+          localStorage.setItem(key, generated);
+          return generated;
+        } catch (e) {
+          return 'ephemeral-' + Math.random().toString(36).slice(2);
+        }
+      }
+
+      function sourceUrl(card) {
+        var link = card.querySelector('.source-link[href]');
+        return link ? link.href : null;
+      }
+
+      function cardLabel(card) {
+        var tag = text(card.querySelector('.tag'));
+        var body = text(card.querySelector('.item-text')).slice(0, 180);
+        return [tag, body].filter(Boolean).join(': ');
+      }
+
+      function votePayload(card, vote) {
+        return {
+          card_id: card.getAttribute('data-vote-card-id'),
+          vote_type: vote,
+          report_date: report.date || null,
+          card_label: cardLabel(card),
+          source_url: sourceUrl(card),
+          voter_id: voterId(),
+          page_url: window.location.href,
+          source: 'report-card'
+        };
+      }
+
+      function setCount(card, vote, count) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (node) node.textContent = String(count || 0);
+      }
+
+      function increment(card, vote) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (!node) return;
+        var next = (parseInt(node.textContent || '0', 10) || 0) + 1;
+        node.textContent = String(next);
+      }
+
+      function setStatus(card, message) {
+        var node = card.querySelector('[data-card-vote-status]');
+        if (node) node.textContent = message || '';
+      }
+
+      function setActive(card, vote) {
+        var buttons = card.querySelectorAll('[data-card-vote]');
+        for (var i = 0; i < buttons.length; i++) {
+          var active = buttons[i].getAttribute('data-card-vote') === vote;
+          buttons[i].classList.toggle('active', active);
+          buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+        }
+      }
+
+      function shouldLoadRemoteCounts() {
+        return /^https?:$/.test(window.location.protocol)
+          && window.location.hostname !== 'localhost'
+          && window.location.hostname !== '127.0.0.1';
+      }
+
+      function installControls(cards) {
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          var cardId = card.getAttribute('data-vote-card-id');
+          if (!cardId || card.querySelector('.card-votes')) continue;
+          var controls = document.createElement('div');
+          controls.className = 'card-votes';
+          controls.innerHTML = '<span class="card-votes-label">Was this useful?</span>' +
+            '<button type="button" data-card-vote="up" aria-label="Upvote this card" aria-pressed="false">&#9650; <span data-card-vote-count="up">0</span></button>' +
+            '<button type="button" data-card-vote="down" aria-label="Downvote this card" aria-pressed="false">&#9660; <span data-card-vote-count="down">0</span></button>' +
+            '<span class="card-vote-status" data-card-vote-status aria-live="polite"></span>';
+          card.appendChild(controls);
+          var stored = getStored(cardId);
+          if (stored) setActive(card, stored);
+        }
+      }
+
+      async function loadCounts(cards) {
+        var ids = [];
+        for (var i = 0; i < cards.length; i++) {
+          var id = cards[i].getAttribute('data-vote-card-id');
+          if (id) ids.push(id);
+        }
+        if (!ids.length) return;
+        var countSource = (config.tables && config.tables.cardVoteCounts) || table;
+        var url = config.url + '/rest/v1/' + encodeURIComponent(countSource)
+          + '?select=card_id,vote_type,votes'
+          + '&card_id=in.(' + ids.map(encodeURIComponent).join(',') + ')';
+        if (report.date) url += '&report_date=eq.' + encodeURIComponent(report.date);
+        try {
+          var response = await fetch(url, {
+            headers: {
+              apikey: config.key,
+              authorization: 'Bearer ' + config.key
+            }
+          });
+          if (!response.ok) return;
+          var rows = await response.json();
+          var counts = {};
+          for (var r = 0; r < rows.length; r++) {
+            var row = rows[r] || {};
+            if (!row.card_id || !row.vote_type) continue;
+            counts[row.card_id] = counts[row.card_id] || { up: 0, down: 0 };
+            if (row.vote_type === 'up' || row.vote_type === 'down') {
+              counts[row.card_id][row.vote_type] += Number(row.votes || 1);
+            }
+          }
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            var cardCounts = counts[card.getAttribute('data-vote-card-id')] || { up: 0, down: 0 };
+            setCount(card, 'up', cardCounts.up);
+            setCount(card, 'down', cardCounts.down);
+          }
+        } catch (e) {}
+      }
+
+      async function saveVote(card, vote) {
+        var cardId = card.getAttribute('data-vote-card-id');
+        var existing = getStored(cardId);
+        if (existing) {
+          setStatus(card, existing === vote ? 'Already saved.' : 'Vote already saved.');
+          setActive(card, existing);
+          return;
+        }
+        setStatus(card, 'Saving...');
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(votePayload(card, vote))
+        });
+        if (!response.ok) throw new Error(await response.text());
+        setStored(cardId, vote);
+        setActive(card, vote);
+        increment(card, vote);
+        setStatus(card, 'Saved.');
+      }
+
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('[data-card-vote]');
+        if (!button) return;
+        var card = button.closest && button.closest('.card[data-vote-card-id]');
+        if (!card) return;
+        var vote = button.getAttribute('data-card-vote');
+        if (vote !== 'up' && vote !== 'down') return;
+        saveVote(card, vote).catch(function () {
+          setStatus(card, 'Could not save vote.');
+        });
+      });
+
+      var cards = Array.from(document.querySelectorAll('.card[data-vote-card-id]'));
+      installControls(cards);
+      if (shouldLoadRemoteCounts()) loadCounts(cards);
+    })();
+  </script>
+
+</body>
+</html>
