@@ -105,7 +105,9 @@ Use these approved day-one project fields:
 - Owner: human or AI worker responsible for next action.
 - Worker Thread: Codex/chat link or ID when applicable.
 - Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
-- Last Useful Update: timestamp of the last concrete issue comment.
+- Last Useful Update: timestamp of the last meaningful Project update, worker
+  status comment, PR status, or final chat handoff. Do not create comments just
+  to refresh this field.
 - External Impact: none, pending approval, approved, completed.
 
 `Urgent` is reserved for podcast issues, secret/credential issues, and Supabase reorganization work. RAG is `Later` unless Guy explicitly pulls it into the current focus. `Area` is intentionally not a Project field; mission hierarchy and labels carry enough grouping context.

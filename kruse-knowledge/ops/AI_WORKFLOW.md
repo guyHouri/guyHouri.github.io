@@ -40,13 +40,15 @@ summaries in sync.
 - Worker test evidence must prove the changed behavior, not only show that broad or unrelated checks are green.
 - Workers cannot waive their own missing tests. Reviewer checks test gaps; coordinator accepts exceptions when justified.
 - Opening a PR and materializing its combined review-fix-merge Codex lane are
-  one handoff owned by the implementation worker. A worker must not stop at
-  "review requested", "reviewer needed", a PR/Project comment, or
-  `pendingWorktreeId`; it must create the
-  `review-fix/pr-<number>-<short-scope>` lane, verify `list_threads` shows a
-  real thread id with the exact stored title, repair a wrong stored title with
-  `set_thread_title`, link the verified thread in PR/Project status, or record
-  the exact hard blocker before ending the turn.
+  one handoff owned by the implementation worker or mission-owning agent. An
+  agent with a mission must send its own completed work to review and merge:
+  create the draft PR, create the `review-fix/pr-<number>-<short-scope>` lane,
+  verify `list_threads` shows a real thread id with the exact stored title,
+  repair a wrong stored title with `set_thread_title`, and link the verified
+  thread in PR/Project status. It must not stop at "review requested",
+  "reviewer needed", "please send this to review/merge", a PR/Project comment,
+  or `pendingWorktreeId`; if the lane cannot be created or verified, record the
+  exact hard blocker and next owner before ending the turn.
 - GitHub Actions PR pipeline pause, effective June 14, 2026: while Actions minutes are exhausted, PRs must not trigger, rerun, dispatch, wait for, or require GitHub Actions unless Guy explicitly lifts the pause. Use local evidence instead: PR body preflight, local PR guard, focused tests, and `npm run prod-check` for production site/email/workflow changes.
 - Status must be concrete: who owns the next action, what is blocked, and what exact decision is needed.
 
@@ -79,7 +81,7 @@ Allowed roles:
 - Research/Support: answers a bounded question, investigates context, or captures user context without owning implementation.
 - External Operator: performs external-impact actions after explicit approval.
 
-A chat can switch roles only when it says so clearly and updates the relevant issue/status. A worker should not be its own final reviewer. The planner may create issues, docs, task cards, project fields, and worker prompts. The planner should not silently merge PRs or perform external-impact operations.
+A chat can switch roles only when it says so clearly and updates the relevant issue/status. A worker should not be its own final reviewer, but it must arrange and verify the independent review-fix-merge lane for its own mission. The planner may create issues, docs, task cards, project fields, and worker prompts. The planner should not silently merge PRs or perform external-impact operations.
 
 ## Chat Titles And Delegation
 
@@ -381,6 +383,8 @@ Issue types:
 
 Standalone issues are allowed. Not every issue needs a parent mission. For bigger work, link children from the mission issue with GitHub sub-issues, not just body text. Missions can be nested under missions this way. Group broad lanes under mission issues instead of scattering sibling cards; for example, RAG work belongs under the RAG mission and podcast/Q&A/STT work belongs under the Audio Knowledge mission.
 
+Active mission parents track current/open children. Do not keep closed/Done children nested under an Active mission when GitHub Projects renders them inside the expanded parent on the `Active Missions` view. Completed issues stay as Done/history rows in the Project; detach them from the active parent during patrol cleanup unless Guy explicitly asks to preserve historical sub-issue progress on that mission.
+
 Every non-standalone story, task, bug, research, docs, or cleanup issue must include `Parent: #<issue-number>` in the issue body. Standalone work must explicitly say `Parent: standalone`.
 
 `Parent: #<issue-number>` is the human-readable fallback, not the live hierarchy. After creating or reparenting an issue, run:
@@ -434,7 +438,9 @@ Use these approved project fields once available in GitHub Projects:
 - Owner: human or AI worker responsible for the next action.
 - Worker Thread: Codex/chat link or ID.
 - Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
-- Last Useful Update: timestamp of the latest concrete issue comment.
+- Last Useful Update: timestamp of the latest meaningful Project update,
+  worker status comment, PR status, or final chat handoff. Do not create issue
+  comments solely to refresh this field.
 - External Impact: none, pending approval, approved, completed.
 
 Use `Urgent` for podcast issues, secret/credential issues, and Supabase reorganization work. Use `High` for production/report/email/site breakage and important workflow blockers. Use `Normal` for regular approved work. Use `Later` for parked/backlog work and RAG work unless Guy explicitly pulls RAG into the current focus.
@@ -469,9 +475,27 @@ Done missions and tasks should be visually separate from live work. The preferre
 
 Mission nesting uses GitHub sub-issues. The Project's built-in `Parent issue` and `Sub-issues progress` fields show hierarchy/progress once `tools/link-issue-parent.ps1` has linked the issues. A mission can contain child missions, stories, tasks, bugs, research issues, docs issues, or cleanup issues.
 
+For active mission issues, keep the hierarchy focused on open/current children. GitHub Projects can show closed sub-issues inside an expanded active parent even when the view filter is `-status:Done`, so status patrols should detach closed/Done children from active parents instead of leaving completed history above live work. Done issues remain visible in the separate Done/history view.
+
 Issue titles should describe the work itself, not repeat the board taxonomy. Do not prefix titles with `Bug:`, `Feature:`, or other type/urgency markers; keep those in `Type` and `Urgency`.
 
-The taskboard does not replace issue bodies or PRs. Issue bodies define scope and acceptance criteria, PRs hold review/check evidence, and the Project holds queue state.
+The taskboard does not replace issue bodies or PRs. Issue bodies define scope
+and acceptance criteria, PRs hold review/check evidence, and the Project holds
+queue state.
+
+### Comment Noise Rule
+
+Routine queue/status patrols are board-first. A coordinator should update
+Project fields for ordinary status sync and unchanged-state refreshes, not add
+one comment per inspected issue. Comments are reserved for material information
+that the board cannot express cleanly: new worker/branch/PR/review-fix routes,
+new blockers or Waiting-on-Guy decisions, external-impact boundary changes,
+meaningful implementation/test/artifact evidence, corrections to misleading
+prior comments, and final merge/closeout/transfer evidence.
+
+If an issue or PR already has the current blocker and evidence, update Project
+fields and report the queue summary in chat. Do not manufacture comments merely
+to refresh `Last Useful Update` or prove that a patrol ran.
 
 Guy-facing task cards should be short enough to approve without decoding worker
 notes. Keep the required fields in this order: `Task`, `Branch`, `Goal`,
@@ -619,14 +643,19 @@ instruction specifically allows that live action.
 
 9. Review
    - Every PR gets a reviewer chat or explicit reviewer pass.
-   - The implementation worker owns the first review handoff. After the draft
-     PR exists, the worker must immediately create the combined
-     review-fix-merge lane titled `review-fix/pr-<number>-<short-scope>`,
-     verify a materialized thread id and exact stored title, link that verified
-     lane in PR/Project status, and make the next owner explicit.
+   - The implementation worker or mission-owning agent owns the first
+     review/merge handoff. After the draft PR exists, it must immediately create
+     the combined review-fix-merge lane titled
+     `review-fix/pr-<number>-<short-scope>`, verify a materialized thread id and
+     exact stored title, link that verified lane in PR/Project status, and make
+     the next owner explicit.
      `pendingWorktreeId`, "review requested", "reviewer assigned", and PR or
      Project handoff comments are temporary evidence only; they are not a
      complete handoff.
+   - The mission/implementation agent remains responsible until the
+     review-fix-merge lane is verified or an exact blocker is recorded. It must
+     not leave Guy or the coordinator a generic request to send the PR to review
+     or merge.
    - The worker or coordinator must verify that the stored Codex thread title, not just the prompt body, exactly matches that `review-fix/pr-<number>-<short-scope>` lane. If the title is sentence-style, raw delegation XML, or otherwise wrong while the body contains the intended lane, call `set_thread_title` immediately. The PR is still missing a compliant review-fix lane until that repair succeeds.
    - If the worker cannot create and verify the review-fix lane, it must write
      `Reviewer blocked: <exact blocker>` in PR/Project status and name who owns
@@ -938,6 +967,9 @@ review-fix lane as missing until that repair succeeds.
 
 For post-review ownership confusion, the durable rule is:
 
+- The mission/implementation agent sends its own PR to the verified
+  review-fix-merge lane; it does not leave Guy or the coordinator a generic
+  "send this to review/merge" request.
 - The review-fix lane fixes safe findings directly on the PR branch by default.
 - The review-fix lane reruns local checks, verifies fixes, and gives pass/fail.
 - The review-fix lane classifies remaining check failures as PR-related,
