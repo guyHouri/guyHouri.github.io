@@ -38,17 +38,18 @@ summaries in sync.
 - If public-site or GitHub Pages code/config changed, deployment after merge is expected once checks pass and no hold remains.
 - Workers must add or update tests for code they add, including unit tests and integration/smoke tests where the repo has a reasonable test surface.
 - Worker test evidence must prove the changed behavior, not only show that broad or unrelated checks are green.
-- Workers cannot waive their own missing tests. Reviewer checks test gaps; coordinator accepts exceptions when justified.
-- Opening a PR and materializing its combined review-fix-merge Codex lane are
-  one handoff owned by the implementation worker or mission-owning agent. An
-  agent with a mission must send its own completed work to review and merge:
-  create the draft PR, create the `review-fix/pr-<number>-<short-scope>` lane,
-  verify `list_threads` shows a real thread id with the exact stored title,
-  repair a wrong stored title with `set_thread_title`, and link the verified
-  thread in PR/Project status. It must not stop at "review requested",
+- Workers own their own test-gap review. A missing-test exception must be
+  explicit in the PR or issue closeout and justified by concrete risk, not
+  hidden behind a broad green check.
+- A task worker or mission-owning agent owns the whole task lifecycle by
+  default: implementation, self-review, safe fixes, draft PR, local evidence,
+  marking ready/merge when eligible, branch cleanup, task worktree removal,
+  `git worktree prune`, issue/Project closeout, and final chat archive
+  decision. Do not create a separate coordinator or `review-fix/` lane for
+  routine task work. The worker must not stop at "review requested",
   "reviewer needed", "please send this to review/merge", a PR/Project comment,
-  or `pendingWorktreeId`; if the lane cannot be created or verified, record the
-  exact hard blocker and next owner before ending the turn.
+  or `pendingWorktreeId`; if it cannot review, fix, merge, or archive safely,
+  it records the exact blocker and next owner before ending the turn.
 - GitHub Actions PR pipeline pause, effective June 14, 2026: while Actions minutes are exhausted, PRs must not trigger, rerun, dispatch, wait for, or require GitHub Actions unless Guy explicitly lifts the pause. Use local evidence instead: PR body preflight, local PR guard, focused tests, and `npm run prod-check` for production site/email/workflow changes.
 - Status must be concrete: who owns the next action, what is blocked, and what exact decision is needed.
 
@@ -70,37 +71,49 @@ Projectless chats do not automatically know repo rules unless they are opened un
 
 ## Chat Roles
 
-Roles are a way to prevent one long chat from planning, implementing, reviewing, and declaring itself done without independent checks.
+Roles describe the job a chat is doing. They do not create a required handoff
+chain. For approved task work, the worker chat owns the task end to end unless
+the approved card or a concrete blocker says otherwise.
 
 Allowed roles:
 
 - Planner: turns vague goals into missions, issues, tasks, and worker prompts.
-- Coordinator: checks status across issues, PRs, branches, workflows, and worker chats.
+- Queue/Audit: checks status across issues, PRs, branches, workflows, and
+  worker chats only for broad queue reports, stale recovery, and exception
+  handling.
 - Worker: implements one issue on one branch/worktree.
-- Reviewer: reviews one PR or task result from a skeptical stance.
+- Reviewer: optional separate review for high-risk work, explicit user request,
+  or a worker-declared blocker. It is not the default PR path.
 - Research/Support: answers a bounded question, investigates context, or captures user context without owning implementation.
 - External Operator: performs external-impact actions after explicit approval.
 
-A chat can switch roles only when it says so clearly and updates the relevant issue/status. A worker should not be its own final reviewer, but it must arrange and verify the independent review-fix-merge lane for its own mission. The planner may create issues, docs, task cards, project fields, and worker prompts. The planner should not silently merge PRs or perform external-impact operations.
+A chat can switch roles only when it says so clearly and updates the relevant
+issue/status. A worker is its own first reviewer and merge owner: it must read
+its diff skeptically, verify tests and risk, fix safe findings, and merge only
+when the approved scope, evidence, and merge boundary are clear. The planner may
+create issues, docs, task cards, project fields, and worker prompts. The planner
+should not silently merge PRs or perform external-impact operations unless it is
+also the named task worker for an approved issue.
 
 ## Chat Titles And Delegation
 
 Every Kruse repo-scoped chat should have a useful stored title, including chats
 Guy opens directly. Once the repo, role, and scope are clear, rename the current
 thread or newly created thread to a role/scope title instead of leaving the
-app-generated user sentence. Good shapes include `coordinator/<short-scope>`,
-`plan/<short-scope>`, `research/<short-scope>`, `support/<short-scope>`,
-`monitor/<short-scope>`, and branch-style implementation titles such as
+app-generated user sentence. Good shapes include `plan/<short-scope>`,
+`research/<short-scope>`, `support/<short-scope>`, `monitor/<short-scope>`,
+`audit/<short-scope>`, and branch-style implementation titles such as
 `feat/<short-scope>`, `fix/<short-scope>`, or `docs/<short-scope>`.
 
 If a direct user-opened chat later becomes implementation work, create the
 normal issue/branch/worktree/worker lane and keep the source chat titled as its
-actual role, such as `coordinator/<short-scope>` or `plan/<short-scope>`. Do not
+actual role, such as `plan/<short-scope>`, `support/<short-scope>`, or
+`audit/<short-scope>`. Do not
 rename broad personal or projectless chats just because they exist; this rule
 applies when the chat is repo-scoped or is being used to coordinate
 `kruse-knowledge` work.
 
-Control Chat and coordinators must keep delegation concise and mechanically
+Planner, queue, and audit chats must keep delegation concise and mechanically
 safe. A delegation prompt is assignment context, not implementation approval by
 itself. It must carry the approved task scope, not replace it.
 
@@ -111,8 +124,8 @@ put the clean value in a `Branch:` or `Lane:` line near the top of the prompt
 and treat the post-create verify/repair step below as mandatory.
 
 The delegation message body must not contain a line beginning `Chat title:`.
-Use `Branch:` for implementation workers or `Lane:` for review, review-fix, and
-monitor lanes. This keeps Codex from auto-titling the thread with the literal
+Use `Branch:` for implementation workers or `Lane:` for optional review,
+monitor, or audit lanes. This keeps Codex from auto-titling the thread with the literal
 `Chat title:` prefix.
 
 After `create_thread` returns a thread id, Control Chat must verify the stored
@@ -122,9 +135,8 @@ as active. For the current chat, rename the stored title as soon as the role and
 scope are clear enough to choose a stable title.
 
 Title verification means checking the thread's stored `title` field, not the
-preview or first line of the delegation body. A review handoff is not complete
-until the stored title itself starts with the intended lane, such as
-`review-fix/pr-<number>-<short-scope>`.
+preview or first line of the delegation body. A worker launch is not complete
+until the stored title itself matches the intended branch or lane.
 
 Thread creation and title repair can race app indexing. If `create_thread`
 returns a thread id but `list_threads`, `read_thread`, or `set_thread_title`
@@ -140,21 +152,20 @@ active. If the app refuses a rename because a thread is unloaded or
 unregistered, report that exact blocker and do not mark title cleanup complete.
 
 If an active legacy repo-scoped title starts with the literal `Chat title:`
-prefix, is a sentence-style title such as `Review PR 123 ...`, `Fix coordinator
-stale task`, or a raw user request, or is the raw `<codex_delegation>...`
+prefix, is a sentence-style title such as `Review PR 123 ...`, `Fix stale
+task`, or a raw user request, or is the raw `<codex_delegation>...`
 payload while the body/preview contains a clean role, branch, or lane, rename it
-to the clean stored title on the next coordinator touch. If it cannot be
+to the clean stored title on the next queue/audit touch. If it cannot be
 renamed, report the exact blocker.
 
-After creating or coordinating workers for a mission, the coordinator thread
-title should become `coordinator/<short-scope>` so the sidebar shows the
-coordinator, worker, and review-fix roles without opening each chat. This does
-not apply to the permanent Master/Control chat, which keeps its standing title.
+After creating or coordinating workers for a mission, any remaining planning or
+queue chat should use `plan/<short-scope>` or `audit/<short-scope>` so the
+sidebar shows it is not the task owner. This does not apply to the permanent
+Master/Control chat, which keeps its standing title.
 
-Review-fix lane titles must include the PR number and subject or scope, using
-`review-fix/pr-<number>-<short-scope>`. Reviewer-only and monitor-only lanes
-must be explicitly labeled `review/` or `monitor/`; they do not own
-implementation, safe fixes, or merge unless promoted into a `review-fix/` lane.
+Optional reviewer and monitor lanes must be explicitly labeled `review/` or
+`monitor/`. They do not own implementation, safe fixes, merge, or archive unless
+the issue/Project status explicitly transfers the task to them.
 
 Worker delegation must include the approved task card, worktree, fresh
 `origin/main` base requirement, expected tests, risks, done criteria,
@@ -188,7 +199,7 @@ checkout clean enough that Guy can trust it as a sync and inspection point.
   `git status --short --branch` in the shared root checkout. Any task-created
   dirty file in root must be moved into the task worktree, committed/pushed, or
   deleted if disposable.
-- When an issue, PR, worker chat, review-fix lane, or one-off repo-scoped task
+- When an issue, PR, worker chat, optional review/audit lane, or one-off repo-scoped task
   finishes, remove the completed task worktree with `git worktree remove
   <path>` and then run `git worktree prune` from the repo root, after the branch
   is committed/pushed or merged and no handoff still needs that local checkout.
@@ -203,10 +214,10 @@ checkout clean enough that Guy can trust it as a sync and inspection point.
 
 ## Final Response Closeout
 
-Before sending the final response for any Kruse repo-scoped worker,
-review-fix lane, coordinator turn, support/research answer, queue patrol, or
-one-off process-correction turn, run a closeout self-check when the turn used
-the task/workflow rules or mutated GitHub issue/PR/Project state, Codex thread
+Before sending the final response for any Kruse repo-scoped worker, optional
+review/audit lane, support/research answer, queue patrol, or one-off
+process-correction turn, run a closeout self-check when the turn used the
+task/workflow rules or mutated GitHub issue/PR/Project state, Codex thread
 state, branch/worktree state, or task-queue records.
 
 If every mission in the chat is done, explicitly superseded, or transferred to
@@ -219,7 +230,7 @@ ARCHIVE_OK: yes
 If any work remains, end with:
 
 ```text
-ARCHIVE_OK: no - <specific reason>; next owner: <worker|review-fix|Guy|coordinator|external blocker>
+ARCHIVE_OK: no - <specific reason>; next owner: <worker|reviewer|audit|Guy|external blocker>
 ```
 
 `ARCHIVE_OK: no` must never be a naked blocker. The same final response must
@@ -235,15 +246,14 @@ do then?":
 - `Why not handled now`: only when the current agent cannot safely complete or
   transfer the next action itself.
 
-If the next owner would be the same worker, reviewer, coordinator, or another
+If the next owner would be the same worker, reviewer, audit lane, or another
 routine repo agent and the next step is safe, approved, and inside scope, do it
-or transfer it to a tracked owner before final. Do not make Guy infer that a
-routine cleanup, nudge, title repair, board sync, or review-fix recovery should
-happen next.
+before final. Do not make Guy infer that a routine cleanup, nudge, title repair,
+board sync, stale recovery, merge, or archive should happen next.
 
 If the only remaining blocker is caused by the active thread holding its own
 worktree, path, terminal, or app-managed checkout open, transfer the post-archive
-cleanup action to the coordinator, issue, Project row, or parent chat, then mark
+cleanup action to the issue, Project row, or explicit audit lane, then mark
 the current chat safe to archive when no other mission remains. Do not keep the
 chat open solely because archiving/releasing it is what makes cleanup possible.
 
@@ -284,8 +294,8 @@ approval-ready card and under `External-impact boundaries` in the issue body.
 Mission issues may describe scope boundaries when needed, but routine tasks
 should stay in the short card shape Guy approves.
 
-When a coordinator turns an approved card into a GitHub issue, it must use the
-#273-style issue body:
+When an approved card is turned into a GitHub issue, use the #273-style issue
+body:
 
 ```text
 # <issue title>
@@ -326,8 +336,8 @@ Worker completion reports should use the same fields and add:
 PR/status:
 ```
 
-If the worker or review-fix lane cannot archive its own completed thread but
-all closeout conditions are satisfied, its final chat response must include:
+If the worker cannot archive its own completed thread but all closeout
+conditions are satisfied, its final chat response must include:
 
 ```text
 ARCHIVE_OK: yes
@@ -335,17 +345,15 @@ ARCHIVE_OK: yes
 
 `ARCHIVE_OK: yes/no` is a chat-closeout marker for thread lifecycle decisions.
 GitHub issue or PR closeout comments may mirror it, but they do not replace the
-required marker in the worker or review lane's final chat response.
+required marker in the worker's final chat response.
 
-Review-fix lanes also own parent worker chat closeout. After merge, branch and
-worktree cleanup, `git worktree prune`, and final status, the review-fix lane
-must archive the parent
-implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID` and
-all closeout conditions are satisfied. If it cannot archive that parent chat
-directly, it must send the coordinator an exact archive request/command naming
-the parent `CHAT_TITLE` and `THREAD_ID`. Never archive the permanent
-Master/Control chat, and do not archive a parent chat with unresolved task
-cards, blockers, missing verification, or follow-up ownership still inside it.
+The owning worker also owns parent/source chat closeout when it has the parent
+`CHAT_TITLE`/`THREAD_ID` and all closeout conditions are satisfied. After merge,
+branch and worktree cleanup, `git worktree prune`, and final status, it archives
+or requests archival for the source task chat itself. Never archive the
+permanent Master/Control chat, and do not archive a parent chat with unresolved
+task cards, blockers, missing verification, or follow-up ownership still inside
+it.
 
 When a task comes from an existing chat, Guy-facing queue reports must keep the
 source chat title and thread ID. Queue summaries shown to Guy must start every
@@ -418,16 +426,17 @@ Use one required GitHub Project status field:
 
 - Backlog: captured but not ready for implementation.
 - Ready: approved and ready for a worker.
-- Active: worker/coordinator is doing the work.
-- Review: PR or result is ready for independent review.
+- Active: worker is doing the work, including self-review/merge/cleanup.
+- Review: optional external review requested or a worker-declared review
+  blocker is active.
 - Blocked: cannot proceed until a named blocker changes.
 - Done: merged, closed, or otherwise complete.
 
 Use labels and issue comments for conditions that are not statuses:
 
 - `needs:guy`: exact decision, rating, approval, or secret is needed.
-- `stale-check`: active work needs a coordinator stale check.
-- `hold:guy` / `hold:coordinator`: do not merge or deploy.
+- `stale-check`: active work needs a queue/audit stale check.
+- `hold:guy` / `hold:ops`: do not merge or deploy.
 - `external-impact`: approval boundary exists.
 - `parked`: valid work that is intentionally not current.
 
@@ -437,7 +446,8 @@ Use these approved project fields once available in GitHub Projects:
 - Urgency: Urgent, High, Normal, Later.
 - Owner: human or AI worker responsible for the next action.
 - Worker Thread: Codex/chat link or ID.
-- Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
+- Reviewer Thread: optional reviewer chat or human reviewer when separate
+  review is explicitly required.
 - Last Useful Update: timestamp of the latest meaningful Project update,
   worker status comment, PR status, or final chat handoff. Do not create issue
   comments solely to refresh this field.
@@ -456,8 +466,10 @@ The GitHub Project is the live taskboard. It should answer what is ready, active
 Use the board like this:
 
 - `Ready` is the launch queue.
-- `Active` is work currently owned by a worker or coordinator.
-- `Review` is work waiting on a reviewer or review-fix lane.
+- `Active` is work currently owned by a worker, including PR self-review and
+  merge/cleanup when applicable.
+- `Review` is work waiting on optional external review or a worker-declared
+  review blocker.
 - `Blocked` is work with a named blocker and next owner.
 - `Done` is closed/completed history, not part of the active queue.
 
@@ -468,7 +480,7 @@ issue to the Project if needed, move `Status` to `Active`, set `Owner` and
 available, or the first worker status comment. The worker then posts the
 `LEASE: active` status comment with `tools/claim-task.ps1`. If Project mutation
 is unavailable, the worker must comment with the attempted board update and the
-exact blocker before doing implementation work so the coordinator can repair
+exact blocker before doing implementation work so a queue/audit lane can repair
 the board.
 
 Done missions and tasks should be visually separate from live work. The preferred board view groups or filters by `Status` so `Done` appears as its own lane/section or in a dedicated done/history view. Active views should be sorted or manually ordered by `Urgency` first: `Urgent`, `High`, `Normal`, then `Later`. Do not mix done missions into the active mission list except when auditing history.
@@ -485,10 +497,10 @@ queue state.
 
 ### Comment Noise Rule
 
-Routine queue/status patrols are board-first. A coordinator should update
+Routine queue/status patrols are board-first. The queue/audit lane should update
 Project fields for ordinary status sync and unchanged-state refreshes, not add
 one comment per inspected issue. Comments are reserved for material information
-that the board cannot express cleanly: new worker/branch/PR/review-fix routes,
+that the board cannot express cleanly: new worker/branch/PR routes,
 new blockers or Waiting-on-Guy decisions, external-impact boundary changes,
 meaningful implementation/test/artifact evidence, corrections to misleading
 prior comments, and final merge/closeout/transfer evidence.
@@ -518,14 +530,16 @@ Use the approved labels as durable signals and as a fallback when Project automa
 
 - `type:mission`, `type:story`, `type:task`, `type:bug`, `type:research`, `type:docs`, `type:cleanup`
 - `needs:guy`, `needs:review`, `needs:tests`, `stale-check`, `blocked`
-- `hold:guy`, `hold:coordinator`
+- `hold:guy`, `hold:ops`
 - `external-impact`, `deploys-public`, `parked`
 
 For the Project `Type` field, map `type:story` and GitHub `enhancement` work to `Feature`. Keep the `type:*` labels on issues because automation and PR checks use them as durable fallbacks.
 
 External-impact work is not a `Type`. Use the `External Impact` Project field and the `external-impact` label for work that touches production, Supabase, email, broad scraping, secrets, paid APIs, destructive cleanup, or other state outside the local repo/dev environment. Replace legacy external-operation type usage with the normal work type plus `external-impact`.
 
-Do not use docs as the live status board. Status belongs in GitHub Issues/Projects, PRs, and active coordinator reports. Docs should describe the system, not hold constantly changing task state.
+Do not use docs as the live status board. Status belongs in GitHub
+Issues/Projects, PRs, and active queue/audit reports. Docs should describe the
+system, not hold constantly changing task state.
 
 ## Approval Model
 
@@ -561,12 +575,13 @@ Always ask before:
 Public-site/GitHub Pages deployment:
 
 - Deploy only when public-site or GitHub Pages code/config changed.
-- If such code/config changed, deployment after merge is part of the task once checks pass, unless Guy or coordinator put a hold on it.
+- If such code/config changed, deployment after merge is part of the task once
+  checks pass, unless Guy or an explicit issue/Project hold blocks it.
 - Public-site changes must run `npm run prod-check` from `kruse-summary/` before merge.
 
 ## Fast Incident Response
 
-For urgent production incidents, Master Chat first diagnoses only enough to
+For urgent production incidents, the incident owner first diagnoses only enough to
 choose the next action, then quickly triggers the fix, redeploy, rollback,
 worker, or monitor lane. It must report concise status before waiting on slow
 systems.
@@ -575,7 +590,7 @@ Incident status must say the action taken, run/PR/worker link when available,
 expected wait, what is being monitored, and what happens on pass or fail.
 
 If verification depends on slow GitHub Actions, GitHub Pages propagation, cache
-expiry, or another long external wait, Master Chat creates or continues a
+expiry, or another long external wait, the incident owner creates or continues a
 monitor lane or heartbeat instead of silently waiting many minutes in the main
 interaction. Synchronous waiting is only for the next user-visible step that
 truly depends on immediate completion, or when Guy explicitly asks to stay until
@@ -642,65 +657,64 @@ instruction specifically allows that live action.
    - Worker documents any test gap rather than hiding it.
 
 9. Review
-   - Every PR gets a reviewer chat or explicit reviewer pass.
-   - The implementation worker or mission-owning agent owns the first
-     review/merge handoff. After the draft PR exists, it must immediately create
-     the combined review-fix-merge lane titled
-     `review-fix/pr-<number>-<short-scope>`, verify a materialized thread id and
-     exact stored title, link that verified lane in PR/Project status, and make
-     the next owner explicit.
-     `pendingWorktreeId`, "review requested", "reviewer assigned", and PR or
-     Project handoff comments are temporary evidence only; they are not a
-     complete handoff.
-   - The mission/implementation agent remains responsible until the
-     review-fix-merge lane is verified or an exact blocker is recorded. It must
-     not leave Guy or the coordinator a generic request to send the PR to review
-     or merge.
-   - The worker or coordinator must verify that the stored Codex thread title, not just the prompt body, exactly matches that `review-fix/pr-<number>-<short-scope>` lane. If the title is sentence-style, raw delegation XML, or otherwise wrong while the body contains the intended lane, call `set_thread_title` immediately. The PR is still missing a compliant review-fix lane until that repair succeeds.
-   - If the worker cannot create and verify the review-fix lane, it must write
-     `Reviewer blocked: <exact blocker>` in PR/Project status and name who owns
-     the next action. "Needs reviewer", "review requested", PR/Project comments,
-     and `pendingWorktreeId` without a verified thread id plus exact stored
-     title are stale work, not a handoff.
-   - A coordinator or patrol that finds an open PR with no verified review-fix
-     lane, human reviewer, explicit reviewer pass, or reviewer blocker should
-     classify it as a broken worker handoff and recover or nudge the owning
-     worker immediately instead of asking Guy to notice it.
-   - The review-fix lane checks the PR, tests, scope, and external-impact rules.
-   - The review-fix lane is not review-only. If it finds issues, it fixes safe findings directly on the PR branch by default, pushes updates to the same PR, reruns required local checks, and verifies the result.
-   - A finding is safe for the review-fix lane to fix when it stays inside the approved PR scope, does not require missing domain context, does not touch live/external boundaries, does not conflict with another worker's claimed files, and does not materially change the approved approach.
-   - If a required check fails, the review-fix lane must triage it before handing off: reproduce on the PR branch, compare with `origin/main` when practical, and classify the failure as PR-related, already present on `origin/main`, or unproven.
-   - A `blocked` review-fix closeout is valid only after the lane explains why it cannot safely fix the remaining issue itself and names the exact next owner. A failed check by itself is not a blocker report.
-   - The review-fix lane owns missing-test review.
-   - Coordinator accepts missing-test exceptions only by posting or approving a PR comment titled `TEST GAP ACCEPTED`.
+   - The owning worker self-reviews the PR before asking anyone else to look:
+     read the diff, compare it to the approved issue card, check tests and test
+     gaps, check external-impact boundaries, and look for artifact/worktree
+     hygiene problems.
+   - If the worker finds safe issues, it fixes them directly on the same branch,
+     reruns the relevant local checks, and updates the PR/status evidence.
+   - A finding is safe for the worker to fix when it stays inside the approved
+     issue scope, does not require missing domain context, does not touch
+     live/external boundaries, does not conflict with another worker's claimed
+     files, and does not materially change the approved approach.
+   - If a required local check fails, the worker triages it before handing off:
+     reproduce on the PR branch, compare with `origin/main` when practical, and
+     classify the failure as PR-related, already present on `origin/main`, or
+     unproven.
+   - Optional separate review is allowed only when Guy asks for it, the issue
+     card requires it, the change is high risk, or the worker records an exact
+     blocker it cannot safely resolve. That optional reviewer must be labeled
+     `review/<short-scope>` and has a clear pass/fail scope; it is not a
+     default coordinator or `review-fix/` lane.
+   - A blocked review closeout is valid only after the worker explains why it
+     cannot safely fix the remaining issue itself and names the exact next
+     owner. A failed check by itself is not a blocker report.
+   - The worker owns missing-test review. Any accepted test gap must be named
+     in the PR/issue closeout with the concrete reason it is acceptable.
 
 10. Merge and closeout
-   - The review-fix lane owns marking ready, merge, branch cleanup, task
-     worktree removal, `git worktree prune`, and closeout after review, required
-     local checks, and acceptance criteria are met, unless Guy or the
-     coordinator explicitly holds the merge.
-   - Hand back to the implementation worker only for missing domain context, stale/conflicting branches, secrets/live actions, an explicit ownership conflict, or an issue the review-fix lane has proven it cannot fix safely itself.
-   - Coordinator may merge only when the review-fix lane is unavailable or stale and merge eligibility is explicit.
+   - The owning worker marks ready, merges, cleans the branch, removes the task
+     worktree, runs `git worktree prune`, updates issue/Project status, and
+     closes/archives the task chat after self-review, required local checks, and
+     acceptance criteria are met, unless Guy or the issue explicitly holds the
+     merge.
+   - Hand off only for missing domain context, stale/conflicting branches,
+     secrets/live actions, an explicit ownership conflict, unsafe cleanup, or an
+     issue the worker has proven it cannot safely fix itself.
+   - A queue/audit lane may merge only when the owning worker is unavailable or
+     stale and merge eligibility is explicit in the PR/issue evidence.
    - Public-site/GitHub Pages deployment happens after merge only when relevant code/config changed.
-   - Worker or review-fix closeout must include an artifact audit: task
+   - Worker closeout must include an artifact audit: task
      worktree status, shared root status when accessible, and the access route
      for any file Guy or another chat is expected to find.
-   - When a task finishes without a PR, the owning worker or coordinator closes
+   - When a task finishes without a PR, the owning worker closes
      the issue/chat only after safe worktree removal and `git worktree prune`, or
      after reporting the exact cleanup blocker and next owner.
    - After successful merge, branch and worktree cleanup, `git worktree prune`,
-     and final status, the review-fix lane must archive the parent
-     implementation worker chat when it has the parent `CHAT_TITLE`/`THREAD_ID`
-     and no unresolved parent work remains. If it cannot archive the parent
-     directly, it must send the coordinator the exact parent-chat archive
-     request/command.
-   - Every worker, review-fix lane, coordinator turn, support/research answer,
-     queue patrol, and one-off process-correction turn covered by
+     and final status, the owning worker archives its own task chat and any
+     explicit parent/source chat it is responsible for when it has the parent
+     `CHAT_TITLE`/`THREAD_ID` and no unresolved parent work remains. If it
+     cannot archive directly, it records the exact archive request in the
+     issue/Project trail or transfers it to an explicit audit lane.
+   - Every worker, optional review/audit lane, support/research answer, queue
+     patrol, and one-off process-correction turn covered by
      [Final Response Closeout](#final-response-closeout) must include
      `ARCHIVE_OK: yes/no` in the final chat response. GitHub issue or PR
      comments may mirror this marker, but they do not replace the final-chat
      requirement.
-   - Coordinator closes/updates issues, archives stale chats, and writes final issue/project status.
+   - Queue/audit lanes close/update issues and archive stale chats only when
+     recovering stale, blocked, superseded, or orphaned work. Routine task
+     closeout belongs to the owning worker.
 
 ## Automatic Local Gates
 
@@ -728,10 +742,10 @@ red local verification.
 
 ## Worker Status Updates
 
-Routine worker status belongs in Project fields and the automatic coordination
+Routine worker status belongs in Project fields and the automatic queue/audit
 patrol ledger, not repeated issue comments. Issue and PR comments are reserved
-for material transitions: worker start/replacement, PR open, review-fix lane
-creation or recovery, failed worktree recovery, real blockers, archive
+for material transitions: worker start/replacement, PR open, worker
+review/merge/cleanup blockers, failed worktree recovery, real blockers, archive
 closeout, abort/error audit trails, and exact Guy decisions.
 
 When a status comment is needed for a material transition, use this shape:
@@ -755,7 +769,7 @@ NEEDS GUY:
 LAST USEFUL UPDATE:
 ```
 
-Useful means it changes what the coordinator knows. "Still working" without
+Useful means it changes what the Project/audit state knows. "Still working" without
 task ID, worker thread, current step, blocker, next action, and timestamp is
 not useful. Do not add routine "still working" comments.
 
@@ -793,43 +807,47 @@ Do not say "saved locally" as the only access instruction.
 
 ## Safe GitHub Writes
 
-Multiline GitHub issue/comment/PR bodies must not be passed as command arguments on this Windows/Codex setup. Use `tools/safe-gh-write.ps1`, which writes through `--body-file` and verifies readback. Any coordinator or worker that edits multiline GitHub text directly must verify the body after writing.
+Multiline GitHub issue/comment/PR bodies must not be passed as command arguments on this Windows/Codex setup. Use `tools/safe-gh-write.ps1`, which writes through `--body-file` and verifies readback. Any repo agent that edits multiline GitHub text directly must verify the body after writing.
 
 ## Stale Work
 
 Long-running workers must update durable status when they finish a meaningful
 step or hit a blocker. Prefer Project fields and the patrol ledger for routine
 state. Use issue/PR comments only for the material transitions listed above.
-For active worker chats, the coordinator should treat a worker as stale when:
+For active worker chats, queue/audit patrols should treat a worker as stale
+when:
 
 - It has been working for more than 2 hours without useful durable status.
 - The PR or branch changed but the issue was not updated.
-- A PR exists but no `review-fix/pr-<number>-<short-scope>` lane, human reviewer, explicit reviewer pass, or reviewer blocker is linked in the same worker closeout.
+- A PR exists but the worker has not recorded self-review, focused evidence,
+  merge/hold status, or an exact blocker in the same worker closeout.
 - The issue says active but no worker thread or PR is moving.
 - The worker is blocked but did not name the exact blocker.
 
-Stale work must be nudged once with the current issue/task context. If it remains unclear, coordinator must classify it as `Blocked`, add the `parked` label, or replace it with a new worker from the issue state.
+Stale work must be nudged once with the current issue/task context. If it
+remains unclear, the queue/audit lane must classify it as `Blocked`, add the
+`parked` label, or replace it with a new worker from the issue state.
 
-The automatic coordination patrol in
+The automatic queue/audit patrol in
 [`docs/ops/AUTOMATIC_COORDINATION_PATROL.md`](AUTOMATIC_COORDINATION_PATROL.md)
-is the durable design for stale detection, failed worktree recovery,
-review-fix ownership, quiet routine status, and archive decisions.
+is the durable design for stale detection, failed worktree recovery, quiet
+routine status, and exception-only archive decisions.
 
 ## Backlog Coverage Audits
 
 When Guy asks for all tasks, all chats, stopped work, WIP, a priority queue, a
-Supabase situation, or similar cross-chat coverage, Master Chat must audit
+Supabase situation, or similar cross-chat coverage, queue/audit must audit
 deeper than the latest worker answer before presenting the queue. It must ask
 relevant source chats for all unresolved approval-ready cards, cross-check
 merged PRs, open PRs, and current `origin/main`, and classify each unresolved or
 recently resolved request as `Done/Merged`, `Needs Guy approval`, `Blocked`,
 `Active`, or `Backlog`.
 
-Master Chat may keep the Guy-facing queue concise, but it must preserve full
+Queue/audit may keep the Guy-facing queue concise, but it must preserve full
 coverage internally and avoid hiding older unresolved requests behind a single
-latest worker response. A worker or coordinator must not collapse a broad audit
-to one task, or answer `Task: None`, unless this full-history audit and PR/main
-cross-check has been done.
+latest worker response. A worker or queue/audit lane must not collapse a broad
+audit to one task, or answer `Task: None`, unless this full-history audit and
+PR/main cross-check has been done.
 
 ## Worker Count
 
@@ -837,15 +855,19 @@ Default trial limits:
 
 - Unlimited backlog and ready issues.
 - 3 active implementation workers.
-- 2 PRs waiting for review.
+- 2 PRs waiting on optional external review or blocked worker closeout.
 - More workers are fine for read-only audits or independent research.
 - Fewer workers for risky shared code, production, or dirty-root cleanup.
 
-The coordinator can temporarily exceed these limits only when review capacity is clearly available.
+The queue/audit owner can temporarily exceed these limits only when task owners
+can still finish their own review/merge/cleanup work without collision.
 
-## Planner And Coordinator
+## Planner, Queue, And Audit
 
-Create or maintain a pinned planner/coordinator chat for this repo.
+Do not create a standing coordinator as the default owner for routine tasks. A
+planner or queue/audit chat exists to clarify work, launch approved workers, and
+recover exceptions; it does not own normal PR review, merge, cleanup, or
+archive.
 
 Planner responsibilities:
 
@@ -859,16 +881,19 @@ Planner responsibilities:
 - Check stale workers.
 - Prepare approval-ready choices for Guy.
 
-Coordinator responsibilities:
+Queue/audit responsibilities:
 
 - Audit active issues, PRs, branches, checks, and stale workers.
-- Run or review the automatic coordination patrol for stale detection, failed
-  worktree recovery, missing review-fix lanes, quiet status dedupe, and archive
-  candidates.
+- Run or review the automatic patrol for stale detection, failed worktree
+  recovery, quiet status dedupe, and archive candidates.
 - Keep Project status aligned with issue/PR state.
-- Find PRs ready to merge.
-- Find open PRs missing a `review-fix/pr-<number>-<short-scope>` lane and create or nudge that lane immediately. Do not classify this as `Waiting on Guy` unless the missing piece is a specific human decision.
-- Search for malformed repo-scoped chat titles during queue patrols, including user-opened coordinator/planner/research/support chats and especially `Review PR`, `review`, and `Chat title: review-fix` results whose preview/body contains a clean `review-fix/pr-<number>-<short-scope>` lane but whose stored title does not. Rename clear cases before reporting the queue current.
+- Find PRs whose owning worker should merge, hold, or unblock.
+- Find open PRs where the owning worker stopped at review/merge/archive and
+  nudge or recover that worker immediately. Do not classify this as
+  `Waiting on Guy` unless the missing piece is a specific human decision.
+- Search for malformed repo-scoped chat titles during queue patrols, including
+  user-opened planner/research/support/audit chats and branch-style task chats.
+  Rename clear cases before reporting the queue current.
 - Find exact decisions needed from Guy.
 - Park or replace unclear workers.
 - Run `tools/mission-control.ps1` for a read-only GitHub audit when a quick queue check is needed.
@@ -882,17 +907,25 @@ Coordinator responsibilities:
 - Run `tools/ensure-gh-auth.ps1 -RequireProject` before Project mutations. A failed preflight is an auth-scope blocker, not a workflow-design question. GitHub may report the broader `project` scope instead of `read:project`; that is sufficient.
 - Run `tools/sync-github-project-fields.ps1 -ProjectNumber <number>` to create approved Project fields after `gh` has Project scopes. Use `-ForceOptionFields Type,Urgency` when repairing field option colors/descriptions.
 - Flag missing parent signals, missing durable worker status, missing linked
-  issues, missing PR checklist signals, missing `TEST GAP ACCEPTED` comments,
-  and stale workers.
+  issues, missing PR checklist signals, unreviewed worker PRs, and stale
+  workers.
 - Treat local PR guard failures as merge blockers. While the GitHub Actions PR pipeline pause is active, do not use `PR Ops Guard` Action status as a merge requirement.
 
-Coordinator passes are governed by the action gate from
+Queue/audit passes are governed by the action gate from
 [`docs/ops/AUTOMATIC_COORDINATION_PATROL.md`](AUTOMATIC_COORDINATION_PATROL.md).
-Every item found in a patrol, queue check, heartbeat, or coordinator status
+Every item found in a patrol, queue check, heartbeat, or audit status
 turn must land in exactly one useful state: `Done automatically`, `Active
 owner`, `Waiting on Guy`, or `Hard blocker`.
 
-Allowed coordinator actions inside an approved scope:
+`Waiting on Guy` is allowed only when Guy alone must provide a decision,
+secret, live-action approval, or scope choice. Every such item must include:
+`Decision needed`, `Guy should say/do`, `Safe default if no answer`, and
+`Next owner after approval`. Broad blockers like `approve cleanup`, `decide
+PRs`, or `review everything` are non-compliant. If the work is already approved
+and the next step is routine, the owning worker acts; if that worker is stale,
+the audit lane recovers or replaces it instead of labeling it `Waiting on Guy`.
+
+Allowed queue/audit actions inside an approved scope:
 
 - Archive chats after a mission audit proves they are done, superseded, or
   transferred with no unique unresolved context.
@@ -902,21 +935,21 @@ Allowed coordinator actions inside an approved scope:
   `origin/main` ancestors, or tied to closed/superseded work with no dirty
   state, open PR, active owner, or private submodule risk; then run
   `git worktree prune`.
-- Nudge or recover stale workers, missing review-fix lanes, malformed titles,
-  and failed worktree starts when the next action is already inside the
-  approved task scope.
+- Nudge or recover stale workers, malformed titles, incomplete self-review or
+  merge closeout, and failed worktree starts when the next action is already
+  inside the approved task scope.
 
 Forbidden without explicit approval: dirty, active, open-PR, private, or
 ambiguous worktree deletion; GitHub Actions dispatch/reruns while paused; live
 Supabase writes; email sends; broad scraping; paid API spend; secret/env
 mutation; production resource deletion/rename; or scope/product decisions.
 
-A coordinator that sees the same unchanged finding on two consecutive passes
+A queue/audit lane that sees the same unchanged finding on two consecutive passes
 must stop repeating passive status. It must take an allowed action, park the
 item with a specific owner, create or update the durable process bug, or pause
 the heartbeat and report the hard blocker.
 
-Coordinator final responses must also follow the no-naked-archive-no rule from
+Queue/audit final responses must also follow the no-naked-archive-no rule from
 [Final Response Closeout](#final-response-closeout): `ARCHIVE_OK: no` needs a
 Guy-action line, an already-handled line, a concrete next owner/action, and the
 reason the agent could not safely finish or transfer it first. If no Guy action
@@ -926,19 +959,20 @@ Planner may create docs, issues, project entries, and worker prompts. Planner sh
 
 ## Process Feedback Escalation
 
-When Guy flags a workflow failure or says something should not happen again, the coordinator must turn that correction into durable behavior before moving on.
+When Guy flags a workflow failure or says something should not happen again, the
+current repo agent must turn that correction into durable behavior before moving
+on.
 
 1. Restate the failure in concrete terms.
 2. Fix the current stuck item when the next action is clear.
 3. Decide where the durable rule belongs: `AGENTS.md`, this workflow doc, a guard/check, a local Codex skill, or a worker prompt template.
 4. Open a PR for repo rules/tooling when the repo should carry the behavior, or record why the fix belongs only in local Codex configuration.
 
-For PR review handoff failures, the immediate fix is to recover or nudge the
-owning worker to create and verify the combined
-`review-fix/pr-<number>-<short-scope>` lane, then write the real thread id and
-exact stored title back to PR/Project status. The durable fix is to make future
-workers treat PR creation plus verified review-fix-merge lane materialization
-as one atomic closeout.
+For PR review/merge handoff failures, the immediate fix is to recover or nudge
+the owning worker to finish its own self-review, safe fixes, local evidence,
+merge decision, cleanup, and archive closeout. The durable fix is to make future
+workers treat PR creation, self-review, merge eligibility, cleanup, and
+`ARCHIVE_OK` as one self-contained task lifecycle.
 
 For repeated user requests, do not treat the second request as a fresh task.
 If Guy asks for the same outcome more than once, immediately tell him in plain
@@ -946,7 +980,7 @@ words: "You already asked for this; I am checking why it is back on your plate."
 Do not ask Guy to restate the context or silently re-plan as if nothing went
 wrong. Identify the earlier request or lane if possible, then decide what
 failed: missing owner, lost handoff, unclear approval, stale/blocked worker,
-failed review-fix lane, or an automation/process gap. Fix the current item when
+failed review/merge closeout, or an automation/process gap. Fix the current item when
 the next action is clear. If the task is small enough that repeated AI
 coordination is now more expensive than direct human action, say that plainly
 and recommend that Guy do the task himself, while still recording the durable
@@ -959,29 +993,29 @@ audit task worktree status, shared root status, and file access routes before
 handoff.
 
 For chat title failures, the immediate fix is to rename the stored Codex thread
-title to the clean role/scope, branch, or lane title. For review-fix lanes, that
-means `review-fix/pr-<number>-<short-scope>`. The durable fix is to make every
-new repo-scoped chat, worker handoff, and coordinator queue patrol verify the
-stored thread title, repair malformed titles immediately, and treat a
-review-fix lane as missing until that repair succeeds.
+title to the clean role/scope, branch, or lane title. The durable fix is to make
+every new repo-scoped chat, worker handoff, and queue/audit patrol verify the
+stored thread title and repair malformed titles immediately.
 
 For post-review ownership confusion, the durable rule is:
 
-- The mission/implementation agent sends its own PR to the verified
-  review-fix-merge lane; it does not leave Guy or the coordinator a generic
-  "send this to review/merge" request.
-- The review-fix lane fixes safe findings directly on the PR branch by default.
-- The review-fix lane reruns local checks, verifies fixes, and gives pass/fail.
-- The review-fix lane classifies remaining check failures as PR-related,
-  already present on `origin/main`, or unproven before handing off.
-- The review-fix lane may close as blocked only after it explains why it cannot
-  safely fix the remaining issue itself and names the exact next owner.
-- The review-fix lane marks ready and merges after required local checks pass.
+- The mission/implementation agent owns self-review, safe fixes, local checks,
+  ready/merge, cleanup, issue/Project closeout, and archive. It does not leave
+  Guy, a planner, queue/audit, or a separate review-fix lane a generic "send this to
+  review/merge" request.
+- The worker fixes safe findings directly on the PR branch by default.
+- The worker reruns local checks, verifies fixes, and gives pass/fail evidence.
+- The worker classifies remaining check failures as PR-related, already present
+  on `origin/main`, or unproven before handing off.
+- The worker may close as blocked only after it explains why it cannot safely
+  fix or merge the remaining issue itself and names the exact next owner.
+- The worker marks ready and merges after required local checks pass and merge
+  eligibility is clear.
 - After merge, branch and worktree cleanup, `git worktree prune`, and final
-  status, the review-fix lane archives the parent implementation worker chat or
-  sends the coordinator an exact archive request/command naming the parent
-  `CHAT_TITLE` and `THREAD_ID`.
-- Coordinator takes over merge only when the review-fix lane is stale, unavailable, or explicitly handed off.
+  status, the worker archives its own task chat and any explicit parent/source
+  chat it is responsible for, or records the exact archive blocker/access route.
+- Queue/audit takes over merge only when the worker is stale, unavailable, or
+  explicitly handed off and merge eligibility is already explicit.
 
 ## Documentation Locations
 
@@ -991,7 +1025,8 @@ For post-review ownership confusion, the durable rule is:
 - `docs/ops/ARCHITECTURE.md`: the system architecture and invariants.
 - `docs/ops/PR_TESTING.md`: PR and testing requirements.
 - `docs/ops/AUTOMATIC_COORDINATION_PATROL.md`: automatic patrol contract for
-  failed starts, review-fix ownership, quiet status, and archive decisions.
+  failed starts, stale task lifecycle recovery, quiet status, and archive
+  decisions.
 - `docs/ops/GITHUB_AUTH.md`: GitHub CLI/Codex token scope preflight and repair.
 - `docs/ops/OPEN_QUESTIONS.md`: unresolved design questions and pending approvals.
 - `.agents/skills/`: repo-scoped AI skills for durable project workflow behavior.

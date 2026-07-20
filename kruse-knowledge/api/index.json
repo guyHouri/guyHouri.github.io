@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-13",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-13.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-13.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-13.md",
+    "date": "2026-07-20",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-20",
+      "title": "Kruse Report 2026-07-20",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.md",
+      "headline": "GLP-1RA stem cell bankruptcy: quantum spin collapse, water polarization failure, and systemic tissue liquidation"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-13",

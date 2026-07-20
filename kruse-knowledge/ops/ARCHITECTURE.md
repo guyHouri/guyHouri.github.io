@@ -24,17 +24,17 @@ GitHub is the durable operating layer:
 - GitHub Issues hold missions, user stories, tasks, bugs, research, docs, and cleanup work.
 - GitHub issue numbers are task IDs for worker prompts, leases, branches, and PRs.
 - GitHub Projects holds stage/status and queue views.
-- GitHub Project fields and the automatic coordination patrol ledger hold
+- GitHub Project fields and the automatic queue/audit patrol ledger hold
   routine worker/review status. GitHub Issue and PR comments hold only material
   transitions, blockers, handoffs, archive closeouts, and exact Guy decisions.
 - Git branches/worktrees isolate execution.
 - PRs hold code review, checks, and merge state.
-- The automatic coordination patrol reconciles Project, issue, PR, branch,
+- The automatic queue/audit patrol reconciles Project, issue, PR, branch,
   worktree, failed-start, chat, and archive state. See
   `docs/ops/AUTOMATIC_COORDINATION_PATROL.md`.
 - GitHub Actions holds CI/build/test evidence when Actions are enabled. While Actions minutes are exhausted, PR evidence comes from local checks documented in the PR.
 
-Chats are not the source of truth. Chats are workers, planners, reviewers, or coordinators that update GitHub state.
+Chats are not the source of truth. Chats are workers, planners, optional reviewers, or queue/audit lanes that update GitHub state.
 
 Docs are not the live status board. Docs define the operating system, templates, rules, architecture, and postmortems.
 
@@ -54,7 +54,7 @@ GitHub Issues are the single task object. TFS-style hierarchy is represented wit
 
 Standalone task and bug issues are allowed. Bigger work must use a mission issue with linked child user stories/tasks. Use GitHub sub-issues for live hierarchy; the `Parent: #<issue-number>` line is the human-readable fallback. Missions can be nested under missions when the work is itself a larger outcome. Broad lanes should become mission issues with children, not loose title-prefixed cards.
 
-Any non-standalone story, task, bug, research, docs, or cleanup issue must include `Parent: #<issue-number>` in the issue body. Standalone work must explicitly say `Parent: standalone`. The coordinator audit flags missing parent signals.
+Any non-standalone story, task, bug, research, docs, or cleanup issue must include `Parent: #<issue-number>` in the issue body. Standalone work must explicitly say `Parent: standalone`. Queue/audit checks flag missing parent signals.
 
 ## Components
 
@@ -95,7 +95,7 @@ Use one required status field:
 - Blocked
 - Done
 
-Use labels for workflow conditions: `needs:guy`, `stale-check`, `hold:guy`, `hold:coordinator`, `external-impact`, `deploys-public`, and `parked`.
+Use labels for workflow conditions: `needs:guy`, `stale-check`, `hold:guy`, `hold:ops`, `external-impact`, `deploys-public`, and `parked`.
 
 Use these approved day-one project fields:
 
@@ -104,7 +104,7 @@ Use these approved day-one project fields:
 - Urgency: Urgent, High, Normal, Later.
 - Owner: human or AI worker responsible for next action.
 - Worker Thread: Codex/chat link or ID when applicable.
-- Reviewer Thread: reviewer chat, human reviewer, or review-fix lane.
+- Reviewer Thread: optional reviewer, audit lane, or human reviewer when separate review is requested.
 - Last Useful Update: timestamp of the last meaningful Project update, worker
   status comment, PR status, or final chat handoff. Do not create comments just
   to refresh this field.
@@ -125,7 +125,7 @@ Use these approved day-one labels when project-field automation is unavailable o
 
 - Type: `type:mission`, `type:story`, `type:task`, `type:bug`, `type:research`, `type:docs`, `type:cleanup`
 - Workflow: `needs:guy`, `needs:review`, `needs:tests`, `stale-check`, `blocked`
-- Holds: `hold:guy`, `hold:coordinator`
+- Holds: `hold:guy`, `hold:ops`
 - External: `external-impact`, `deploys-public`
 - Queue condition: `parked`
 
@@ -134,12 +134,12 @@ On the GitHub Project board, `type:story` and GitHub `enhancement` work should a
 Stale is not a status. Stale is a check condition based on missing useful
 durable status, especially active workers with no useful update for more than
 2 hours. Routine durable status belongs in Project fields and the automatic
-coordination patrol ledger. Issue and PR comments are for material transitions
+queue/audit patrol ledger. Issue and PR comments are for material transitions
 and blockers, not repeated "still working" updates.
 
 ### Planner Chat
 
-Pinned planning/coordinator chat.
+Planning or intake chat for shaping missions and approved task batches.
 
 Allowed to:
 
@@ -149,7 +149,7 @@ Allowed to:
 - Start worker chats
 - Draft worker prompts
 - Update issue status
-- Nudge stale workers
+- Nudge stale workers or ask queue/audit to recover orphaned work
 
 Not allowed to silently:
 
@@ -183,6 +183,10 @@ Expected to:
 - Add or update integration/smoke tests when behavior crosses module boundaries.
 - Open/update PR.
 - Report test commands and results in the PR.
+- Self-review the PR against scope, tests, external-impact boundaries, and dirty-file risk.
+- Fix safe findings directly on the PR branch.
+- Mark ready and merge when eligible, subject to branch protection and explicit holds.
+- Close the issue/Project row, clean up the task worktree/branch when safe, and archive the task chat.
 - Keep durable status current through Project fields, PR status/body/comments,
   and material issue comments when a real transition occurs. Routine "still
   working" comments are non-compliant noise.
@@ -196,44 +200,43 @@ Worktree fallback order:
 3. Clean existing worktree dedicated to that issue, accepted only after the
    helper reports it clean with `-UseExistingWorktree`.
 4. Local branch in a clean tree only if no other worker touches that tree and a
-   coordinator records why normal worktree isolation is unavailable.
+   queue/audit note records why normal worktree isolation is unavailable.
 5. Research-only chat if code isolation is not safe.
 
 Never let two implementation workers edit the same dirty tree.
 
-### Reviewer Chat
+### Optional Reviewer Or Audit Chat
 
-Every PR should get independent review. The reviewer checks scope, tests, risks, and merge readiness. A `review-fix/` reviewer also fixes safe findings directly on the PR branch by default, reruns checks, and may report blocked only after explaining why it cannot safely fix the remaining issue itself and naming the next owner.
+Separate review is optional. Use it when Guy asks for it, the worker names a concrete blocker, the PR is high-risk, or queue/audit finds stale or orphaned work. The optional reviewer checks scope, tests, risks, and merge readiness. If it takes ownership of a fix, it must work on the PR branch, fix safe findings, rerun checks, and either merge/clean up/archive or name the exact blocker and next owner.
 
-Reviewer owns missing-test review. A worker can explain a test gap, but the worker cannot waive it. The reviewer must request changes when reasonable tests are missing. The coordinator can accept a documented exception for low-risk, docs-only, tooling-only, or no-existing-harness cases. The exception must be recorded in a PR comment titled `TEST GAP ACCEPTED` with reviewer, coordinator, risk, and reason. Guy is needed only when accepting the gap changes product, data, public-site, cost, or operational risk.
+Missing-test handling belongs in the PR body. The worker must document the gap, explain why available checks do or do not exercise the changed behavior, and record `Why acceptable:`. Optional reviewer or queue/audit can request changes when that explanation is not credible. Guy is needed only when accepting the gap changes product, data, public-site, cost, or operational risk.
 
-Reviewer should merge after checks pass and acceptance criteria are met, unless Guy or the coordinator explicitly holds the merge. If checks fail, the review-fix lane must classify the failure as PR-related, already present on `origin/main`, or unproven before handing off.
+The owning worker should merge after checks pass and acceptance criteria are met, unless Guy, branch protection, external-impact boundaries, or a named optional reviewer holds the merge. If checks fail, the worker must classify the failure as PR-related, already present on `origin/main`, or unproven before handing off.
 
 Hard merge blockers:
 
 - Missing linked issue.
 - Missing required parent signal on non-standalone work.
-- Missing independent reviewer pass.
 - Required checks failed or were skipped without accepted exception.
-- Missing required tests without a `TEST GAP ACCEPTED` comment.
-- `hold:guy` or `hold:coordinator` label.
+- Missing required tests without a body-level `Why acceptable:` explanation.
+- Missing worker self-review, merge owner, or cleanup/archive owner.
+- `hold:guy` or `hold:ops` label.
 - Unresolved external-impact approval.
 - Public-site/GitHub Pages code changed without required production check.
 - Unrelated dirty-root changes included.
 
-The `PR Ops Guard` GitHub Action enforces linked issue, parent signal, required checklist completion, hold labels, and `TEST GAP ACCEPTED` comment shape for new or updated PRs when Actions are enabled.
+The `PR Ops Guard` GitHub Action enforces linked issue, parent signal, required checklist completion, hold labels, worker closeout fields, and test-gap justification shape for new or updated PRs when Actions are enabled.
 While the June 14, 2026 Actions-minute pause is active, the same gates are enforced by local PR review and `node tools/pr-check.mjs --base origin/main`; PRs must not wait for or rerun GitHub Actions.
 It also enforces `TASK_ID`, branch issue-number match, and a worker lease comment link when enabled.
 
-### Coordinator
+### Queue/Audit Patrol
 
-The coordinator keeps the system honest:
+Queue/audit keeps the system honest without becoming the default owner of routine task work:
 
 - Reads GitHub issues/projects, PRs, branches, Actions, and worker chats.
 - Finds stale workers.
-- Finds PRs ready to merge.
+- Finds PRs missing worker self-review, merge owner, cleanup/archive owner, or exact blocker.
 - Finds exact decisions needed from Guy.
-- Keeps active work from exceeding review capacity.
 - Replaces or parks unclear workers.
 - Runs or reviews a mission-control audit before claiming the board is current.
 - Uses `tools/safe-gh-write.ps1` for multiline GitHub writes.
@@ -245,8 +248,8 @@ The coordinator keeps the system honest:
 Default trial limits:
 
 - Maximum 3 active implementation workers.
-- Maximum 2 PRs waiting for review.
-- More read-only research workers are okay if they do not create review debt.
+- Maximum 2 PRs without worker closeout evidence.
+- More read-only research workers are okay if they do not create merge debt.
 
 ## Mission Flow
 
@@ -261,10 +264,10 @@ Idea
   -> Worker implementation
   -> Tests
   -> PR
-  -> Reviewer
-  -> Merge
+  -> Worker self-review and safe fixes
+  -> Worker merge when eligible
   -> Deployment when public-site code/config changed
-  -> Mission closeout
+  -> Worker cleanup/archive and mission closeout
 ```
 
 ## Approval
@@ -305,18 +308,18 @@ Public-site/GitHub Pages deployment rule:
 - Every task has an issue.
 - Every implementation branch and worker prompt includes the issue number as `TASK_ID`.
 - Every implementation issue has one branch/worktree owner.
-- Every PR has a reviewer.
+- Every PR has worker closeout evidence or an exact blocker.
 - Worker adds tests for code it adds.
-- Worker cannot waive its own missing tests.
+- Worker documents and justifies any missing-test gap in the PR body.
 - `AGENTS.md` stays small.
 - Docs define the system but do not become the live task board.
-- Status lives in GitHub Projects, PRs, the automatic coordination patrol
+- Status lives in GitHub Projects, PRs, the automatic queue/audit patrol
   ledger, and material issue/PR comments.
 - Useful worker updates are durable and quiet by default; issue comments are
   reserved for material transitions and blockers.
 - Stale active worker over 2 hours gets checked.
-- Missing-test exceptions live in a PR comment titled `TEST GAP ACCEPTED`.
-- A worker does not self-approve final merge.
+- Missing-test exceptions live in the PR body with `Why acceptable:`.
+- A worker owns merge and cleanup unless an explicit hold or optional reviewer takes over.
 - If state conflicts, GitHub issue/PR state beats chat memory.
 
 ## Future Automation
