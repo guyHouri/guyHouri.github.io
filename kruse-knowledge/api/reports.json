@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-21",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-21.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-21.md",
+    "date": "2026-07-22",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-22",
+      "title": "Kruse Report 2026-07-22",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.md",
+      "headline": "Oxygen spin state controls metabolic light perception; nocturnal Hall voltage inversion drives deuterium purge during sleep"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-21",

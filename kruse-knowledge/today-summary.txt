@@ -1,91 +1,153 @@
-Kruse Report 2026-07-21
+Kruse Report 2026-07-22
 
-Date: 2026-07-21
-HTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html
-JSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-21.json
+Date: 2026-07-22
+HTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html
+JSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.json
 
 Headline
 
-Quantum spin states in oxygen metabolism; neurostimulation as information transfer; tropical cold therapy always present
+Oxygen spin state controls metabolic light perception; nocturnal Hall voltage inversion drives deuterium purge during sleep
 
 Twitter Updates
+
+Oxygen magnetic state and metabolic light perception
+
+Tag: Mechanism
+
+When oxygen exists in the triplet state, your metabolism can perceive and respond to light signals through an intact paramagnetic quantum receiver. When oxygen flips into the singlet state, this optical computer collapses entirely. The cell loses its ability to decode environmental light waves, transforming a high-fidelity biological system into a blind chemical machine. This spin-state distinction - not merely oxygen presence - determines whether your cells can read light signals at all.
+
+Source quote: "Our metabolism pays attention to the light."
+
+Sources:
+- https://x.com/i/status/2079618241857486859
+
+Concepts:
+- triplet state (pro): The ground state of oxygen with two unpaired electrons in parallel spin alignment (S=1), making it paramagnetic and chemically restricted but stable as a terminal electron acceptor in the mitochondrial respiratory chain
+- singlet state (pro): An excited state of oxygen where the two valence electrons have antiparallel spins (S=0), making it diamagnetic, highly reactive, and unable to function safely as a terminal electron acceptor
+- paramagnetic (noob): A material or molecule that is attracted to magnetic fields because it has unpaired electrons with aligned spins; triplet oxygen is paramagnetic and responds to Earth's magnetic field
+- quantum receiver (pro): The subatomic infrastructure in cells that decodes environmental light waves into metabolic signals; requires triplet oxygen's paramagnetic alignment and intact electron transfer chains to function
+- optical computer (noob): A technical term used by the selected source. The report keeps "optical computer" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
 
 Mechanism links a body signal to a practical change
 
 Tag: Mechanism
 
-Triplet oxygen (S=1, paramagnetic, parallel spins) is the only safe terminal electron acceptor in Cytochrome c Oxidase (Complex IV) because its spin restriction prevents direct reaction with organic molecules without energy input. Its parallel spin configuration matches spin-polarized electrons traveling via Chirality-Induced Spin Selectivity (CISS), allowing zero-friction tunneling into the binuclear center and clean reduction to deuterium-depleted water while maintaining cellular voltage at -70mV. Singlet oxygen (S=0, diamagnetic, antiparallel spins) is hyper-reactive and pathological. When nnEMF, isolated artificial blue light, or heavy deuterium pollution collapses the planetary geodynamo, triplet oxygen undergoes intersystem crossing to singlet oxygen, losing its spin restriction. Singlet oxygen violently collides with cardiolipin, mitochondrial DNA, and iron-sulfur clusters; electrons stall and leak as oxidative chaos; the mitochondrial synchrotron stalls; and cellular voltage plummets from -70mV to -15mV, triggering Landauer Liquidation and non-coherent infrared waste heat.
+The decentralized optical flowchart depends entirely on a functional quantum receiver anchored by triplet oxygen's paramagnetic alignment. When oxygen undergoes a spin-flip into the singlet state, the subatomic infrastructure required to translate environmental waves into active peptides collapses completely. This is not a minor biochemical adjustment; it is a phase transition that transforms a vibrant biological cascade into a dark, high-entropy bottleneck where the cell can no longer process light information.
 
-Source quote: "Singlet state oxygen and triplet state oxygen do not have the same function as the terminal electron acceptor. They operate on opposite sides of the thermodynamic and quantum mechanical spectrum, and treating them as functionally identical is where standard biochemistry completely misses the biophysics of life."
+Source quote: "If oxygen drops its paramagnetic triplet alignment and flips into the diamagnetic singlet state, this entire decentralized cascade completely shatters."
 
 Sources:
-- https://x.com/i/status/2079371116502532100
+- https://x.com/i/status/2079695818848649441
 
 Concepts:
-- Triplet oxygen (pro): The ground state of molecular oxygen with two unpaired electrons in parallel spin configuration (S=1). Paramagnetic and chemically restricted, it can only accept electrons in the mitochondrial electron transport chain through the spin-matching mechanism of CISS.
-- Singlet oxygen (pro): An excited, unstable state of oxygen where the two valence electrons have antiparallel spins (S=0). Diamagnetic and hyper-reactive, it breaks orderly electron transport and causes mitochondrial dysfunction.
-- Cytochrome c Oxidase (pro): Complex IV of the electron transport chain, the final step where electrons are transferred to oxygen. Contains a binuclear copper center that matches the spin of incoming electrons.
-- Spin-polarized electrons (pro): Electrons whose spin orientation has been selected or aligned by the chiral geometry of the electron transport chain via CISS, ensuring they match the parallel spin configuration of triplet oxygen.
-- Chirality-Induced Spin Selectivity (CISS) (pro): A quantum mechanical effect where the chiral structure of biological molecules (like proteins in the electron transport chain) selects electrons based on their spin orientation, filtering out electrons with mismatched spins.
-- Deuterium-depleted water (pro): Water with a lower ratio of deuterium (heavy hydrogen) to protium (normal hydrogen) than naturally occurring water. Produced in mitochondria when triplet oxygen cleanly accepts electrons, this water supports optimal cellular function.
-- Planetary geodynamo (pro): Earth's magnetic field generated by convection in the liquid outer core. This field stabilizes the spin configuration of triplet oxygen and enables proper electron transport in mitochondria.
-- Intersystem crossing (pro): A quantum transition where an electron flips its spin from parallel to antiparallel alignment, converting triplet oxygen to singlet oxygen. Triggered by external magnetic field collapse.
-- Cardiolipin (pro): A phospholipid found in the inner mitochondrial membrane that is essential for optimal electron transport chain function. Singlet oxygen damages cardiolipin, impairing mitochondrial respiration.
-- Mitochondrial DNA (pro): Genetic material located in mitochondria that encodes proteins essential for energy production. Singlet oxygen damages mtDNA, further impairing mitochondrial function.
-- Iron-sulfur clusters (pro): Prosthetic groups in electron transport chain proteins that facilitate electron transfer. Singlet oxygen oxidatively damages these clusters, stalling electron flow.
-- Landauer Liquidation (pro): A thermodynamic process where information loss in a system is converted to heat. In cells, mitochondrial dysfunction triggers massive information loss and release of non-coherent infrared waste heat.
+- spin-flip (pro): A transition where an electron's spin orientation reverses from parallel to antiparallel alignment, often triggered by external magnetic field loss, non-native electromagnetic interference, or blue light exposure
+- phase transition (noob): A sudden, dramatic change in a system's state or properties, like water freezing to ice; here, the collapse of light-sensing function when oxygen loses its paramagnetic alignment
+- high-entropy (noob): A state of disorder or randomness; the opposite of organized, coherent biological function; singlet oxygen creates high-entropy free-radical chaos
+- quantum receiver (noob): A technical term used by the selected source. The report keeps "quantum receiver" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
 - paramagnetic (noob): A technical term used by the selected source. The report keeps "paramagnetic" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- diamagnetic (noob): A technical term used by the selected source. The report keeps "diamagnetic" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- binuclear center (noob): A technical term used by the selected source. The report keeps "binuclear center" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- mitochondrial synchrotron (noob): A technical term used by the selected source. The report keeps "mitochondrial synchrotron" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- cellular voltage (noob): A technical term used by the selected source. The report keeps "cellular voltage" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- non-native EMF (nnEMF) (noob): Non-native electromagnetic fields: man-made electrical, wireless, or magnetic exposures. Kruse uses the term when arguing that artificial fields can disturb charge, water structure, or mitochondrial signaling.
+- optical flowchart (noob): A technical term used by the selected source. The report keeps "optical flowchart" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+- peptides (noob): A technical term used by the selected source. The report keeps "peptides" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
 
-Brain plasticity depends on the temporal information encoded in electromagnetic patterns, not the total energy applied
+Understand that UV damage repair depends on oxygen magnetic state
 
-Tag: Neurostimulation pattern
+Tag: Mechanism
 
-A June 2026 preprint by Kansala, St. Jean, Rouleau, and Murugan demonstrates that long-term potentiation (LTP)-patterned electromagnetic stimulation alters cortical networks via NMDA receptor pathways more effectively than simple sine-wave stimulation. The key finding is that brain signaling operates as an informational language written in precise quantum temporal cadence. Neurostimulation efficacy depends far less on total energy applied than on the biological information encoded within the spin-dynamic electromagnetic pattern. This bridges MITF-AMPAR pathways, isotopic fractionation (deuterium vs. protium), and the planetary dynamo's master spin-pinning torque into a unified biophysical model of neural plasticity.
+Photolyase is the enzyme that repairs UV-damaged DNA using light energy, but it requires triplet oxygen's paramagnetic alignment to function. When oxygen spin-flips into the singlet state, the linear progression of light-to-electron activation collapses. This explains why light environment matters beyond simple circadian signaling.
 
-Source quote: "neurostimulation and neural plasticity depend far less on the total energy applied to the system than on the biological information encoded within the spin-dynamic electromagnetic pattern"
+Source quote: "When oxygen loses its paramagnetic grounding and flips into a diamagnetic configuration, it creates a quantum bottleneck. This change disrupts the electron signaling network, transforming life-stabilizing solar energy into a destructive, high-entropy firestorm."
 
 Sources:
-- https://x.com/i/status/2079283419037458799
+- https://x.com/i/status/2079700535985226213
 
 Concepts:
-- Long-term potentiation (LTP) (pro): A cellular mechanism of learning and memory where repeated stimulation strengthens synaptic connections. The temporal pattern of LTP-inducing stimulation is crucial for its effectiveness.
-- NMDA receptor (pro): A type of glutamate receptor on neurons that is activated by specific patterns of electrical activity. NMDA receptor activation is central to synaptic plasticity and memory formation.
-- Quantum temporal cadence (pro): The precise timing and rhythm of electromagnetic or neural signals at the quantum scale. Biological systems respond to this temporal information, not just the amplitude of the signal.
-- Spin-dynamic electromagnetic pattern (pro): An electromagnetic field whose pattern encodes information through the spin orientation and temporal dynamics of its components, rather than through raw power or frequency alone.
-- MITF-AMPAR pathways (pro): Cellular signaling pathways involving AMPA receptors and transcription factors that regulate neural plasticity and gene expression in response to stimulation.
-- Isotopic fractionation (pro): The preferential separation of isotopes (like deuterium vs. protium) based on their different physical properties. In biology, this affects water structure and mitochondrial function.
-- Protium (pro): The most common isotope of hydrogen, with one proton and no neutrons. Protium-enriched water (deuterium-depleted) supports optimal mitochondrial function and cellular signaling.
-- Planetary dynamo (pro): Earth's magnetic field generated by convection in the liquid outer core. This field stabilizes the spin configuration of triplet oxygen and enables proper electron transport in mitochondria.
-- cortical networks (noob): A technical term used by the selected source. The report keeps "cortical networks" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- neural plasticity (noob): A technical term used by the selected source. The report keeps "neural plasticity" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- deuterium (D+) (noob): Deuterium is heavy hydrogen; D+ means its positively charged ion form. In this report it matters because Kruse links heavier hydrogen handling to mitochondrial water and energy chemistry.
-- spin-pinning torque (pro): Coordinated spin behavior in particles such as electrons or protons; Kruse uses it as part of his magnetic and mitochondrial signaling language.
+- photolyase (pro): An enzyme that uses light energy to repair thymine dimers and other UV-induced DNA lesions; requires triplet oxygen's paramagnetic alignment and intact electron transfer chains to function
+- quantum bottleneck (pro): A point where quantum mechanical constraints block electron flow or energy transfer, preventing normal biological function; occurs when singlet oxygen cannot accept electrons from the respiratory chain
+- paramagnetic (noob): A technical term used by the selected source. The report keeps "paramagnetic" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+- spin-flips (pro): Coordinated spin behavior in particles such as electrons or protons; Kruse uses it as part of his magnetic and mitochondrial signaling language.
+- DNA repair (noob): A technical term used by the selected source. The report keeps "DNA repair" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+- singlet state (noob): A technical term used by the selected source. The report keeps "singlet state" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+
+Coma is not shutdown but blindness to the brain's own mitochondrial light signals
+
+Tag: Coma as loss of biophoton perception
+
+A coma is not merely a shutting down of conscious networks; it is a state where the entire brain becomes blind to Ultra-weak Photon Emission (UPE) - the biophotons emitted by mitochondrial metabolism. When oxygen becomes singlet (from magnetic field loss, severe biophysical trauma, or nnEMF exposure), the brain's optical computer collapses into a silent, non-communicating chemical system. Without triplet oxygen, tissues cannot perceive the UPE signals that mitochondria generate, leaving the brain unable to read its own metabolic light language.
+
+Source quote: "The biophysical optical computer collapses into a silent, non-communicating chemical system of singlet state biochemistry."
+
+Sources:
+- https://x.com/i/status/2079651923184038110
+
+Concepts:
+- Ultra-weak Photon Emission (UPE) (pro): Biophotons emitted by mitochondrial metabolism at extremely low intensity; carries information about cellular energy state and metabolic coherence that the brain reads to maintain consciousness
+- biophotons (noob): Weak light particles emitted by living cells during metabolism; used by cells to communicate and coordinate function across tissues
+- optical computer (pro): The brain's light-sensing and light-processing system that reads biophoton signals from mitochondria to maintain consciousness and coherent function
+- biophysical trauma (pro): Severe physical stress that alters electron spin states and disrupts the magnetic anchors holding subatomic infrastructure together; can trigger coma-like states
+- mitochondrial metabolism (noob): A technical term used by the selected source. The report keeps "mitochondrial metabolism" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+
+Do not supplement copper at 9-12 mg doses
+
+Tag: Copper supplementation is dangerous
+
+Copper supplementation at 9-12 mg is extremely dangerous and should never be used.
+
+Source quote: "Never. Extremely dangerous."
+
+Sources:
+- https://x.com/i/status/2079557154638307425
+
+Concepts:
+- copper supplementation (noob): Oral intake of copper as a dietary supplement; high doses (9-12 mg) are toxic and can disrupt mitochondrial function and electron transport
 
 Forum Updates
 
-Natural water in tropical climates is always cooler than body temperature, providing continuous cold therapy stimulus
-
-Tag: Tropical cold therapy
-
-In tropical and equatorial regions, water in nature never exceeds body temperature (37°C), meaning cold therapy is continuously available without artificial intervention. This geographic advantage provides constant thermogenic stimulus and mitochondrial activation through natural water immersion. Residents of tropical climates do not require ice baths, cold plunges, or other artificial cold exposure protocols to access the benefits of cold therapy.
-
-Source quote: "No water in nature in tropical climates are higher than our body temps so CT is always present."
-
-Sources:
-- https://forum.jackkruse.com/threads/cold-therapies-and-people-living-in-warm-or-equatorial-parts.33163/unread
-
-Concepts:
-- Cold therapy (noob): Controlled exposure to cold water or air to trigger adaptive physiological responses including mitochondrial activation, improved circulation, and metabolic enhancement.
-- Thermogenic stimulus (pro): A signal that triggers heat production in the body, primarily through brown adipose tissue activation and mitochondrial uncoupling in response to cold exposure.
-- Mitochondrial activation (pro): The upregulation of mitochondrial function and energy production in response to environmental stress, including cold exposure.
-- body temperature (noob): A technical term used by the selected source. The report keeps "body temperature" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-- tropical climate (noob): A technical term used by the selected source. The report keeps "tropical climate" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
+_No selected source-bound cards for this section._
 
 Blog Updates
 
-_No selected source-bound cards for this section._
+Sleep is a pre-programmed polarity flip that centrifuges heavy isotopes from your mitochondria
+
+Tag: Nocturnal Hall voltage inversion and deuterium purge
+
+During the day, electrons flow linearly along Iron-Sulfur [Fe-S] clusters driven by solar input. At night, when the external light engine vanishes, the body executes a pre-programmed structural polarity flip from Frontal Negative (wakeful kinetic mining) to Frontal Positive (nocturnal magnetic repair). According to the Lorentz force equation, reversing the direction of electron drift flips the sign of the Biological Hall Voltage (VH). This nocturnal Hall current inversion activates the Chirality-Induced Spin Selectivity (CISS) filter, which discriminates against deuterium (twice the mass of protium) and centrifuges it out of the mitochondrial matrix via the G3P shuttle. This is the body's primary Deuterium Purge Engine of sleep. Without grounding to the Earth or access to the geomagnetic field, the Hall voltage drops to zero, deuterium accumulates, oxygen flips into singlet state, and p53 surge triggers atavistic tissue retreat, manifesting as GERD, hiatal hernia, hypermobile EDS, and neurodegenerative stasis.
+
+Source quote: "At night, when the external light engine vanishes, the body executes its pre-programmed polarity flip. The primary direction of the electronic drift current (I) along the IMM reverses its vector."
+
+Sources:
+- https://optimalklubs.com/cpc-90-did-life-just-fall-back-asleep-when-the-dynamo-failed/
+
+Concepts:
+- Iron-Sulfur [Fe-S] clusters (pro): Protein complexes in the electron transport chain (Complexes I, II, III) that conduct electrons; their geometry and magnetic properties are essential for spin-selective electron transfer and Hall voltage generation
+- Frontal Negative (pro): The electrical polarity state of the brain during wakefulness; the frontal lobes are negatively charged relative to the occipital lobes, driven by solar input and kinetic electron flow
+- Frontal Positive (pro): The electrical polarity state of the brain during sleep; the frontal lobes flip to positive charge, driven by geomagnetic induction and the nocturnal Hall voltage inversion
+- Lorentz force (pro): The force exerted on a moving charged particle in a magnetic field (F = q(E + v × B)); governs how electron motion is deflected by Earth's magnetic field to generate the Hall voltage
+- Biological Hall Voltage (VH) (pro): A transverse electrical potential generated when charge carriers move through a conductor (the [Fe-S] clusters) in the presence of an orthogonal magnetic field (Earth's geomagnetic field); flips sign at night to drive isotope purging
+- Chirality-Induced Spin Selectivity (CISS) (pro): A quantum effect where chiral molecules (like DHA and cholesterol) preferentially transmit electrons of one spin orientation while blocking the other; acts as a spin filter to exclude deuterium
+- protium (pro): The normal, light form of hydrogen with one proton and one electron; the preferred form for fast quantum tunneling in biological systems and the form that passes through the CISS filter
+- Deuterium Purge Engine (pro): The nocturnal Hall voltage inversion mechanism that centrifuges heavy deuterium out of mitochondria and the brain via the G3P shuttle, clearing the Kinetic Isotope Effect that clogs enzyme function
+- p53 (pro): The master switch tumor suppressor protein that triggers cell cycle arrest and apoptosis when DNA damage or voltage collapse is detected; surge forces atavistic tissue retreat and disease phenotypes
+- atavistic (noob): A reversion to a more primitive or ancestral state; here, tissues downregulating modern functions and reverting to low-voltage Pre-Cambrian templates to survive electromagnetic stress
+- Kinetic Isotope Effect (KIE) (pro): The slowdown in enzyme reaction rates when heavy isotopes (like deuterium) replace light ones; a 10x effect for O-D bonds that chokes iron-dependent enzymes and blocks electron transfer
+- Exclusion Zone (EZ) water (pro): Highly ordered, negatively charged water layer with dielectric constant k=160; acts as a quantum Hall fluid and lossless waveguide for proton tunneling along hydrogen-bond rails
+- geomagnetic field (GMF) (noob): Earth's planetary magnetic field; provides the external reference vector needed for the Lorentz force to execute the nocturnal Hall voltage inversion
+- Zeeman Effect (pro): The splitting of energy levels when a magnetic field is applied to atoms; governs the triplet-to-singlet oxygen transition probability in cells and is the mathematical master switch for life
+- melanin (noob): The pigment in skin and brain that acts as a paramagnetic semiconductor and capacitor; flips its electrical polarity at night to drive the Hall voltage inversion
+- cholesterol (noob): A lipid that stabilizes cell membranes and acts as a quantum Hall fluid component; essential for myelin insulation and spin-selective electron transfer
+- superlattices (pro): Ordered, repeating arrays of molecules (DHA, cholesterol, melanin) that create flat-band quantum properties and anyonic excitations for spin filtering
+- anyonic flat-band quantum properties (pro): Exotic quantum states in ordered molecular arrays where electrons can move without gaining kinetic energy; enables lossless, spin-selective charge transport
+- Telomere/rDNA Co-Regulation Model (TRCS) (pro): A model where telomere length and ribosomal DNA regulation are coupled; when voltage collapses, the Chromosome 2 interstitial telomeric loop (2q13-14) acts as a fuse and blows to prevent Landauer informational erasure
+- Landauer Liquidation (pro): The thermodynamic cost of erasing information from a system; when cells face voltage collapse, they dump immense non-coherent waste heat (kB T ln 2) to avoid DNA/RNA loss
+- oligodendrocytes (pro): Brain cells that produce myelin, the insulation sheath around axons; during sleep, they re-engage high-voltage myelinogenesis to repair the dielectric insulation grid
+- myelinogenesis (pro): The process of myelin formation and repair; upregulated during sleep when the Hall voltage inversion clears deuterium and restores voltage
+- Orchestrated Objective Reduction (Orch-OR) (pro): A theory of consciousness by Penrose and Hameroff claiming microtubules are the seat of consciousness; the blog proves this is incorrect by showing consciousness is governed by the interfacial water layer's DC current, not microtubule quantum states
+- microtubules (pro): Structural protein polymers in cells; not the seat of consciousness but rather mechanical rails whose properties are enslaved to the liquid-crystalline water layer's electrical state
+- tubulin (pro): The protein dimer that polymerizes to form microtubules; contains hydrophobic pockets but cannot compute or hold quantum states independently of the external water engine
+- glymphatic (pro): The brain's waste clearance system that removes metabolic byproducts during sleep via the reverse axonal firing mechanism and the glymphatic tailpipe
+- Vagus nerve (CN X) (noob): The 10th cranial nerve; acts as the physical renormalization operator that couples the brain to the body's electromagnetic state and isotope purging
+- South Atlantic Anomaly (SAA) (pro): A region where Earth's magnetic field is weakest, allowing radiation to penetrate; satellite operators freeze microprocessors when passing through to avoid data destruction
+- Cytochrome P450 (CYP) (pro): Liver enzymes that metabolize drugs and toxins; overloaded by chemical anesthetics and sedatives, causing microsomal membrane uncoupling
+- Aqueduct of Sylvius (pro): A narrow channel in the brain connecting ventricles; shaped by magnetohydrodynamic forces during fetal development to a 70-degree angle that creates a Venturi pump for deuterium clearance
+- magnetohydrodynamic (MHD) (pro): The interaction of magnetic fields with moving fluids; governs how the geomagnetic field shapes the developing brain and drives nocturnal isotope purging
+- Van Allen belts (pro): Regions of charged particles trapped by Earth's magnetic field; when the geodynamo weakens, these belts move closer to Earth, increasing deuterium and tritium in rainwater
+- cosmogenic tritium (pro): Radioactive tritium produced by cosmic rays in the upper atmosphere; increases in rainwater when the geomagnetic field weakens, adding to cellular deuterium burden
+- CPC#90 (noob): A Kruse blog article in the Coherent Practice of Consciousness series; this article explores how the planetary geodynamo's magnetic field controls the triplet-to-singlet oxygen transition and sleep physiology

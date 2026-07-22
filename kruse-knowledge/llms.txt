@@ -11,7 +11,7 @@ Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.m
 Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
 Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
 RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
-Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html
 
 ## Core Pages
 
@@ -23,6 +23,7 @@ Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.htm
 
 ## Daily Reports
 
+- [2026-07-22 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html): Oxygen spin state controls metabolic light perception; nocturnal Hall voltage inversion drives deuterium purge during sleep
 - [2026-07-21 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html): Quantum spin states in oxygen metabolism; neurostimulation as information transfer; tropical cold therapy always present
 - [2026-07-20 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html): GLP-1RA stem cell bankruptcy: quantum spin collapse, water polarization failure, and systemic tissue liquidation
 - [2026-07-13 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-13.html): Nutrition as quantum magnetic transport; AC fields disrupt mitochondrial electron flow and NAD+ recycling; hypoxia reflects magnetic collapse, not oxygen lack

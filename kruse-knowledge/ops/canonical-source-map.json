@@ -1,0 +1,1158 @@
+{
+  "schema_version": 1,
+  "updated": "2026-07-21",
+  "owner_doc": "docs/ops/CANONICAL_SOURCE_MAP.md",
+  "policy_docs": [
+    "plans/SUPABASE_STORAGE_POLICY.md",
+    "docs/ops/DAILY_PIPELINE.md"
+  ],
+  "rules": {
+    "canonical_rows_are_source_truth": true,
+    "derived_outputs_are_rebuildable": true,
+    "daily_json_sidecars_are_daily_canonical_inputs": true,
+    "notebooklm_sources_are_derived_from_canonical_markdown": true,
+    "rag_vectors_are_derived": true,
+    "raw_audio_is_not_canonical_storage_input": true,
+    "live_supabase_writes_need_explicit_task_approval": true
+  },
+  "families": [
+    {
+      "id": "x_daily_tweets",
+      "label": "X daily tweets",
+      "scope": "Raw daily @DrJackKruse X API rows, including reply, quote, retweet, media, metrics, and thread context metadata.",
+      "canonical": {
+        "local": {
+          "status": "present",
+          "primary_paths": [
+            "scrapers/twitter_to_md/data/<YYYY-MM-DD>.json"
+          ],
+          "state_paths": [
+            "scrapers/twitter_to_md/data/index.json"
+          ],
+          "notes": "The JSON files are the durable raw daily tweet input. Markdown is intentionally not the canonical representation for graph-shaped tweet data."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/curated/<YYYY-MM-DD>-input.json",
+        "summary/kruse-summary/curated/<YYYY-MM-DD>.json",
+        "summary/kruse-summary/out/<YYYY-MM-DD>.html",
+        "docs/reports/<YYYY-MM-DD>.html"
+      ],
+      "supabase": {
+        "status": "covered_by_daily_sync",
+        "tables": [
+          {
+            "name": "tweets",
+            "writer": "summary/kruse-summary/code/daily-canonical-sync.js",
+            "conflict_target": "tweet_id",
+            "daily": true
+          }
+        ],
+        "storage_buckets": []
+      },
+      "notebooklm": {
+        "status": "excluded_by_policy",
+        "paths": [],
+        "notes": "Daily tweet JSON is staging/input data. Long-form X thread markdown for NotebookLM is handled by the ThreadReader family."
+      },
+      "daily_sync": {
+        "status": "automatic",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Scrape X tweets",
+          "Build combined daily input",
+          "Sync daily canonical Supabase rows"
+        ],
+        "commands": [
+          "scrapers/twitter_to_md: node main.js --date=$TARGET --window=24",
+          "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
+        ],
+        "writes_supabase": true
+      },
+      "evidence_checks": [
+        {
+          "label": "daily_json_files",
+          "type": "glob",
+          "path": "scrapers/twitter_to_md/data/*.json"
+        }
+      ],
+      "known_gaps": []
+    },
+    {
+      "id": "forum_daily_posts",
+      "label": "Forum daily posts",
+      "scope": "Daily XenForo activity sidecars for the report window.",
+      "canonical": {
+        "local": {
+          "status": "present",
+          "primary_paths": [
+            "scrapers/forum_to_md/daily/<YYYY-MM-DD>.json"
+          ],
+          "state_paths": [],
+          "notes": "Daily sidecars are canonical for new daily forum activity and are merged into the forum canonical table by the daily sync."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/curated/<YYYY-MM-DD>-input.json",
+        "summary/kruse-summary/curated/<YYYY-MM-DD>.json",
+        "summary/kruse-summary/out/<YYYY-MM-DD>.html",
+        "docs/reports/<YYYY-MM-DD>.html"
+      ],
+      "supabase": {
+        "status": "covered_by_daily_sync",
+        "tables": [
+          {
+            "name": "forum_canonical_threads",
+            "writer": "summary/kruse-summary/code/daily-canonical-sync.js",
+            "conflict_target": "thread_id",
+            "daily": true,
+            "notes": "Daily posts are merged into the posts array for existing or newly observed canonical thread rows."
+          }
+        ],
+        "storage_buckets": []
+      },
+      "notebooklm": {
+        "status": "not_direct_source",
+        "paths": [],
+        "notes": "Daily forum posts become canonical DB thread rows and report cards. NotebookLM forum sources are rebuilt from full forum bundle markdown."
+      },
+      "daily_sync": {
+        "status": "automatic",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Scrape forum",
+          "Build combined daily input",
+          "Sync daily canonical Supabase rows"
+        ],
+        "commands": [
+          "scrapers/forum_to_md: node main-daily.js --date=$TARGET --subforum-walk",
+          "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
+        ],
+        "writes_supabase": true
+      },
+      "evidence_checks": [
+        {
+          "label": "forum_daily_sidecars",
+          "type": "glob",
+          "path": "scrapers/forum_to_md/daily/*.json"
+        }
+      ],
+      "known_gaps": []
+    },
+    {
+      "id": "forum_archive_threads",
+      "label": "Forum full archive threads",
+      "scope": "One markdown file per extracted forum thread across the long-lived forum archive.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_checkout",
+          "primary_paths": [
+            "scrapers/forum_to_md/processed_mds/threads/<slug>.<id>.md"
+          ],
+          "state_paths": [
+            "scrapers/forum_to_md/threads.json"
+          ],
+          "notes": "The forum module documents per-thread markdown as the source of truth for bundles, but this checkout currently carries forum bundles without the per-thread directory."
+        }
+      },
+      "derived_outputs": [
+        "scrapers/forum_to_md/processed_mds/forum#N.md",
+        "scrapers/forum_to_md/processed_mds/jack-threads*.md",
+        "scrapers/forum_to_md/processed_mds/meet-and-greet-threads*.md",
+        "scrapers/forum_to_md/processed_mds/optimal-journal-threads*.md",
+        "scrapers/forum_to_md/processed_mds/not-jack-threads*.md",
+        "scrapers/forum_to_md/processed_mds/forum-jackkruse-index.xlsx"
+      ],
+      "supabase": {
+        "status": "target_defined",
+        "tables": [
+          {
+            "name": "forum_canonical_threads",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "thread_id",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "forum/threads/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_as_bundles",
+        "paths": [
+          "scrapers/forum_to_md/processed_mds/forum#N.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "partial",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Forum daily posts update forum_canonical_threads; full archive per-thread markdown is not refreshed by the daily workflow."
+        ],
+        "commands": [
+          "scrapers/forum_to_md: npm start",
+          "scrapers/forum_to_md: npm run split"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "per_thread_markdown",
+          "type": "glob",
+          "path": "scrapers/forum_to_md/processed_mds/threads/*.md"
+        },
+        {
+          "label": "notebooklm_forum_bundles",
+          "type": "glob",
+          "path": "scrapers/forum_to_md/processed_mds/forum#*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "forum_per_thread_markdown_missing_current_checkout",
+          "severity": "high",
+          "description": "Current checkout evidence has forum bundles but not the documented per-thread markdown source directory, so bundle files can look canonical even though they are derived.",
+          "follow_up_owner": "forum archive import worker"
+        },
+        {
+          "id": "forum_full_archive_not_daily_refreshed",
+          "severity": "medium",
+          "description": "The daily job appends daily posts to Supabase thread rows, but it does not refresh the full per-thread markdown archive or its Storage objects.",
+          "follow_up_owner": "future forum archive refresh task"
+        }
+      ]
+    },
+    {
+      "id": "threadreader_tweet_threads",
+      "label": "ThreadReader tweet threads",
+      "scope": "Thread Reader App unrolled @DrJackKruse tweet threads.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_checkout",
+          "primary_paths": [
+            "scrapers/threadreader_to_md/processed_mds/threads/<thread-id>.md"
+          ],
+          "state_paths": [
+            "scrapers/threadreader_to_md/threads.json"
+          ],
+          "notes": "The module defines per-thread markdown as canonical and tweet-thread bundles as derived. This checkout currently has bundle evidence but no per-thread directory."
+        }
+      },
+      "derived_outputs": [
+        "scrapers/threadreader_to_md/processed_mds/tweet-threads.md",
+        "scrapers/threadreader_to_md/processed_mds/tweet-threads-N.md"
+      ],
+      "supabase": {
+        "status": "target_defined",
+        "tables": [
+          {
+            "name": "tweet_threads",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "thread_id",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "x/threads/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_as_bundles",
+        "paths": [
+          "scrapers/threadreader_to_md/processed_mds/tweet-threads*.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "manual_only",
+        "owner": "scrapers/threadreader_to_md",
+        "steps": [
+          "Manual discover/extract/bundle only; no daily workflow step updates this family."
+        ],
+        "commands": [
+          "scrapers/threadreader_to_md: npm start"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "thread_markdown",
+          "type": "glob",
+          "path": "scrapers/threadreader_to_md/processed_mds/threads/*.md"
+        },
+        {
+          "label": "notebooklm_thread_bundles",
+          "type": "glob",
+          "path": "scrapers/threadreader_to_md/processed_mds/tweet-threads*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "threadreader_no_daily_sync_owner",
+          "severity": "high",
+          "description": "ThreadReader archives are not refreshed by the daily workflow and are not included in daily-canonical-sync.js.",
+          "follow_up_owner": "future ThreadReader refresh task"
+        },
+        {
+          "id": "threadreader_per_thread_markdown_missing_current_checkout",
+          "severity": "medium",
+          "description": "Current checkout evidence has tweet-thread bundles but not the documented per-thread markdown source directory.",
+          "follow_up_owner": "ThreadReader archive worker"
+        }
+      ]
+    },
+    {
+      "id": "linkedin_articles",
+      "label": "LinkedIn Pulse articles",
+      "scope": "LinkedIn Pulse article archive for Jack Kruse.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_checkout",
+          "primary_paths": [
+            "scrapers/linkedin_to_md/processed_mds/articles/<slug>.md"
+          ],
+          "state_paths": [
+            "scrapers/linkedin_to_md/articles.json",
+            "scrapers/linkedin_to_md/Jack Kruse - All blogs up to 13th April 2026.xlsx"
+          ],
+          "notes": "The module writes one markdown file per article and then packs bundles. This checkout currently has bundle evidence but no per-article directory."
+        }
+      },
+      "derived_outputs": [
+        "scrapers/linkedin_to_md/processed_mds/linkedin#N.md",
+        "scrapers/linkedin_to_md/processed_mds/linkedin-articles-index.xlsx"
+      ],
+      "supabase": {
+        "status": "target_defined",
+        "tables": [
+          {
+            "name": "linkedin_posts",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "source_url",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "linkedin/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_as_bundles",
+        "paths": [
+          "scrapers/linkedin_to_md/processed_mds/linkedin#N.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "manual_only",
+        "owner": "scrapers/linkedin_to_md",
+        "steps": [
+          "Manual discover/extract/split only; no daily workflow step updates this family."
+        ],
+        "commands": [
+          "scrapers/linkedin_to_md: npm start"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "article_markdown",
+          "type": "glob",
+          "path": "scrapers/linkedin_to_md/processed_mds/articles/*.md"
+        },
+        {
+          "label": "notebooklm_linkedin_bundles",
+          "type": "glob",
+          "path": "scrapers/linkedin_to_md/processed_mds/linkedin#*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "linkedin_no_daily_sync_owner",
+          "severity": "medium",
+          "description": "LinkedIn archive rows have Supabase/Storage targets but no daily refresh/import owner.",
+          "follow_up_owner": "future LinkedIn refresh task"
+        },
+        {
+          "id": "linkedin_per_article_markdown_missing_current_checkout",
+          "severity": "medium",
+          "description": "Current checkout evidence has LinkedIn bundles but not the documented per-article markdown source directory.",
+          "follow_up_owner": "LinkedIn archive worker"
+        }
+      ]
+    },
+    {
+      "id": "free_blogs_archive",
+      "label": "Free blog PDF archive",
+      "scope": "Historical public JackKruse.com free-blog PDF conversion.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_checkout",
+          "primary_paths": [
+            "scrapers/free_blogs_md/processed_mds/blogs/<slug>.md"
+          ],
+          "state_paths": [
+            "scrapers/free_blogs_md/jk_free_blogs_combinedd (2).pdf"
+          ],
+          "notes": "extract.py defines per-blog markdown as source of truth and free-blogs#N.md as derived. The input PDF is intentionally not committed."
+        }
+      },
+      "derived_outputs": [
+        "scrapers/free_blogs_md/processed_mds/free-blogs#N.md",
+        "scrapers/free_blogs_md/processed_mds/free-blogs-index.xlsx"
+      ],
+      "supabase": {
+        "status": "target_defined",
+        "tables": [
+          {
+            "name": "blog_articles",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "canonical_url",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "blogs/free/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_as_bundles",
+        "paths": [
+          "scrapers/free_blogs_md/processed_mds/free-blogs#N.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs",
+        "notes": "Public free-blog bundles are selected as blog sources. Daily blog sidecars remain metadata/report inputs, not archive article markdown."
+      },
+      "daily_sync": {
+        "status": "static_archive_manual_only",
+        "owner": "scrapers/free_blogs_md",
+        "steps": [
+          "Manual PDF conversion only; daily new paid/free blog observations are tracked by optimal_klubs_daily_blogs."
+        ],
+        "commands": [
+          "scrapers/free_blogs_md: python extract.py"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "per_blog_markdown",
+          "type": "glob",
+          "path": "scrapers/free_blogs_md/processed_mds/blogs/*.md"
+        },
+        {
+          "label": "notebooklm_free_blog_bundles",
+          "type": "glob",
+          "path": "scrapers/free_blogs_md/processed_mds/free-blogs#*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "free_blogs_canonical_markdown_missing_current_checkout",
+          "severity": "medium",
+          "description": "Current checkout does not have the per-blog markdown directory, so the free-blog archive has a defined canonical path but no local evidence.",
+          "follow_up_owner": "free blog archive worker"
+        }
+      ]
+    },
+    {
+      "id": "private_blog_archive",
+      "label": "Private blog/Patreon archive",
+      "scope": "Private and copyright-risk Optimal Klubs/Patreon/blog article markdown and NotebookLM bundles. These are classified for coverage only and must stay in private paths unless Guy approves a specific movement or publication decision.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_checkout",
+          "primary_paths": [
+            "private/kemono_to_md/processed_mds/blog_series/<SERIES>/<file>.md"
+          ],
+          "current_noncanonical_paths": [
+            "D:/kruse/guy-export-local-assets-20260614-070549/old-root-layout/private/blogs_to_md/blogs/<SERIES>/*.md"
+          ],
+          "state_paths": [
+            "private/kemono_to_md/articles.json",
+            "private/kemono_to_md/processed_mds/articles/*.md"
+          ],
+          "notes": "The public checkout records only the private submodule pointer, and this worktree has not initialized private/kemono_to_md. Old local backup evidence exists but must not be copied into the public repo."
+        }
+      },
+      "derived_outputs": [
+        "private/kemono_to_md/processed_mds/blogs-N.md"
+      ],
+      "supabase": {
+        "status": "target_requires_private_content_approval",
+        "tables": [
+          {
+            "name": "blog_articles",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "canonical_url",
+            "daily": false,
+            "notes": "Private full-content import needs an explicit private-content and live-write decision."
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "blogs/private/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "private_manual_only_skipped_by_public_manifest",
+        "paths": [
+          "private/kemono_to_md/processed_mds/blogs-N.md"
+        ],
+        "notes": "Private bundles are valid private NotebookLM candidates only after a private-content decision. The public manifest does not select them."
+      },
+      "daily_sync": {
+        "status": "manual_only",
+        "owner": "private/kemono_to_md",
+        "steps": [
+          "Manual private archive rebuild/import only; daily Optimal Klubs blog sidecars track observed updates but are not full historical article markdown."
+        ],
+        "commands": [
+          "private/kemono_to_md: npm start",
+          "private/kemono_to_md: npm run bundle"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "private_blog_series_markdown",
+          "type": "glob",
+          "path": "private/kemono_to_md/processed_mds/blog_series/**/*.md"
+        },
+        {
+          "label": "private_blog_bundles",
+          "type": "glob",
+          "path": "private/kemono_to_md/processed_mds/blogs*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "private_blog_submodule_not_initialized_current_checkout",
+          "severity": "medium",
+          "description": "This public worktree has only the private submodule pointer, so private blog article markdown and bundles are not directly available for public PR review.",
+          "follow_up_owner": "private blog archive worker"
+        },
+        {
+          "id": "private_blog_public_notebooklm_boundary_unapproved",
+          "severity": "high",
+          "description": "Private/copyright-risk blog markdown must not enter the public repo or public NotebookLM manifest without an explicit private-content decision.",
+          "follow_up_owner": "Guy/private archive owner"
+        }
+      ]
+    },
+    {
+      "id": "optimal_klubs_daily_blogs",
+      "label": "Optimal Klubs daily blog updates",
+      "scope": "Daily observed Optimal Klubs or JackKruse.com blog article updates used by the daily report.",
+      "canonical": {
+        "local": {
+          "status": "present",
+          "primary_paths": [
+            "summary/kruse-summary/curated/<YYYY-MM-DD>-blogs.json"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/supabase/blog-summary-state.sql"
+          ],
+          "notes": "The daily blog sidecar is canonical for observed daily blog updates. It is separate from the historical free-blog PDF archive."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/curated/<YYYY-MM-DD>-input.json",
+        "summary/kruse-summary/curated/<YYYY-MM-DD>.json",
+        "summary/kruse-summary/out/<YYYY-MM-DD>.html",
+        "docs/reports/<YYYY-MM-DD>.html"
+      ],
+      "supabase": {
+        "status": "covered_by_daily_sync",
+        "tables": [
+          {
+            "name": "blog_articles",
+            "writer": "summary/kruse-summary/code/blog-summary-state.js and summary/kruse-summary/code/daily-canonical-sync.js",
+            "conflict_target": "summary_uuid",
+            "daily": true
+          }
+        ],
+        "storage_buckets": []
+      },
+      "notebooklm": {
+        "status": "excluded_by_policy",
+        "paths": [],
+        "notes": "Daily report blog cards are derived summaries. Canonical blog markdown belongs to the archive rows, not the daily prompt artifacts."
+      },
+      "daily_sync": {
+        "status": "automatic",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Fetch Optimal Klubs blog updates",
+          "Build combined daily input",
+          "Sync daily canonical Supabase rows"
+        ],
+        "commands": [
+          "summary/kruse-summary: npm run fetch-blogs -- --date=$TARGET",
+          "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
+        ],
+        "writes_supabase": true
+      },
+      "evidence_checks": [
+        {
+          "label": "daily_blog_sidecars",
+          "type": "glob",
+          "path": "summary/kruse-summary/curated/*-blogs.json"
+        }
+      ],
+      "known_gaps": []
+    },
+    {
+      "id": "podcast_appearances",
+      "label": "Podcast appearances and daily media mentions",
+      "scope": "Canonical podcast appearance inventory plus daily podcast/interview/Q&A mention sidecars.",
+      "canonical": {
+        "local": {
+          "status": "present",
+          "primary_paths": [
+            "summary/kruse-summary/curated/podcast-canonical-inventory.json",
+            "summary/kruse-summary/curated/<YYYY-MM-DD>-podcasts.json"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/out/issue-225/podcast-coverage-matrix.issue-281.json"
+          ],
+          "notes": "The curated inventory is the long-lived metadata inventory. Daily sidecars capture newly observed media mentions and Q&A metadata."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/curated/<YYYY-MM-DD>-input.json",
+        "summary/kruse-summary/out/issue-225/*.json",
+        "summary/kruse-summary/out/<YYYY-MM-DD>.html"
+      ],
+      "supabase": {
+        "status": "metadata_rows_covered_by_daily_sync",
+        "tables": [
+          {
+            "name": "kruse_podcast_transcripts",
+            "writer": "summary/kruse-summary/code/podcast-supabase-import-plan.js via daily-canonical-sync.js",
+            "conflict_target": "canonical_episode_id",
+            "daily": true
+          },
+          {
+            "name": "media_items",
+            "writer": "summary/kruse-summary/code/podcast-media-items-import-execute.js",
+            "conflict_target": "media_id",
+            "daily": false,
+            "notes": "Fallback/bridge target when the dedicated podcast table is unavailable."
+          }
+        ],
+        "storage_buckets": []
+      },
+      "notebooklm": {
+        "status": "metadata_not_source",
+        "paths": [],
+        "notes": "Podcast metadata is not a NotebookLM source until transcript markdown exists."
+      },
+      "daily_sync": {
+        "status": "automatic_metadata_only",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Build report detects podcast/media pointers",
+          "Fetch Optimal Klubs Q&A updates",
+          "Sync daily canonical Supabase rows"
+        ],
+        "commands": [
+          "summary/kruse-summary: npm run fetch-qna -- --date=$TARGET --months=4 --limit=3",
+          "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
+        ],
+        "writes_supabase": true
+      },
+      "evidence_checks": [
+        {
+          "label": "canonical_inventory",
+          "type": "path_exists",
+          "path": "summary/kruse-summary/curated/podcast-canonical-inventory.json"
+        },
+        {
+          "label": "daily_podcast_sidecars",
+          "type": "glob",
+          "path": "summary/kruse-summary/curated/*-podcasts.json"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "podcast_inventory_not_daily_discovery_refreshed",
+          "severity": "medium",
+          "description": "The daily job records observed sidecar metadata but does not run broad podcast discovery or refresh the full canonical inventory.",
+          "follow_up_owner": "future podcast discovery/import task"
+        }
+      ]
+    },
+    {
+      "id": "podcast_transcripts",
+      "label": "Podcast transcripts",
+      "scope": "Transcript markdown and transcript rows for podcast episodes.",
+      "canonical": {
+        "local": {
+          "status": "defined_missing_in_canonical_archive",
+          "primary_paths": [
+            "kruse-archive/podcasts/<YYYY>/<YYYY-MM>/<transcript>.md"
+          ],
+          "current_noncanonical_paths": [
+            "summary/kruse-summary/out/issue-225/transcripts/*.md",
+            "summary/kruse-summary/out/issue-225-paid-stt-final/transcripts/*.md"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/out/issue-225/rollup.json",
+            "summary/kruse-summary/out/issue-225-paid-stt-final/rollup.json",
+            "summary/kruse-summary/out/issue-405/youtube-transcript-import-manifest.json"
+          ],
+          "notes": "Current transcript artifacts exist under issue output paths. The canonical archive target is kruse-archive/podcasts, and Supabase Storage target is kruse-archive/podcasts."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/out/issue-225/*.json",
+        "summary/kruse-summary/out/issue-405/*.json"
+      ],
+      "supabase": {
+        "status": "target_defined_import_pending",
+        "tables": [
+          {
+            "name": "kruse_podcast_transcripts",
+            "writer": "summary/kruse-summary/code/podcast-youtube-transcript-import-plan.js and summary/kruse-summary/code/podcast-supabase-import-execute.js",
+            "conflict_target": "canonical_episode_id",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "podcasts/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_when_archive_markdown_exists",
+        "paths": [
+          "kruse-archive/podcasts/**/*.md",
+          "transcribe_kruse/transcriptions/**/podcast*.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "metadata_only_no_transcript_import",
+        "owner": "issue-specific import workers",
+        "steps": [
+          "Daily sync plans metadata rows with transcriptStorage=false. Transcript imports require a separate approved dry-run/live import task."
+        ],
+        "commands": [
+          "summary/kruse-summary: npm run db:podcast-youtube-import:dry -- --dry-run",
+          "summary/kruse-summary: npm run db:podcast-import:dry -- --dry-run"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "canonical_archive_podcast_transcripts",
+          "type": "glob",
+          "path": "kruse-archive/podcasts/**/*.md"
+        },
+        {
+          "label": "issue_225_free_caption_transcripts",
+          "type": "glob",
+          "path": "summary/kruse-summary/out/issue-225/transcripts/*.md"
+        },
+        {
+          "label": "issue_225_paid_stt_transcripts",
+          "type": "glob",
+          "path": "summary/kruse-summary/out/issue-225-paid-stt-final/transcripts/*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "podcast_transcripts_not_in_canonical_archive_path",
+          "severity": "high",
+          "description": "Durable transcript artifacts currently sit under issue output paths, not the canonical kruse-archive/podcasts path that Storage and NotebookLM tooling use.",
+          "follow_up_owner": "issue #432 podcast Supabase canonical import worker"
+        },
+        {
+          "id": "podcast_transcript_live_supabase_import_pending",
+          "severity": "high",
+          "description": "Podcast transcript import has dry-run planners, but live Supabase transcript rows and Storage objects are not automatically written by the daily job.",
+          "follow_up_owner": "issue #432 podcast Supabase canonical import worker"
+        }
+      ]
+    },
+    {
+      "id": "qna_powwow",
+      "label": "Q&A and PowWow recordings/transcripts",
+      "scope": "Optimal Klubs monthly Q&A/PowWow recording metadata and future transcript markdown.",
+      "canonical": {
+        "local": {
+          "status": "metadata_only",
+          "primary_paths": [
+            "summary/kruse-summary/curated/<YYYY-MM-DD>-podcasts.json"
+          ],
+          "transcript_target_paths": [
+            "kruse-archive/qna/<YYYY-MM>/<transcript>.md",
+            "kruse-archive/powwow/<YYYY>/<transcript>.md"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/code/fetch-qna-updates.js"
+          ],
+          "notes": "The daily job records protected Q&A/PowWow page metadata. Transcript markdown targets are defined but not populated by the daily workflow."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/curated/<YYYY-MM-DD>-input.json",
+        "summary/kruse-summary/out/<YYYY-MM-DD>.html"
+      ],
+      "supabase": {
+        "status": "metadata_target_defined",
+        "tables": [
+          {
+            "name": "kruse_podcast_transcripts",
+            "writer": "summary/kruse-summary/code/podcast-supabase-import-plan.js via daily-canonical-sync.js",
+            "conflict_target": "canonical_episode_id",
+            "daily": true
+          },
+          {
+            "name": "media_items",
+            "writer": "summary/kruse-summary/code/podcast-media-items-import-execute.js",
+            "conflict_target": "media_id",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "qna/"
+          },
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "powwow/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_when_transcript_markdown_exists",
+        "paths": [
+          "kruse-archive/qna/**/*.md",
+          "kruse-archive/powwow/**/*.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "automatic_metadata_only",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Fetch Optimal Klubs Q&A updates",
+          "Build combined daily input",
+          "Sync daily canonical Supabase rows"
+        ],
+        "commands": [
+          "summary/kruse-summary: npm run fetch-qna -- --date=$TARGET --months=4 --limit=3",
+          "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
+        ],
+        "writes_supabase": true
+      },
+      "evidence_checks": [
+        {
+          "label": "daily_qna_metadata_sidecars",
+          "type": "glob",
+          "path": "summary/kruse-summary/curated/*-podcasts.json"
+        },
+        {
+          "label": "canonical_qna_transcripts",
+          "type": "glob",
+          "path": "kruse-archive/qna/**/*.md"
+        },
+        {
+          "label": "canonical_powwow_transcripts",
+          "type": "glob",
+          "path": "kruse-archive/powwow/**/*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "qna_powwow_transcripts_not_canonicalized",
+          "severity": "high",
+          "description": "Q&A/PowWow transcript targets are defined, but the daily job does not create transcript markdown or upload Storage objects.",
+          "follow_up_owner": "future Q&A/PowWow transcription/import task"
+        },
+        {
+          "id": "qna_paid_stt_boundary_unapproved_for_daily",
+          "severity": "medium",
+          "description": "Paid STT is explicitly outside the daily job unless Guy approves a bounded smoke/import task.",
+          "follow_up_owner": "future approved STT task"
+        }
+      ]
+    },
+    {
+      "id": "webinars",
+      "label": "Webinars",
+      "scope": "Webinar recordings and future transcript markdown.",
+      "canonical": {
+        "local": {
+          "status": "external",
+          "primary_paths": [
+            "kruse-archive/webinars/<YYYY>/<transcript>.md"
+          ],
+          "external_source_roots": [
+            "D:/kruse/webinars",
+            "$KRUSE_WEBINARS_DIR"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/code/canonical-tools.js",
+            "tools/notebooklm-manifest.mjs"
+          ],
+          "notes": "External webinar audio/source folders are not a committed repo source. Canonical transcript markdown belongs under kruse-archive/webinars before Supabase/NotebookLM use."
+        }
+      },
+      "derived_outputs": [],
+      "supabase": {
+        "status": "target_defined_import_pending",
+        "tables": [
+          {
+            "name": "media_items",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "media_id",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-archive",
+            "object_prefix": "webinars/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "included_when_transcript_markdown_exists",
+        "paths": [
+          "kruse-archive/webinars/**/*.md",
+          "$KRUSE_WEBINARS_DIR/**/*.md"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "none",
+        "owner": "future webinar transcription/import task",
+        "steps": [
+          "No daily workflow step discovers, transcribes, imports, or uploads webinar material."
+        ],
+        "commands": [],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "canonical_webinar_transcripts",
+          "type": "glob",
+          "path": "kruse-archive/webinars/**/*.md"
+        },
+        {
+          "label": "external_webinar_root_exists",
+          "type": "path_exists",
+          "path": "D:/kruse/webinars",
+          "external": true
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "webinars_no_daily_or_import_owner",
+          "severity": "high",
+          "description": "Webinars have Storage/table targets but no current daily sync, transcription, or import owner.",
+          "follow_up_owner": "future webinar transcription/import task"
+        },
+        {
+          "id": "webinar_raw_audio_deferred",
+          "severity": "medium",
+          "description": "Raw webinar audio is outside canonical Storage policy until a separate audio upload task is approved.",
+          "follow_up_owner": "future approved audio policy task"
+        }
+      ]
+    },
+    {
+      "id": "notebooklm_exports",
+      "label": "NotebookLM source exports",
+      "scope": "NotebookLM upload candidate lists and source bundles/transcripts.",
+      "canonical": {
+        "local": {
+          "status": "derived_only",
+          "primary_paths": [
+            "tools/notebooklm-manifest.mjs",
+            "tools/notebooklm-drive-bundles.mjs"
+          ],
+          "state_paths": [
+            ".codex-tmp/notebooklm-manifest.json"
+          ],
+          "notes": "NotebookLM sources are derived from canonical archive markdown and transcript markdown. The manifest is the auditable candidate list, not the canonical content itself."
+        }
+      },
+      "derived_outputs": [
+        "scrapers/forum_to_md/processed_mds/forum#N.md",
+        "scrapers/linkedin_to_md/processed_mds/linkedin#N.md",
+        "scrapers/free_blogs_md/processed_mds/free-blogs#N.md",
+        "scrapers/threadreader_to_md/processed_mds/tweet-threads*.md",
+        "kruse-archive/podcasts/**/*.md",
+        "kruse-archive/qna/**/*.md",
+        "kruse-archive/webinars/**/*.md",
+        "kruse-archive/powwow/**/*.md"
+      ],
+      "supabase": {
+        "status": "none_by_policy",
+        "tables": [],
+        "storage_buckets": []
+      },
+      "notebooklm": {
+        "status": "manifest_only_no_daily_upload",
+        "paths": [
+          ".codex-tmp/notebooklm-manifest.json"
+        ],
+        "tool": "tools/notebooklm-manifest.mjs"
+      },
+      "daily_sync": {
+        "status": "none",
+        "owner": "manual NotebookLM refresh operator",
+        "steps": [
+          "No daily job uploads to NotebookLM or updates Google Drive source files."
+        ],
+        "commands": [
+          "node tools/notebooklm-manifest.mjs --out=.codex-tmp/notebooklm-manifest.json"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "notebooklm_forum_bundles",
+          "type": "glob",
+          "path": "scrapers/forum_to_md/processed_mds/forum#*.md"
+        },
+        {
+          "label": "notebooklm_threadreader_bundles",
+          "type": "glob",
+          "path": "scrapers/threadreader_to_md/processed_mds/tweet-threads*.md"
+        },
+        {
+          "label": "notebooklm_linkedin_bundles",
+          "type": "glob",
+          "path": "scrapers/linkedin_to_md/processed_mds/linkedin#*.md"
+        },
+        {
+          "label": "notebooklm_free_blog_bundles",
+          "type": "glob",
+          "path": "scrapers/free_blogs_md/processed_mds/free-blogs#*.md"
+        },
+        {
+          "label": "notebooklm_archive_transcripts",
+          "type": "glob",
+          "path": "kruse-archive/**/*.md"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "notebooklm_no_daily_upload_owner",
+          "severity": "high",
+          "description": "The repo can build a NotebookLM manifest, but no daily job uploads or refreshes NotebookLM sources.",
+          "follow_up_owner": "future NotebookLM Drive/upload automation task"
+        },
+        {
+          "id": "notebooklm_manifest_not_published_daily",
+          "severity": "medium",
+          "description": "Manifest output is generated on demand into local scratch paths rather than committed or published by the daily workflow.",
+          "follow_up_owner": "future NotebookLM manifest publication task"
+        }
+      ]
+    },
+    {
+      "id": "daily_reports",
+      "label": "Daily report outputs",
+      "scope": "Final daily report HTML, public site mirrors, and report archive artifacts.",
+      "canonical": {
+        "local": {
+          "status": "derived_only",
+          "primary_paths": [
+            "summary/kruse-summary/out/<YYYY-MM-DD>.html",
+            "docs/reports/<YYYY-MM-DD>.html"
+          ],
+          "state_paths": [
+            "summary/kruse-summary/last-prepared.json",
+            "summary/kruse-summary/last-sent.json"
+          ],
+          "notes": "Daily reports are derived summaries, not primary knowledge sources. They are durable public artifacts and should not be embedded as primary RAG source text."
+        }
+      },
+      "derived_outputs": [
+        "summary/kruse-summary/site/**",
+        "docs/**"
+      ],
+      "supabase": {
+        "status": "target_defined_no_daily_import",
+        "tables": [
+          {
+            "name": "daily_reports",
+            "writer": "summary/kruse-summary/code/canonical-tools.js",
+            "conflict_target": "report_date",
+            "daily": false
+          }
+        ],
+        "storage_buckets": [
+          {
+            "bucket": "kruse-summary",
+            "object_prefix": "reports/"
+          }
+        ]
+      },
+      "notebooklm": {
+        "status": "excluded_by_policy",
+        "paths": [],
+        "notes": "Daily reports are summaries and are excluded from NotebookLM source manifests."
+      },
+      "daily_sync": {
+        "status": "automatic_local_publish_only",
+        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "steps": [
+          "Build report",
+          "Build public report site",
+          "Mirror public report site into docs",
+          "Commit data + state back to repo"
+        ],
+        "commands": [
+          "summary/kruse-summary: node main.js --build-only --use-ai --date=$DATE",
+          "summary/kruse-summary: npm run build-site"
+        ],
+        "writes_supabase": false
+      },
+      "evidence_checks": [
+        {
+          "label": "summary_out_reports",
+          "type": "glob",
+          "path": "summary/kruse-summary/out/*.html"
+        },
+        {
+          "label": "docs_reports",
+          "type": "glob",
+          "path": "docs/reports/*.html"
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "daily_reports_supabase_archive_not_daily_synced",
+          "severity": "medium",
+          "description": "Canonical-tools defines daily_reports and kruse-summary Storage targets, but daily-canonical-sync.js does not import report rows or Storage objects.",
+          "follow_up_owner": "future daily report Supabase archive task"
+        }
+      ]
+    }
+  ]
+}

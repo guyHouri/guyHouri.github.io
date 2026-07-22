@@ -65,6 +65,12 @@ watchdog, not changing the report-date logic.
 The daily workflow is intentionally linear. If a required step fails, later
 steps do not run.
 
+The source-family ownership matrix for this pipeline lives in
+[`CANONICAL_SOURCE_MAP.md`](CANONICAL_SOURCE_MAP.md) and
+[`canonical-source-map.json`](canonical-source-map.json). Run
+`node tools/check-canonical-source-map.mjs --check` before claiming NotebookLM
+or Supabase is current for a source family.
+
 1. Checkout `main`.
 2. Pick the target report date and run mode.
 3. Run a cheap required-config preflight before installs, scraping, Anthropic,
@@ -101,15 +107,25 @@ steps do not run.
     published" announcements. Podcast/Q&A remains a separate side section. If
     no actionable podcast is found, the report says `No new Jack Kruse
     podcast.`
-16. Build the static public site into `summary/kruse-summary/site`.
-17. Mirror the static site into `docs`.
-18. Commit generated artifacts and push to `main`; unapproved scheduled runs
+16. Sync canonical daily rows to Supabase.
+17. Export the daily NotebookLM dry-run package into
+    `summary/kruse-summary/out/notebooklm-refresh/<date>/`. This package
+    produces the selected source manifest, freshness report, selected/skipped
+    family counts, source-limit checks, and per-source Drive update/setup plan.
+    It does not assume a notebook exists, does not attach Drive folders as
+    NotebookLM sources, and does not mutate NotebookLM or Google Drive.
+    First-time setup requires creating/opening a NotebookLM notebook, adding
+    selected stable Drive files individually as sources, and recording the
+    notebook URL plus stable Drive file IDs in the NotebookLM source registry.
+18. Build the static public site into `summary/kruse-summary/site`.
+19. Mirror the static site into `docs`.
+20. Commit generated artifacts and push to `main`; unapproved scheduled runs
     also write `summary/kruse-summary/last-prepared.json`.
-19. Publish and verify the public report URL for review.
-20. Send email only when the run is an approved manual/test send.
-21. Write `summary/kruse-summary/last-sent.json` only after approved email
+21. Publish and verify the public report URL for review.
+22. Send email only when the run is an approved manual/test send.
+23. Write `summary/kruse-summary/last-sent.json` only after approved email
     succeeds.
-22. CI/CD runs tests again and deploys `docs` to GitHub Pages only after tests
+24. CI/CD runs tests again and deploys `docs` to GitHub Pages only after tests
     pass.
 
 ## AI Summary Chain
