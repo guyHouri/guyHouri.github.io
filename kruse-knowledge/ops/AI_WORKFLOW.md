@@ -196,9 +196,9 @@ checkout clean enough that Guy can trust it as a sync and inspection point.
   with the absolute worktree path and owning thread or worktree id.
 - Before final handoff, audit both places when accessible:
   `git status --short --branch` in the task worktree, and
-  `git status --short --branch` in the shared root checkout. Any task-created
-  dirty file in root must be moved into the task worktree, committed/pushed, or
-  deleted if disposable.
+  `node tools/root-hygiene-guard.mjs` in the shared root checkout. Any
+  task-created dirty file in root must be moved into the task worktree,
+  committed/pushed, quarantined outside the checkout, or deleted if disposable.
 - When an issue, PR, worker chat, optional review/audit lane, or one-off repo-scoped task
   finishes, remove the completed task worktree with `git worktree remove
   <path>` and then run `git worktree prune` from the repo root, after the branch
@@ -211,6 +211,41 @@ checkout clean enough that Guy can trust it as a sync and inspection point.
   task or artifact findability.
 - A handoff is incomplete when it says "saved locally" without a committed PR
   branch, published URL, or exact worktree-only access route.
+
+## Canonical Transcript Closeout
+
+Transcript/STT/import workers must not mark a protected transcript task
+archive-ready after proving only local files, or only transcript Storage, when
+the canonical target also includes a registry table.
+
+For any task that creates or promotes transcript markdown under
+`kruse-archive/podcasts/`, `kruse-archive/powwow/`,
+`kruse-archive/qna/`, or `kruse-archive/webinars/`, the closeout evidence must
+answer all of these before `ARCHIVE_OK: yes`:
+
+- Selected source count and IDs match the approved task scope.
+- Transcript markdown is non-empty and includes provider/model metadata.
+- Canonical Storage status is explicit: uploaded/read-back verified in
+  `kruse-archive`, or blocked because live Storage upload was not approved.
+- Canonical registry status is explicit: `media_items` or the approved
+  source-family table was upserted/read-back verified, or blocked because live
+  DB write was not approved.
+- Raw audio upload remains `false` unless a separate task explicitly approved
+  raw-audio Storage upload.
+- Drive, NotebookLM, email, GitHub Actions, secrets, and local env/config
+  mutations are either verified false or separately approved in the task.
+
+When an evidence manifest exists, run:
+
+```powershell
+node tools/check-canonical-transcript-closeout.mjs --manifest <evidence.json> --expect-count <n>
+```
+
+If the guard fails because Storage or registry writes were outside approval,
+the final response must be `ARCHIVE_OK: no` and name the missing approval or
+next owner. Do not call local ignored transcript artifacts "canonical" unless
+the issue explicitly scoped a local-only or dry-run deliverable.
+
 
 ## Final Response Closeout
 
@@ -483,6 +518,17 @@ is unavailable, the worker must comment with the attempted board update and the
 exact blocker before doing implementation work so a queue/audit lane can repair
 the board.
 
+GitHub Project API or GraphQL rate-limit errors are board-sync blockers, not
+implementation blockers, once the issue exists and the worker lease/status
+comment has been written. If a Project field mutation or readback hits a
+secondary rate limit, timeout, or transient reset message, record `board sync
+deferred` with the attempted field values and continue the approved task. Stop
+only when the primary GitHub API quota is actually exhausted until reset, auth
+or scopes prevent the required issue/lease claim, a duplicate active lease
+exists, or the Project failure hides an ownership conflict. Do not retry broad
+Project scans just to prove the same deferred board sync; queue/audit can repair
+the board later from issue, branch, PR, and lease evidence.
+
 Done missions and tasks should be visually separate from live work. The preferred board view groups or filters by `Status` so `Done` appears as its own lane/section or in a dedicated done/history view. Active views should be sorted or manually ordered by `Urgency` first: `Urgent`, `High`, `Normal`, then `Later`. Do not mix done missions into the active mission list except when auditing history.
 
 Mission nesting uses GitHub sub-issues. The Project's built-in `Parent issue` and `Sub-issues progress` fields show hierarchy/progress once `tools/link-issue-parent.ps1` has linked the issues. A mission can contain child missions, stories, tasks, bugs, research issues, docs issues, or cleanup issues.
@@ -571,6 +617,46 @@ Always ask before:
   gitignored `.env`, cookie, credential, PowerShell User/Machine env, or
   Codex/runtime env stores
 - Destructive cleanup
+
+### Provider Credential Reuse Boundary
+
+Provider API keys are shared project infrastructure, not per-feature setup.
+When a feature needs Anthropic, Gemini, Voyage, X/Twitter, Supabase, Gmail, or
+another provider, the worker must first identify the canonical existing secret
+name and destination that should serve it. Do not ask Guy for, open, create,
+rotate, or split out a new API key just because the feature is new.
+
+A new or rotated provider key is allowed only when Guy explicitly approves that
+provider and destination, the provider requires separate scoped credentials, the
+existing key is compromised/revoked, or a hard quota/billing isolation
+requirement is documented. If the existing key is unavailable or masked, report
+the exact blocker and route through `$kruse-provider-secrets`; do not convert a
+missing local value into a new-key request by default.
+
+### Transcript Supabase Completion Boundary
+
+Transcript, media, podcast, Q&A, webinar, powwow, and similar canonical-source
+tasks must not hide the live-import decision behind generic no-write language.
+Their task card and final closeout must say which one of these states was
+delivered:
+
+- `artifact-only`: a local/repo transcript artifact was created or verified,
+  with no live import expected.
+- `import-ready/no-live-write`: the dry-run import plan includes the row, but
+  Supabase was not changed. The closeout must say `not in Supabase` and name
+  the exact next approval, credential, or owner needed for the live write.
+- `live Supabase imported`: the approved row was written to Supabase and a
+  readback proves the exact canonical id/source id, transcript count/hash, and
+  no unintended Storage/audio/email/paid side effects.
+
+Do not add generic no-live-write disclaimers to transcript or canonical-source
+closeouts. If Guy explicitly chooses an artifact-only or dry-run-only outcome,
+or if credentials/approval are genuinely unavailable, say `not in Supabase` and
+name the exact next approval, credential, or owner needed for the live write. If
+Guy asks whether an item is "in Supabase", "canonical", "uploaded",
+"available", or equivalent, the worker must either perform the scoped live
+import with readback proof or report the exact blocker; it must not call an
+import-ready artifact done as though it were live.
 
 Public-site/GitHub Pages deployment:
 
@@ -728,7 +814,8 @@ Every PR should pass local gates before opening or marking ready:
   `.\tools\local-env-guard.ps1 -Mode Backup -Scope <scope> -AllowMissing`.
 - Relevant package tests.
 - Artifact hygiene audit: `git status --short --branch` in the task worktree
-  and, when accessible, in the shared root checkout.
+  and, when accessible, `node tools/root-hygiene-guard.mjs` in the shared root
+  checkout.
 - Secret, local junk, and old URL scans when the touched area warrants them.
 - `npm run prod-check` from `summary/kruse-summary/` for site, email,
   workflow, deploy, docs, or report-rendering changes.
@@ -989,7 +1076,8 @@ workflow fix needed to prevent the repeat.
 For artifact and worktree hygiene failures, the immediate fix is to locate the
 stranded file, move it into the proper task branch or publishable route, and
 clean any task-created root dirt. The durable fix is to make future workers
-audit task worktree status, shared root status, and file access routes before
+audit task worktree status, run `node tools/root-hygiene-guard.mjs` from the
+shared root checkout when accessible, and verify file access routes before
 handoff.
 
 For chat title failures, the immediate fix is to rename the stored Codex thread

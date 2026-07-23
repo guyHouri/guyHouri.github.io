@@ -1,546 +1,465 @@
 # Daily Kruse Pipeline
 
-End-to-end daily workflow for the public Kruse report site and approved mailing-list email send.
-This is separate from the NotebookLM archive scrapers: the archive scrapers
-produce long-term markdown bundles, while this pipeline produces one daily HTML
-report from the last 24 hours of X, forum, and newly surfaced blog activity.
+End-to-end daily process for the public Kruse report site, canonical Supabase
+sync, live NotebookLM Drive-file refresh when configured, and approved
+mailing-list email send.
 
 ## Current Shape
 
-The active automation is `.github/workflows/daily-kruse-summary.yml`.
+Yes, there is a daily process. It is not a GitHub Actions daily job.
 
-- Runs with frequent scheduled attempts around the user-facing target of
-  `04:00 Asia/Jerusalem`.
-- Uses `REPORT_TIME_ZONE`, default `Asia/Jerusalem`, to choose the report date
-  and the local build target time.
-- Accepts manual `workflow_dispatch`.
-- Accepts external `repository_dispatch` with event type `daily-kruse-summary`.
-- Accepts external test `repository_dispatch` with event type
-  `daily-kruse-summary-test`.
-- Publishes the report for review. It does not send email to the synced mailing
-  list until Guy approves the report through a manual `send-existing` or
-  `force` run. A temporary test gate can still be enabled with
-  `KRUSE_EMAIL_TEST_RECIPIENTS`, but it is not active by default.
-- Commits generated daily data, report HTML, mailing-list sync, and website
-  files back to `main`.
-- Triggers `.github/workflows/ci-cd.yml` after the daily commit.
+The daily process is:
 
-Manual `send-existing` mode reuses the already-committed curated report for a
-date and sends it without scraping again or calling Anthropic again. Use it when
-an approved test report should now go to the full mailing list.
-
-Test dispatches use the same workflow and email code, but pass
-`KRUSE_EMAIL_TEST_RECIPIENTS` from the dispatch payload. When the test gate is
-active, the workflow sends only to those addresses and `summary/kruse-summary/main.js`
-does not update `last-sent.json`. A test mail can therefore prove the real
-pipeline without marking the production day as sent.
-
-## Date And Time Rules
-
-The report date is not hardcoded. The workflow picks it like this:
-
-1. If a manual or repository-dispatch payload includes `date`, use that exact
-   `YYYY-MM-DD`.
-2. Otherwise, run `TZ="$REPORT_TIME_ZONE" date +%Y-%m-%d`.
-3. Pass that date to the X scraper, forum scraper, input builder, AI summary,
-   HTML renderer, email sender, and public-site builder.
-
-The desired product behavior is simple: a reviewable report should be published
-around `04:00` Israel time, then the mailing list should wait for Guy's
-approval. GitHub's cron syntax is UTC-only, so the YAML uses frequent UTC
-triggers around the local 04:00 window and the workflow has a
-`Wait until 04:00 Israel time` step. After the first successful scheduled
-preparation, `last-prepared.json` makes later scheduled attempts skip before
-tests, scraping, Anthropic, or email. After an approved send, `last-sent.json`
-blocks duplicate mailing-list delivery. There is no sunrise API in the send
-path.
-
-If the workflow does not appear at the scheduled minute, that is not a date
-calculation bug by itself. GitHub scheduled workflows can start late or fail to
-start. Frequent attempts reduce the risk, but the strongest fix is an external
-watchdog, not changing the report-date logic.
-
-## Pipeline Steps
-
-The daily workflow is intentionally linear. If a required step fails, later
-steps do not run.
-
-The source-family ownership matrix for this pipeline lives in
-[`CANONICAL_SOURCE_MAP.md`](CANONICAL_SOURCE_MAP.md) and
-[`canonical-source-map.json`](canonical-source-map.json). Run
-`node tools/check-canonical-source-map.mjs --check` before claiming NotebookLM
-or Supabase is current for a source family.
-
-1. Checkout `main`.
-2. Pick the target report date and run mode.
-3. Run a cheap required-config preflight before installs, scraping, Anthropic,
-   Supabase sync, or email sends. This checks the production public URL,
-   Supabase vars/secrets, Gmail sender secrets, scraper credentials,
-   Anthropic key, and admin alert recipient configuration needed for the
-   selected mode. For forum auth, CI should prefer `XENFORO_COOKIE`; the
-   username/password pair is only a fallback.
-4. On scheduled runs, wait until `04:00` in `REPORT_TIME_ZONE`.
-5. If `last-sent.json` says this date was sent, or `last-prepared.json` says the
-   scheduled report is already waiting for approval, skip the duplicate attempt
-   before tests or API calls.
-6. Install and test `twitter_to_md`.
-7. Install and test `kruse-summary`.
-8. Scrape X as a rolling 24-hour window into
-   `scrapers/twitter_to_md/data/<date>.json`.
-9. Scrape forum activity into `scrapers/forum_to_md/daily/<date>.json`. If the forum
-   is unreachable after retries, write an empty sidecar with `scrape_error`
-   and continue so the report still publishes with an explicit forum-failed
-   state.
-10. Fetch newly published or newly observed Optimal Klubs blog posts into
-   `summary/kruse-summary/curated/<date>-blogs.json`, including stripped article text
-   for posts selected for that day. The checker targets the stable daily window
-   ending at `04:00 Asia/Jerusalem`; modified older posts do not count as new
-   blogs.
-11. Sync Supabase mailing-list rows into `summary/kruse-summary/mailing_list.json`.
-12. Build combined daily input at `summary/kruse-summary/curated/<date>-input.json`,
-    including `twitter.tweets`, `forum.posts`, and `blog.posts`.
-13. Extract podcast/interview pointers to
-    `summary/kruse-summary/curated/<date>-podcasts.json`.
-14. Run Anthropic prompt chain and validation for the daily digest.
-15. Render `summary/kruse-summary/out/<date>.html`. Blog articles selected by the AI
-    appear as normal `Blog Updates` cards; they are not rendered as "new blog
-    published" announcements. Podcast/Q&A remains a separate side section. If
-    no actionable podcast is found, the report says `No new Jack Kruse
-    podcast.`
-16. Sync canonical daily rows to Supabase.
-17. Export the daily NotebookLM dry-run package into
-    `summary/kruse-summary/out/notebooklm-refresh/<date>/`. This package
-    produces the selected source manifest, freshness report, selected/skipped
-    family counts, source-limit checks, and per-source Drive update/setup plan.
-    It does not assume a notebook exists, does not attach Drive folders as
-    NotebookLM sources, and does not mutate NotebookLM or Google Drive.
-    First-time setup requires creating/opening a NotebookLM notebook, adding
-    selected stable Drive files individually as sources, and recording the
-    notebook URL plus stable Drive file IDs in the NotebookLM source registry.
-18. Build the static public site into `summary/kruse-summary/site`.
-19. Mirror the static site into `docs`.
-20. Commit generated artifacts and push to `main`; unapproved scheduled runs
-    also write `summary/kruse-summary/last-prepared.json`.
-21. Publish and verify the public report URL for review.
-22. Send email only when the run is an approved manual/test send.
-23. Write `summary/kruse-summary/last-sent.json` only after approved email
-    succeeds.
-24. CI/CD runs tests again and deploys `docs` to GitHub Pages only after tests
-    pass.
-
-## AI Summary Chain
-
-The report is not one giant prompt. It is a staged chain so each step has one
-job:
-
-1. `build-input` collects same-day X, forum, and new blog article items in one
-   JSON file.
-2. `select-system.md` removes low-signal items and keeps only new protocols,
-   mechanisms, concrete cases, cited papers, datasets, new claims, useful forum
-   updates, and useful blog-article signals.
-3. Code gates remove podcast-only items and enforce minimum priority.
-4. `write-system.md` writes source-grounded Twitter, Forum, and Blog cards
-   without adding personal opinion.
-5. `explain-system.md` repairs unclear medical, scientific, and technical
-   language.
-6. Code repairs common model formatting mistakes, including missing card
-   `source_ids`/`source_urls`, from the already-approved selected items.
-7. Blog-series codes such as `CPC#84` and `DM#63` are treated as Kruse archive
-   references, not scientific terms and not formal citations.
-8. Code validators check source IDs, source quotes, same-day citations,
-   citation bibliographic anchors, forum/blog URLs, podcast leakage, duplicate
-   cards, and missing explanations.
-9. The renderer builds the final HTML from validated JSON.
-
-Forum and blog updates must go through the same select, write, explain, and
-verify process as tweets. Forum and blog items are not raw appendices and are
-not second-class content.
-
-Podcast and Q&A material is intentionally a side lane. `summarize.js` saves
-detected podcast/interview pointers into `curated/<date>-podcasts.json`, code
-removes those sources from the digest body, and `build-report.js` renders a
-dedicated `Latest Podcast / Q&A Summary` section. A podcast item is actionable
-only when the source text says it is a new/live/released recording and includes
-a real external URL; vague references, old interviews, and URL-only chatter are
-ignored. Until ElevenLabs extraction is connected, that section either shows
-the queued source or the exact fallback `No new Jack Kruse podcast.` The future
-Q&A ingest should use `KRUSE_QNA_SOURCE_USER=guy.houri`; do not use Daniel's
-account for that path.
-
-Optimal Klubs blog updates are source material for the AI digest, not a side
-announcement. `npm run fetch-blogs -- --date=<date>` calls the Optimal Klubs
-WordPress posts API and writes `curated/<date>-blogs.json`; if
-`OPTIMAL_KLUBS_COOKIE` is present, the request is made with Guy Houri's logged
-in member cookie, otherwise it falls back to the public posts API. The fetcher
-strips HTML/media and stores article text for the new/observed posts. Then
-`build-input` adds those posts to `blog.posts`, the curator selects only useful
-article signal, and the writer renders selected items as normal `Blog Updates`
-cards. If no blog is found or no blog signal passes the gate, the report uses
-the normal empty-source card instead of filler.
-
-## Testing Gates
-
-There are two testing gates.
-
-The daily workflow runs:
-
-```text
-twitter_to_md: npm test
-kruse-summary: npm test
+```mermaid
+flowchart LR
+  A["Supabase pg_cron"] --> B["kruse_internal.dispatch_daily_kruse_watchdog"]
+  B --> C["POST backend URL from Vault secret daily_backend_url"]
+  C --> D["Backend endpoint /jobs/daily-kruse-summary"]
+  D --> E["summary/kruse-summary/code/daily-backend-runner.js"]
+  E --> F["Scrape, summarize, sync, build, publish review report"]
 ```
 
-The CI/CD workflow repeats the same tests before deploying the public website.
+- Supabase owns the time-zone-aware schedule.
+- The backend URL owns execution.
+- GitHub Actions is not the daily scheduler and not the daily executor.
+- The old daily GitHub Actions runner and GitHub recovery runner are removed.
+- GitHub remains the source repository and public Pages repository host; the
+  backend may commit generated artifacts and publish Pages using normal git
+  credentials configured on the backend server.
 
-Tests cover the X daily JSON behavior, summary validation repairs, report
-rendering behavior, source-link/concept-link behavior, site build behavior,
-email recipient filtering, test-send state safety, Supabase form behavior, and
-unsubscribe logic. The practical rule is simple: if tests fail, the workflow
-must not deploy or run an approved send.
+## Scheduler
+
+The scheduler lives in Supabase:
+
+- SQL: `summary/kruse-summary/supabase/daily-watchdog-dispatch.sql`.
+- Schema: `kruse_internal`.
+- Table: `kruse_internal.daily_watchdog_dispatches`.
+- Function: `kruse_internal.dispatch_daily_kruse_watchdog`.
+- Cron jobs:
+  - `kruse-daily-watchdog-0430-il-summer` at `30 1 * * *`.
+  - `kruse-daily-watchdog-0430-il-winter` at `30 2 * * *`.
+- Local window check: `04:25-04:45 Asia/Jerusalem`.
+
+Supabase runs both UTC candidates needed for Israel summer/winter time. The DB
+function checks `timezone('Asia/Jerusalem', now())` and only dispatches inside
+the local window unless forced.
+
+Required Supabase Vault secrets:
+
+```text
+daily_backend_url
+daily_backend_token
+```
+
+`daily_backend_url` must be the backend endpoint, for example:
+
+```text
+https://backend.example.com/jobs/daily-kruse-summary
+```
+
+Supabase sends:
+
+```json
+{
+  "source": "supabase-pg-cron",
+  "mode": "normal",
+  "date": "YYYY-MM-DD",
+  "approved_send": false
+}
+```
+
+The HTTP response should be `202 Accepted` from the backend. Supabase records the
+`pg_net` request ID in `kruse_internal.daily_watchdog_dispatches`.
+
+## Backend Entry Points
+
+The backend server runs:
+
+```bash
+cd summary/kruse-summary
+npm run daily:backend-server
+```
+
+That starts `summary/kruse-summary/code/daily-backend-server.js`, which exposes:
+
+- `GET /healthz`
+- `GET /jobs/daily-kruse-summary`
+- `POST /jobs/daily-kruse-summary`
+
+`POST /jobs/daily-kruse-summary` requires:
+
+```http
+Authorization: Bearer <KRUSE_DAILY_BACKEND_TOKEN>
+```
+
+The server starts one backend runner process at a time:
+
+```bash
+node summary/kruse-summary/code/daily-backend-runner.js --mode=normal --date=YYYY-MM-DD
+```
+
+Direct backend cron can also run the same runner once every 24 hours. If both
+direct backend cron and Supabase cron are enabled, keep only one as primary or
+the duplicate guards will skip the second run.
+
+Backend deployment templates live in:
+
+```text
+summary/kruse-summary/deploy/
+```
+
+Use `summary/kruse-summary/deploy/README.md` for the systemd unit, backend env
+file, health checks, and Supabase Vault cutover commands. That runbook is the
+server-owned path; it is not a GitHub Actions setup.
+
+## Backend Environment
+
+The backend host must provide the production secrets and variables that used to
+live in the daily Actions environment:
+
+```text
+KRUSE_DAILY_BACKEND_TOKEN
+KRUSE_DAILY_BACKEND_HOST
+KRUSE_DAILY_BACKEND_PORT
+KRUSE_BACKEND_STATE_DIR
+KRUSE_DAILY_INSTALL
+KRUSE_DAILY_GIT_USER_NAME
+KRUSE_DAILY_GIT_USER_EMAIL
+KRUSE_SITE_PUBLIC_BASE_URL
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+SUPABASE_SERVICE_ROLE_KEY
+SUPABASE_MAILING_LIST_TABLE
+SUPABASE_FEEDBACK_TABLE
+SUPABASE_CARD_VOTES_TABLE
+SUPABASE_CARD_VOTE_COUNTS_VIEW
+GMAIL_USER
+GMAIL_APP_PASSWORD
+ANTHROPIC_API_KEY
+XAPI_BEARER_TOKEN
+XENFORO_COOKIE
+FORUM_USERNAME
+FORUM_PASSWORD
+OPTIMAL_KLUBS_COOKIE
+OPTIMALKLUBS_USERNAME
+OPTIMALKLUBS_PASSWORD
+GEMINI_API_KEY
+KRUSE_ADMIN_ALERT_RECIPIENTS
+KRUSE_BOT_TOKEN or backend git credentials for repo writes
+NOTEBOOKLM_RCLONE_LIVE
+NOTEBOOKLM_RCLONE_REQUIRE_LIVE
+NOTEBOOKLM_RCLONE_SOURCE_REGISTRY
+NOTEBOOKLM_RCLONE_CONFIG
+NOTEBOOKLM_RCLONE_REMOTE
+```
+
+`GMAIL_USER` and `GMAIL_APP_PASSWORD` are required for normal production daily
+runs because failure and approval-needed admin alerts are required behavior.
+They still do not permit mailing-list delivery by themselves; full-list send
+requires an explicit approved send path, such as `--approved-send` or
+`KRUSE_DAILY_APPROVED_SEND=true`.
+
+The backend should keep refreshed forum cookies in server-local state or an
+approved backend secret store. It must not update GitHub Actions secrets as part
+of the daily run.
+
+## Production Cutover Checklist
+
+The repo-side PR is not the same thing as live cutover. To cut over production:
+
+1. Deploy the repo on the backend host.
+2. Install `summary/kruse-summary/deploy/kruse-daily-backend.service.example`
+   as the backend service.
+3. Fill `/etc/kruse/daily-backend.env` from
+   `summary/kruse-summary/deploy/kruse-daily-backend.env.example`.
+4. Expose `POST /jobs/daily-kruse-summary` over HTTPS.
+5. Store that URL as Supabase Vault secret `daily_backend_url`.
+6. Store the matching `KRUSE_DAILY_BACKEND_TOKEN` as Supabase Vault secret
+   `daily_backend_token`.
+7. Apply `summary/kruse-summary/supabase/daily-watchdog-dispatch.sql`.
+8. Run a build-only backend probe.
+9. Only then merge/deploy the branch that removes the GitHub daily executor.
+
+Steps 5-8 are live Supabase/backend operations and require explicit cutover
+approval.
+
+## Date And Approval Rules
+
+The report date is not hardcoded:
+
+1. If the Supabase payload or backend command includes `date`, use that exact
+   `YYYY-MM-DD`.
+2. Otherwise, compute the current day in `REPORT_TIME_ZONE`, default
+   `Asia/Jerusalem`.
+3. Pass that date to scraping, input building, AI summary, report rendering,
+   Supabase canonical sync, NotebookLM refresh artifacts, real Gemini Notebook
+   Drive source sync when enabled, public site build, and email send if
+   approved.
+
+Normal daily runs publish a reviewable report and stop before mailing-list
+delivery. A successful normal run sends an admin-only approval-needed alert to
+`KRUSE_ADMIN_ALERT_RECIPIENTS`, so the report does not quietly wait in
+`last-prepared.json`. Full-list email requires an explicit
+approved backend/manual run:
+
+```bash
+npm run daily:backend-run -- --mode=send-existing --date=YYYY-MM-DD --approved-send
+```
+
+Test recipient sends can pass `--test-recipients=<email>`. Test sends do not
+update `last-sent.json`.
+
+## Duplicate Guards
+
+The backend runner checks state before spending API budget:
+
+- `summary/kruse-summary/last-prepared.json` blocks duplicate normal rebuilds
+  while a report waits for approval.
+- `summary/kruse-summary/last-sent.json` blocks duplicate production email.
+- Supabase `daily_watchdog_dispatches` blocks duplicate backend dispatches
+  inside the last 23 hours.
+- The backend HTTP server allows one active daily runner at a time.
+
+## Daily Run Steps
+
+The backend runner is intentionally linear. If a required step fails, later
+steps do not run.
+
+1. Validate backend environment before installs, scraping, Anthropic, Supabase
+   sync, publishing, or email.
+2. Check `last-sent.json` and `last-prepared.json`.
+3. Install missing Node dependencies unless disabled by backend config.
+4. Scrape X into `scrapers/twitter_to_md/data/<date>.json`.
+5. Scrape forum activity into `scrapers/forum_to_md/daily/<date>.json`.
+6. Fetch Optimal Klubs blog updates into
+   `summary/kruse-summary/curated/<date>-blogs.json`.
+7. Fetch Optimal Klubs Q&A/podcast pointers into
+   `summary/kruse-summary/curated/<date>-podcasts.json`.
+8. Sync Supabase mailing-list rows into
+   `summary/kruse-summary/mailing_list.json`.
+9. Build combined input at
+    `summary/kruse-summary/curated/<date>-input.json`.
+10. Run the Anthropic daily digest chain and validation.
+11. Render `summary/kruse-summary/out/<date>.html`.
+12. Sync canonical daily rows to Supabase with
+    `npm run db:daily-canonical-sync -- --date=<date> --execute`.
+13. Build NotebookLM refresh artifacts into
+    `summary/kruse-summary/out/notebooklm-refresh/<date>/`.
+14. When `NOTEBOOKLM_RCLONE_LIVE=true`, update the real Gemini Notebook source
+    files in place with `tools/notebooklm-rclone-sync.mjs --live`. Production
+    uses the existing notebook
+    `https://notebooklm.google.com/notebook/6a5093c8-9b6b-4a9c-82b4-f3c541171db0`
+    and the existing 114-file Drive folder
+    `1RTf8rCpc2_olBPURIOBpPz_5ELzQ754r`.
+15. Optionally, when `NOTEBOOKLM_DRIVE_LIVE=true`, update a separate
+    per-source Drive API registry with `tools/notebooklm-drive-publisher.mjs
+    --live`. Do not enable both live paths unless their registries point at the
+    same intended NotebookLM source set.
+16. Build the static site in `summary/kruse-summary/site`.
+17. Mirror the static site into `docs`.
+18. Commit generated artifacts and push to `main`.
+19. Publish the public Pages copy from `docs`.
+20. Verify the live public report URL.
+21. Send an admin-only approval-needed alert.
+22. Send mailing-list email only when `--approved-send` is present.
+23. Write `last-sent.json` only after approved email succeeds.
+
+Production scheduled daily runs do not run test suites before scraping or
+generating the report. Tests remain developer, PR, and explicit operator
+preflight commands:
+
+```bash
+npm test
+npm run test:daily-backend
+npm run daily:backend-run -- --mode=normal --date=YYYY-MM-DD --run-tests
+```
+
+## NotebookLM
+
+The daily run does not open NotebookLM, attach NotebookLM sources, or attach a
+Drive folder. As of 2026-07-22, production has a real Gemini Notebook named
+`Kruse Knowledge - Drive Sync Core Sources` with 99 individual Drive-file
+sources already attached. The backend updates those same Drive files in place
+through rclone, and the source registry verifies Drive file IDs before and after
+upload.
+
+It always exports a refresh package:
+
+```text
+summary/kruse-summary/out/notebooklm-refresh/<date>/
+```
+
+That package includes source manifest, freshness report, selected/skipped family
+counts, source-limit checks, setup/update plans, and, in live mode,
+`drive-publish-report.json`.
+
+When `NOTEBOOKLM_DRIVE_LIVE=true`, the backend updates the same recorded
+`driveFileId` values in place after the canonical Supabase sync. It does not
+create new daily Drive files for existing sources. Missing new source files are
+created only with explicit bootstrap flags and still need to be added
+individually to the NotebookLM notebook. See
+`docs/ops/NOTEBOOKLM_DAILY_REFRESH.md`.
 
 ## Failure Behavior
 
-Failure should be boring and visible.
+Every backend runner failure attempts an admin-only failure email to
+`KRUSE_ADMIN_ALERT_RECIPIENTS` before the runner exits nonzero. The alert body
+includes the report date, failure reason, and a Hetzner `journalctl` pointer.
 
 | Failure point | What happens | Why |
 |---|---|---|
-| Required GitHub Actions vars/secrets are missing | Stop in the preflight step before installs, tests, scrapes, Supabase sync, Anthropic, or email | Missing production configuration should be loud before time or API budget is spent |
-| Unit tests fail | Stop before scraping/deploying/approved sending | Broken code should not spend API money or email users |
+| Backend token missing | Backend rejects live trigger | Supabase must not be able to run the job without an explicit backend secret |
+| Supabase Vault URL/token missing | Supabase status/install check fails | The scheduler cannot safely reach the backend |
+| Required backend env missing | Stop before installs, scraping, Anthropic, Supabase sync, publishing, or email | Missing production config should be loud before cost or mutation |
+| Explicit operator preflight tests fail | Stop before scraping/publishing/email and attempt an admin-only failure alert | This happens only when `--run-tests` or `KRUSE_DAILY_RUN_TESTS=true` is explicitly set; scheduled production does not run tests before the report |
 | X scrape fails | Stop before summary and email | Missing source data makes the report unreliable |
-| Forum auth is missing | Stop in preflight before installs, tests, scrapes, Anthropic, or email | The daily forum scraper needs either `XENFORO_COOKIE`, or both `FORUM_USERNAME` and `FORUM_PASSWORD` |
-| Forum scrape fails after retries | Continue with an empty `scrapers/forum_to_md/daily/<date>.json` containing `scrape_error`; the report says the forum scrape failed | A transient forum/auth outage should not block report review, but it must be visible |
-| Optimal Klubs blog check fails | Stop before summary and email | The daily report should not silently miss a new blog |
-| Supabase mailing-list sync fails | Stop before approved send | We do not guess the recipient list |
-| Anthropic generation fails | Stop before approved send | No validated report means no send |
-| Anthropic output is truncated | Stop before approved send | The JSON is incomplete and cannot be trusted; increase token headroom or compact selection output |
-| Validator rejects output | Stop before approved send | Prevents hallucinated, uncited, or unclear cards |
-| Anthropic omits a selected card source reference | Repair from the selected item, then validate | Keeps strict provenance without failing on recoverable JSON omissions |
+| Forum scrape fails after retries | Write an empty sidecar with `scrape_error` and publish an explicit forum-failed report unless forced | A transient forum outage should be visible but not silently treated as zero activity |
+| Optimal Klubs blog/Q&A check fails | Stop unless a valid reusable sidecar exists | The daily report should not silently miss protected-source updates |
+| Supabase mailing-list sync fails | Stop before approved send | We do not guess recipients |
+| Anthropic generation or validation fails | Stop before approved send | No validated report means no send |
+| NotebookLM Drive live preflight fails | Stop before scraping/cost/publishing when live mode is required | A dry-run export must not masquerade as the live NotebookLM refresh |
+| NotebookLM Drive publish fails | Stop before public-site commit/publish/email | NotebookLM source files are a declared daily downstream surface |
+| Commit or Pages publish fails | Mailing list is not sent | The public report must be reachable before delivery |
 | Gmail send fails | Do not update `last-sent.json` | A retry should still be allowed |
-| Workflow failure alert has no admin recipient | The alert helper fails explicitly instead of silently skipping | A red workflow without an alert path must be visible in the run logs |
 | Test-recipient send succeeds | Do not update `last-sent.json` | Test mail should not mark the production day as sent |
-| Commit or deploy fails before approved send | Mailing list is not sent | The public report must be committed and reachable before delivery |
-| GitHub schedule does not start | Supabase watchdog dispatches a backup run; duplicate guards skip if the report is already prepared or sent | GitHub scheduled workflows are best-effort and can be dropped before any job exists |
-| GitHub watchdog dispatches recovery | Send an admin alert saying recovery was dispatched | A recovered miss is still an operational incident |
 
-`last-prepared.json` is the duplicate scheduled-build guard while a report waits
-for approval. `last-sent.json` is the duplicate-send guard. It is updated only
-after a successful approved send, so a failed email attempt can be retried.
-Manual `force` mode counts as approval and must be used carefully.
+Backend diagnostics on the current Hetzner host use the saved local identity:
 
-## External Watchdog Dispatch
+```powershell
+ssh -i C:/Users/guyho/.ssh/hetzner_kruse_ed25519 -o IdentitiesOnly=yes root@167.233.222.219
+```
 
-GitHub scheduled workflows are not a strict cron service. The Daily Kruse
-Summary workflow stays scheduled on GitHub, but it must not be the only clock.
+If that path is not obvious in the current task worktree, check the
+project-level repo-root `.env` from the shared/root checkout for Hetzner access
+names before saying SSH access is missing. Relevant names include
+`HETZNER_SERVER_USER`, `HETZNER_SERVER_IPV4`, `HETZNER_SSH_KEY_PATH`,
+`HETZNER_SSH_PRIVATE_KEY_B64`, and `HETZNER_SSH_KNOWN_HOSTS_B64`. Print names
+or non-secret key paths only; never print or commit private key values.
 
-Current installed fallback:
+Then inspect the service without printing env files or secrets:
 
-- Supabase DB schema: `kruse_internal`.
-- Supabase table: `kruse_internal.daily_watchdog_dispatches`.
-- Supabase function: `kruse_internal.dispatch_daily_kruse_watchdog`.
-- Supabase Vault secret: `github_dispatch_token`.
-- Supabase cron jobs:
-  - `kruse-daily-watchdog-0430-il-summer` at `30 1 * * *`.
-  - `kruse-daily-watchdog-0430-il-winter` at `30 2 * * *`.
-- Behavior: Supabase runs both UTC candidates needed for Israel summer/winter
-  time. The DB function checks `timezone('Asia/Jerusalem', now())` and only
-  dispatches inside `04:25-04:45` Israel time. It sends a GitHub
-  `repository_dispatch` to `Daily Kruse Summary` with `mode=normal` and
-  `date=<today>`.
-- Duplicate safety: the GitHub workflow still has `concurrency`,
-  `last-prepared.json`, and `last-sent.json`, so a backup dispatch does not
-  repeatedly rebuild or double-send. If the report is already prepared or sent,
-  the GitHub run exits before tests, scrapes, Anthropic, email, or deploy. The
-  GitHub watchdog also checks both state files before dispatching its own
-  recovery run.
-- Alerting: if the GitHub watchdog has to dispatch a recovery run, it sends an
-  admin alert. If the daily workflow itself fails after it starts, its failure
-  alert sends separately.
+```bash
+hostname
+systemctl show kruse-daily-backend.service -p ActiveState -p SubState -p ExecMainStatus -p ExecMainStartTimestamp -p FragmentPath -p WorkingDirectory --no-pager
+journalctl -u kruse-daily-backend.service -n 200 --no-pager
+cd /opt/kruse-knowledge
+git -c safe.directory=/opt/kruse-knowledge status --short --branch
+```
 
-This is server-side and does not depend on Codex, this computer, or any local
-process being open.
+## Supabase Status And Probe
 
-The fallback is now reproducible from the repo:
+Manual status/install tooling may still run from GitHub Actions, but that is not
+the daily executor:
 
 ```powershell
 gh workflow run "Supabase Daily Watchdog" --ref main -f apply=true
 gh workflow run "Supabase Status" --ref main
 ```
 
-The installer applies
-`summary/kruse-summary/supabase/daily-watchdog-dispatch.sql` through either a
-reachable Postgres URL or Supabase's Management API. The status workflow runs
-`summary/kruse-summary/supabase/daily-watchdog-status.sql` and must fail if it
-cannot inspect pg_cron, if the Vault token is missing, if the jobs are inactive
-or stale, or if the latest GitHub `repository_dispatch` HTTP response is not
-`204`.
+Those workflows inspect or apply Supabase SQL. They do not run the daily report
+pipeline in GitHub Actions.
 
-Required GitHub secrets for repair/status:
+The build-only probe SQL posts to the backend URL with `mode=build-only`. It is
+for controlled operator testing only and should not be treated as the normal
+daily schedule.
 
-- `SUPABASE_ACCESS_TOKEN` for the Management API fallback.
-- `SUPABASE_SERVICE_ROLE_KEY` for read-only REST status.
-- `SUPABASE_DB_URL` or `SUPABASE_DB_POOLER_URL` when direct Postgres checks are
-  used.
+## Manual Operations
 
-Required Supabase Vault secret:
+### Manual Hetzner Trigger Lane
 
-```sql
--- Run in Supabase SQL editor when rotating the token.
--- Do not commit the token value.
-select vault.create_secret('<github-token>', 'github_dispatch_token');
+Use this repo-owned lane when Supabase dispatch worked but the daily run needs
+operator recovery, or when the schedule did not fire and the report should be
+started from Hetzner without GitHub Actions:
+
+```powershell
+tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode normal
 ```
 
-## Supabase Watchdog Dispatch
+Useful recovery modes:
 
-Yes, Supabase can dispatch the GitHub daily workflow. The repo side is already
-ready because `.github/workflows/daily-kruse-summary.yml` listens for:
+```powershell
+# Show the server-side plan only.
+tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode normal -DryRun
 
-```yaml
-repository_dispatch:
-  types: [daily-kruse-summary]
+# Build/publish the report but do not send the mailing list.
+tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode build-only
+
+# Send an already prepared report only after explicit approval.
+tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode send-existing -ApprovedSend
 ```
 
-GitHub's repository-dispatch endpoint is the correct outside-GitHub trigger:
+The tool reads `HETZNER_SERVER_USER`, `HETZNER_SERVER_IPV4`, and
+`HETZNER_SSH_KEY_PATH` from the project-level repo-root `.env` or matching
+environment variables, then loads `/etc/kruse/daily-backend.env` on the server.
+It prints host, key path, mode, date, and runner args only. It must not print
+backend tokens, Gmail app passwords, Supabase service-role keys, or provider
+secrets.
 
-```http
-POST https://api.github.com/repos/guyHouri/kruse-knowledge/dispatches
+Run the backend runner directly:
+
+```bash
+cd summary/kruse-summary
+npm run daily:backend-run -- --mode=normal --date=YYYY-MM-DD
 ```
 
-Payload:
+Approve and send an already prepared report:
 
-```json
-{
-  "event_type": "daily-kruse-summary",
-  "client_payload": {
-    "mode": "normal",
-    "date": ""
-  }
-}
+```bash
+cd summary/kruse-summary
+npm run daily:backend-run -- --mode=send-existing --date=YYYY-MM-DD --approved-send
 ```
 
-Supabase has two good ways to do the watchdog:
+Dry-run the backend plan without executing commands:
 
-1. Supabase Cron plus `pg_net` calls GitHub directly.
-2. Supabase Cron calls an Edge Function, and the Edge Function calls GitHub.
-
-Use the Edge Function path if we want more logic, logging, and cleaner secret
-handling. Use direct `pg_net` only for the smallest possible implementation.
-
-Required server-only secret:
-
-```text
-GITHUB_DISPATCH_TOKEN
+```bash
+cd summary/kruse-summary
+npm run daily:backend-run -- --mode=normal --date=YYYY-MM-DD --dry-run
 ```
 
-That token needs permission to create a repository dispatch for
-`guyHouri/kruse-knowledge`. It must live in Supabase Vault or Edge Function
-secrets. It must never be placed in static HTML, `NEXT_PUBLIC_*`, or a browser
-form.
+Start the backend HTTP server:
 
-Recommended watchdog timing:
-
-```text
-04:45 Asia/Jerusalem daily
+```bash
+cd summary/kruse-summary
+KRUSE_DAILY_BACKEND_TOKEN=<token> npm run daily:backend-server
 ```
 
-That gives the normal 04:00 Israel run time to start and finish. The watchdog
-should dispatch only when today's report has not been sent/deployed.
-The safest long-term check is a Supabase table:
+Test the backend endpoint locally:
 
-```sql
-create table if not exists public.kruse_daily_runs (
-  report_date date primary key,
-  status text not null,
-  github_run_id bigint,
-  report_url text,
-  sent_at timestamptz,
-  deployed_at timestamptz,
-  error text,
-  updated_at timestamptz not null default now()
-);
+```bash
+curl -X POST http://localhost:8787/jobs/daily-kruse-summary \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"mode":"normal","date":"YYYY-MM-DD","source":"manual"}'
 ```
 
-Then the daily workflow should upsert:
+## AI Summary Chain
 
-```text
-started -> scraped -> summarized -> sent -> deployed
-```
+The report is not one giant prompt. It is a staged chain:
 
-If the watchdog sees no row for today, or a stale row before `sent`, it sends
-the repository dispatch. Duplicate protection still exists in GitHub
-concurrency and `last-sent.json`, but the run-status table makes failures
-obvious from Supabase.
+1. `build-input` collects same-day X, forum, blog, and Q&A/podcast signals.
+2. `select-system.md` removes low-signal items and keeps only useful new
+   protocols, mechanisms, cases, papers, datasets, claims, forum updates, and
+   blog signals.
+3. Code gates remove podcast-only items from the report body and enforce
+   priority.
+4. `write-system.md` writes source-grounded Twitter, Forum, and Blog cards.
+5. `explain-system.md` repairs unclear medical, scientific, and technical
+   language.
+6. Validators check source IDs, quotes, same-day citations, bibliographic
+   anchors, URLs, podcast leakage, duplicates, and missing explanations.
+7. The renderer builds the final HTML from validated JSON.
 
-Current repo status: the GitHub workflow can receive the Supabase dispatch now,
-and the Supabase-side scheduled watchdog is installed. A forced test dispatch
-returned HTTP `204` from GitHub and produced a `repository_dispatch` run that
-skipped safely because `last-sent.json` already had today's date.
-
-## Supabase Test Dispatch
-
-The test path is server-side too. It does not depend on Codex or this computer.
-
-Current installed test trigger:
-
-- Supabase table: `kruse_internal.daily_test_dispatches`.
-- Supabase function: `kruse_internal.dispatch_daily_kruse_test`.
-- GitHub event type: `daily-kruse-summary-test`.
-- Default mode: `send-existing`, so it reuses the committed report and does not
-  scrape X, scrape forum, or call Anthropic.
-- Default recipient: `guy.houri2024@gmail.com`.
-- Safety: the GitHub workflow passes the recipient into
-  `KRUSE_EMAIL_TEST_RECIPIENTS`, so `code/email.js` sends only to that address.
-  `main.js` sees the test gate and skips the `last-sent.json` update.
-
-Run a test mail from Supabase SQL:
-
-```sql
-select *
-from kruse_internal.dispatch_daily_kruse_test(
-  'guy.houri2024@gmail.com',
-  null
-);
-```
-
-Run a test mail for a specific already-generated report date:
-
-```sql
-select *
-from kruse_internal.dispatch_daily_kruse_test(
-  'guy.houri2024@gmail.com',
-  date '2026-05-30'
-);
-```
-
-Equivalent GitHub dispatch payload:
-
-```json
-{
-  "event_type": "daily-kruse-summary-test",
-  "client_payload": {
-    "mode": "send-existing",
-    "date": "2026-05-30",
-    "source": "supabase-test",
-    "test_recipients": "guy.houri2024@gmail.com"
-  }
-}
-```
-
-This is the recommended test before opening delivery to the full mailing list.
-
-## Medical And Science Explanation Policy
-
-The explainer should not waste space teaching the reader the Kruse basics every
-day. These are baseline concepts and should usually not get glossary treatment:
-
-- blue light;
-- nnEMF;
-- deuterium;
-- deuterium-depleted water;
-- sunrise;
-- cold exposure;
-- DHA;
-- grounding;
-- magnetism;
-- redox;
-- leptin signaling;
-- decentralized medicine;
-- biophysics of patients.
-
-The explainer should explain harder medical, anatomical, biochemical,
-pharmacological, and physics terms when they are necessary to understand the
-card. Examples:
-
-- conditions: hypothyroidism, GERD, hiatal hernia, autoimmune thyroiditis;
-- anatomy: lower esophageal sphincter, vagus nerve, thyroid gland;
-- drugs and compounds: doxycycline, 5-FU, ivermectin, fenbendazole, mastic gum;
-- lab or measurement terms: TSH, free T3, ferritin, inflammatory markers;
-- mechanisms: mitochondrial complex IV, cytochrome c oxidase, dielectric
-  constant, isotope effect, bicarbonate secretion, proton tunneling;
-- unclear Kruse-style phrases: water table collapse, lattice lock, optical
-  switch, charge separation.
-
-If a baseline Kruse word appears inside a harder mechanism, explain the harder
-mechanism rather than the baseline word. For example:
-
-- Explain `kinetic isotope effect`, not just `deuterium`.
-- Explain `dielectric collapse`, not just `blue light`.
-- Explain `lower esophageal sphincter tone`, not just `GERD`.
-
-The target reader is smart but not a doctor. A good explanation should say:
-
-1. what the term means in normal language;
-2. what system it belongs to;
-3. why it matters for this specific card;
-4. whether the source text actually supports the mechanism or only asserts it.
-
-The verifier should reject cards where the main claim depends on an unexplained
-medical/science term or an unclear private phrase. The repair step should add a
-plain-language definition or rewrite the sentence. If the source itself does
-not provide enough information to explain the phrase, the card should say that
-plainly or be dropped.
+Forum and blog items go through the same select, write, explain, and verify
+process as tweets. Podcast/Q&A material is a side lane and appears only when it
+is actionable and source-supported.
 
 ## Citation Policy
 
 The report citation box is only for real, checkable research references. Source
-links already cover tweets and forum posts, so a vague phrase like "a narrative
-review", "a study", "a paper", or "a review in Clinical Bioenergetics" is not
-enough.
+links already cover tweets and forum posts, so vague phrases like "a study" or
+"a review" are not enough.
 
-A formal citation must carry bibliographic anchors such as author/researcher
-plus year, journal/source plus year, author/researcher plus journal/source,
-paper title plus year, DOI, PMID, PMCID, arXiv ID, or clinical-trial ID. If a
-source only mentions a review without those anchors, the pipeline may summarize
-the source-bound claim but keeps `citations: []` and does not render it as a
-research citation.
-
-## Manual Operations
-
-Run the daily workflow from GitHub CLI:
-
-```powershell
-gh workflow run "Daily Kruse Summary" --repo guyHouri/kruse-knowledge --ref main -f mode=force -f date=2026-05-27
-gh workflow run "Daily Kruse Summary" --repo guyHouri/kruse-knowledge --ref main -f mode=send-existing -f date=2026-05-27
-```
-
-Repository-dispatch fallback:
-
-```powershell
-'{"event_type":"daily-kruse-summary","client_payload":{"mode":"force","date":"2026-05-27"}}' |
-  gh api repos/guyHouri/kruse-knowledge/dispatches --method POST --input -
-```
-
-Local equivalent:
-
-```powershell
-cd "D:\kruse\guy export\scrapers\twitter_to_md"
-npm.cmd install
-node main.js --date=2026-05-27
-
-cd "..\forum_to_md"
-npm.cmd install
-node main-daily.js --date=2026-05-27 --force
-
-cd "..\..\summary\kruse-summary"
-npm.cmd install
-npm.cmd test
-npm.cmd run sync-mailing-list
-node code/build-input.js 2026-05-27
-node main.js --force --use-ai --date=2026-05-27
-npm.cmd run build-site
-```
-
-Check generated files:
-
-```text
-scrapers/twitter_to_md/data/<date>.json
-scrapers/forum_to_md/daily/<date>.json
-summary/kruse-summary/curated/<date>-input.json
-summary/kruse-summary/curated/<date>.json
-summary/kruse-summary/out/<date>.html
-docs/reports/<date>.html
-```
-
-Public site:
-
-```text
-https://guyhouri.github.io/kruse-knowledge/
-```
+A formal citation must include bibliographic anchors such as author/researcher,
+year, journal/source, paper title, DOI, PMID, PMCID, arXiv ID, or
+clinical-trial ID. If a source only mentions a review without those anchors, the
+pipeline may summarize the source-bound claim but keeps `citations: []`.

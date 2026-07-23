@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-07-21",
+  "updated": "2026-07-22",
   "owner_doc": "docs/ops/CANONICAL_SOURCE_MAP.md",
   "policy_docs": [
     "plans/SUPABASE_STORAGE_POLICY.md",
@@ -13,7 +13,24 @@
     "notebooklm_sources_are_derived_from_canonical_markdown": true,
     "rag_vectors_are_derived": true,
     "raw_audio_is_not_canonical_storage_input": true,
+    "agent_found_sources_require_supabase_routing": true,
     "live_supabase_writes_need_explicit_task_approval": true
+  },
+  "agent_finding_persistence": {
+    "applies_to": "New usable Kruse source material, transcript text, source URLs, or corrected source metadata found by an agent.",
+    "classify_by": "families[].id",
+    "db_destination": "families[].supabase.tables[].name with families[].supabase.tables[].conflict_target",
+    "storage_destination": "families[].supabase.storage_buckets[].bucket and object_prefix when the finding includes markdown/transcript content.",
+    "complete_when_live_writes_approved": "Mapped Supabase rows and Storage objects are written and row/object counts are recorded in the handoff.",
+    "complete_when_live_writes_not_approved": "A dry-run/import plan or handoff records source family, table, conflict target, bucket/object path, source ID, source URL or local path, expected count, and next owner.",
+    "not_complete_locations": [
+      "chat history",
+      ".codex-tmp",
+      "issue output folders",
+      "NotebookLM bundles",
+      "daily report HTML",
+      "local-only transcript files"
+    ]
   },
   "families": [
     {
@@ -57,7 +74,7 @@
       },
       "daily_sync": {
         "status": "automatic",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Scrape X tweets",
           "Build combined daily input",
@@ -118,7 +135,7 @@
       },
       "daily_sync": {
         "status": "automatic",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Scrape forum",
           "Build combined daily input",
@@ -189,9 +206,9 @@
       },
       "daily_sync": {
         "status": "partial",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
-          "Forum daily posts update forum_canonical_threads; full archive per-thread markdown is not refreshed by the daily workflow."
+          "Forum daily posts update forum_canonical_threads; full archive per-thread markdown is not refreshed by the backend daily runner."
         ],
         "commands": [
           "scrapers/forum_to_md: npm start",
@@ -274,7 +291,7 @@
         "status": "manual_only",
         "owner": "scrapers/threadreader_to_md",
         "steps": [
-          "Manual discover/extract/bundle only; no daily workflow step updates this family."
+          "Manual discover/extract/bundle only; no backend daily runner step updates this family."
         ],
         "commands": [
           "scrapers/threadreader_to_md: npm start"
@@ -297,7 +314,7 @@
         {
           "id": "threadreader_no_daily_sync_owner",
           "severity": "high",
-          "description": "ThreadReader archives are not refreshed by the daily workflow and are not included in daily-canonical-sync.js.",
+          "description": "ThreadReader archives are not refreshed by the backend daily runner and are not included in daily-canonical-sync.js.",
           "follow_up_owner": "future ThreadReader refresh task"
         },
         {
@@ -357,7 +374,7 @@
         "status": "manual_only",
         "owner": "scrapers/linkedin_to_md",
         "steps": [
-          "Manual discover/extract/split only; no daily workflow step updates this family."
+          "Manual discover/extract/split only; no backend daily runner step updates this family."
         ],
         "commands": [
           "scrapers/linkedin_to_md: npm start"
@@ -596,7 +613,7 @@
       },
       "daily_sync": {
         "status": "automatic",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Fetch Optimal Klubs blog updates",
           "Build combined daily input",
@@ -665,7 +682,7 @@
       },
       "daily_sync": {
         "status": "automatic_metadata_only",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Build report detects podcast/media pointers",
           "Fetch Optimal Klubs Q&A updates",
@@ -808,9 +825,12 @@
             "kruse-archive/powwow/<YYYY>/<transcript>.md"
           ],
           "state_paths": [
-            "summary/kruse-summary/code/fetch-qna-updates.js"
+            "summary/kruse-summary/code/fetch-qna-updates.js",
+            "plans/issue-451-audio-transcript-canonical-status.json",
+            "plans/issue-451-audio-transcript-supabase-import-result.json",
+            "plans/issue-484-qna-audio-canonical-normalization-result.json"
           ],
-          "notes": "The daily job records protected Q&A/PowWow page metadata. Transcript markdown targets are defined but not populated by the daily workflow."
+          "notes": "The daily job records protected Q&A/PowWow page metadata. Issue #484 live-normalized 169 Q&A media_items rows to 105 canonical kruse-archive/qna transcript objects and normalized 4 issue #450 PowWow rows against existing kruse-archive objects. Issue #451/#474 live-imported PowWow STT evidence for 79 media_items rows and 77 transcript Storage objects; future rows still need bounded STT/import approval."
         }
       },
       "derived_outputs": [
@@ -854,7 +874,7 @@
       },
       "daily_sync": {
         "status": "automatic_metadata_only",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Fetch Optimal Klubs Q&A updates",
           "Build combined daily input",
@@ -881,19 +901,34 @@
           "label": "canonical_powwow_transcripts",
           "type": "glob",
           "path": "kruse-archive/powwow/**/*.md"
+        },
+        {
+          "label": "issue_451_audio_transcript_canonical_status",
+          "type": "path_exists",
+          "path": "plans/issue-451-audio-transcript-canonical-status.json"
+        },
+        {
+          "label": "issue_451_audio_transcript_supabase_import_result",
+          "type": "path_exists",
+          "path": "plans/issue-451-audio-transcript-supabase-import-result.json"
+        },
+        {
+          "label": "issue_484_qna_audio_canonical_normalization_result",
+          "type": "path_exists",
+          "path": "plans/issue-484-qna-audio-canonical-normalization-result.json"
         }
       ],
       "known_gaps": [
         {
-          "id": "qna_powwow_transcripts_not_canonicalized",
-          "severity": "high",
-          "description": "Q&A/PowWow transcript targets are defined, but the daily job does not create transcript markdown or upload Storage objects.",
-          "follow_up_owner": "future Q&A/PowWow transcription/import task"
+          "id": "qna_powwow_daily_transcript_import_not_automatic",
+          "severity": "medium",
+          "description": "Issue #484 normalized existing Q&A/PowWow transcript rows, and issue #451 live-imported its bounded PowWow STT batch, but the daily workflow still records only metadata and does not automatically run STT or live transcript imports for future Q&A/PowWow rows.",
+          "follow_up_owner": "future approved Q&A/PowWow STT/import automation task"
         },
         {
           "id": "qna_paid_stt_boundary_unapproved_for_daily",
           "severity": "medium",
-          "description": "Paid STT is explicitly outside the daily job unless Guy approves a bounded smoke/import task.",
+          "description": "Paid STT remains explicitly outside the daily job for any future Q&A/PowWow rows unless Guy approves a bounded STT task.",
           "follow_up_owner": "future approved STT task"
         }
       ]
@@ -914,14 +949,17 @@
           ],
           "state_paths": [
             "summary/kruse-summary/code/canonical-tools.js",
-            "tools/notebooklm-manifest.mjs"
+            "tools/notebooklm-manifest.mjs",
+            "plans/issue-451-audio-transcript-canonical-status.json",
+            "plans/issue-451-audio-transcript-supabase-import-result.json",
+            "plans/issue-484-qna-audio-canonical-normalization-result.json"
           ],
-          "notes": "External webinar audio/source folders are not a committed repo source. Canonical transcript markdown belongs under kruse-archive/webinars before Supabase/NotebookLM use."
+          "notes": "External webinar audio/source folders are not a committed repo source. Issue #451/#474 produced and live-imported webinar STT evidence for 89 media_items rows and 84 transcript Storage objects; issue #484 normalized one additional legacy webinar row/object from existing transcript Storage. Future webinar discovery/import remains non-daily work."
         }
       },
       "derived_outputs": [],
       "supabase": {
-        "status": "target_defined_import_pending",
+        "status": "known_rows_live_imported_future_import_not_daily",
         "tables": [
           {
             "name": "media_items",
@@ -949,7 +987,7 @@
         "status": "none",
         "owner": "future webinar transcription/import task",
         "steps": [
-          "No daily workflow step discovers, transcribes, imports, or uploads webinar material."
+          "No backend daily runner step discovers, transcribes, imports, or uploads webinar material."
         ],
         "commands": [],
         "writes_supabase": false
@@ -965,14 +1003,29 @@
           "type": "path_exists",
           "path": "D:/kruse/webinars",
           "external": true
+        },
+        {
+          "label": "issue_451_audio_transcript_canonical_status",
+          "type": "path_exists",
+          "path": "plans/issue-451-audio-transcript-canonical-status.json"
+        },
+        {
+          "label": "issue_451_audio_transcript_supabase_import_result",
+          "type": "path_exists",
+          "path": "plans/issue-451-audio-transcript-supabase-import-result.json"
+        },
+        {
+          "label": "issue_484_qna_audio_canonical_normalization_result",
+          "type": "path_exists",
+          "path": "plans/issue-484-qna-audio-canonical-normalization-result.json"
         }
       ],
       "known_gaps": [
         {
           "id": "webinars_no_daily_or_import_owner",
-          "severity": "high",
-          "description": "Webinars have Storage/table targets but no current daily sync, transcription, or import owner.",
-          "follow_up_owner": "future webinar transcription/import task"
+          "severity": "medium",
+          "description": "Issue #451/#474 and #484 live-normalized known webinar transcript rows, but daily sync still has no webinar discovery, STT, or import owner for future rows.",
+          "follow_up_owner": "future approved webinar discovery/STT/import task"
         },
         {
           "id": "webinar_raw_audio_deferred",
@@ -991,12 +1044,19 @@
           "status": "derived_only",
           "primary_paths": [
             "tools/notebooklm-manifest.mjs",
-            "tools/notebooklm-drive-bundles.mjs"
+            "tools/notebooklm-drive-bundles.mjs",
+            "tools/notebooklm-daily-refresh.mjs",
+            "tools/notebooklm-drive-publisher.mjs",
+            "tools/notebooklm-rclone-sync.mjs"
           ],
           "state_paths": [
-            ".codex-tmp/notebooklm-manifest.json"
+            "summary/kruse-summary/out/notebooklm-refresh/<YYYY-MM-DD>/",
+            "summary/kruse-summary/out/notebooklm-rclone-sync/<YYYY-MM-DD>/",
+            "summary/kruse-summary/notebooklm-drive-sources.json",
+            "summary/kruse-summary/notebooklm-rclone-sources.example.json",
+            "/etc/kruse/notebooklm-rclone-sources.json"
           ],
-          "notes": "NotebookLM sources are derived from canonical archive markdown and transcript markdown. The manifest is the auditable candidate list, not the canonical content itself."
+          "notes": "NotebookLM sources are derived from canonical archive markdown and transcript markdown. The daily refresh package is the auditable candidate list and Drive delta, not the canonical content itself; PowWow transcript markdown is a separate source family from Q&A. Production has a real 114-file Gemini Notebook Drive registry whose Drive files are updated in place by the backend rclone sync."
         }
       },
       "derived_outputs": [
@@ -1015,20 +1075,29 @@
         "storage_buckets": []
       },
       "notebooklm": {
-        "status": "manifest_only_no_daily_upload",
+        "status": "backend_rclone_drive_file_refresh_when_enabled",
         "paths": [
-          ".codex-tmp/notebooklm-manifest.json"
+          "summary/kruse-summary/out/notebooklm-refresh/<YYYY-MM-DD>/",
+          "summary/kruse-summary/out/notebooklm-rclone-sync/<YYYY-MM-DD>/",
+          "summary/kruse-summary/notebooklm-drive-sources.json",
+          "summary/kruse-summary/notebooklm-rclone-sources.example.json",
+          "/etc/kruse/notebooklm-rclone-sources.json"
         ],
-        "tool": "tools/notebooklm-manifest.mjs"
+        "tool": "tools/notebooklm-rclone-sync.mjs"
       },
       "daily_sync": {
-        "status": "none",
-        "owner": "manual NotebookLM refresh operator",
+        "status": "backend_live_drive_refresh_when_enabled",
+        "owner": "Backend daily runner",
         "steps": [
-          "No daily job uploads to NotebookLM or updates Google Drive source files."
+          "After canonical daily sync, tools/notebooklm-daily-refresh.mjs emits the current manifest, Drive delta, freshness report, selected/skipped family counts, source-limit checks, and first-time setup package.",
+          "When NOTEBOOKLM_RCLONE_LIVE=true and the backend rclone config/registry are configured, tools/notebooklm-rclone-sync.mjs updates the existing 114 Gemini Notebook Drive files in place and verifies Drive file IDs before/after upload.",
+          "When NOTEBOOKLM_DRIVE_LIVE=true and the backend registry/credentials are configured, tools/notebooklm-drive-publisher.mjs updates recorded Google Drive file IDs in place.",
+          "NotebookLM source attachment remains individual-file only; new Drive files must be added to the notebook once and marked notebooklmAdded=true."
         ],
         "commands": [
-          "node tools/notebooklm-manifest.mjs --out=.codex-tmp/notebooklm-manifest.json"
+          "node tools/notebooklm-daily-refresh.mjs --date=<YYYY-MM-DD> --out-dir=summary/kruse-summary/out/notebooklm-refresh/<YYYY-MM-DD>",
+          "node tools/notebooklm-rclone-sync.mjs --date=<YYYY-MM-DD> --out-dir=summary/kruse-summary/out/notebooklm-rclone-sync/<YYYY-MM-DD> --registry=/etc/kruse/notebooklm-rclone-sources.json --rclone-config=/etc/kruse/rclone.conf --remote=kruse_notebooklm: --live",
+          "node tools/notebooklm-drive-publisher.mjs --date=<YYYY-MM-DD> --out-dir=summary/kruse-summary/out/notebooklm-refresh/<YYYY-MM-DD> --source-registry=<registry-path> --profile=pro --live"
         ],
         "writes_supabase": false
       },
@@ -1061,16 +1130,10 @@
       ],
       "known_gaps": [
         {
-          "id": "notebooklm_no_daily_upload_owner",
+          "id": "notebooklm_source_attachment_not_automated",
           "severity": "high",
-          "description": "The repo can build a NotebookLM manifest, but no daily job uploads or refreshes NotebookLM sources.",
-          "follow_up_owner": "future NotebookLM Drive/upload automation task"
-        },
-        {
-          "id": "notebooklm_manifest_not_published_daily",
-          "severity": "medium",
-          "description": "Manifest output is generated on demand into local scratch paths rather than committed or published by the daily workflow.",
-          "follow_up_owner": "future NotebookLM manifest publication task"
+          "description": "NotebookLM Personal/Pro source attachment is not automated by the backend publisher; newly created Drive files must be added individually to the notebook once or handled by a separately approved NotebookLM API/UI path.",
+          "follow_up_owner": "future NotebookLM source-attachment automation or manual setup task"
         }
       ]
     },
@@ -1120,7 +1183,7 @@
       },
       "daily_sync": {
         "status": "automatic_local_publish_only",
-        "owner": ".github/workflows/daily-kruse-summary.yml",
+        "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
           "Build report",
           "Build public report site",
