@@ -81,6 +81,15 @@
     body.level-hacker .expanded-content { display: none !important; }
     .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
     .card:hover { border-color: var(--card-border-hover); }
@@ -440,7 +449,12 @@
         <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
       </div>
       <div class="section-title">Forum Updates</div>
-      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-06-08-10c24ae"><div class="card-header"><span class="tag">Water pH threshold and oxygen release</span><a href="https://forum.jackkruse.com/threads/jacks-journal-journey-2019-and-beyond.23037/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Understand that a precise pH window (6.8 - 7.1) is critical for optimal tissue oxygenation</strong> Kruse describes a critical pH spin threshold at which local tissue water transitions to <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">para-water</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">Exclusion Zone</span> water) via <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">carbonic anhydrase</span> enzyme matching incoming spin waves. When metabolic <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">CO2</span> is retained, the enzyme couples CO2 metabolism to water structure. At the 6.8 - 7.1 pH window, elevated free protons (H+) alter <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">molecular relaxation modes</span>, forcing water into the para-state. This enables frictionless proton tunneling and optimal <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">Bohr effect</span> oxygen release into tissues while preventing <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">singlet oxygen</span> damage.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-08-10c24ae">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Understand that a precise pH window (6.8 - 7.1) is critical for optimal tissue oxygenation</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Water pH threshold and oxygen release</span><a href="https://forum.jackkruse.com/threads/jacks-journal-journey-2019-and-beyond.23037/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse describes a critical pH spin threshold at which local tissue water transitions to <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">para-water</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">Exclusion Zone</span> water) via <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">carbonic anhydrase</span> enzyme matching incoming spin waves. When metabolic <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">CO2</span> is retained, the enzyme couples CO2 metabolism to water structure. At the 6.8 - 7.1 pH window, elevated free protons (H+) alter <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">molecular relaxation modes</span>, forcing water into the para-state. This enables frictionless proton tunneling and optimal <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">Bohr effect</span> oxygen release into tissues while preventing <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">singlet oxygen</span> damage.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
       <strong>para-water:</strong> Water in which nuclear spins cancel out perfectly, creating zero external spin noise. Para-water forms a pristine, liquid-crystalline, coherent matrix with high dielectric constant (k=160), allowing frictionless biological proton tunneling.
     </div>
 <div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -461,7 +475,13 @@
 <div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
       <strong>singlet oxygen:</strong> A highly reactive form of oxygen that can damage cellular molecules. The mechanism described prevents singlet oxygen formation by optimizing hemoglobin-oxygen dissociation at the correct pH and water state.
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Metabolic CO2 retention -&gt; carbonic anhydrase activation -&gt; spin-wave matching -&gt; local pH drop to 6.8 - 7.1 -&gt; elevated H+ concentration -&gt; water transition to para-state (EZ, k=160) -&gt; frictionless proton tunneling -&gt; optimal oxygen release via Bohr effect.</li><li><strong>pH window.</strong> The precise tissue pH range of 6.8 - 7.1 is the operative threshold; outside this range, oxygen delivery is suboptimal or singlet oxygen toxicity increases.</li><li><strong>Why it matters.</strong> Understanding this mechanism explains how cells regulate oxygen availability without generating reactive oxygen species. CO2 is not merely a waste product but a quantum-magnetic spin conductor that structures tissue water for optimal bioenergetics.</li></ul></div><div class="source-quote">When metabolic CO2 is retained, the carbonic anhydrase enzyme matches the incoming spin wave. At a precise local tissue pH threshold of 6.8 to 7.1, the elevated concentration of free light protons (H+) alters the high-frequency molecular relaxation modes.</div></div>
-      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-06-08-v9uq1i"><div class="card-header"><span class="tag">Treatment signal</span><a href="https://forum.jackkruse.com/threads/all-things-breast-feeding.32602/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Deuterium-depleted water is contraindicated during pregnancy and breastfeeding.</strong> A forum member reports that Kruse directly confirmed <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">DDW</span> should not be consumed during <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">pregnancy</span> or <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">breastfeeding</span> because it increases the amount of deuterium transferred to the fetus or nursing infant. This reverses the intended effect of deuterium depletion and poses a risk during critical developmental windows.</div><div id="concept-7" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-06-08-v9uq1i">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">Deuterium-depleted water is contraindicated during pregnancy and breastfeeding.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Treatment signal</span><a href="https://forum.jackkruse.com/threads/all-things-breast-feeding.32602/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum member reports that Kruse directly confirmed <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">DDW</span> should not be consumed during <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">pregnancy</span> or <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">breastfeeding</span> because it increases the amount of deuterium transferred to the fetus or nursing infant. This reverses the intended effect of deuterium depletion and poses a risk during critical developmental windows.</div><div id="concept-7" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>DDW:</strong> Deuterium-depleted water; water with artificially reduced deuterium content, used in some alternative health protocols to support mitochondrial function.
     </div>
 <div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -472,41 +492,45 @@
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Contraindication.</strong> Do not use DDW during pregnancy or <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">lactation</span>.</li><li><strong>Mechanism.</strong> DDW depletes deuterium in the mother&#39;s body, but during pregnancy and breastfeeding, this depletion disrupts normal deuterium handling and increases fetal or infant exposure to deuterium.</li><li><strong>Action.</strong> Pregnant and breastfeeding women should avoid deuterium depletion protocols entirely and maintain normal dietary water intake.</li></ul><div id="concept-10" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>lactation:</strong> A technical term used by the selected source. The report keeps &quot;lactation&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
     </div></div><div class="source-quote">I don&#39;t think it&#39;s safe to drink DDW while pregnant or breastfeeding. It will increase the amount of Deuterium that the mother passes to the baby. I asked the question recently to Dr Jack and he answered a short &quot;yes&quot;, that it increases the amount of Deuterium that goes to the baby.</div></div>
+      </div>
       <div class="section-title">Blog Updates</div>
-      <div class="card" data-card-id="card-2" data-vote-card-id="kruse-2026-06-08-kcae9j"><div class="card-header"><span class="tag">Mechanism</span><a href="https://optimalklubs.com/decentralized-physics-2-physics-over-pharma-implications/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Heavy brass neck coils may optimize vagal tone and CO2 retention, improving bicarbonate buffering and deuterium clearance.</strong> Kruse proposes that African dzila and Asian Kayan neck rings, traditionally viewed as skeletal deformations, may function as <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">vagal tone</span> optimizers. By compressing the neck and restricting breathing, these rings increase <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-12" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">CO2</span> retention, which lowers blood pH and shifts the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-13" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">Bohr effect</span> curve to release oxygen into tissues. The retained CO2 acts as a <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">quantum-magnetic spin conductor</span>, stabilizing <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">bicarbonate</span> buffering and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">liquid-crystalline water</span> (k=160 EZ water) in tissue matrices. This mechanism may facilitate deuterium filtration via <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">metabolic water exchange</span> in <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">ATP synthase</span>, the mitochondrial nanomotor. The practice is framed not as harmful skeletal compression but as a biophysical strategy to optimize cellular hydration dynamics and isotope handling.</div><div id="concept-11" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>vagal tone:</strong> The strength and responsiveness of the vagus nerve, which controls parasympathetic (rest-and-digest) functions including digestion, heart rate, and inflammation. Optimized vagal tone enhances stomach acid production and bicarbonate buffering.
-    </div>
-<div id="concept-12" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>CO2:</strong> Carbon dioxide. In this context, retained CO2 lowers blood pH and triggers the Bohr effect, causing hemoglobin to release oxygen into tissues. CO2 also acts as a structuring agent in tissue water.
-    </div>
-<div id="concept-13" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>Bohr effect:</strong> The phenomenon by which hemoglobin&#39;s oxygen-binding affinity decreases as blood pH drops and CO2 concentration rises, causing hemoglobin to release oxygen into tissues.
-    </div>
-<div id="concept-14" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>quantum-magnetic spin conductor:</strong> A substance or process that uses quantum spin properties to conduct or modulate magnetic fields. In this context, CO2 is proposed to function as a spin conductor that stabilizes water structure.
-    </div>
-<div id="concept-15" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>bicarbonate:</strong> A negatively charged ion (HCO₃⁻) that is the body&#39;s primary fluid buffer, maintaining blood pH between 7.35 and 7.45. Bicarbonate is released into the bloodstream when stomach acid is produced.
-    </div>
-<div id="concept-16" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>liquid-crystalline water:</strong> Water organized into a coherent, ordered state (Exclusion Zone or EZ water) with high dielectric constant (k=160). This state improves transmission of biophotons and electrical signals along connective tissues.
-    </div>
-<div id="concept-17" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>metabolic water exchange:</strong> The continuous production and exchange of water molecules within cells during cellular respiration and ATP synthesis. This process is proposed to be a primary mechanism for filtering out deuterium.
-    </div>
-<div id="concept-18" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>ATP synthase:</strong> A mitochondrial nanomotor enzyme that produces ATP (cellular energy) by using a proton gradient. Deuterium can jam this motor, reducing energy production.
-    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Neck compression -&gt; restricted diaphragmatic breathing -&gt; CO2 retention -&gt; lower blood pH -&gt; Bohr effect activation -&gt; hemoglobin releases oxygen into tissues. CO2 stabilizes bicarbonate matrix and liquid-crystalline water state, improving deuterium filtration via ATP synthase.</li><li><strong>Vagal pathway.</strong> Mechanical neck compression may optimize <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">parasympathetic tone</span> via <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">vagus nerve</span> stimulation, enhancing stomach acid (HCl) production and bicarbonate release into the bloodstream, which buffers tissue water and supports isotope clearance.</li><li><strong>CO2 as structuring agent.</strong> CO2 is reframed from a waste product to a quantum-magnetic spin conductor that organizes tissue water into a coherent, liquid-crystalline state (k=160), improving biophoton transmission and electrical signaling.</li><li><strong>Why it matters.</strong> This mechanism links ancient cultural practices to modern biophysics, suggesting that mechanical interventions can optimize cellular water dynamics and mitochondrial function without pharmaceutical intervention.</li></ul><div id="concept-19" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>parasympathetic tone:</strong> The activity level of the parasympathetic nervous system, which controls rest-and-digest functions. Optimized parasympathetic tone enhances digestion, reduces inflammation, and supports cellular repair.
-    </div>
-<div id="concept-20" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>vagus nerve:</strong> A technical term used by the selected source. The report keeps &quot;vagus nerve&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
-    </div></div><div class="source-quote">An optimized vagus nerve improves stomach acid and bicarbonate regulation, creating better cellular hydration dynamics to flush heavy isotopes like deuterium.</div></div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-06-08-teol50">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">PHYSICS#2: DECENTRALIZED PHYSICS #2: PHYSICS OVER PHARMA IMPLICATIONS</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">PHYSICS#2</span><a href="https://optimalklubs.com/decentralized-physics-2-physics-over-pharma-implications/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Why do African and Thai women put rings around their neck to extend it? Is this somehow related to the work of Lahkovsky? While often associated with Africa, this famous practice is actually performed by the Kayan Lahwi (Padaung) people in Myanmar and northwest Thailand. In South Africa, the Ndebele people wear similar ...</div></div><div class="source-quote">Why do African and Thai women put rings around their neck to extend it?</div></div>
+      </div>
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
-      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-06-08-1l97yg1">
-        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
-        <div class="item-text">No new Jack Kruse podcast.</div>
-        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once transcript/caption discovery has a new source to process.</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-08-4ps2ln">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-06-08-113ofqx">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
+          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-4-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-08-3tuckd">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
+          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-5-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
@@ -520,6 +544,24 @@
     </footer>
   </div>
   <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
     (function () {
       function targetFor(chip) {
         if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
@@ -601,7 +643,7 @@
 <div class="site-report-footer">
     <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
       <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
-      <p>Get the next daily report by email.</p>
+      <p>Request email access to future daily reports.</p>
       <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
         <input type="hidden" name="form_type" value="kruse-report-interest" />
         <input type="hidden" name="report_date" value="2026-06-08" />
@@ -622,7 +664,7 @@
         <label for="report-comments-2026-06-08">Comments</label>
         <textarea id="report-comments-2026-06-08" name="comments"></textarea>
         <button type="submit">Subscribe</button>
-        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
         <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
       </form>
       <div class="site-report-form-note">Saved privately to the mailing list.</div>

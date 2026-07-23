@@ -81,6 +81,15 @@
     body.level-hacker .expanded-content { display: none !important; }
     .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
     .card:hover { border-color: var(--card-border-hover); }
@@ -434,7 +443,12 @@
       <div class="subtitle">Beta cell deuterium pathology, castor oil sourcing, and Lakhovsky copper ring resonance as cellular frequency restoration</div>
     </header>
       <div class="section-title">Twitter Updates</div>
-      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-06-03-12hcfe7"><div class="card-header"><span class="tag">Beta cell deuterium mechanism</span><a href="https://x.com/i/status/2061995553722863775" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Deuterium accumulation in beta cells impairs bicarbonate production and insulin synthesis</strong> <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Beta cells</span> produce approximately 2 liters of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">bicarbonate</span> daily as their primary function to clear deuterium from the cell. When deuterium accumulates in beta cells, it disrupts their ability to synthesize <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">insulin</span>. Most clinicians discuss insulin resistance and glucose handling without understanding that deuterium pathology in the beta cell itself destroys insulin creation at the cellular level.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-03-12hcfe7">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Deuterium accumulation in beta cells impairs bicarbonate production and insulin synthesis</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Beta cell deuterium mechanism</span><a href="https://x.com/i/status/2061995553722863775" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Beta cells</span> produce approximately 2 liters of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">bicarbonate</span> daily as their primary function to clear deuterium from the cell. When deuterium accumulates in beta cells, it disrupts their ability to synthesize <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">insulin</span>. Most clinicians discuss insulin resistance and glucose handling without understanding that deuterium pathology in the beta cell itself destroys insulin creation at the cellular level.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>Beta cells:</strong> A technical term used by the selected source. The report keeps &quot;beta cells&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
     </div>
 <div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -448,7 +462,13 @@
 <div id="concept-4" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>bicarbonate:</strong> A chemical compound (HCO3-) that cells produce to neutralize and clear acidic byproducts and heavy isotopes like deuterium. Beta cells specialize in making bicarbonate as their main job.
     </div></div><div class="source-quote">beta cells main job is making 2L of HCO3- a day to clear D+</div></div>
-      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-06-03-1jw4j0g"><div class="card-header"><span class="tag">Castor oil extraction standard</span><a href="https://x.com/i/status/2061812231336071417" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Therapeutic castor oil must be sourced hexane-free to avoid solvent residue</strong> When sourcing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">castor oil</span> for any protocol, the extraction method must be <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">hexane</span>-free. Conventional castor oil extraction uses <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">hexane</span> as a <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">solvent</span>, and residual hexane in the final product could introduce a lipophilic toxin that interferes with cellular redox or mitochondrial function.</div><div id="concept-5" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-06-03-1jw4j0g">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">Therapeutic castor oil must be sourced hexane-free to avoid solvent residue</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Castor oil extraction standard</span><a href="https://x.com/i/status/2061812231336071417" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When sourcing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">castor oil</span> for any protocol, the extraction method must be <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">hexane</span>-free. Conventional castor oil extraction uses <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">hexane</span> as a <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">solvent</span>, and residual hexane in the final product could introduce a lipophilic toxin that interferes with cellular redox or mitochondrial function.</div><div id="concept-5" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>castor oil:</strong> A technical term used by the selected source. The report keeps &quot;castor oil&quot; visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.
     </div>
 <div id="concept-6" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -462,6 +482,7 @@
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Treatment specification.</strong> Castor oil for therapeutic use must be verified <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">hexane</span>-free.</li><li><strong>Sourcing action.</strong> Check the extraction method when purchasing castor oil; standard commercial castor oil may contain hexane residue.</li><li><strong>Practical meaning.</strong> A supplier&#39;s label stating &#39;organic&#39; does not guarantee hexane-free extraction; explicit verification is required.</li></ul><div id="concept-9" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>hexane:</strong> A volatile solvent - a liquid chemical used to dissolve and extract oils from seeds. Residual hexane in food or supplement products can be toxic to cells.
     </div></div><div class="source-quote">It has to be hexane free.</div></div>
+      </div>
       <div class="section-title">Forum Updates</div>
       <div class="card empty-signal-card" data-vote-card-id="kruse-2026-06-03-qs05z4">
         <div class="card-header"><span class="tag">No selected signal</span></div>
@@ -469,112 +490,43 @@
         <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
       </div>
       <div class="section-title">Blog Updates</div>
-      <div class="card" data-card-id="card-2" data-vote-card-id="kruse-2026-06-03-1sd8ixb"><div class="card-header"><span class="tag">Lakhovsky copper ring and cellular frequency</span><a href="https://optimalklubs.com/decentralized-physics-1-finding-maya-wisdom-in-russian-science/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>A 30cm copper ring restores cellular oscillation frequency by de-fragging deuterium and restoring the fine-structure constant</strong> <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">PHYSICS#1</span> presents a comprehensive mechanistic thesis linking Georges Lakhovsky&#39;s 1925 copper ring experiment to modern biophysics of deuterium and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">fine-structure constant</span>. The copper ring acts as a passive <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">LC circuit</span> antenna that captures Earth&#39;s <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">magnetic dynamo</span> and solar photonic flux, concentrating them into a localized field. This concentrated field raises the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">dielectric constant</span> of the cell&#39;s water table (the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">Ling Transition</span> from 78 to 160), which tightens the 1/137 electromagnetic grip for proteins and restores their <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">energy bandgap</span> to optimal geometry. Deuterium at twice the mass of hydrogen acts as an <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">isotopic anchor</span> that increases <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">phonon-electron scattering</span> at the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">conduction band</span> edge of protein semiconductors, widening the energy bandgap and decoupling the system from the 1/137 resonance. The rigid oxygen-deuterium bond simultaneously stabilizes deep hole trap states above the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">valence band</span> maximum, freezing the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">chiral-induced spin selectivity</span> filter of <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">melanin</span> and other chiral proteins. This prevents <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">Complex IV</span> (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">cytochrome c oxidase</span>) from utilizing ground <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">triplet oxygen</span>, forcing oxygen into the destructive <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">singlet state</span>, which ignites free-radical damage. The 30cm ring diameter resonates at the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">sphenoid bone</span>&#39;s (1/4) wavelength, providing electromagnetic torque to the sphenoid switchboard (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">cranial nerves</span> CN2 and CN5, brainstem, pituitary) and the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">4th ventricle</span> (the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">cerebrospinal fluid</span> vortex that drains deuterium). This resonant shaking literally vortexes deuterium out of the stroma, allowing the ubiquitin system to clear tumor-marked deuterium sludge and the cell to resume its <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">Cambrian</span> photonic state.</div><div id="concept-10" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>PHYSICS#1:</strong> A Kruse blog article in the PHYSICS series that integrates Lakhovsky&#39;s copper ring technology with modern biophysics of deuterium, fine-structure constant, and geomagnetic excursion theory. Reference code for the archive.
-    </div>
-<div id="concept-11" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>fine-structure constant:</strong> The dimensionless coupling constant (alpha = 1/137) that dictates the strength of electromagnetic interaction between elementary particles. Represents the &#39;grip&#39; of light on matter in cells; when this ratio is tight, proteins function optimally.
-    </div>
-<div id="concept-12" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>LC circuit:</strong> An inductance-capacitance circuit that oscillates at a resonant frequency. The copper ring acts as a passive LC circuit antenna, capturing cosmic frequencies from Earth&#39;s magnetic field and solar radiation.
-    </div>
-<div id="concept-13" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>magnetic dynamo:</strong> The Earth&#39;s magnetic field generated by the movement of liquid iron in the outer core. Provides the external magnetic protection that allows cells to maintain triplet oxygen and function properly.
-    </div>
-<div id="concept-14" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>dielectric constant:</strong> A measure of a material&#39;s ability to store electrical energy in an electric field. In cells, the dielectric constant of water determines how tightly light couples to proteins; higher values mean tighter coupling and better protein function.
-    </div>
-<div id="concept-15" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>Ling Transition:</strong> A phase transition in cellular water from a dielectric constant of 78 to 160, achieved through proper electromagnetic alignment and deuterium depletion. Named after Gilbert Ling&#39;s work on cell water structure; represents the shift from loose to coherent water.
-    </div>
-<div id="concept-16" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>energy bandgap:</strong> The energy difference between the valence band and conduction band in a semiconductor. Deuterium widens this gap, making it harder for electrons to jump from the valence band to the conduction band, disrupting protein function.
-    </div>
-<div id="concept-17" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>isotopic anchor:</strong> The effect of deuterium&#39;s extra mass acting as a physical anchor that slows down the vibration of DNA and protein oscillators. The heavier deuterium atom makes the molecular &#39;strings&#39; too heavy to vibrate at their natural frequency.
-    </div>
-<div id="concept-18" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>phonon-electron scattering:</strong> A quantum mechanical process in which vibrations in the crystal lattice (phonons) collide with electrons, reducing electron mobility. Deuterium increases this scattering, acting like friction that slows electron movement.
-    </div>
-<div id="concept-19" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>conduction band:</strong> The energy band in a semiconductor where electrons are free to move and conduct electricity. Deuterium increases scattering at the conduction band edge, preventing electrons from moving freely.
-    </div>
-<div id="concept-20" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>valence band:</strong> The energy band in a semiconductor where electrons are bound to atoms. Deuterium stabilizes deep hole trap states above the valence band maximum, freezing electrons in place.
-    </div>
-<div id="concept-21" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>chiral-induced spin selectivity:</strong> A quantum mechanical property of chiral molecules (like melanin) that preferentially transmit electrons of one spin orientation. This selectivity is essential for proper electron transport; deuterium freezes this filter, blocking electron flow.
-    </div>
-<div id="concept-22" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>melanin:</strong> A chiral protein pigment in skin, hair, and eyes that acts as a biological semiconductor and can chelate (bind and remove) deuterium using its nuclear magnetic moment difference from normal hydrogen.
-    </div>
-<div id="concept-23" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>Complex IV:</strong> The fourth enzyme complex in the electron transport chain, also called cytochrome c oxidase. It requires ground triplet state oxygen to function; cannot use singlet oxygen.
-    </div>
-<div id="concept-24" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>cytochrome c oxidase:</strong> The final enzyme in the electron transport chain (Complex IV) that transfers electrons to oxygen. Requires triplet oxygen to work; when forced to use singlet oxygen, it uncouples and generates destructive free radicals.
-    </div>
-<div id="concept-25" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>triplet oxygen:</strong> The ground state of molecular oxygen (³O₂) with parallel electron spins. Paramagnetic (attracted to magnetic fields) and essential for normal cellular respiration. Couples to Earth&#39;s magnetic field.
-    </div>
-<div id="concept-26" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>singlet state:</strong> A state of oxygen (¹O₂) with antiparallel electron spins. Diamagnetic (repelled by magnetic fields) and highly destructive to cells, igniting free-radical damage to melanin, collagen, and other proteins.
-    </div>
-<div id="concept-27" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>sphenoid bone:</strong> A bone at the base of the skull that houses the pituitary gland and acts as the primary dielectric resonator for the brain. Its width (10 - 12 cm) matches the (1/4) wavelength of the 30cm copper ring.
-    </div>
-<div id="concept-28" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>cranial nerves:</strong> Nerves that emerge directly from the brain. CN2 carries light signals (optic nerve); CN5 carries vibration and sensation signals from the head and neck. Both pass through the sphenoid bone.
-    </div>
-<div id="concept-29" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>4th ventricle:</strong> A cavity in the brainstem where cerebrospinal fluid is produced and circulates. Acts as the waste management system for deuterium clearance; sits at the focal point of a 30cm ring worn around the neck.
-    </div>
-<div id="concept-30" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>cerebrospinal fluid:</strong> The clear fluid that surrounds the brain and spinal cord, cushioning them and removing waste. In the 4th ventricle, it forms a vortex that drains deuterium when the dielectric constant is high.
-    </div>
-<div id="concept-31" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>Cambrian:</strong> A geological period 540 million years ago when Earth&#39;s magnetic dynamo strengthened dramatically, allowing oxygen to couple with the magnetic field and enabling complex life to evolve.
-    </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Cellular frequency signal.</strong> A healthy human cell oscillates at 62 - 72 MHz. At 42 MHz, cancer begins. At 25 MHz, death. Disease is a frequency disorder caused by deuterium <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">lattice-locking</span> of protein semiconductors.</li><li><strong>Mechanism.</strong> Deuterium&#39;s <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">kinetic isotope effect</span> increases <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-34" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">phonon-electron scattering</span>, widens the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">energy bandgap</span>, and freezes <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-36" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">chiral-induced spin selectivity</span> in melanin, uncoupling <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">cytochrome c oxidase</span> and forcing oxygen into destructive <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">singlet state</span>.</li><li><strong>Ring geometry and resonance.</strong> The 30cm copper ring&#39;s diameter matches the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">sphenoid bone</span>&#39;s (1/4) wavelength resonance (7.5 - 10cm structure) and the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-40" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">4th ventricle</span>&#39;s location as the focal point, making it a topological antenna for the brain&#39;s dielectric engine.</li><li><strong>Geomagnetic context.</strong> During a <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">magnetic excursion</span> (Earth&#39;s <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">dynamo</span> declining 9% as of June 2026), the ring provides the magnetic protection that the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-43" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">Cambrian</span> explosion provided 540 million years ago, preventing deuterium accumulation and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">singlet oxygen</span> damage.</li><li><strong>Economics and paradigm.</strong> A copper ring costs nothing; chemotherapy costs $150,000. Physics &gt; Pharma.</li></ul><div id="concept-32" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>lattice-locking:</strong> A biophysical state in which deuterium&#39;s extra mass increases phonon-electron scattering in protein semiconductors, widening the energy bandgap and preventing normal protein function. The heavy deuterium acts like a brake on the protein&#39;s vibrations.
-    </div><div id="concept-33" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>kinetic isotope effect:</strong> A quantum mechanical phenomenon in which the heavier mass of deuterium changes the rate of chemical reactions and the behavior of molecular vibrations. In cells, deuterium&#39;s kinetic isotope effect increases friction on electron movement.
-    </div>
-<div id="concept-34" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>phonon-electron scattering:</strong> A quantum mechanical process in which vibrations in the crystal lattice (phonons) collide with electrons, reducing electron mobility. Deuterium increases this scattering, acting like friction that slows electron movement.
-    </div>
-<div id="concept-35" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>energy bandgap:</strong> The energy difference between the valence band and conduction band in a semiconductor. Deuterium widens this gap, making it harder for electrons to jump from the valence band to the conduction band, disrupting protein function.
-    </div>
-<div id="concept-36" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>chiral-induced spin selectivity:</strong> A quantum mechanical property of chiral molecules (like melanin) that preferentially transmit electrons of one spin orientation. This selectivity is essential for proper electron transport; deuterium freezes this filter, blocking electron flow.
-    </div>
-<div id="concept-37" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>cytochrome c oxidase:</strong> The final enzyme in the electron transport chain (Complex IV) that transfers electrons to oxygen. Requires triplet oxygen to work; when forced to use singlet oxygen, it uncouples and generates destructive free radicals.
-    </div>
-<div id="concept-38" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>singlet state:</strong> A state of oxygen (¹O₂) with antiparallel electron spins. Diamagnetic (repelled by magnetic fields) and highly destructive to cells, igniting free-radical damage to melanin, collagen, and other proteins.
-    </div><div id="concept-39" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>sphenoid bone:</strong> A bone at the base of the skull that houses the pituitary gland and acts as the primary dielectric resonator for the brain. Its width (10 - 12 cm) matches the (1/4) wavelength of the 30cm copper ring.
-    </div>
-<div id="concept-40" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>4th ventricle:</strong> A cavity in the brainstem where cerebrospinal fluid is produced and circulates. Acts as the waste management system for deuterium clearance; sits at the focal point of a 30cm ring worn around the neck.
-    </div><div id="concept-41" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>magnetic excursion:</strong> A period when Earth&#39;s magnetic field weakens or reverses. During excursions, cosmic ray spallation floods the water table with cosmogenic deuterium and tritium, forcing cells into low-frequency disease states.
-    </div>
-<div id="concept-42" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>dynamo:</strong> The Earth&#39;s magnetic field generated by the movement of liquid iron in the outer core. Provides the external magnetic protection that allows cells to maintain triplet oxygen and function properly.
-    </div>
-<div id="concept-43" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
-      <strong>Cambrian:</strong> A geological period 540 million years ago when Earth&#39;s magnetic dynamo strengthened dramatically, allowing oxygen to couple with the magnetic field and enabling complex life to evolve.
-    </div>
-<div id="concept-44" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
-      <strong>singlet oxygen:</strong> Molecular oxygen in the singlet state (¹O₂), a highly reactive and destructive form. When cells cannot use triplet oxygen, oxygen flips into singlet state and burns cellular structures.
-    </div></div><div class="source-quote">The frequency of a healthy human cell is between 62 and 72 MHz. When it drops to 58 MHz, cold symptoms appear. At 42 MHz, cancer begins. At 25 MHz, death.</div></div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-06-03-1ax43mz">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">PHYSICS#1: DECENTRALIZED PHYSICS #1: FINDING MAYA WISDOM IN RUSSIAN SCIENCE</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">PHYSICS#1</span><a href="https://optimalklubs.com/decentralized-physics-1-finding-maya-wisdom-in-russian-science/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Another D+ hiding in the centralized dustbin put there by Rockefeller medicine experts. IN 1925, A RUSSIAN ENGINEER PLACED A COPPER RING AROUND A DYING PLANT. THE TUMOR DISAPPEARED. EVERY OTHER PLANT IN THE EXPERIMENT DIED. HIS TECHNOLOGY WAS USED IN HOSPITALS ACROSS EUROPE UNTIL HE WAS “KILLED” IN NEW YORK CITY IN ...</div></div><div class="source-quote">Another D+ hiding in the centralized dustbin put there by Rockefeller medicine experts.</div></div>
+      </div>
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
-      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-06-03-1i7cbtc">
-        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
-        <div class="item-text">No new Jack Kruse podcast.</div>
-        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once the audio extraction pipeline has a new source to process.</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-03-4ps2ln">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-06-03-113ofqx">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
+          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-4-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-03-3tuckd">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
+          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-5-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
@@ -588,6 +540,24 @@
     </footer>
   </div>
   <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
     (function () {
       function targetFor(chip) {
         if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
@@ -669,7 +639,7 @@
 <div class="site-report-footer">
     <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
       <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
-      <p>Get the next daily report by email.</p>
+      <p>Request email access to future daily reports.</p>
       <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
         <input type="hidden" name="form_type" value="kruse-report-interest" />
         <input type="hidden" name="report_date" value="2026-06-03" />
@@ -690,7 +660,7 @@
         <label for="report-comments-2026-06-03">Comments</label>
         <textarea id="report-comments-2026-06-03" name="comments"></textarea>
         <button type="submit">Subscribe</button>
-        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
         <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
       </form>
       <div class="site-report-form-note">Saved privately to the mailing list.</div>

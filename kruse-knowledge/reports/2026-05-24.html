@@ -81,6 +81,15 @@
     body.level-hacker .expanded-content { display: none !important; }
     .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
     .card:hover { border-color: var(--card-border-hover); }
@@ -434,7 +443,12 @@
       <div class="subtitle">Cancer fat-burning, NAD blood myth, glycolysis as isotope filter.</div>
     </header>
       <div class="section-title">Twitter Updates</div>
-      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-05-24-obsrqv"><div class="card-header"><span class="tag">Tumor Metabolism</span><a href="https://x.com/i/status/2058342358391873799" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Cancer Cells DO Burn Fat — Three Studies the Keto-Crowd Skips</strong> Direct rebuttal to the recurring &#39;80% of cancer ATP is glucose/glutamine fermentation&#39; claim from the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Seyfried</span> school. Kruse argues tumor mitochondria are functional and metabolically plastic — many aggressive cancers actively weaponize <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">FAO</span>. &#39;Starve the tumor with keto&#39; is an oversimplification that can be clinically dangerous.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-24-obsrqv">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Cancer Cells DO Burn Fat — Three Studies the Keto-Crowd Skips</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Tumor Metabolism</span><a href="https://x.com/i/status/2058342358391873799" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Direct rebuttal to the recurring &#39;80% of cancer ATP is glucose/glutamine fermentation&#39; claim from the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Seyfried</span> school. Kruse argues tumor mitochondria are functional and metabolically plastic — many aggressive cancers actively weaponize <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">FAO</span>. &#39;Starve the tumor with keto&#39; is an oversimplification that can be clinically dangerous.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>Seyfried:</strong> Thomas Seyfried — Boston College biologist, lead proponent of the &#39;cancer as a metabolic disease&#39; framework and the ketogenic-diet-starves-tumor thesis built on Otto Warburg&#39;s glucose-dependence observation.
     </div>
 <div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -452,7 +466,13 @@
     </div><div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
       <strong>OXPHOS:</strong> Oxidative Phosphorylation — the mitochondrial electron-transport-chain process that uses oxygen as the final electron acceptor and produces the majority of cellular ATP. Cancer cells supposedly abandon OXPHOS for fermentation; data shows they often don&#39;t.
     </div></div><div class="citations"><div class="citations-label">Citations</div><ul><li class="citation"><div class="citation-paper">Pascual, G., et al. (2017). &quot;Targeting metastasis-initiating cells through the fatty acid receptor CD36.&quot; Nature, 541(7635), 41-45.</div><div class="citation-claim">Aggressive cancer cells rely on free-fatty-acid uptake via CD36 to drive metastasis; blocking CD36 halts tumor progression.</div></li><li class="citation"><div class="citation-paper">Nieman, K. M., et al. (2011). &quot;Adipocytes promote ovarian cancer metastasis and provide energy for rapid tumor growth.&quot; Nature Medicine, 17(11), 1498-1503.</div><div class="citation-claim">Ovarian cancer cells hijack fatty acids from local adipocytes and use accelerated β-oxidation for explosive replication.</div></li><li class="citation"><div class="citation-paper">Schlaepfer, I. R., et al. (2014). &quot;Inhibition of Carnitine Palmitoyltransferase 1A (CPT1A) Impairs Fatty Acid Oxidation and Tumor Growth in Prostate Cancer.&quot; Molecular Cancer Therapeutics, 13(3), 561-571.</div><div class="citation-claim">Prostate cancer cells actively upregulate CPT1A to pump fatty acids across the inner mitochondrial membrane — FAO is a key energetic pillar.</div></li></ul></div></div>
-      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-05-24-146eo4a"><div class="card-header"><span class="tag">Mitochondrial Bioenergetics</span><a href="https://x.com/i/status/2058357778779886073" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Why Blood NAD Tests Miss What&#39;s Happening Inside the Cell</strong> <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">Charles Brenner</span>&#39;s lab admits whole-blood <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">NAD+</span> is largely unrelated to where <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">NR</span> and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">NMN</span> therapeutically act. Kruse extends: the supplement industry has been monitoring the wrong compartment — blood is engineered to be a clean transit highway, not a tissue that takes up these molecules.</div><div id="concept-7" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-24-146eo4a">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">Why Blood NAD Tests Miss What&#39;s Happening Inside the Cell</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Mitochondrial Bioenergetics</span><a href="https://x.com/i/status/2058357778779886073" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">Charles Brenner</span>&#39;s lab admits whole-blood <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">NAD+</span> is largely unrelated to where <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">NR</span> and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">NMN</span> therapeutically act. Kruse extends: the supplement industry has been monitoring the wrong compartment — blood is engineered to be a clean transit highway, not a tissue that takes up these molecules.</div><div id="concept-7" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>Charles Brenner:</strong> Biochemist (UC Irvine / City of Hope), developer of NAD quantitation technology. Principal academic voice for the canonical NAD-precursor-supplementation hypothesis.
     </div>
 <div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -491,7 +511,13 @@
 <div id="concept-20" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
       <strong>F0-F1 ATP synthase:</strong> The rotary molecular motor embedded in the inner mitochondrial membrane that makes ATP — F0 is the membrane rotor, F1 the catalytic head. Kruse&#39;s central claim: heavy deuterium ions jam its sub-nanometer channels and slow the rotor to zero RPM.
     </div></div></div>
-      <div class="card" data-card-id="card-2" data-vote-card-id="kruse-2026-05-24-1qm6o08"><div class="card-header"><span class="tag">Biochemistry</span><a href="https://x.com/i/status/2058344539753001010" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Why Glycolysis Has 10 Steps, Not 1</strong> Classical biochemistry frames <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">glycolysis</span> (10 steps) and the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">TCA cycle</span> (9 steps) as a convoluted way to extract ATP. Kruse reads them as a precision isotopic filtration grid — the multi-step length is the point, not a flaw.</div><div id="concept-21" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-05-24-1qm6o08">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">Why Glycolysis Has 10 Steps, Not 1</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Biochemistry</span><a href="https://x.com/i/status/2058344539753001010" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Classical biochemistry frames <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">glycolysis</span> (10 steps) and the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">TCA cycle</span> (9 steps) as a convoluted way to extract ATP. Kruse reads them as a precision isotopic filtration grid — the multi-step length is the point, not a flaw.</div><div id="concept-21" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
       <strong>glycolysis:</strong> The 10-enzyme cytoplasmic pathway that breaks one glucose molecule into two pyruvate molecules, producing a net 2 ATP. The first stage of cellular respiration; classically taught as &#39;just ATP extraction&#39;.
     </div>
 <div id="concept-22" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
@@ -506,7 +532,13 @@
     </div><div id="concept-26" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
       <strong>cortisol awakening response:</strong> The natural ~50% surge in blood cortisol within the first 30-45 minutes after waking, normally driven by morning sunlight on the retina. A signature circadian marker; blunted by indoor light and late screen exposure.
     </div></div></div>
-      <div class="card" data-card-id="card-3" data-vote-card-id="kruse-2026-05-24-10ru56k"><div class="card-header"><span class="tag">Tumor Metabolism</span><a href="https://x.com/i/status/2058366576244428885" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Why Cancer Cells Prefer Sugar — A Different Story</strong> The <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">Warburg shift</span> (cancer cells fermenting glucose even with oxygen available) is usually read as a mitochondrial defect. Kruse&#39;s reframe: it&#39;s the cell actively trying to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">de-fragging</span> its own internal water lattice of deuterium load — the sugar-burning is the cleanup tool, not the disease.</div><div id="concept-27" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-05-24-10ru56k">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">Why Cancer Cells Prefer Sugar — A Different Story</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Tumor Metabolism</span><a href="https://x.com/i/status/2058366576244428885" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">Warburg shift</span> (cancer cells fermenting glucose even with oxygen available) is usually read as a mitochondrial defect. Kruse&#39;s reframe: it&#39;s the cell actively trying to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">de-fragging</span> its own internal water lattice of deuterium load — the sugar-burning is the cleanup tool, not the disease.</div><div id="concept-27" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
       <strong>Warburg shift:</strong> Otto Warburg&#39;s 1924 observation: cancer cells preferentially use aerobic glycolysis (fermenting glucose to lactate even with oxygen present) instead of full oxidative phosphorylation. Mainstream reading: mitochondrial defect. Kruse: deliberate metabolic reroute.
     </div>
 <div id="concept-28" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
@@ -536,7 +568,13 @@
 <div id="concept-37" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
       <strong>endoplasmic reticulum:</strong> Membrane network inside the cell where most proteins fold and where calcium is stored. The site where misfolded-protein stress is detected and the UPR is launched.
     </div></div></div>
-      <div class="card" data-card-id="card-4" data-vote-card-id="kruse-2026-05-24-zfcegs"><div class="card-header"><span class="tag">Adipose Biophysics</span><a href="https://x.com/i/status/2058363350661165165" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Heavy Water Turns Brown Fat Into Storage Fat</strong> A research thread documented <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">BAT</span> (calorie-burning brown fat) peaks in infancy and declines through adulthood — usually attributed to &#39;aging metabolism.&#39; Kruse&#39;s mechanism: rising <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">deuterium</span> body load destroys BAT mitochondria and converts the cells into <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">WAT</span> (storage fat). Downstream consequence: more <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">NAFLD</span> / <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">MASLD</span>.</div><div id="concept-38" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-05-24-zfcegs">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
+          <span class="card-title">Heavy Water Turns Brown Fat Into Storage Fat</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Adipose Biophysics</span><a href="https://x.com/i/status/2058363350661165165" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A research thread documented <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">BAT</span> (calorie-burning brown fat) peaks in infancy and declines through adulthood — usually attributed to &#39;aging metabolism.&#39; Kruse&#39;s mechanism: rising <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">deuterium</span> body load destroys BAT mitochondria and converts the cells into <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">WAT</span> (storage fat). Downstream consequence: more <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">NAFLD</span> / <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">MASLD</span>.</div><div id="concept-38" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
       <strong>BAT:</strong> Brown Adipose Tissue — fat tissue rich in mitochondria that burns calories directly as heat (thermogenesis via the UCP1 protein). Highest in infants; declines through adulthood.
     </div>
 <div id="concept-39" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -551,12 +589,19 @@
 <div id="concept-42" class="expanded-content" data-card-id="card-4" data-concept-level="pro" aria-hidden="true">
       <strong>MASLD:</strong> Metabolic dysfunction-Associated Steatotic Liver Disease — the 2023 consensus rename of NAFLD, reframing the condition as primarily metabolic rather than just non-alcoholic. Same disease, sharper diagnostic criteria.
     </div></div><div class="source-quote">Brown adipose tissue activity peaks in infancy and declines progressively through adulthood. By the fourth decade, thermogenic capacity is largely lost.</div></div>
-      <div class="card" data-card-id="card-5" data-vote-card-id="kruse-2026-05-24-9eo8ya"><div class="card-header"><span class="tag">Aquifer Geophysics</span><a href="https://x.com/i/status/2058372629745091050" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Kentucky&#39;s Hidden Limestone Caves + Atlantic Currents</strong> Kentucky sits on one of Earth&#39;s most extensive Mississippian limestone <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">karst</span> aquifer systems — surfaced as a regional biophysical case study, paired with a one-line <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">AMOC</span> flag. Reads as another node in the dipole-decline story: aquifer dielectric properties coupled to ocean-current state.</div><div id="concept-43" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-5" data-vote-card-id="kruse-2026-05-24-9eo8ya">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
+          <span class="card-title">Kentucky&#39;s Hidden Limestone Caves + Atlantic Currents</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-5-details" class="card-details" hidden><div class="card-header"><span class="tag">Aquifer Geophysics</span><a href="https://x.com/i/status/2058372629745091050" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kentucky sits on one of Earth&#39;s most extensive Mississippian limestone <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">karst</span> aquifer systems — surfaced as a regional biophysical case study, paired with a one-line <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">AMOC</span> flag. Reads as another node in the dipole-decline story: aquifer dielectric properties coupled to ocean-current state.</div><div id="concept-43" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
       <strong>karst:</strong> Landscape formed by the dissolution of soluble bedrock (limestone, dolomite, gypsum) — produces caves, sinkholes, large interconnected groundwater systems. Kentucky sits on one of Earth&#39;s most extensive karst aquifers.
     </div>
 <div id="concept-44" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
       <strong>AMOC:</strong> Atlantic Meridional Overturning Circulation — the system of ocean currents that moves warm surface water poleward and cold deep water back south. Its weakening is a flagship indicator of climate-system reorganisation.
     </div></div></div>
+      </div>
       <div class="section-title">Forum Updates</div>
       <div class="card" data-card-id="forum-bullets" data-vote-card-id="kruse-2026-05-24-ckcup7"><ul class="bullet-list"><li>
         <div class="forum-item" data-card-id="card-6">
@@ -635,10 +680,25 @@
         <div class="source-quote">Optimal Klubs is checked separately from X and forum updates so a new article can be surfaced without asking the AI to infer it from chatter.</div>
       </div>
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
-      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-05-24-1aht0hg">
-        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
-        <div class="item-text">No new Jack Kruse podcast.</div>
-        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once the audio extraction pipeline has a new source to process.</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-05-24-4ps2ln">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
+          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-9-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-10" data-vote-card-id="kruse-2026-05-24-6ydelw">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-10-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-10-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://t.co/tsF3mBMzko" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Queued for transcript/caption discovery and summary.</div><div class="source-quote">New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I&#39;m greatful Nick asked me to to do this.</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
@@ -652,6 +712,24 @@
     </footer>
   </div>
   <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
     (function () {
       function targetFor(chip) {
         if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
@@ -733,7 +811,7 @@
 <div class="site-report-footer">
     <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
       <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
-      <p>Get the next daily report by email.</p>
+      <p>Request email access to future daily reports.</p>
       <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
         <input type="hidden" name="form_type" value="kruse-report-interest" />
         <input type="hidden" name="report_date" value="2026-05-24" />
@@ -754,7 +832,7 @@
         <label for="report-comments-2026-05-24">Comments</label>
         <textarea id="report-comments-2026-05-24" name="comments"></textarea>
         <button type="submit">Subscribe</button>
-        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
         <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
       </form>
       <div class="site-report-form-note">Saved privately to the mailing list.</div>

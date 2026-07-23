@@ -81,6 +81,15 @@
     body.level-hacker .expanded-content { display: none !important; }
     .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
     .card:hover { border-color: var(--card-border-hover); }
@@ -436,11 +445,16 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card empty-signal-card" data-vote-card-id="kruse-2026-05-25-1pu4n21">
         <div class="card-header"><span class="tag">No selected signal</span></div>
-        <div class="item-text">Kruse tweeted 0 times. No new source-bound protocol, treatment, cited research, mechanism, or case detail passed the report gate for this section.</div>
+        <div class="item-text">Kruse tweeted 27 times. No new source-bound protocol, treatment, cited research, mechanism, or case detail passed the report gate for this section.</div>
         <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
       </div>
       <div class="section-title">Forum Updates</div>
-      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-05-25-1xjurtp"><div class="card-header"><span class="tag">Optical switch, deuterium, CCO</span><a href="https://forum.jackkruse.com/threads/potential-gene-therapy-for-primary-immunodeficiency-disorder.30343/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>Broken optical switch prevents deuterium handling; CCO-mediated endogenous DDW becomes essential</strong> A patient with <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">primary immunodeficiency disorder</span> cannot tolerate dietary or environmental deuterium because her <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">optical switch</span> is damaged. Without a functional optical switch, she depends entirely on <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">CCO</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">cytochrome c oxidase</span>) to continuously generate her own <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">DDW</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">deuterium-depleted water</span>) internally. This mechanism explains why optical switch integrity determines whether a person can safely handle deuterium exposure.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-25-1xjurtp">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Broken optical switch prevents deuterium handling; CCO-mediated endogenous DDW becomes essential</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Optical switch, deuterium, CCO</span><a href="https://forum.jackkruse.com/threads/potential-gene-therapy-for-primary-immunodeficiency-disorder.30343/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A patient with <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">primary immunodeficiency disorder</span> cannot tolerate dietary or environmental deuterium because her <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">optical switch</span> is damaged. Without a functional optical switch, she depends entirely on <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">CCO</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">cytochrome c oxidase</span>) to continuously generate her own <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">DDW</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">deuterium-depleted water</span>) internally. This mechanism explains why optical switch integrity determines whether a person can safely handle deuterium exposure.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>primary immunodeficiency disorder:</strong> A group of genetic conditions in which the immune system is deficient or absent, making the body unable to fight infections effectively.
     </div>
 <div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -458,7 +472,13 @@
 <div id="concept-5" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
       <strong>deuterium-depleted water:</strong> Water with reduced deuterium (heavy hydrogen) content; can be produced endogenously by CCO function.
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Broken optical switch -&gt; inability to process deuterium -&gt; reliance on CCO-driven endogenous DDW synthesis.</li><li><strong>Clinical signal.</strong> Patients with optical switch dysfunction require continuous CCO function to produce their own deuterium-depleted water.</li><li><strong>Practical meaning.</strong> Optical switch status may predict deuterium tolerance; CCO support becomes a critical intervention for affected patients.</li></ul></div><div class="source-quote">She cannot handle deuterium at all because her optical switch is broken. She needs CCO to always be making DDW and that is why the hack I gave you about DDW was my big clue.</div></div>
-      <div class="card" data-card-id="card-1" data-vote-card-id="kruse-2026-05-25-z0x1ir"><div class="card-header"><span class="tag">Skin cancer, topical treatment</span><a href="https://forum.jackkruse.com/threads/topical-ivermectin-and-fenbendazole-for-skin-cancers.32830/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>5-FU is the preferred topical choice for skin cancer over ivermectin or fenbendazole</strong> For <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">topical</span> skin cancer treatment, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">5-FU</span> (<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">5-fluorouracil</span>) is Jack&#39;s preferred option compared to topical <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">ivermectin</span> or <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">fenbendazole</span>. This direct treatment preference guides selection when choosing a topical modality for skin lesions.</div><div id="concept-6" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-25-z0x1ir">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">5-FU is the preferred topical choice for skin cancer over ivermectin or fenbendazole</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Skin cancer, topical treatment</span><a href="https://forum.jackkruse.com/threads/topical-ivermectin-and-fenbendazole-for-skin-cancers.32830/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">For <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">topical</span> skin cancer treatment, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">5-FU</span> (<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">5-fluorouracil</span>) is Jack&#39;s preferred option compared to topical <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">ivermectin</span> or <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">fenbendazole</span>. This direct treatment preference guides selection when choosing a topical modality for skin lesions.</div><div id="concept-6" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>topical:</strong> Applied directly to the skin surface; a route of administration for medications that act locally on skin lesions.
     </div>
 <div id="concept-7" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -473,6 +493,7 @@
 <div id="concept-10" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
       <strong>fenbendazole:</strong> An antiparasitic drug; less preferred than 5-FU for topical skin cancer treatment.
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Treatment.</strong> 5-FU is the wiser topical choice for skin cancer.</li><li><strong>Practical meaning.</strong> When evaluating topical agents for skin cancer, prioritize 5-FU over ivermectin or fenbendazole.</li></ul></div><div class="source-quote">5-FU would be a wiser choice for the skin.</div></div>
+      </div>
       <div class="section-title">Latest Blog Update</div>
       <div class="card empty-signal-card blog-card" data-vote-card-id="kruse-2026-05-25-1h1z9vh">
         <div class="card-header"><span class="tag">Blog</span></div>
@@ -480,10 +501,15 @@
         <div class="source-quote">Optimal Klubs is checked separately from X and forum updates so a new article can be surfaced without asking the AI to infer it from chatter.</div>
       </div>
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
-      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-05-25-1arsm6f">
-        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
-        <div class="item-text">No new Jack Kruse podcast.</div>
-        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once the audio extraction pipeline has a new source to process.</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-2" data-vote-card-id="kruse-2026-05-25-4ps2ln">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
@@ -497,6 +523,24 @@
     </footer>
   </div>
   <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
     (function () {
       function targetFor(chip) {
         if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
@@ -578,7 +622,7 @@
 <div class="site-report-footer">
     <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
       <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
-      <p>Get the next daily report by email.</p>
+      <p>Request email access to future daily reports.</p>
       <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
         <input type="hidden" name="form_type" value="kruse-report-interest" />
         <input type="hidden" name="report_date" value="2026-05-25" />
@@ -599,7 +643,7 @@
         <label for="report-comments-2026-05-25">Comments</label>
         <textarea id="report-comments-2026-05-25" name="comments"></textarea>
         <button type="submit">Subscribe</button>
-        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
         <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
       </form>
       <div class="site-report-form-note">Saved privately to the mailing list.</div>

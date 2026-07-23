@@ -81,6 +81,15 @@
     body.level-hacker .expanded-content { display: none !important; }
     .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
     .card:hover { border-color: var(--card-border-hover); }
@@ -440,7 +449,12 @@
         <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
       </div>
       <div class="section-title">Forum Updates</div>
-      <div class="card" data-card-id="card-0" data-vote-card-id="kruse-2026-06-07-1cz5ub7"><div class="card-header"><span class="tag">Water structure mechanism</span><a href="https://forum.jackkruse.com/threads/ez-water-fraud-or-breakthrough.24079/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><strong>low-deuterium water exclusion zone larger than standard water</strong> Jack Kruse states that Gerald Pollack has completed research validating Kruse&#39;s long-standing prediction about <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">deuterium-depleted water</span> (DDW). The key finding: DDW produces a larger <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">exclusion zone</span> compared to standard water at <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">150 ppm</span>. This research addresses what Kruse describes as incomplete prior work on water structure, now showing that deuterium depletion directly affects the size of the water&#39;s organized boundary layer.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-07-1cz5ub7">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">low-deuterium water exclusion zone larger than standard water</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Water structure mechanism</span><a href="https://forum.jackkruse.com/threads/ez-water-fraud-or-breakthrough.24079/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Jack Kruse states that Gerald Pollack has completed research validating Kruse&#39;s long-standing prediction about <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">deuterium-depleted water</span> (DDW). The key finding: DDW produces a larger <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">exclusion zone</span> compared to standard water at <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">150 ppm</span>. This research addresses what Kruse describes as incomplete prior work on water structure, now showing that deuterium depletion directly affects the size of the water&#39;s organized boundary layer.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>deuterium-depleted water:</strong> Water with reduced levels of deuterium, a heavy isotope of hydrogen. DDW is used in some biohacking protocols to support cellular function.
     </div>
 <div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -451,6 +465,7 @@
     </div></div><div class="card-points"><ul class="bullet-list"><li><strong>Mechanism.</strong> Deuterium depletion increases the size of the exclusion zone - the organized water layer at interfaces - compared to normal water.</li><li><strong>Research validation.</strong> <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Pollack</span>&#39;s updated research confirms Kruse&#39;s 2013 prediction about DDW&#39;s effect on water structure.</li><li><strong>Practical meaning.</strong> DDW&#39;s biological benefit may relate to its capacity to form larger, more stable water exclusion zones in the body.</li></ul><div id="concept-3" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
       <strong>Pollack:</strong> Gerald Pollack, a water researcher whose work on water structure and exclusion zones has been referenced by Kruse since 2013. Pollack&#39;s recent findings now support Kruse&#39;s earlier predictions about how deuterium depletion affects water organization.
     </div></div><div class="source-quote">DDW makes a large exclusion zone that 150 ppm water, just as I expected.</div></div>
+      </div>
       <div class="section-title">Blog Updates</div>
       <div class="card empty-signal-card" data-vote-card-id="kruse-2026-06-07-eakctz">
         <div class="card-header"><span class="tag">No selected signal</span></div>
@@ -458,10 +473,35 @@
         <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
       </div>
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
-      <div class="card empty-signal-card podcast-card" data-vote-card-id="kruse-2026-06-07-1jbaql8">
-        <div class="card-header"><span class="tag">Podcast / Q&amp;A</span></div>
-        <div class="item-text">No new Jack Kruse podcast.</div>
-        <div class="source-quote">Q&amp;A and podcast transcript summaries will appear here once transcript/caption discovery has a new source to process.</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-1" data-vote-card-id="kruse-2026-06-07-4ps2ln">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-2" data-vote-card-id="kruse-2026-06-07-113ofqx">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-07-3tuckd">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
@@ -475,6 +515,24 @@
     </footer>
   </div>
   <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
     (function () {
       function targetFor(chip) {
         if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
@@ -556,7 +614,7 @@
 <div class="site-report-footer">
     <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
       <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
-      <p>Get the next daily report by email.</p>
+      <p>Request email access to future daily reports.</p>
       <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
         <input type="hidden" name="form_type" value="kruse-report-interest" />
         <input type="hidden" name="report_date" value="2026-06-07" />
@@ -577,7 +635,7 @@
         <label for="report-comments-2026-06-07">Comments</label>
         <textarea id="report-comments-2026-06-07" name="comments"></textarea>
         <button type="submit">Subscribe</button>
-        <div class="site-report-form-success" data-form-success hidden>Saved. You are on the list.</div>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
         <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
       </form>
       <div class="site-report-form-note">Saved privately to the mailing list.</div>
