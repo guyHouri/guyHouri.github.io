@@ -11,7 +11,7 @@ Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.m
 Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
 Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
 RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
-Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.html
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-24.html
 
 ## Core Pages
 
@@ -23,10 +23,14 @@ Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.htm
 
 ## Daily Reports
 
-- [2026-07-23 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.html): Brain learning collapse via MITF pathway breakdown; spaceflight pathology replicated on Earth; oxygen singlet-state failure; peptide quantum signaling; voice biomarkers in diabetes; Bitcoin node governance.
-- [2026-07-22 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html): Oxygen spin state controls metabolic light perception; nocturnal Hall voltage inversion drives deuterium purge during sleep
-- [2026-07-21 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html): Quantum spin states in oxygen metabolism; neurostimulation as information transfer; tropical cold therapy always present
-- [2026-07-20 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html): GLP-1RA stem cell bankruptcy: quantum spin collapse, water polarization failure, and systemic tissue liquidation
+- [2026-07-24 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-24.html): Photosynthesis flexibility, GBM mechanism via magnetic disruption and singlet oxygen, CO2-driven glymphatic clearance, and NMDA receptor learning gating
+- [2026-07-23 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.html): Quantum electron spin collapse in brain and mitochondria; spaceflight sickness model for terrestrial chronic disease; oxygen spin-state physics in light harvesting; peptide feedback as quantum-optical language; voice screening for Type 2 diabetes via acoustic phonons.
+- [2026-07-22 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html): Nocturnal Hall Voltage Inversion, Singlet Oxygen Mechanisms, and Consciousness Framework
+- [2026-07-21 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html): Quantum spin states of oxygen and neurostimulation pattern timing
+- [2026-07-20 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html): GLP-1RA stem cell collapse mechanism and four-part rescue protocol
+- [2026-07-19 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-19.html): Post-surgical wound healing protocol emphasizing light, grounding, and metabolic oxygen state
+- [2026-07-18 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-18.html): GLP-1 agonist longevity cost, blockchain thermodynamics, and breastfeeding deuterium regulation
+- [2026-07-17 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-17.html): Serum ferritin reframed as quantum cellular failure marker; post-vaccine multi-system recovery via circadian optimization and deuterium depletion.
 - [2026-07-13 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-13.html): Nutrition as quantum magnetic transport; AC fields disrupt mitochondrial electron flow and NAD+ recycling; hypoxia reflects magnetic collapse, not oxygen lack
 - [2026-07-12 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-12.html): Magnetic coherence and cellular hypoxia; skin atrophy mechanism; RF radiation effects on developing brain; molecular hydrogen for viral stress
 - [2026-07-11 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-11.html): Solar quantum yield and melanin isotopic fractionation; geomagnetic field morphogenesis coupling; RF exposure mechanisms in developing brains

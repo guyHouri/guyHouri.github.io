@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-23",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-23.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-23.md",
+    "date": "2026-07-24",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-24.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-24",
+      "title": "Kruse Report 2026-07-24",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-24.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.md",
+      "headline": "Photosynthesis flexibility, GBM mechanism via magnetic disruption and singlet oxygen, CO2-driven glymphatic clearance, and NMDA receptor learning gating"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-23",
@@ -30,7 +39,7 @@
       "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-23.html",
       "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-23.json",
       "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-23.md",
-      "headline": "Brain learning collapse via MITF pathway breakdown; spaceflight pathology replicated on Earth; oxygen singlet-state failure; peptide quantum signaling; voice biomarkers in diabetes; Bitcoin node governance."
+      "headline": "Quantum electron spin collapse in brain and mitochondria; spaceflight sickness model for terrestrial chronic disease; oxygen spin-state physics in light harvesting; peptide feedback as quantum-optical language; voice screening for Type 2 diabetes via acoustic phonons."
     },
     {
       "type": "daily-report",
@@ -39,7 +48,7 @@
       "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-22.html",
       "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.json",
       "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-22.md",
-      "headline": "Oxygen spin state controls metabolic light perception; nocturnal Hall voltage inversion drives deuterium purge during sleep"
+      "headline": "Nocturnal Hall Voltage Inversion, Singlet Oxygen Mechanisms, and Consciousness Framework"
     },
     {
       "type": "daily-report",
@@ -48,7 +57,7 @@
       "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-21.html",
       "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-21.json",
       "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-21.md",
-      "headline": "Quantum spin states in oxygen metabolism; neurostimulation as information transfer; tropical cold therapy always present"
+      "headline": "Quantum spin states of oxygen and neurostimulation pattern timing"
     },
     {
       "type": "daily-report",
@@ -57,7 +66,34 @@
       "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-20.html",
       "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.json",
       "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-20.md",
-      "headline": "GLP-1RA stem cell bankruptcy: quantum spin collapse, water polarization failure, and systemic tissue liquidation"
+      "headline": "GLP-1RA stem cell collapse mechanism and four-part rescue protocol"
+    },
+    {
+      "type": "daily-report",
+      "date": "2026-07-19",
+      "title": "Kruse Report 2026-07-19",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-19.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-19.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-19.md",
+      "headline": "Post-surgical wound healing protocol emphasizing light, grounding, and metabolic oxygen state"
+    },
+    {
+      "type": "daily-report",
+      "date": "2026-07-18",
+      "title": "Kruse Report 2026-07-18",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-18.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-18.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-18.md",
+      "headline": "GLP-1 agonist longevity cost, blockchain thermodynamics, and breastfeeding deuterium regulation"
+    },
+    {
+      "type": "daily-report",
+      "date": "2026-07-17",
+      "title": "Kruse Report 2026-07-17",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-17.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-17.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-17.md",
+      "headline": "Serum ferritin reframed as quantum cellular failure marker; post-vaccine multi-system recovery via circadian optimization and deuterium depletion."
     },
     {
       "type": "daily-report",
