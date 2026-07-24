@@ -133,7 +133,3 @@ Concepts:
 - electron spin (pro): Intrinsic angular momentum of electrons; quantum property that determines magnetic behavior.
 - zero-point energy (pro): Minimum energy of a quantum system at absolute zero; related to vacuum fluctuations and phonon modes.
 - Type 2 diabetes (noob): Type 2 diabetes: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
-
-Blog Updates
-
-_No selected source-bound cards for this section._
