@@ -161,4 +161,20 @@ Concepts:
 
 ## LinkedIn Updates
 
-_No selected source-bound cards for this section._
+### Jack Kruse published GBM = TYPE 4 GLIOMA, linking glioblastoma risk to magnetic disruption, stalled electron flow, and singlet oxygen stress
+
+Tag: GBM LinkedIn article
+
+In the LinkedIn article, Kruse frames Glioblastoma multiforme as a terrestrial version of spaceflight sickness: weak magnetic anchoring, microgravity-like environmental stress, and nnEMF exposure disrupt mitochondrial electron flow to oxygen. The mechanism centers on stalled electrons back-reflecting into oxygen, flipping ground-state triplet oxygen toward reactive singlet oxygen, lowering cellular voltage, and pushing the cell into Landauer Liquidation. The practical order of operations he gives is environmental before biochemical: remove nnEMF, restore magnetic pinning, build the cellular water battery with morning infrared light, and only then introduce stronger metabolic or exercise stressors.
+
+Source quote: "This tweet in the hyperlink defines the Landauer principle in biology."
+
+Sources:
+- https://www.linkedin.com/pulse/gbm-type-4-glioma-jack-kruse-zw2ke
+
+Concepts:
+- Glioblastoma multiforme (pro): A grade IV glioma, the most aggressive primary brain tumor type; this card summarizes Kruse's claimed biophysical mechanism for GBM risk.
+- Triplet oxygen (pro): The normal ground-state oxygen configuration with parallel electron spins, contrasted here with reactive singlet oxygen.
+- Singlet oxygen (pro): A reactive oxygen state Kruse links to disrupted electron flow and magnetic misalignment.
+- Landauer Liquidation (pro): Kruse's thermodynamic shorthand for cells dumping remaining energy as waste heat when clean electron flow collapses.
+- Magnetic pinning (pro): Stabilization of electron and oxygen spin behavior by Earth's magnetic field or grounding-oriented environmental controls.
