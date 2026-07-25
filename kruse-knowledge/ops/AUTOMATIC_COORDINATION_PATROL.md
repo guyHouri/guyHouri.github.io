@@ -80,6 +80,13 @@ patrol could not safely complete that action first. Routine safe cleanup, title
 repair, board sync, worker nudges, self-review/merge recovery, and archive
 closeout should be done before reporting.
 
+Treat false `ARCHIVE_OK: yes` as a recovery finding, not as a harmless wording
+mistake. If a chat says archive yes while linked issue/PR work is still open,
+the chat is still running, or the final text itself names remaining work such
+as "the fix is to..." or "still needs...", the patrol must keep the chat open,
+correct the closeout to archive-no, and transfer every unresolved pain point to
+a tracked issue/PR or named owner before archive is reconsidered.
+
 Do not notify Guy with vague blockers such as `approve cleanup`, `decide PRs`,
 or `review everything`. A patrol finding that lacks `Decision needed`,
 `Guy should say/do`, `Safe default if no answer`, and

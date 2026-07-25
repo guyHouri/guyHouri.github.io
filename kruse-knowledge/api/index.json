@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-24",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-24.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-24.md",
+    "date": "2026-07-25",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-25.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-25",
+      "title": "Kruse Report 2026-07-25",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-25.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.md",
+      "headline": "Exercise as toxin in compromised mitochondria; magnetic restoration precedes loading. LDL receptor mechanism clarified: oxidation, not quantity, drives disease."
+    },
     {
       "type": "daily-report",
       "date": "2026-07-24",

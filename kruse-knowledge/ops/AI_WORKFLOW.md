@@ -223,6 +223,11 @@ For any task that creates or promotes transcript markdown under
 `kruse-archive/qna/`, or `kruse-archive/webinars/`, the closeout evidence must
 answer all of these before `ARCHIVE_OK: yes`:
 
+- Standing STT closeout rule: when Guy approves STT or transcript recovery,
+  treat live Supabase, canonical transcript Storage, and NotebookLM source
+  refresh/sync as included in the task by default. Stop at `artifact-only` only
+  when Guy explicitly says artifact-only/no-live-write, or when a real external
+  blocker prevents the live write and the next owner/action is recorded.
 - Selected source count and IDs match the approved task scope.
 - Transcript markdown is non-empty and includes provider/model metadata.
 - Canonical Storage status is explicit: uploaded/read-back verified in
