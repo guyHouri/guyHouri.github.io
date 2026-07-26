@@ -1,6 +1,6 @@
 # Kruse Daily Reports
 
-> Daily source-bound summaries from Jack Kruse tweets, forum activity, podcasts, Q&A mentions, and blog updates.
+> Daily source-bound summaries from Jack Kruse tweets, forum activity, blog and LinkedIn articles, and transcript-backed media when selected.
 
 Base URL: https://guyhouri.github.io/kruse-knowledge/
 Sitemap: https://guyhouri.github.io/kruse-knowledge/sitemap.xml

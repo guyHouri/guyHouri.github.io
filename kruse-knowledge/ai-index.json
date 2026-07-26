@@ -2,7 +2,7 @@
   "site": {
     "title": "Kruse Daily Reports",
     "base_url": "https://guyhouri.github.io/kruse-knowledge/",
-    "description": "Daily source-bound summaries from Jack Kruse tweets, forum activity, podcasts, Q&A mentions, and blog updates."
+    "description": "Daily source-bound summaries from Jack Kruse tweets, forum activity, blog and LinkedIn articles, and transcript-backed media when selected."
   },
   "crawl": {
     "robots": "https://guyhouri.github.io/kruse-knowledge/robots.txt",
