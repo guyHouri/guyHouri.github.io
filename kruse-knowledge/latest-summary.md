@@ -135,7 +135,9 @@ Concepts:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Curated summary available
+
+Source quote: "July selected practical Q&A signals rather than a transcript digest: Kruse kept routing devices, symptoms, location choices, stimulants, and post-spike treatment decisions back to environment, magnetic pinning, redox, deuterium, and CCO state. Key points: Fermented and live foods were framed less as a probiotic story and more as electron spin plus deuterium content. Location triage stayed specific: Taiwan was biolog..."
 
 Sources:
 - https://optimalklubs.com/july-2026-quantum-biologic-powwow/
@@ -146,7 +148,9 @@ Sources:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Curated summary available
+
+Source quote: "June centered on magnetic-declination triage: rebuild vagal, magnetic, water, and deuterium handling first, then decide whether drugs, rings, mats, or protocol stacks are helping or merely compensating. Key points: GLP-1/Retta recovery was treated as a vagal and redox repair problem, with environmental correction and forum protocols preceding any expectation of normal appetite signaling. Deuterium-clearance symptoms..."
 
 Sources:
 - https://optimalklubs.com/june-2026-quantum-biologic-powwow/
@@ -157,7 +161,9 @@ Sources:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Curated summary available
+
+Source quote: "May selected a melanin-location-deuterium signal: chronic disease questions were answered through remelanation, water-table choice, volcanic/magnetic context, and whether the person is rebuilding enough charge to use protocols safely. Key points: Type 1 diabetes was framed through MITF/AMPAR, melanin, beta-cell lattice lock, and location choice; Central America was prioritized over volcanic places with magnetic hyst..."
 
 Sources:
 - https://optimalklubs.com/may-2026-quantum-biologic-powwow/
