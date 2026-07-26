@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Research &amp; Mechanisms</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-23-18iy9b0">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Cancer Fat Oxidation</span><a href="https://x.com/i/status/2058164146147872779" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">fatty acid oxidation</span>. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">beta-oxidation</span> pathways, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">CPT1A</span> transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: &#39;cut glucose, eat saturated fat, kill cancer&#39; protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -460,7 +470,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-23-se5307">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Triplet Oxygen Collagen</span><a href="https://x.com/i/status/2058174219972722789" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Triplet oxygen</span> is ground-state molecular oxygen with two unpaired electrons in parallel spin. <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">Type 1 collagen</span> synthesis requires oxygen for <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">hydroxylation</span> of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">sagittal suture</span>, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.</div><div id="concept-3" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -479,7 +493,11 @@
       <div class="section-title">Blog Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-05-23-11k6bak">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">CPC #84: NUBIAN PHYSICS FOR A MAGNETIC EXCURSION</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">CPC #84: NUBIAN PHYSICS FOR A MAGNETIC EXCURSION</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">CPC#84</span><a href="https://optimalklubs.com/cpc-84-nubian-physics-for-a-magnetic-excursion/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Doxycyline &amp; tetracycline seems to cause an amazing and rapid sun tan. Do you know the connection to melanin production and isotopic sovereignty? Doxycycline and tetracycline are now off patent so now the BigHarma paradigm wants to bury them from your lives and use. PHYSICS OVER PHARMACY Life is not built around a BigHarma pharmacy ...</div></div><div class="source-quote">Doxycyline &amp; tetracycline seems to cause an amazing and rapid sun tan.</div></div>
@@ -518,23 +536,31 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-05-23-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-05-23-6ydelw">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">Latest Jack Kruse podcast.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Podcast queued for transcript/caption discovery.</span>
+            <span class="card-teaser">New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://t.co/tsF3mBMzko" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Queued for transcript/caption discovery and summary.</div><div class="source-quote">New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I&#39;m greatful Nick asked me to to do this.</div></div>
+    </div><div class="item-text podcast-status">Queued for transcript/caption discovery and summary.</div><div class="source-quote">New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I&#39;m greatful Nick asked me to to do this.</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

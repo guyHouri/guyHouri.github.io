@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-22-1borvsc">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">The slide&#39;s linear pathway collapses, and the photolyase DNA repair mechanism fails completely when oxygen shifts into the</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">The slide&#39;s linear pathway collapses, and the photolyase DNA repair mechanism fails completely when oxygen shifts into the</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2079700535985226213" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Photolyase</span> <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">DNA repair</span> requires <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">triplet state oxygen</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">paramagnetic</span>, S=1) to maintain a high-fidelity light-to-electron activation cascade. When oxygen undergoes <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">intersystem crossing</span> to <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">singlet state oxygen</span> (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">diamagnetic</span>, S=0), the antiparallel spin configuration breaks the subatomic framework required for light decoding. The <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">quantum bottleneck</span> prevents electrons from signaling properly, transforming life-stabilizing solar energy into a destructive free-radical cascade instead of orderly DNA repair.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -475,7 +485,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-22-1o94dc3">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2079695818848649441" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">Paramagnetic</span> <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">triplet state oxygen</span> with parallel electron spins functions as a <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">quantum receiver</span> that translates environmental electromagnetic waves into <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">peptide synthesis</span> and cellular work. When <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">intersystem crossing</span> forces a spin-flip to <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">singlet state oxygen</span>, the antiparallel spin configuration breaks the subatomic alignment required for <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">wave-to-peptide transduction</span>. The quantum receiver collapses; environmental wave information cannot be decoded; the biological cascade stalls into <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">high-entropy</span> chemical stasis instead of orderly energy transduction.</div><div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -505,7 +519,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-22-2hxn9w">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2079618773871440233" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Light perception in metabolism requires two intact conditions: <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">paramagnetic</span> <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">triplet state oxygen</span> to maintain the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">quantum receiver</span>, and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">protium</span>-rich <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">NAD+</span> to allow fast <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">electron tunneling</span>. When oxygen flips to <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">singlet state oxygen</span>, the quantum receiver collapses. When <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">NAD+</span> becomes <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">deuterated</span>, electron tunneling slows via <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">Kinetic Isotope Effect</span>. The combined effect transforms metabolism from a high-fidelity optical computer into a blind, isolated chemical system unable to decode environmental light signals.</div><div id="concept-16" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
@@ -541,7 +559,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-22-1gy2s1b">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">High-dose copper supplementation is extremely dangerous</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">High-dose copper supplementation is extremely dangerous</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Copper supplementation 9-12 mg</span><a href="https://x.com/i/status/2079557154638307425" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse advises against copper supplementation at 9 - 12 mg doses, labeling this dosage extremely dangerous.</div></div><div class="source-quote">Never. Extremely dangerous.</div></div>
@@ -555,7 +577,11 @@
       <div class="section-title">Blog Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-07-22-b8qooc">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">CPC #90: DID LIFE JUST FALL BACK ASLEEP WHEN THE DYNAMO FAILED</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">CPC #90: DID LIFE JUST FALL BACK ASLEEP WHEN THE DYNAMO FAILED</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">CPC#90</span><a href="https://optimalklubs.com/cpc-90-did-life-just-fall-back-asleep-when-the-dynamo-failed/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">It appears Life became complex due to a magnetic stressor that allowed for triplet state of oxygen to dominate. This magnetic hormesis has now been in place so long (540 million years), that complex life on Earth today, cannot operate well without it. The June 2025 Science Advances paper shown in your image, titled “Strong ...</div></div><div class="source-quote">It appears Life became complex due to a magnetic stressor that allowed for triplet state of oxygen to dominate.</div></div>
@@ -563,53 +589,73 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-22-90klez">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">July 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">July 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/july-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-22-hpqefp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-07-22-14udwr2">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-8" data-vote-card-id="kruse-2026-07-22-mxzjo8">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-8-details">
-          <span class="card-title">Latest Jack Kruse podcast.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Podcast episode title needs source verification.</span>
+            <span class="card-teaser">This is the signal I expected this summer. Over the past few months, China&#39;s largest banks have quietly moved to end paper gold trading f...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-8-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://t.co/qj8k2LIxGk" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">This is the signal I expected this summer. Over the past few months, China&#39;s largest banks have quietly moved to end paper gold trading for individual customers across the country. The Industrial and Commercial Bank of China makes it final on July 24. The official line is that this protects ordinary people from a volatile market. I don&#39;t buy it. I think we&#39;re watching the moment China stops accepting the West&#39;s pape...</div></div>
+    </div><div class="item-text podcast-status">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">This is the signal I expected this summer. Over the past few months, China&#39;s largest banks have quietly moved to end paper gold trading for individual customers across the country. The Industrial and Commercial Bank of China makes it final on July 24. The official line is that this protects ordinary people from a volatile market. I don&#39;t buy it. I think we&#39;re watching the moment China stops accepting the West&#39;s pape...</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-07-22-1re1ir0">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
-          <span class="card-title">Latest Jack Kruse podcast.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Podcast episode title needs source verification.</span>
+            <span class="card-teaser">New podcast out that has some interesting talking points.</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-9-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://t.co/Z37boNbdKy" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">New podcast out that has some interesting talking points.</div></div>
+    </div><div class="item-text podcast-status">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">New podcast out that has some interesting talking points.</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

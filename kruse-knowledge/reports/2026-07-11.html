@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-11-15mnw7a">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Mechanism links a body signal to a practical change</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Melanin and isotopic fractionation</span><a href="https://x.com/i/status/2075748607739691402" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Reduced <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">quantum yield</span> of the sun lowers <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">melanin</span> synthesis in humans, which impairs the body&#39;s ability to perform <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">isotopic fractionation</span> - the selective processing of different isotope forms. This fractionation deficit leads to <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">heteroplasmy</span>, a state of mixed mitochondrial DNA populations that Jack frames as an <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">epigenetic</span> driver of disease. The mechanism connects environmental light quality directly to cellular isotope handling and disease pathology, meaning that lowered sun exposure or poor light quality degrades a fundamental isotopic sorting function that healthy cells depend on.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -466,7 +476,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-11-b17qdy">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Geomagnetic field exposure is essential for proper morphogenesis; modern nnEMF disrupts the primordial 7.83 Hz signal</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Geomagnetic field exposure is essential for proper morphogenesis; modern nnEMF disrupts the primordial 7.83 Hz signal</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Geomagnetic field and development</span><a href="https://x.com/i/status/2075689883318800755" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Redox and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">resonance</span> are tightly coupled in nature, and magnetism couples to both. The sun&#39;s energy drives wave action and creates the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">Schumann pulse</span> (<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">7.83 Hz</span>) via solar wind interaction with Earth&#39;s <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">magnetosphere</span>, which distributes energy through the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">ionosphere</span> and to Earth via aurora and lightning. Living organisms screened from the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">geomagnetic field</span> do not develop correctly, indicating that redox and resonance are deeply coupled to <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">morphogenesis</span>. Early life evolved synchronized to the 7.83 Hz baseline, but modern cellular activity in animals has drifted to other frequencies as the electromagnetic environment changed. The Schumann resonance frequency is closest to human deep relaxation brain states, suggesting primordial life may have operated in a similar state. Modern nnEMF at different frequencies disrupts this signal fidelity and alters the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">thalamus</span>-generated waves that shape the life we develop.</div><div id="concept-5" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -497,7 +511,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-11-i2kfz5">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">2026 review of 65 studies identifies four consistent non-thermal mechanisms of RF damage in developing brains</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">2026 review of 65 studies identifies four consistent non-thermal mechanisms of RF damage in developing brains</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">RF exposure and developing brain</span><a href="https://forum.jackkruse.com/threads/rustys-emf-thread.32381/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A 2026 review in Current Approaches in Psychiatry analyzed 65 experimental studies on developing brain exposure to <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">2.4 GHz</span> and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">5 GHz</span> radio frequencies - the frequencies used by WiFi, baby monitors, tablets, and smart home devices. Across all 65 studies, four mechanisms consistently surfaced: increased <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">oxidative stress</span>, impaired <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">synaptic plasticity</span>, disrupted <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">neurogenesis</span>, and altered <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">dendritic spine</span> formation. Critically, these effects occurred at exposure levels where tissue heating was not the proposed mechanism, meaning they are <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">non-thermal</span> effects. The <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">FCC exposure limits</span>, adopted in 1996 and never updated, are based only on preventing excessive tissue heating. A developing brain is uniquely vulnerable because neurons are still migrating, synapses are forming, and neural circuits are being wired - a process that cannot be rewound. The reported outcomes included changes in learning, memory, motor activity, and anxiety-related behavior that persisted after exposure ended.</div><div id="concept-13" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -528,33 +546,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-07-11-hpqefp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-07-11-14udwr2">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-11-1hasj23">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/april-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

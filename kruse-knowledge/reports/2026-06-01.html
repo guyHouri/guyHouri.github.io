@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-01-5m8lpc">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Castor Oil Navel Application: ricinoleic acid as vagal charge support</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Castor Oil Navel Application: ricinoleic acid as vagal charge support</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Navel castor oil application</span><a href="https://twitter.com/DrJackKruse/status/2061185451025723740" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The navel is a junction of 70,000+ nerve endings where embryonic nervous and vascular networks cross-couple. Applying high-quality organic castor oil to this site activates a biophysical mechanism: <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">ricinoleic acid</span> (the primary fatty acid in castor oil) is a <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">chiral</span>, highly polar molecule with a hydroxyl group attached to its 12th carbon atom. When applied topically with compression, this polarized lipid matrix functions as a solid-state <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">dielectric capacitor</span>, structuring local subdermal water into <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Exclusion Zone</span> state (k=160). This generates a <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">piezoelectric</span> direct current (0.2 pC/N) that travels up the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">vagal nerve</span> to the brainstem, shifting the autonomic nervous system from high-entropy <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">Kinetic Replication Pool</span> into low-entropy <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">Structural Time Permanence</span> mode. This vagal reactivation drives the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">exocrine pancreas</span> and duodenum to release a 2-liter <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">sodium bicarbonate</span> flush that eliminates accumulated deuterium and environmental toxins through the gut.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -483,7 +493,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-06-01-1mrl6t0">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Nocturnal Melanin Polarity Flip: Hall voltage reversal, magnetic filtering, and deuterium clearance during sleep</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Nocturnal Melanin Polarity Flip: Hall voltage reversal, magnetic filtering, and deuterium clearance during sleep</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Sleep grounding and nocturnal deuterium clearance</span><a href="https://twitter.com/DrJackKruse/status/2061106149382877473" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">At sunset, when solar photon input vanishes, Earth&#39;s <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">geomagnetic field</span> vectors seize control and trigger a non-linear phase transition in <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">melanin</span>. The epidermal and central melanin vaults flip electrical polarity from &#39;Frontal Negative&#39; (daytime kinetic mining) to &#39;Frontal Positive&#39; (nocturnal magnetic repair). This polarity reversal inverts the direction of electron drift through the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">inner mitochondrial membrane</span> (IMM), which inverts the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">Hall voltage</span> via the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">Lorentz Force</span>. The inverted <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">Hall current</span> activates <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">Chiral Induced Spin Selectivity</span> (CISS) filtering in DHA, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">cholesterol</span>, and melanin superlattices, creating a quantum spin barrier that discriminates against heavy mass fragments. Deuterium, with twice the atomic mass of normal hydrogen, cannot execute the hyper-fast <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">quantum tunneling</span> required to cross this barrier and is systematically centrifuged out of respiratory channels via the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">G3P shuttle</span>. Without grounding to <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">conductive Earth</span> and geomagnetic field access, nnEMF noise blots out this mechanism: Hall voltage drops to zero, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">water lattice</span> collapses into bulk amorphous stasis (k=78), oxygen flips from safe <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">paramagnetic</span> triplet state (³O₂) to destructive <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">diamagnetic</span> singlet state (¹O₂), triggering <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-25" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">free-radical</span> damage and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">p53</span> surge that forces atavistic tissue retreat, manifesting as <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">hiatal hernia</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">GERD</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">H. pylori</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">SIBO</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">Crohn&#39;s disease</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-32" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">ulcerative colitis</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-33" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">ALS</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">TBI</span>, and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">hypermobile EDS</span>.</div><div id="concept-11" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -566,7 +580,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-06-01-1nr2grh">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Maya Knowledge and Magnetic Excursion: Geomagnetic Transition Implications</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Maya Knowledge and Magnetic Excursion: Geomagnetic Transition Implications</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Maya knowledge and magnetic excursion</span><a href="https://twitter.com/DrJackKruse/status/2061125385618690224" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A new blog post connects <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">Maya civilization</span> knowledge to the current <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-38" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">magnetic excursion</span> and frames this understanding as essential for navigating the present <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">geomagnetic transition</span>. The post is positioned as critical reading on the last day of May 2026, suggesting urgency around understanding how ancient cultures adapted to geomagnetic shifts. The underlying theme is that living meaningfully during a magnetic transition requires breaking from conventional comfort zones and aligning with actual environmental and planetary conditions.</div><div id="concept-37" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -582,7 +600,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-06-01-xqwdvo">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Deep Earth coupling breakdown: Chandler wobble collapse and cellular phase-window expansion</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Deep Earth coupling breakdown: Chandler wobble collapse and cellular phase-window expansion</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://forum.jackkruse.com/threads/understanding-vortices.32685/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum post interprets research showing a 98.3% reduction in <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">Chandler wobble</span> and 97.2% reduction in <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">annual wobble</span>, indicating that Earth&#39;s outer core can no longer force the mantle to spin in unison. The electric and magnetic fields generated by the outer core have weakened to the point where the planetary &#39;transmission&#39; has slipped into neutral. This degradation means the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">Restoring Force</span> on internal <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-43" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">proton</span> spin states is collapsing globally. Without rigid <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">core-mantle coupling</span> to organize <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-45" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">magnetic field lines</span>, the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-46" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">planetary Z-axis</span> is becoming chaotic. The result is that the human <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-47" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">T-2 relaxation window</span> (the time window during which cells can naturally hold phase against <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-48" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">environmental noise</span>) is stretching to its absolute maximum. This explains why wounds are not healing and why <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-49" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">diabetes</span> is being created at record rates in populations that should be metabolically healthy.</div><div id="concept-40" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
@@ -630,7 +652,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-06-01-s8vfzr">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">At high latitudes during summer, biphasic sleep aligned to actual sunset/sunrise maintains circadian coherence better than blackout curta...</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">At high latitudes during summer, biphasic sleep aligned to actual sunset/sunrise maintains circadian coherence better than blackout curta...</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">High-latitude biphasic sleep protocol</span><a href="https://forum.jackkruse.com/threads/biphasic-sleep-at-high-latitude.32870/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum member in Stockholm (59.3°N) describes a <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-55" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-55" aria-expanded="false">biphasic sleep</span> protocol adapted to the actual light environment rather than using blackout curtains. Using blackout curtains to create artificial darkness during long summer nights creates a <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-56" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-56" aria-expanded="false">circadian mismatch</span>: the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-57" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-57" aria-expanded="false">suprachiasmatic nucleus</span> (SCN) receives a darkness signal while the sun is actually above the horizon. This is an artificial twilight that does not match geographic and seasonal reality. Instead, the protocol follows the actual light cycle: sleep at sunset (~21:00) when <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-58" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-58" aria-expanded="false">melatonin</span> rises naturally, wake at sunrise (~03:41) for a 30-minute barefoot walk to the lake for <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-59" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-59" aria-expanded="false">cold immersion</span> and head dunks, return home, open the window fully, and sleep again until ~08:00. Total sleep is ~10 hours across two periods. This allows catching both sunrise and sunset every day, using the open window for continued light input on skin and eyelids during the second sleep, while maintaining sufficient total sleep for <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-60" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-60" aria-expanded="false">glyphatic</span> <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-61" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-61" aria-expanded="false">deuterium clearance</span> and full recovery.</div><div id="concept-55" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -662,7 +688,11 @@
       <div class="section-title">Blog Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-5" data-vote-card-id="kruse-2026-06-01-605vu5">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">CPC #89: THE NUBIAN LESSON LEAD TO MY MAYAN EXCURSION WISDOM</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">CPC #89: THE NUBIAN LESSON LEAD TO MY MAYAN EXCURSION WISDOM</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header"><span class="tag">CPC#89</span><a href="https://optimalklubs.com/cpc-89-the-nubian-lesson-lead-to-my-mayan-excursion-wisdom/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Realities of the Modern “Magnetic Event” By mid-2026, the consequences of this structural shift are no longer theoretical. They manifest precisely as a silent, atmospheric, and technological event rather than physical Hollywood explosions: The South Atlantic Anomaly (SAA): This massive “dent” in Earth’s magnetic shield, where the field is weakest, has been rapidly expanding and ...</div></div><div class="source-quote">Realities of the Modern “Magnetic Event” By mid-2026, the consequences of this structural shift are no longer theoretical.</div></div>
@@ -670,43 +700,59 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-06-01-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-06-01-113ofqx">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-8" data-vote-card-id="kruse-2026-06-01-3tuckd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-8-details">
-          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-8-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-06-01-9fvct9">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
-          <span class="card-title">No more mails/blogs since welcome email Silver Klub.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">No more mails/blogs since welcome email Silver Klub.</span>
+            <span class="card-teaser">Hi, New Silver Klub member here. I have received notifications of new blogs through my old Patreon account: CPC 84 on the 22nd of May and...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-9-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://forum.jackkruse.com/threads/no-more-mails-blogs-since-welcome-email-silver-klub.32876/unread" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Recording found; Q&amp;A transcript pending.</div><div class="source-quote">Hi, New Silver Klub member here. I have received notifications of new blogs through my old Patreon account: CPC 84 on the 22nd of May and CPC 89 today. So far I have only received the welcome email after signing up for the Silver Klub on 10th May. The latest blog available on the website portal is CPC 83. My spam folder is empty. The current Powwow recording available on the portal is from April. Have I missed anyth...</div></div>
+    </div><div class="item-text podcast-status">Recording found; Q&amp;A transcript pending.</div><div class="source-quote">Hi, New Silver Klub member here. I have received notifications of new blogs through my old Patreon account: CPC 84 on the 22nd of May and CPC 89 today. So far I have only received the welcome email after signing up for the Silver Klub on 10th May. The latest blog available on the website portal is CPC 83. My spam folder is empty. The current Powwow recording available on the portal is from April. Have I missed anyth...</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

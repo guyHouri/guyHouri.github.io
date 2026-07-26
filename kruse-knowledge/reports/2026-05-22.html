@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-22-lqi81e">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Teeth as Solid-State Light Pipes:</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Teeth as Solid-State Light Pipes:</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Embryonic Biophysics</span><a href="https://x.com/i/status/2057651116972646824" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse reframes teeth as crystalline <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Light-Pipes</span> and mineral-dielectric capacitors derived from the same embryonic ectoderm that forms the brain, neural crest, and retina. The implication: dental mineralization status is a direct readout of the same field that runs CNS coherence — not a downstream cosmetic concern.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -454,7 +464,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-22-12j4kca">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Ketosis Does Not Starve Cancer:</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Ketosis Does Not Starve Cancer:</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Tumor Metabolism</span><a href="https://x.com/i/status/2057621031708164144" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Direct rebuttal to the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">Seyfried</span>-line claim that cancer cells can&#39;t process fats. Kruse argues tumor adaptation lets cells run on fats once glucose is cut 100% — the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">18F-FDG</span> PET imaging story is a measurement artifact, not a metabolic ceiling. Sharp warning that &#39;starve the tumor with keto&#39; messaging is dangerous to advanced patients who skip real treatment.</div><div id="concept-1" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -466,7 +480,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-05-22-16i53mu">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Kansas Falling Hole + Schumann Shift:</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Kansas Falling Hole + Schumann Shift:</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Geomagnetic Anomaly</span><a href="https://x.com/i/status/2057614115086929973" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A rare ring-cloud &#39;falling hole&#39; opened over Kansas, Nebraska, Iowa and the Dakotas at sunrise on 19 May. Kruse links the event to <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Telluric Currents</span>, the local geomagnetic field state, and recent shifts in the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">Schumann Resonance</span> — another data point in the dipole-decline narrative.</div><div id="concept-3" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -568,13 +586,17 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-05-22-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-9-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

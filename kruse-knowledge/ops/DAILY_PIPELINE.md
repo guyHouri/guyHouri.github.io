@@ -64,7 +64,7 @@ Supabase sends:
   "source": "supabase-pg-cron",
   "mode": "normal",
   "date": "YYYY-MM-DD",
-  "approved_send": false
+  "approved_send": true
 }
 ```
 
@@ -154,10 +154,10 @@ NOTEBOOKLM_RCLONE_REMOTE
 ```
 
 `GMAIL_USER` and `GMAIL_APP_PASSWORD` are required for normal production daily
-runs because failure and approval-needed admin alerts are required behavior.
-They still do not permit mailing-list delivery by themselves; full-list send
-requires an explicit approved send path, such as `--approved-send` or
-`KRUSE_DAILY_APPROVED_SEND=true`.
+runs because the scheduler sends ready reports to the mailing list under Guy's
+standing approval. Full-list delivery still requires an approved send path:
+the Supabase watchdog payload sets `approved_send=true`, while manual runs must
+use `--approved-send` or `KRUSE_DAILY_APPROVED_SEND=true`.
 
 The backend should keep refreshed forum cookies in server-local state or an
 approved backend secret store. It must not update GitHub Actions secrets as part
@@ -196,11 +196,10 @@ The report date is not hardcoded:
    Drive source sync when enabled, public site build, and email send if
    approved.
 
-Normal daily runs publish a reviewable report and stop before mailing-list
-delivery. A successful normal run sends an admin-only approval-needed alert to
-`KRUSE_ADMIN_ALERT_RECIPIENTS`, so the report does not quietly wait in
-`last-prepared.json`. Full-list email requires an explicit
-approved backend/manual run:
+Scheduled normal daily runs publish the report and then send the mailing-list
+email once the public URL and source guards pass. This uses Guy's standing
+approval in the Supabase watchdog payload. Manual retries still require an
+explicit approved backend/manual run:
 
 ```bash
 npm run daily:backend-run -- --mode=send-existing --date=YYYY-MM-DD --approved-send
@@ -214,7 +213,7 @@ update `last-sent.json`.
 The backend runner checks state before spending API budget:
 
 - `summary/kruse-summary/last-prepared.json` blocks duplicate normal rebuilds
-  while a report waits for approval.
+  after a report has been prepared but not yet mailed.
 - `summary/kruse-summary/last-sent.json` blocks duplicate production email.
 - Supabase `daily_watchdog_dispatches` blocks duplicate backend dispatches
   inside the last 23 hours.
@@ -260,8 +259,9 @@ steps do not run.
 18. Commit generated artifacts and push to `main`.
 19. Publish the public Pages copy from `docs`.
 20. Verify the live public report URL.
-21. Send an admin-only approval-needed alert.
-22. Send mailing-list email only when `--approved-send` is present.
+21. Send mailing-list email when the scheduler payload or manual runner includes
+    an approved send path.
+22. Skip mailing-list email only for build-only/manual unapproved runs.
 23. Write `last-sent.json` only after approved email succeeds.
 
 Production scheduled daily runs do not run test suites before scraping or
@@ -311,6 +311,7 @@ includes the report date, failure reason, and a Hetzner `journalctl` pointer.
 | Backend token missing | Backend rejects live trigger | Supabase must not be able to run the job without an explicit backend secret |
 | Supabase Vault URL/token missing | Supabase status/install check fails | The scheduler cannot safely reach the backend |
 | Required backend env missing | Stop before installs, scraping, Anthropic, Supabase sync, publishing, or email | Missing production config should be loud before cost or mutation |
+| Startup Git sync fails | Stop before scraping/building and attempt an admin-only failure alert | Production must build from clean current `origin/main`, not stale server code |
 | Explicit operator preflight tests fail | Stop before scraping/publishing/email and attempt an admin-only failure alert | This happens only when `--run-tests` or `KRUSE_DAILY_RUN_TESTS=true` is explicitly set; scheduled production does not run tests before the report |
 | X scrape fails | Stop before summary and email | Missing source data makes the report unreliable |
 | Forum scrape fails after retries | Write an empty sidecar with `scrape_error` and publish an explicit forum-failed report unless forced | A transient forum outage should be visible but not silently treated as zero activity |
@@ -319,7 +320,7 @@ includes the report date, failure reason, and a Hetzner `journalctl` pointer.
 | Anthropic generation or validation fails | Stop before approved send | No validated report means no send |
 | NotebookLM Drive live preflight fails | Stop before scraping/cost/publishing when live mode is required | A dry-run export must not masquerade as the live NotebookLM refresh |
 | NotebookLM Drive publish fails | Stop before public-site commit/publish/email | NotebookLM source files are a declared daily downstream surface |
-| Commit or Pages publish fails | Mailing list is not sent | The public report must be reachable before delivery |
+| Commit, rebase, or Pages publish fails | Mailing list is not sent; failed local daily commit state is preserved under a `recover/daily-*` ref and the checkout is reset to `origin/main` after rebase conflicts | The public report must be reachable before delivery, and tomorrow's run must not inherit a mid-rebase checkout |
 | Gmail send fails | Do not update `last-sent.json` | A retry should still be allowed |
 | Test-recipient send succeeds | Do not update `last-sent.json` | Test mail should not mark the production day as sent |
 
@@ -345,6 +346,13 @@ journalctl -u kruse-daily-backend.service -n 200 --no-pager
 cd /opt/kruse-knowledge
 git -c safe.directory=/opt/kruse-knowledge status --short --branch
 ```
+
+The production runner fetches `origin/main` and fast-forwards the server
+checkout before daily scraping/building when Git publishing is enabled. A dirty
+checkout blocks the run before external work starts. If the late generated
+artifact rebase conflicts, the runner preserves the failed local state under a
+`recover/daily-*` branch, aborts the rebase, resets to `origin/main`, and sends
+the normal failure alert.
 
 ## Supabase Status And Probe
 
@@ -384,7 +392,7 @@ tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode normal -DryRun
 # Build/publish the report but do not send the mailing list.
 tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode build-only
 
-# Send an already prepared report only after explicit approval.
+# Send an already prepared report manually.
 tools/run-hetzner-daily-summary.ps1 -Date YYYY-MM-DD -Mode send-existing -ApprovedSend
 ```
 

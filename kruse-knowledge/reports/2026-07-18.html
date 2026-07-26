@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-18-s1448f">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">GLP-1 agonists destroy muscle stem cells and accelerate aging by replacing pulsatile signals with continuous receptor saturation</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">GLP-1 agonists destroy muscle stem cells and accelerate aging by replacing pulsatile signals with continuous receptor saturation</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">GLP-1 drug mechanism</span><a href="https://x.com/i/status/2078614294795575807" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">GLP-1 agonist</span>s like <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">semaglutide</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">retatrutide</span> work by providing 24/7 continuous activation of GLP-1, GIP, and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">glucagon</span> receptors, replacing the body&#39;s natural <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">pulsatile signaling</span> that normally resets receptor sensitivity. This constant, unyielding <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">agonism</span> eliminates the natural resting state these pathways require, forcing the system into chronic metabolic stress. The Stanford University Blau Lab has published data showing that semaglutide directly impairs <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">muscle stem cells (MuSCs)</span> function, reducing post-injury regenerative capacity to 8% efficiency in mice. In humans, this effect compounds because we are diurnal and depend on <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">circadian gating</span> of repair windows that the drug erases; our slower baseline tissue turnover cannot compensate for continuous stem cell suppression the way nocturnal rodents can. Additionally, the drug acts as a chemical accelerator of aging: the enzyme <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">15-PGDH (gerozyme)</span> naturally rises with age and degrades the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">PGE2 (prostaglandin E2)</span> repair signal. When a long-acting <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">incretin</span> drug independently cripples stem cell mechanics, it creates a dual assault on muscle architecture. Federal litigation (<span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">MDL 3094</span>: 3,848 cases of severe <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-12" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">gastroparesis</span>, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">ileus</span>, and bowel obstruction; <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-14" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">MDL 3163</span>: claims of permanent vision loss from <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">Non-Arteritic Anterior Ischemic Optic Neuropathy (NAION)</span>) documents real-world harm. At the systemic level, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">water polarization</span> collapse destroys the magnetic gradients that deliver <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">singlet oxygen</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-18" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">docosahexaenoic acid (DHA)</span> to high-demand neural tissues, triggering <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">electron spin flip</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">mitochondrial CISS/ISC</span> dysfunction.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -514,7 +524,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-18-1s82zop">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Blockchain data bloat creates thermodynamic cost that forces node centralization and enables surveillance of individual operators</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Blockchain data bloat creates thermodynamic cost that forces node centralization and enables surveillance of individual operators</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Bitcoin node economics</span><a href="https://x.com/i/status/2078603072516096383" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">Landauer&#39;s principle</span>, a law of physics, states that erasing or changing one bit of digital information always dissipates a minimum amount of heat (energy). Applied to blockchain: <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">inscriptions</span>, <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">witness data</span>, and arbitrary code occupy permanent ledger space, forcing a compounding, irreversible real-world cost on infrastructure. As the physical and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-24" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">thermodynamic cost</span> of storing and processing this data compounds over decades, running an independent Bitcoin node becomes prohibitively expensive for ordinary individuals. This gradually forces the ledger into the hands of specialized institutional AI data centers. This outcome is not accidental but reflects <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">Fabian gradualism</span> - incremental institutional infiltration through software patches (like <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">SegWit (Segregated Witness)</span>) rather than explicit consensus changes. Opposition to <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">BIP-110</span> (a block-size limit reduction designed to counter this centralization) from figures like Saylor and Back reflects their interest in centralized, corporate-controlled infrastructure. A secondary mechanism amplifies the risk: <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">CSAM (child sexual abuse material)</span> can be embedded on-chain, making node runners discoverable via <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">Palantir</span> surveillance technology and subjecting them to criminal prosecution and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">civil forfeiture</span> of their Bitcoin. This legal liability further deters decentralized participation and accelerates the shift toward institutional control.</div><div id="concept-21" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -551,7 +565,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-18-74jp2w">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Maternal body may actively regulate deuterium in breastmilk to protect the infant despite maternal deuterium-depleted water consumption</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Maternal body may actively regulate deuterium in breastmilk to protect the infant despite maternal deuterium-depleted water consumption</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Breastfeeding deuterium</span><a href="https://forum.jackkruse.com/threads/all-things-breast-feeding.32602/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When a breastfeeding mother drinks <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">deuterium-depleted water (DDW)</span>, her body may actively fight to maintain proper <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">deuterium (D+)</span> levels in <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-33" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">breastmilk</span> to protect the infant. The mother&#39;s body would not treat breastmilk as a waste stream; instead, it would prioritize infant protection by excreting excess deuterium through waste systems (urine, sweat) while preserving physiologically appropriate deuterium concentration in milk. This is a <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">homeostasis</span> mechanism: the body&#39;s regulatory systems would maintain proper D+ concentration in milk to support infant <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-35" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">mitochondrial function</span> and development, even if the mother is consuming DDW. The mechanism reflects maternal prioritization of infant nutrition over personal deuterium depletion.</div><div id="concept-31" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -573,33 +591,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-07-18-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-07-18-113ofqx">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-18-3tuckd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

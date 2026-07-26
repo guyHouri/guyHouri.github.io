@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-30-6epfjw">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Jack links temple wasting and vertex baldness to a protective cell shutdown pattern</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack links temple wasting and vertex baldness to a protective cell shutdown pattern</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Hair and tissue loss</span><a href="https://x.com/i/status/2060400892264735039" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Deuterium incorporation into ectodermal hydroxyl channels stiffens the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">O-D bond</span> tenfold, blocking the spin-forbidden inversion of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">triplet oxygen</span>. This destroys the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">CISS</span> filter by 72.25%, converting liquid-crystalline superconductors into resistors. Electrons scatter into thermal noise. Under the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">TRCS</span> model, the voltage crash threatens the nucleus with informational erasure per <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">Landauer&#39;s Principle</span>. The cell triggers <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">p53</span> activation and forces <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">MITF-AMPAR</span> pathway down-regulation, intentionally shutting down high-voltage neuron and melanin use - choosing structural atrophy over genomic destruction, like a satellite entering safe-mode in the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">South Atlantic Anomaly</span> radiation zone.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -480,7 +490,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-30-uosgdg">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Jack says high-dose electrolyte powders can weaken enamel structure</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack says high-dose electrolyte powders can weaken enamel structure</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Tooth enamel damage</span><a href="https://x.com/i/status/2060396894015074731" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Teeth are solid-state crystalline light-pipes and mineral-dielectric capacitors derived from embryonic <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">ectoderm</span> - the same lineage forming brain, neural crest, and retina. Healthy enamel is 96% <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">hydroxyapatite</span> with <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">refractive index</span> ≈1.63, enabling <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">total internal reflection</span> to capture solar current and feed the vascular pulp. High-dose electrolyte powders act as <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">isotopic sponges</span>, aggressively extracting light <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">protium</span> from saliva and collapsing the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">EZ water</span> layer (dielectric 160-&gt;78). Without EZ water&#39;s sorting function, deuterium from municipal water floods the enamel&#39;s hydroxyl channels. Deuterium&#39;s doubled atomic mass alters electron-cloud density and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">permittivity</span>, collapsing refractive index. Light scatters laterally instead of reflecting internally, making enamel translucent and gray, exposing the darker <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">mesodermal</span> dentin beneath.</div><div id="concept-10" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -513,7 +527,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-05-30-2sowdl">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Jack points to a lab light-reading method for measuring tooth enamel changes</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack points to a lab light-reading method for measuring tooth enamel changes</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Tooth enamel test</span><a href="https://x.com/i/status/2060347094464970924" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Enamel color and translucency differences between individuals reflect deuterium (D+) load, measurable by <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">atomic spectroscopy</span>. Blue light exposure from indoor gym environments likely accelerates the degradation process.</div><div id="concept-19" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -522,7 +540,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-05-30-15gpe9w">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Jack says mastic gum can help remove deuterium</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack says mastic gum can help remove deuterium</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Mastic gum</span><a href="https://x.com/i/status/2060401190840471746" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">Mastic gum</span> acts as a tool for deuterium depletion.</div><div id="concept-20" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
@@ -532,7 +554,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-05-30-b2jv0r">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">Jack points to mastic gum chewing as the treatment signal in a Tourette thread</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack points to mastic gum chewing as the treatment signal in a Tourette thread</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Tourette chewing protocol</span><a href="https://forum.jackkruse.com/threads/tourettes-syndrome-tx.32854/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">Tourette syndrome</span> can be treated via <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">piezoelectric</span> defragmentation using <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-23" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">mastic gum</span> alone, without additional appliances. The mechanical stress from chewing generates piezoelectric effects that reorganize cellular structure. <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-24" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">Sweating</span> serves as a measurable sign of active deuterium depletion.</div><div id="concept-21" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -550,7 +576,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-5" data-vote-card-id="kruse-2026-05-30-cj8udt">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">Jack says work-related EMF exposure should be addressed before neck-spine surgery</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack says work-related EMF exposure should be addressed before neck-spine surgery</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header"><span class="tag">Spine surgery pause</span><a href="https://forum.jackkruse.com/threads/acdf.32797/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-25" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">EMG</span> findings indicating spine dysfunction often reflect <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">deuteration</span> rather than structural damage requiring fusion. Occupational <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">EMF</span> exposure chronically deuterates the spine, creating neurological dysfunction detectable by electromyography. Before pursuing three-level <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">ACDF</span> (anterior cervical discectomy and fusion), attempt deuterium <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">defragmentation</span> protocols and take 6 months off work to interrupt EMF exposure. Multiple-level ACDF leads to chronic downstream issues.</div><div id="concept-25" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
@@ -571,7 +601,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-6" data-vote-card-id="kruse-2026-05-30-9zxvik">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">Jack says GLP-1 drugs can backfire if the underlying deuterium problem is ignored</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Jack says GLP-1 drugs can backfire if the underlying deuterium problem is ignored</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header"><span class="tag">GLP-1 caution</span><a href="https://forum.jackkruse.com/threads/all-things-glp-1-agonists.32852/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">Semaglutide</span> and <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">tirzepatide</span> operate as macro-scale <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">quantum centrifuges</span> that work independent of weight loss. The cardiovascular and renal benefits in <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-33" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">SELECT</span> and <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">FLOW</span> trials do not track with weight reduction because these molecules function on a sub-molecular energetic axis via the <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">KIE</span> of deuterium. Synthetic long-chain peptides are crude sledgehammers designed to manually pry open the cell&#39;s fluid exhaust lines because an indoor, un-grounded, LED-bathed lifestyle has completely deuterated the epigenetic landscape. Using artificial chemical proxies to simulate satiety while ignoring the kinetic isotope effect will shred long-term longevity. The mechanism operates under the <span class="expandable-concept" data-card-id="card-6" data-concept-target="concept-36" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">TRCS</span> model.</div><div id="concept-30" class="expanded-content" data-card-id="card-6" data-concept-level="noob" aria-hidden="true">
@@ -598,7 +632,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-7" data-vote-card-id="kruse-2026-05-30-lq24xt">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">A forum post explains the Rescuing Hug as a body-to-body signal effect</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">A forum post explains the Rescuing Hug as a body-to-body signal effect</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header"><span class="tag">Twin rescue story</span><a href="https://forum.jackkruse.com/threads/what-is-nad-in-biophysical-terms.32390/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The rescue of conjoined twin Brielle Jackson by her sister Kyrie demonstrates <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">wireless quantum parabiosis</span> - electromagnetic field coupling, not chemical or mechanical intervention. When Kyrie (coherent system with stable heart rhythm, low entropy) was placed skin-to-skin with Brielle (chaotic system with erratic rhythm, high entropy), their electromagnetic fields entangled via <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">Kuramoto synchronization</span>. Kyrie&#39;s stable heart rhythm acted as a strong attractor that forced Brielle&#39;s weak signal into <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">phase-lock</span>. The <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">coupling strength</span> (K) between their fields exceeded the synchronization threshold. This is <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">Resonant Oscillator Locking</span> - the laws of physics, specifically <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">entrainment</span> and <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">near-field radiative heat transfer</span>, rewrote Brielle&#39;s broken autonomic nervous system software. Humans are <span class="expandable-concept" data-card-id="card-7" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">coupled oscillators</span>, not isolated chemical bags.</div><div id="concept-37" class="expanded-content" data-card-id="card-7" data-concept-level="pro" aria-hidden="true">
@@ -628,7 +666,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-8" data-vote-card-id="kruse-2026-05-30-qyvhfb">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-8-details">
-          <span class="card-title">A forum post links SSRI suicidality to a mitochondrial stress pattern</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">A forum post links SSRI suicidality to a mitochondrial stress pattern</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-8-details" class="card-details" hidden><div class="card-header"><span class="tag">SSRI risk warning</span><a href="https://forum.jackkruse.com/threads/mum-tried-committing-suicide-twice-because-of-ssri-use-we-are-her-sons-trying-desperately-to-help-her-get-better.32665/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-45" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">SSRI</span>-induced suicidality results from overdeuteration and <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-46" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">NAD+</span> depletion that collapses mitochondrial membrane voltage. The boundary conditions of the <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-47" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">inner mitochondrial membrane</span> require NAD+ (undeuterated) and oxygen in <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-48" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">triplet state</span>. When NAD+ capacity vanishes, the cell&#39;s water table undergoes phase transition. Oxygen uncoils from its magnetic ground triplet state (3O2) and flips into the destructive <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-49" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">singlet state</span> (1O2) - the <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-50" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-50" aria-expanded="false">singlet trap</span> that conventional psychiatry misses. The <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-51" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-51" aria-expanded="false">EZ water</span> lattice collapses from 160 to 78. This uncoordinated spin inversion ignites a <span class="expandable-concept" data-card-id="card-8" data-concept-target="concept-52" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-52" aria-expanded="false">free-radical</span> fire that destroys melanin, collagen, enamel, dentin, and lipid frameworks. The mother is overdeuterated and her IMM voltage is halved.</div><div id="concept-45" class="expanded-content" data-card-id="card-8" data-concept-level="noob" aria-hidden="true">
@@ -665,13 +707,17 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-05-30-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-9-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

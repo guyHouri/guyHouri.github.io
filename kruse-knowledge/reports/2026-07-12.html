@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-12-nmcdgd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Hypoxia results from magnetic dynamo failure, not oxygen scarcity</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Hypoxia results from magnetic dynamo failure, not oxygen scarcity</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Magnetic field collapse and hypoxia</span><a href="https://x.com/i/status/2076125891961246067" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">iron-neuromelanin semiconductor</span> or Earth&#39;s steady DC magnetic field is jammed by <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">non-native EMF</span>, the cell loses its ability to magnetically pin electron spins. This collapse of the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">magnetic dynamo</span> prevents enforcement of the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">triplet ground state</span> needed for efficient oxygen metabolism. As magnetism fades, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">free radical</span> signals shift from coherent magnetic switches to chaotic <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">singlet oxygen</span> noise. <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">Hydrogen bonds</span> destabilize and unzip. The result is cellular suffocation in an ocean of unutilizable oxygen - hypoxia despite adequate oxygen availability. This mechanism explains why <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">heteroplasmy</span> and disease manifest during magnetic excursions: the cell&#39;s energy processing requires stable magnetic coherence, not just oxygen supply. Mitochondria normally generate free radicals to act as local magnetic switches, manipulating the size, shape, and charge density of the cellular matrix. When these magnetic moments operate coherently, the cell processes energy with zero friction.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -475,7 +485,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-12-1qo0w0k">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Geomagnetic field proximity may influence extreme heat events</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Geomagnetic field proximity may influence extreme heat events</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Van Allen belts and heat dome correlation</span><a href="https://x.com/i/status/2075945421461913840" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Jack raises a direct question about the relationship between <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">Van Allen radiation belt</span> proximity to Earth and the occurrence of extreme heat domes in the western United States. The incomplete tweet suggests a causal or correlative link between solar and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">geomagnetic</span> activity and the manifestation of dangerous heat extremes. This frames extreme weather not solely as an atmospheric or CO₂ phenomenon, but as a potential <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">geomagnetic excursion</span> effect on Earth&#39;s <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">magnetosphere</span> and biological stress. The signal is to track <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">geomagnetic indices</span> and Van Allen belt position during <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">heat dome</span> events and to understand that cellular magnetic stress during geomagnetic shifts may compound heat-related biological strain.</div><div id="concept-8" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -499,7 +513,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-12-1snkjds">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">2026 review identifies four non-thermal mechanisms of RF damage to neural development</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">2026 review identifies four non-thermal mechanisms of RF damage to neural development</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">RF radiation and developing brain harm</span><a href="https://x.com/i/status/2075926783795368138" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A 2026 review in Current Approaches in Psychiatry analyzed 65 experimental studies on <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">RF radiation</span> exposure (<span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">2.4 GHz</span> and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">5 GHz</span> frequencies) to developing brains. Across all studies, four consistent mechanisms emerged independent of tissue heating: increased <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-17" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">oxidative stress</span>, impaired <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">synaptic plasticity</span>, disrupted <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">neurogenesis</span>, and altered <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">dendritic spine</span> formation. These effects occurred at exposure levels where thermal heating was not the proposed mechanism. The reported outcomes included persistent changes in learning, memory, motor activity, and anxiety behavior after exposure ended. The <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">FCC exposure limits</span>, adopted in 1996 and never updated, are based solely on preventing excessive tissue heating and do not account for these non-thermal biological effects. The practical signal is clear: keep wireless devices away from pregnant belly and off at night; hardwire what you can; distance is free.</div><div id="concept-14" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -530,7 +548,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-12-q48zob">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Sunglasses and sunscreen trigger skin atrophy through broken optical-magnetic coupling</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Sunglasses and sunscreen trigger skin atrophy through broken optical-magnetic coupling</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://forum.jackkruse.com/threads/optimal-journal.29775/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">Skin atrophy</span> - loss of color and structural integrity - results from a broken <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">planetary dynamo</span> triplet oxygen link. When sunglasses or chemical sunscreen block light from reaching the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">eye-pineal axis</span>, the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">LC oscillator</span> is blinded and the brain fails to upregulate <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">MITF</span>, the master transcription factor for melanin production. Without adequate <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">melanin-copper semiconductor</span> grid formation, incoming light cannot be cleanly routed through the skin. The system loses its <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">fine structure constant</span> (1/137) quantum coherence grip. Local oxygen then drops into volatile, excited <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">singlet oxygen</span>. This disrupts the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">POMC</span> pro-hormone spine cleavage and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">pro-hormone convertases</span>, leading to profound structural liquidation of skin tissue. The signal is that skin paleness is not cosmetic but a marker of broken optical-magnetic-mitochondrial coupling. Restoring direct sun exposure to the eye-pineal axis is the pathway to reverse atrophy.</div><div id="concept-22" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
@@ -566,7 +588,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-07-12-1o2xigu">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">Molecular hydrogen machines reduce viral titers and oxidative stress markers</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Molecular hydrogen machines reduce viral titers and oxidative stress markers</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Molecular hydrogen for viral and oxidative stress</span><a href="https://forum.jackkruse.com/threads/hydrogen-machines-and-capsules.33004/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Jack reports that many people using Tyler LeBrand&#39;s <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-32" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">molecular hydrogen</span> machines have achieved reduced <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-33" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">viral titers</span>, lowered <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">oxidative stress</span> markers, and generally positive health benefits. <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-35" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">Molecular hydrogen</span> acts as a selective <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-36" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">antioxidant</span> and <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">free radical</span> scavenger, reducing the oxidative burden that both viral infection and nnEMF exposure create. The signal is to consider molecular hydrogen machines as an adjunct therapy for viral infections and oxidative stress states. Monitor viral titers and oxidative stress markers (such as 8-OHdG or malondialdehyde) before and after hydrogen therapy to track individual response.</div><div id="concept-32" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -591,33 +617,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-12-hpqefp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-12-14udwr2">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-07-12-1hasj23">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/april-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

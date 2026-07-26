@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-05-28-15v5g1t">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">High-protein intake collapses cellular water coherence and triggers singlet oxygen damage</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">High-protein intake collapses cellular water coherence and triggers singlet oxygen damage</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Protein metabolism</span><a href="https://x.com/i/status/2059676004650783054" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A 2026 study showing 100g protein sustains muscle synthesis for 12 hours misses a critical biophysical cost: protein metabolism cuts metabolic water production by half compared to fat oxidation. When <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Cytochrome c Oxidase (CCO)</span> burns fat, it manufactures 110g of deuterium-depleted water per 100g substrate with a <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">dielectric constant</span> of ~160. Protein intake demands water for <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">ammonia</span> clearance, collapsing the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Exclusion Zone (EZ)</span> from 160 to bulk water (~78). Deuterium accumulates in <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">Inner Mitochondrial Junctions (IMJs)</span>, stalling <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">Complex I</span> via <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">kinetic isotope effect (KIE)</span>, destroying <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">CISS (Chiral Induced Spin Selectivity)</span>, and converting oxygen to destructive <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">singlet oxygen (1O2)</span> that fries hair follicles, yellows teeth, and damages neurons.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -516,7 +526,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-05-28-9p2aa1">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">RETA (retatrutide) will cause mechanoporation-induced brain damage mimicking traumatic injury in users with deuterated water tables</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">RETA (retatrutide) will cause mechanoporation-induced brain damage mimicking traumatic injury in users with deuterated water tables</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">GLP-1 complications</span><a href="https://x.com/i/status/2059664528078446967" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">RETA, a triple <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-23" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">GLP-1</span>/<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-24" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">GIP</span>/<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-25" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">glucagon agonist</span> not yet FDA-approved, will cause mechanical shock wave damage via <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">mechanoporation</span> that mimics <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">traumatic brain injury (TBI)</span> impacts. Jack reports treating RETA complications in current users and predicts more cognitive <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">time loss</span> than existing GLP-1 agonists. Users with pre-existing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">deuterated water</span> tables will experience <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">central pontine myelinolysis (CPM)</span>-like presentations with <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-31" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">Na+</span>/<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-32" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">K+</span> dysregulation. The mechanism is biophysical, not pharmacological: the drug&#39;s mechanical effect on a compromised water lattice causes neurological damage that centralized neurology cannot diagnose.</div><div id="concept-23" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -565,7 +579,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-05-28-1ei9pm">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Lipomas respond to deuterium-depleted water or TENS unit applied directly over the lesion</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Lipomas respond to deuterium-depleted water or TENS unit applied directly over the lesion</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Lipoma treatment</span><a href="https://x.com/i/status/2059666694667170060" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">For <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-38" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">lipoma</span> reduction, use <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">DDW (deuterium-depleted water)</span> (systemic) or <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-40" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">TENS unit (transcutaneous electrical nerve stimulation)</span> applied directly over the lesion (local). DDW restores <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">water table coherence</span> and may reduce lipid accumulation by improving <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">mitochondrial function</span>. TENS unit stimulation may trigger local tissue remodeling and reduce lipid deposition via electrical signaling.</div><div id="concept-38" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -587,7 +605,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-05-28-gdoghw">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Earth&#39;s core-mantle electromagnetic decoupling collapses the restoring force on human protons, extending T-2 relaxation and destroying wo...</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Earth&#39;s core-mantle electromagnetic decoupling collapses the restoring force on human protons, extending T-2 relaxation and destroying wo...</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Planetary magnetism</span><a href="https://forum.jackkruse.com/threads/understanding-vortices.32685/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A paper on Earth&#39;s electromagnetic autopsy shows a 98.3% reduction in <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">Chandler wobble</span> and 97.2% reduction in <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-44" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">annual wobble</span>, indicating <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-45" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">core-mantle</span> electromagnetic decoupling. The <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-46" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">outer core</span>&#39;s electric and magnetic fields no longer grip the mantle; the planetary transmission has slipped into neutral. This collapses the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-47" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">restoring force</span> on human <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-48" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">protons</span> globally, extending <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-49" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">T-2 relaxation</span> time to maximum. Humans lose the ability to &#39;hold phase&#39; against environmental noise, explaining why wounds are not healing and why diabetes is being created at record rates in places that should have none.</div><div id="concept-43" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
@@ -632,7 +654,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-05-28-1w2cvoy">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">Citrus greening is a water table collapse disease, not a bacterial infection; deuterium trap in Florida aquifers enables opportunistic in...</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Citrus greening is a water table collapse disease, not a bacterial infection; deuterium trap in Florida aquifers enables opportunistic in...</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Plant disease mechanism</span><a href="https://forum.jackkruse.com/threads/the-magnetic-excursion-thread.32766/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-57" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-57" aria-expanded="false">Citrus greening</span> (<span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-58" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-58" aria-expanded="false">Huanglongbing (HLB)</span>) is not caused by bacteria; <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-59" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-59" aria-expanded="false">Candidatus Liberibacter asiaticus</span> is an opportunist. The real cause is deuterium accumulation in Florida&#39;s sandy aquifers, which collapses the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-60" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-60" aria-expanded="false">Exclusion Zone (EZ)</span> <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-61" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-61" aria-expanded="false">dielectric constant</span> from ~160 to bulk state (~78). This destroys the plant&#39;s internal <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-62" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-62" aria-expanded="false">sap coherence</span> and <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-63" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-63" aria-expanded="false">electrical potential</span>, creating a stalled, uncoupled fluid <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-64" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-64" aria-expanded="false">vortex</span> where bacteria thrive. Centralized agriculture blames the bacterium and ignores sub-molecular <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-65" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-65" aria-expanded="false">thermodynamics</span>, <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-66" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-66" aria-expanded="false">fluid dynamics</span>, and the biophysics of water.</div><div id="concept-57" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -680,13 +706,17 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-05-28-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-09-1408di">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Carrington Event (1859) weakened Earth&#39;s magnetic shield, triggering phylloxera outbreak and modern agricultural collapse via deuterium l...</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Carrington Event (1859) weakened Earth&#39;s magnetic shield, triggering phylloxera outbreak and modern agricultural collapse via deuterium l...</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Geomagnetic storm and crop collapse</span><a href="https://twitter.com/DrJackKruse/status/2064024428447449533" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The 1859 <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">Carrington Event</span> - a massive <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">coronal mass ejection (CME)</span> that produced worldwide auroras and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">geomagnetic storm</span> intensity of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">Dst</span> ≈ −900 nT - temporarily weakened Earth&#39;s magnetic field shield. This allowed <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">cosmic-ray</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">spin-quanta</span> flux surges that elevated atmospheric energy density and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">deuterium (D+)</span> influx. In European vineyards, this disrupted cellular oscillators (nucleus as <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">LC circuit</span>, root <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">EZ water</span> layers), lowering resonant frequency and enabling <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">phylloxera (Daktulosphaira vitifoliae)</span> infestation. The timing is sharp: 1859 storm -&gt; 1863 first confirmed phylloxera detection in southern Rhône, France -&gt; 1868 - 1880s explosive outbreak destroying ~70% of French vineyards. The same mechanism explains modern Florida orange crop loss (98% decline): <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">AMOC</span> weakening has reduced <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">triplet oxygen</span> by 50% and deuterated the water table, disrupting plant vigor and enabling pest infestation.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -497,7 +507,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-06-09-4kvbbg">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Pre-flight DC current defragging restores body&#39;s electrical coherence to prevent jetlag</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Pre-flight DC current defragging restores body&#39;s electrical coherence to prevent jetlag</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">DC current defragging before flight</span><a href="https://twitter.com/DrJackKruse/status/2064082952766550100" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">Robert O. Becker</span> discovered a <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">direct current (DC) electrical system</span> in the body that regulates healing, regeneration, and growth, running through <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">semiconductor</span> materials including <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">melanin</span>. Kruse applies this framework to a concrete pre-flight protocol: &#39;defragging&#39; DC current before air travel to mitigate <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">jetlag</span>. Flight disrupts this electrical system via nnEMF, altitude, and circadian desynchrony. Pre-flight <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">defragging</span> (mechanism not detailed in this source) restores coherence before the disruption, allowing the body&#39;s semiconductor network to maintain resonance during travel.</div><div id="concept-16" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
@@ -521,7 +535,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-06-09-h6c1tf">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Tinnitus as cochlear tissue-water structure lock</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Tinnitus as cochlear tissue-water structure lock</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://twitter.com/DrJackKruse/status/2064112972738298368" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse reframes <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">tinnitus</span> as <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">cochlear lattice lock</span> rather than <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">neuroplasticity</span> gone awry. While neuroplasticity may play a role in tinnitus, Kruse&#39;s mechanism points to disruption of cellular resonance in the inner ear. <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">Lattice lock</span> - a state where water structure and cellular oscillators become rigid and lose coherence - may be the root biophysical problem in the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">cochlea</span>, suggesting different treatment approaches than neuroplasticity retraining alone.</div><div id="concept-22" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -542,7 +560,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-06-09-7ydexe">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Cancer results from loss of UV biophoton-driven apoptosis; post-GOE cells use UV as a death signal that cancer cells suppress</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Cancer results from loss of UV biophoton-driven apoptosis; post-GOE cells use UV as a death signal that cancer cells suppress</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Cancer apoptosis and UV biophoton signaling</span><a href="https://twitter.com/DrJackKruse/status/2064003454519980167" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse presents a mechanistic framework linking <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">Shannon&#39;s Information Theory</span>, <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">UV biophoton</span> signaling, and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">Bcl-2 family</span> proteins to explain cancer. Pre-<span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">Great Oxidation Event (GOE)</span> cells (<span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">prokaryote</span>s) emitted broad-spectrum light and used <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">Warburg metabolism</span> (low information, common noise). Post-GOE cells shifted to UV-heavy biophotons and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">TCA cycle</span> metabolism (high information, rare signal). <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-34" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">Apoptosis</span> - the precise cellular decision to die - relies on UV as the trigger. <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">Anti-apoptotic Bcl-2</span> proteins absorb UV at 275 - 280 nm and emit weakly (~335 nm, quenched), silencing the death signal. <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-36" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">Pro-apoptotic Bax/Bak</span> proteins expose <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">tryptophan (Trp)</span> residues, enhancing UV emission (~340 - 350 nm), amplifying the death signal. Cancer is a reversion to pre-GOE (Warburg) metabolism, losing UV biophoton control. Decentralized medicine restores UV exposure and apoptotic capacity.</div><div id="concept-27" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
@@ -588,7 +610,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-06-09-j881pm">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">Lack of grounding leads to loss of electrons</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Lack of grounding leads to loss of electrons</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://twitter.com/DrJackKruse/status/2063982001510576153" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Kruse provides a corrected, concise mechanism: lack of grounding leads to loss of <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">electrons</span>, which causes <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">deuterated water</span> table oxygen to shift from <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">triplet oxygen</span> (stable, anti-inflammatory) to <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">singlet oxygen</span> (reactive, pro-inflammatory) state, creating oxidative fires of disease. This mechanism explains the 40% higher <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-45" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">stroke</span> risk in high-rise dwellers (Wolinsky et al., 2009, 5,511 Medicare beneficiaries, 12 years follow-up). Grounding provides electrons from Earth; without it, the body loses electrons to the atmosphere (which is positively charged). Electron loss disrupts water structure and allows deuterium-enriched water to shift oxygen state. High-rise dwellers face additional risk: each floor adds 10 - 15 volts of <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-46" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">electrical gradient</span> between head and feet, compounding electron loss.</div><div id="concept-41" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -621,33 +647,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-09-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-06-09-113ofqx">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-06-09-3tuckd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

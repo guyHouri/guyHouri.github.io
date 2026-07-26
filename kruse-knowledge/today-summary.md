@@ -135,7 +135,12 @@ Concepts:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Key points:
+- Food signal: Fermented and live foods were treated as electron-spin and deuterium inputs, not just probiotic support.
+- Location signal: Taiwan was biologically workable only with density/geopolitical caveats; Bali was preferred for Australians; Mount Shasta was partial support, not full magnetic pinning.
+- Device signal: Microcurrent tools and titanium-implant worries stay secondary until hydration, CCO state, heteroplasmy, chewing/deuterium handling, and local magnetism are known.
+- Symptom signal: Cold intolerance and tinnitus after infection point back to redox, structured water, and potassium/endolymph context; morning sun, magnetic context, and disciplined cold come before more hacks.
+- Tracking signal: Caffeine/chocolate dependence points to dopamine/redox debt, while post-spike plasmapheresis should be judged by journaled changes in redox, lot history, and the recovery environment.
 
 Sources:
 - https://optimalklubs.com/july-2026-quantum-biologic-powwow/
@@ -146,7 +151,12 @@ Sources:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Key points:
+- Drug-recovery signal: GLP-1/Retta recovery was framed as vagal and redox repair, not simple appetite troubleshooting; environmental correction and forum protocols come first.
+- Deuterium signal: Clearance symptoms were sorted by tissue compartment, water table, cold-water exposure, basalt context, and neuropathy instead of generic detox language.
+- Tinnitus signal: Ear symptoms and Lakhovsky-ring questions were routed back to structured water, potassium/endolymph demand, and whether the person is actually magnetically pinned.
+- Relocation signal: Australia was treated as a difficult baseline; Bali was the closest favored egress, and while still in Australia the priority is enough sun, cold, water, and magnetic work.
+- Safety signal: DDW carbonation/vortexing and last-pour sediment matter, while a programmable shunt makes magnetic-mat use a manufacturer/neurosurgical risk question.
 
 Sources:
 - https://optimalklubs.com/june-2026-quantum-biologic-powwow/
@@ -157,14 +167,19 @@ Sources:
 
 Tag: Podcast / Q&A
 
-Curated summary pending
+Key points:
+- Diabetes signal: Type 1 diabetes was mapped through MITF/AMPAR, melanin, beta-cell lattice lock, and location; Central America was prioritized over volcanic places with magnetic hysteresis risk.
+- Relocation signal: Northern California/Bodega Bay was only a temporary stopgap, not a substitute for a stronger magnetic, water, and social/political environment.
+- Water signal: Low-ppm DDW can fit advanced chronic illness; Ilopango/Soyapango were favored, while Coatepeque was flagged because of caldera activity/cyanobacteria.
+- Allergy signal: Antihistamines, allergies, and eye/nose/ear/teeth signs were tied back to deuterium handling and acetylcholine context instead of symptom suppression.
+- Light/melanin signal: Blue-light melanin loss was framed through hypoxia plus dehydration/CCL, with catecholamines as a fallback defrag route when melanin production is impaired.
 
 Sources:
 - https://optimalklubs.com/may-2026-quantum-biologic-powwow/
 - https://player.vimeo.com/
 - https://player.vimeo.com/video/1188926299?autoplay=1&loop=0
 
-### Latest Jack Kruse podcast
+### Podcast episode title needs source verification
 
 Tag: Podcast / Q&A
 
@@ -178,7 +193,7 @@ Sources:
 - https://t.co/3LRrHR74w6
 - https://t.co/6YWSCIOK0F
 
-### Latest Jack Kruse podcast
+### Podcast episode title needs source verification
 
 Tag: Podcast / Q&A
 
@@ -191,7 +206,7 @@ Sources:
 - https://x.com/i/status/2081038250584453473
 - https://t.co/3LRrHR74w6
 
-### Latest Jack Kruse podcast
+### Podcast episode title needs source verification
 
 Tag: Podcast / Q&A
 
@@ -203,7 +218,7 @@ Sources:
 - https://t.co/3LRrHR74w6
 - https://x.com/i/status/2081032881825046895
 
-### Latest Jack Kruse podcast
+### HOW DO THE FOUR PHYSICAL FORCES SCULPT MATRIX THERMODYNAMICS?
 
 Tag: Podcast / Q&A
 
@@ -214,7 +229,7 @@ Source quote: "NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is
 Sources:
 - https://forum.jackkruse.com/threads/how-do-the-four-physical-forces-sculpt-matrix-thermodynamics.33172/
 
-### Latest Jack Kruse podcast
+### Jack Kruse Podcast Curriculum - Youtube Edition V1
 
 Tag: Podcast / Q&A
 

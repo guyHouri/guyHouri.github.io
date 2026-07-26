@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -451,7 +457,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-06-15-1q1h617">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">55-year-old male reduced from 23 medications to zero over months via circadian protocol; 100+ lb weight loss and pain-free hernia repair...</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">55-year-old male reduced from 23 medications to zero over months via circadian protocol; 100+ lb weight loss and pain-free hernia repair...</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Polypharmacy reversal and pain-free recovery</span><a href="https://forum.jackkruse.com/threads/fixed-my-husband-mostly.32969/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum post describes a 55-year-old retired firefighter with a 33-year career history who accumulated diagnoses of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">congestive heart failure</span>, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">obstructive sleep apnea</span>, asthma, diabetes, prostate cancer, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">Guillain-Barré syndrome</span>, and vocal cord dysfunction, supported by 23 prescription medications. After <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">circadian protocol</span> implementation beginning in 2024, he discontinued all medications including inhalers and CPAP, lost over 100 pounds, and underwent hernia repair without requiring pain medication. Residual <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">peripheral neuropathy</span> from prior Guillain-Barré syndrome is managed through <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">circadian principles</span>. The case also reveals an environmental signal: when outdoor access was restricted due to mosquito explosion in rural Mississippi, his neuropathy symptoms flared and both household members developed acute illness - the first sickness since adopting the protocol. A day trip to Pensacola (coastal environment with higher light and magnetic field exposure) produced rapid symptom relief, suggesting that loss of outdoor light and geomagnetic access directly degrades circadian-dependent gains.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
@@ -475,7 +485,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-06-15-1l5er18">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">18-month tirzepitide use caused muscle and hair loss; subsequent circadian protocol resolved POTS and ADHD symptoms.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">18-month tirzepitide use caused muscle and hair loss; subsequent circadian protocol resolved POTS and ADHD symptoms.</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Tirzepitide muscle loss and circadian symptom reversal</span><a href="https://forum.jackkruse.com/threads/jessica%E2%80%99s-journal-journey-to-optimal.32964/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum member reports taking <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">tirzepitide</span> at micro-doses for 18 months beginning in 2023, achieving 50 pounds of weight loss but experiencing severe adverse effects: significant muscle mass loss and hair loss. She discontinued the drug mid-2024 due to these complications. Following implementation of <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">circadian protocol</span>, both <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">POTS</span> (postural orthostatic tachycardia syndrome) and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">ADHD</span> symptoms resolved completely. Residual symptoms include <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">palpitations</span> triggered by prolonged screen exposure and sometimes preceding menstrual cycle onset, plus <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">tinnitus</span> described as occasionally severe. Her spouse case (mentioned in the same post) shows 100+ pound weight loss and discontinuation of all medications with residual mild peripheral neuropathy from prior Guillain-Barré syndrome. The screen-time palpitations and cycle-related cardiac symptoms suggest that circadian-sensitive patients experience blue-light and hormonal-circadian coupling effects.</div><div id="concept-6" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -499,7 +513,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-06-15-1rz3kuk">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Century-long North Atlantic cold anomaly linked to Atlantic Meridional Overturning Circulation weakening and South Atlantic Anomaly onset.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Century-long North Atlantic cold anomaly linked to Atlantic Meridional Overturning Circulation weakening and South Atlantic Anomaly onset.</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">North Atlantic cold blob and geomagnetic field collapse</span><a href="https://forum.jackkruse.com/threads/north-atlantic-cold-blob-magnetic-amoc-link.32966/unread" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A forum post connects a persistent cold patch in the North Atlantic (south of Greenland) that has existed for over 100 years to long-term weakening of the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">AMOC</span> (Atlantic Meridional Overturning Circulation), the massive <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">ocean current</span> system that regulates Northern Hemisphere climate. The new signal is a temporal correlation: the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">SAA</span> (South Atlantic Anomaly) - a region of weakened Earth&#39;s <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-15" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">geomagnetic field</span> over the South Atlantic - arrived at the start of the 20th century, coinciding with the onset of the cold blob. This suggests that geomagnetic field degradation may disrupt <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">ionospheric coupling</span> or magnetohydrodynamic processes that regulate ocean circulation, making the magnetic field strength an active climate variable rather than a passive backdrop. The cold blob is not a transient weather event but a century-long signal of ocean circulation failure.</div><div id="concept-12" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
@@ -521,33 +539,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-3" data-vote-card-id="kruse-2026-06-15-4ps2ln">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">February 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/february-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-06-15-113ofqx">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">January 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/january-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for January 2026. https://optimalklubs.com/january-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-06-15-3tuckd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">December 2025 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-po...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/december-2025-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for December 2025. https://optimalklubs.com/december-2025-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

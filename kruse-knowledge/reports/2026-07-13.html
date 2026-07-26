@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-13-1voct0v">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">Diet is simply the process of importing magnetic moments to either reinforce or destroy the cellular dynamo</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Diet is simply the process of importing magnetic moments to either reinforce or destroy the cellular dynamo</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Diet and magnetic environment</span><a href="https://twitter.com/DrJackKruse/status/2076322482038996993" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Diet efficacy depends entirely on the electromagnetic environment you occupy. What you eat is fundamentally a collection of <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">atomic spin states</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">hydrogen isotopes</span>, not macronutrient ratios. A clean organic diet fails in a high-nnEMF environment because the cell cannot maintain <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">electron spin coherence</span>. The <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">mitochondrial magnetic dynamo</span> must pin electron spins and clear deuterium vortices; without this local magnetic field, even the cleanest diet is reverse-engineered by the cell into <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">singlet-oxygen</span>-driven cellular crash. <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">Weston A. Price</span> discovered geographic mapping of Earth&#39;s local quantum magnetic dynamos, not dietary chemistry formulas. The modern foundation named after him focuses on food products while missing the environment, topology, and spin state that actually determine whether those foods work.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -469,7 +479,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-13-4hloj4">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Alternating current magnetic fields dephase electron spins and shatter Complex I, halting NAD+ regeneration</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Alternating current magnetic fields dephase electron spins and shatter Complex I, halting NAD+ regeneration</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">AC fields and mitochondrial collapse</span><a href="https://twitter.com/DrJackKruse/status/2076291082548093195" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">AC magnetic fields</span> below 100 kHz introduce an oscillating magnetic force that directly <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">dephases</span> <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">spin-polarized electrons</span> in your tissues. This dephasing generates <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">singlet oxygen</span> inside the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-10" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">mitochondrial matrix</span>, which acts as a thermodynamic weapon against the respiratory complexes. <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">Complex I</span> is where <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">NADH</span> transfers electrons to regenerate <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">NAD+</span>. When singlet oxygen shatters Complex I&#39;s <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">iron-sulfur clusters</span>, this electron transfer stops dead. Electrons back-reflect and leak out as <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">oxidative noise</span> instead of clean transfer. The <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">NAD+/NADH ratio</span> plummets, depriving <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">sirtuins</span>, DNA repair mechanisms, and circadian clocks of their fuel. This is the gateway to <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">heteroplasmy</span> and human disease. AC field exposure from power infrastructure, household appliances, and indoor electrical systems is a direct thermodynamic attack on mitochondrial electron transport - not thermal damage but spin-dephasing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">oxidative stress</span>.</div><div id="concept-6" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -517,7 +531,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-13-rd7333">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Hypoxia symptoms reflect loss of magnetic dynamo, not oxygen deficiency</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Hypoxia symptoms reflect loss of magnetic dynamo, not oxygen deficiency</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Hypoxia as magnetic field collapse</span><a href="https://twitter.com/DrJackKruse/status/2076125891961246067" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-20" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">Hypoxia</span> manifests when the cell&#39;s <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">magnetic dynamo</span> collapses due to nnEMF jamming of the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">iron-neuromelanin</span> semiconductor or Earth&#39;s steady DC magnetic field. Without a stable <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">magnetic moment</span>, the cell cannot enforce the <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">triplet ground state</span> of oxygen. <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">Free radical signals</span> become chaotic <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">singlet oxygen</span> noise, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-27" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">hydrogen bonds</span> unzip, and the cell suffocates in an ocean of unutilizable oxygen despite normal O₂ levels. This is functional hypoxia: the cell has oxygen but cannot use it because the magnetic coherence that enables efficient oxygen metabolism is gone. Restoring local magnetic coherence - by removing nnEMF, grounding, or magnetic field exposure - may restore oxygen utilization without supplemental oxygen.</div><div id="concept-20" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
@@ -547,7 +565,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-13-139gdky">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">The NAD+/Sirtuin longevity cascade activates naturally via nnEMF removal, morning light, and cold exposure</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">The NAD+/Sirtuin longevity cascade activates naturally via nnEMF removal, morning light, and cold exposure</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">NAD+ pathway without synthetic precursors</span><a href="https://twitter.com/DrJackKruse/status/2076315239671308696" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">NAD+/Sirtuin pathway</span> is the master regulator of <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-29" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">mitochondrial function</span> and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">longevity</span> through activation of the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">mitochondrial Unfolded Protein Response (UPR^mt)</span> and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">FOXO signaling</span>. This entire genetic cascade can be modulated naturally without synthetic <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">NAD+ precursors</span> by utilizing the planet&#39;s fields, temperature, and light. Removing <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-34" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">AC magnetic fields</span> restores electron flow at <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">Complex I</span>, regenerating NAD+ and activating sirtuins. Morning <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-36" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">full-spectrum sunlight</span> (UV-A and infrared) charges water cylinders around mitochondrial cytochromes via the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">melanin-melanopsin</span> system, increasing <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">Chirality-Induced Spin Selectivity (CISS)</span> efficiency and driving <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">NADH</span>-to-NAD+ conversion. <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">Systemic cold thermogenesis</span> condenses the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">inner mitochondrial membrane (IMM)</span>, allowing electrons to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">quantum tunnel</span> down the electron transport chain with zero resistance, forcing <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">Complex I</span> to strip electrons from NADH at accelerated rate and flood the cell with endogenously generated NAD+ that activates <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">FOXO</span> nuclear translocation and longevity genes. These three interventions structurally restore the <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-45" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">30-million-volt charge</span> on the IMM without drugs.</div><div id="concept-28" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
@@ -614,33 +636,45 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-07-13-hpqefp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-13-14udwr2">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-13-1hasj23">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">April 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/april-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

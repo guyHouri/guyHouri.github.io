@@ -84,7 +84,12 @@
     .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
     .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
     .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
-    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-title-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+    .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
+    .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
     .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
@@ -92,6 +97,7 @@
     .card-details[hidden] { display: none; }
     .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
     .card-points ul { margin: 0; }
+    .card-detail-label { color: var(--accent-hover); font-size: 0.78rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
     .card:hover { border-color: var(--card-border-hover); }
     .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -445,7 +451,11 @@
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-23-2bhmwz">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
-          <span class="card-title">MITF pathway breakdown triggers AMPAR internalization and synaptic water melting via calcium overload and Landauer Liquidation</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">MITF pathway breakdown triggers AMPAR internalization and synaptic water melting via calcium overload and Landauer Liquidation</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Brain learning collapse</span><a href="https://x.com/i/status/2080084857334440092" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">MITF pathway</span> breaks due to heavy <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">deuteration</span>, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">non-native EMF</span>, or environmental field depression, <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">AMPA receptors</span> internalize and disappear from the post-synaptic membrane. This eliminates the cell&#39;s capacity for sharp depolarization. The <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">magnesium brake</span> on the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">NMDA receptor</span> loosens, allowing calcium to leak continuously into the dendrite without a real incoming signal. Mitochondria become overwhelmed buffering this calcium flood, choking <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">Cytochrome c Oxidase</span> and triggering an <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">intersystem crossing</span> <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">spin-flip</span> that drops local voltage to -15mV. The neuron then triggers <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">Landauer Liquidation</span>, dumping non-coherent data as waste heat that destabilizes the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">liquid crystalline water</span> surrounding the synapse, degrading <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-11" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">melanopsin</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-12" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">melanocortin</span> receptors and melting the synaptic cleft. The result is chronic brain fog and profound learning disability.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
@@ -490,7 +500,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-23-1cijh7y">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
-          <span class="card-title">Spaceflight sickness model: microgravity, mitochondrial cristae expansion, and terrestrial nnEMF replication</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Spaceflight sickness model: microgravity, mitochondrial cristae expansion, and terrestrial nnEMF replication</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Chronic disease as spaceflight</span><a href="https://x.com/i/status/2079986963449254191" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">When an astronaut enters <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">microgravity</span>, loss of hydrostatic pressure forces <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">mitochondrial cristae</span> to expand, widening the gaps between <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">iron-sulfur clusters</span> beyond the threshold for efficient <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">quantum tunneling</span>. Electrons lose <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">spin coherence</span> before reaching the next node, causing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">ATP</span> collapse and stalled electron flow. NASA&#39;s Twins Study shows a 14-week <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">epigenetic lockout</span> with <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">DNA hypermethylation</span> silencing genes critical for <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">oxidative phosphorylation</span>. Modern humans in high-rise buildings, grounded from Earth, and saturated with <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-22" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">non-native EMF</span> have engineered the same zero-gravity, zero-magnetic habitat on the planet&#39;s surface. Forcing intense exercise on a blocked respiratory chain causes electrons to back-reflect into <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">diamagnetic singlet oxygen</span>, triggering free-radical explosion and <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-24" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">Landauer Liquidation</span>. Reversal requires three steps in order: Step 1, restore <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">magnetic pinning</span> via <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-26" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">geomagnetic grounding</span>; Step 2, build <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">EZ water</span> via morning infrared light; Step 3, introduce electron load only after quantum infrastructure is verified open. Standard longevity protocols - intense exercise, supplements, peptides, GLP1A drugs - applied to magnetically-blocked patients are dangerous.</div><div id="concept-13" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
@@ -541,7 +555,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-23-z0rzfp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
-          <span class="card-title">Oxygen magnetic state collapse and light-harvesting system failure</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Oxygen magnetic state collapse and light-harvesting system failure</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2079992187102585126" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A light-biology slide illustrating photon-to-signal conversion is only true when oxygen remains in <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-28" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">paramagnetic triplet</span> state. Van Wijk&#39;s research proved that <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">Ultra-weak Photon Emissions</span> (UPEs) require oxygen in its <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-30" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">ground state</span> to harvest light energy. But if oxygen undergoes <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">intersystem crossing</span> <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">spin-flip</span> into <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">diamagnetic singlet</span> state, the entire light-to-signal cascade collapses. The organized light-harvesting system becomes a blind, chaotic chemical bottleneck. The slide illustrates a high-fidelity <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-34" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">optical computer</span> that requires a functional <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">quantum receiver</span>. Without paramagnetic oxygen alignment, photons cannot be converted into biological signals regardless of light intensity or wavelength.</div><div id="concept-28" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
@@ -571,7 +589,11 @@
       </div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-23-1ciu6rj">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
-          <span class="card-title">Khavinson&#39;s loop transforms linear Central Dogma into recursive cybernetic ring where peptides regulate genome and proteins</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Khavinson&#39;s loop transforms linear Central Dogma into recursive cybernetic ring where peptides regulate genome and proteins</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Mechanism</span><a href="https://x.com/i/status/2080131157165809778" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Khavinson&#39;s model transforms the linear <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-36" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">Central Dogma</span> (DNA-&gt;RNA-&gt;protein) into a recursive <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">cybernetic ring</span> where proteins are broken into <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-38" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">peptides</span> that regulate the genome and other proteins. Kruse&#39;s thesis reveals the deeper layer: these feedback signals are not blind chemical collisions but <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">quantum-optical switches</span> coded by <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-40" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">spin-coherent wave packets</span>. The cell is wiser than Khavinson&#39;s model because the encoding is quantum-optical, not merely chemical. This framework explains why <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">GHK peptide</span>, a fragment of <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">collagen</span>, can influence collagen production genes - the peptide signal carries quantum information that the genome reads directly.</div><div id="concept-36" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
@@ -599,7 +621,11 @@
       <div class="section-title">Forum Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-4" data-vote-card-id="kruse-2026-07-23-l2nswh">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
-          <span class="card-title">Understand voice screening as a non-invasive biomarker for Type 2 diabetes</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Understand voice screening as a non-invasive biomarker for Type 2 diabetes</span>
+
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-4-details" class="card-details" hidden><div class="card-header"><span class="tag">Voice screening and acoustic phonons</span><a href="https://forum.jackkruse.com/threads/the-human-voice-an-evolved-deuterium-depletion-mechanism.32442/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">Klick Labs&#39; 10-second voice screening AI detects <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-43" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">Type 2 diabetes</span> with 86% accuracy in men and 89% in women via <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-44" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">microvascular</span> and <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-45" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">neuropathic</span> changes from chronic high blood glucose. While the study attributes changes to standard clinical pathways, Kruse proposes that as <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-46" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">acoustic phonon</span> science develops, it may link voice changes to magnetism and electron spin effects. Pioneering research at The Ohio State University proved that <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-47" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">magnetic fields</span> control <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-48" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-48" aria-expanded="false">acoustic phonons</span> - the <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-49" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-49" aria-expanded="false">quasi-particle</span> vibrations that transmit sound and heat - altering atomic collision rates and decreasing heat/sound transport by 12%. This bridges acoustic soundscapes to subatomic <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-50" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-50" aria-expanded="false">electron spin</span>, <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-51" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-51" aria-expanded="false">electron orbits</span>, and <span class="expandable-concept" data-card-id="card-4" data-concept-target="concept-52" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-52" aria-expanded="false">Zero-Point Energy</span> (ZPE) physics. Voice screening thus becomes a non-invasive biomarker for metabolic disease, with potential quantum-mechanical underpinnings.</div><div id="concept-43" class="expanded-content" data-card-id="card-4" data-concept-level="noob" aria-hidden="true">
@@ -636,43 +662,59 @@
       <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-23-90klez">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-          <span class="card-title">July 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">July 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-5-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/july-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for July 2026. https://optimalklubs.com/july-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-23-hpqefp">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
-          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-6-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-07-23-14udwr2">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
-          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+            <span class="card-teaser">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-7-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
+    </div><div class="item-text podcast-status">Protected Q&amp;A page found; transcript unavailable until audio/STT import.</div><div class="source-quote">Latest Optimal Klubs monthly Q&amp;A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/</div></div>
       </div>
       <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-8" data-vote-card-id="kruse-2026-07-23-1xm35j4">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-8-details">
-          <span class="card-title">Latest Jack Kruse podcast.</span>
+
+          <span class="card-title-copy">
+            <span class="card-title">Podcast episode title needs source verification.</span>
+            <span class="card-teaser">Old man screaming the obvious. Who cares. If you are Bitcoiner we already know the math is inevitable. Economist, Professor Charles Goodh...</span>
+          </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
         <div id="card-8-details" class="card-details" hidden><div class="card-header">
       <span class="tag">Podcast / Q&amp;A</span>
       <a href="https://t.co/ZHhxOEPIoV" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
-    </div><div class="item-text">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">Old man screaming the obvious. Who cares. If you are Bitcoiner we already know the math is inevitable. Economist, Professor Charles Goodhart is warning that massive inflation is coming. In this podcast he explains the crisis of democracy and that we have to start living within our means. Full episode 👇🏼</div></div>
+    </div><div class="item-text podcast-status">Podcast mention found; episode/source URL needs verification.</div><div class="source-quote">Old man screaming the obvious. Who cares. If you are Bitcoiner we already know the math is inevitable. Economist, Professor Charles Goodhart is warning that massive inflation is coming. In this podcast he explains the crisis of democracy and that we have to start living within our means. Full episode 👇🏼</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">

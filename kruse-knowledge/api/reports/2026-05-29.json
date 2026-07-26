@@ -921,12 +921,16 @@
       "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
       "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
       "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "summary_markdown": "",
+      "summary_text": "",
+      "key_points": [],
       "source_url": "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
       "source_urls": [
         "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
         "https://player.vimeo.com/",
         "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
       ],
+      "thumbnail_url": "",
       "source_type": "optimal_klubs_qna",
       "source_id": "optimal-klubs-qna-2026-02",
       "media_type": "podcast",
