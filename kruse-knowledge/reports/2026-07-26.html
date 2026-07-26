@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kruse Report 26/07/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Dark theme (default) */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151c2c;
+      --card-border: #202b42;
+      --card-border-hover: #2e3e5f;
+      --section-rule: #24314b;
+      --text-color: #f3f4f6;
+      --text-soft: #cbd5e1;
+      --text-body: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-color: #3b82f6;
+      --accent-hover: #60a5fa;
+      --locked-color: #4b5563;
+      --tag-bg: #1e293b;
+      --quote-bg: #0f1524;
+      --quote-rule: #4b5563;
+      --expanded-bg: #0f1524;
+      --locked-grad-start: #151c2c;
+      --locked-grad-end: #111622;
+      --locked-dash: #2d3748;
+      --locked-badge-bg: #27272a;
+      --locked-badge-fg: #a1a1aa;
+      --footer-color: #6b7280;
+      --toggle-bg: rgba(255,255,255,0.06);
+      --toggle-border: rgba(255,255,255,0.12);
+    }
+    /* Light theme — toggled by class on <body> */
+    body.light {
+      --bg-color: #f9fafb;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --card-border-hover: #cbd5e1;
+      --section-rule: #e5e7eb;
+      --text-color: #0f172a;
+      --text-soft: #334155;
+      --text-body: #1f2937;
+      --text-muted: #6b7280;
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --locked-color: #94a3b8;
+      --tag-bg: #eff6ff;
+      --quote-bg: #f1f5f9;
+      --quote-rule: #cbd5e1;
+      --expanded-bg: #f1f5f9;
+      --locked-grad-start: #ffffff;
+      --locked-grad-end: #f3f4f6;
+      --locked-dash: #cbd5e1;
+      --locked-badge-bg: #e5e7eb;
+      --locked-badge-fg: #475569;
+      --footer-color: #94a3b8;
+      --toggle-bg: rgba(0,0,0,0.04);
+      --toggle-border: rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-color); padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; transition: background-color 0.2s ease, color 0.2s ease; }
+    .container { width: 100%; max-width: 650px; display: flex; flex-direction: column; gap: 20px; }
+    header { text-align: center; margin-bottom: 10px; position: relative; padding-top: 48px; }
+    h1 { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(45deg, #3b82f6, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; margin-bottom: 4px; }
+    .subtitle { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
+    .theme-toggle { position: absolute; top: 0; right: 0; background: var(--toggle-bg); border: 1px solid var(--toggle-border); color: var(--text-color); cursor: pointer; padding: 6px 10px; border-radius: 20px; font-size: 0.85rem; line-height: 1; transition: background 0.2s ease; }
+    .theme-toggle:hover { background: var(--card-border); }
+    .level-toggle { position: absolute; top: 0; left: 0; display: flex; gap: 4px; background: var(--toggle-bg); border: 1px solid var(--toggle-border); border-radius: 20px; padding: 3px; }
+    .level-toggle button { background: transparent; color: var(--text-muted); border: none; cursor: pointer; padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; transition: background 0.15s ease, color 0.15s ease; }
+    .level-toggle button.active { background: var(--accent-color); color: #fff; }
+    .level-toggle button:hover:not(.active) { color: var(--text-color); }
+    /* Concept-level gating: pro reader hides noob-only chips; hacker hides all. */
+    body.level-pro .expandable-concept[data-concept-level="noob"],
+    body.level-hacker .expandable-concept[data-concept-level] {
+      color: inherit; border-bottom: none; cursor: default; font-weight: inherit; pointer-events: none;
+    }
+    body.level-pro .expanded-content[data-concept-level="noob"],
+    body.level-hacker .expanded-content { display: none !important; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent-hover); border-bottom: 1px solid var(--section-rule); padding-bottom: 6px; margin-top: 10px; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .card.collapsible-card { padding: 0; gap: 0; overflow: hidden; }
+    .card-title-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: var(--text-color); cursor: pointer; padding: 14px 18px; text-align: left; font: inherit; }
+    .card-title-button:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: -2px; }
+    .card-title { flex: 1; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: 0; }
+    .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
+    .card-chevron::before { content: "+"; line-height: 1; }
+    .card:not(.is-collapsed) .card-chevron::before { content: "-"; }
+    .card-details { display: flex; flex-direction: column; gap: 8px; padding: 12px 18px 14px; border-top: 1px solid var(--section-rule); }
+    .card-details[hidden] { display: none; }
+    .card-body, .card-points { display: flex; flex-direction: column; gap: 4px; }
+    .card-points ul { margin: 0; }
+    .card:hover { border-color: var(--card-border-hover); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag { background-color: var(--tag-bg); color: var(--accent-color); padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .source-link { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; border-bottom: 1px dashed var(--text-muted); transition: all 0.2s ease; }
+    .source-link:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .item-text { font-size: 1rem; line-height: 1.45; color: var(--text-body); }
+    .source-quote { background: var(--quote-bg); border-left: 3px solid var(--quote-rule); border-radius: 4px 8px 8px 4px; padding: 10px 14px; font-style: italic; font-size: 0.92rem; color: var(--text-muted); }
+    .citations { padding: 8px 12px; background: var(--quote-bg); border-radius: 8px; }
+    .citations-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-hover); letter-spacing: 0.04em; margin-bottom: 6px; }
+    .citations ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .citation-paper { font-size: 0.85rem; color: var(--text-body); font-weight: 600; }
+    .citation-claim { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+    .bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { position: relative; padding-left: 18px; line-height: 1.45; font-size: 1rem; }
+    .bullet-list li::before { content: "•"; color: var(--accent-color); font-weight: bold; position: absolute; left: 0; top: 0; }
+    .forum-item { display: flex; flex-direction: column; gap: 4px; }
+    .forum-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .expandable-concept { color: var(--accent-hover); border-bottom: 1px dashed var(--accent-hover); cursor: pointer; font-weight: 600; }
+    .expanded-content { max-height: 0; overflow: hidden; background-color: var(--expanded-bg); border-radius: 6px; padding: 0 12px; margin: 0; transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease; font-size: 0.9rem; color: var(--text-soft); }
+    .expanded-content.open { max-height: 500px; padding: 10px 12px; margin-top: 4px; margin-bottom: 4px; border-left: 3px solid var(--accent-color); }
+    .locked-section { background: linear-gradient(180deg, var(--locked-grad-start) 0%, var(--locked-grad-end) 100%); border: 1px dashed var(--locked-dash); border-radius: 12px; padding: 24px; text-align: center; opacity: 0.85; }
+    .locked-title { font-size: 1.1rem; font-weight: 600; color: var(--locked-color); margin-bottom: 4px; }
+    .locked-badge { font-size: 0.7rem; background-color: var(--locked-badge-bg); color: var(--locked-badge-fg); padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 6px; }
+    footer { text-align: center; color: var(--footer-color); font-size: 0.75rem; margin-top: 12px; }
+    footer a { color: var(--footer-color); }
+  </style>
+  <link rel="canonical" href="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html" />
+  <link rel="sitemap" type="application/xml" href="https://guyhouri.github.io/kruse-knowledge/sitemap.xml" />
+  <link rel="alternate" type="text/plain" href="https://guyhouri.github.io/kruse-knowledge/llms.txt" title="LLM crawl index" />
+  <link rel="alternate" type="application/json" href="https://guyhouri.github.io/kruse-knowledge/ai-index.json" title="Machine-readable crawl index" />
+  <link rel="alternate" type="application/rss+xml" href="https://guyhouri.github.io/kruse-knowledge/feed.xml" title="Kruse Daily Reports feed" />
+  <link rel="alternate" type="text/markdown" href="https://guyhouri.github.io/kruse-knowledge/latest-summary.md" title="Latest summary Markdown" />
+<style>
+    html { scroll-behavior: smooth; }
+    body {
+      --site-bg: #0b0f19;
+      --site-panel: #121a2a;
+      --site-panel-2: #0d1422;
+      --site-border: #26334d;
+      --site-text: #f4f7fb;
+      --site-soft: #c6d2e1;
+      --site-muted: #8fa0b5;
+      --site-accent: #4ea1ff;
+      --site-success: #7bdcb5;
+      --site-danger: #ffbd7a;
+      --site-button-text: #06101d;
+      padding: 32px 16px 48px !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+    body.light {
+      --site-bg: #f7f9fc;
+      --site-panel: #ffffff;
+      --site-panel-2: #f8fafc;
+      --site-border: #d8e0ea;
+      --site-text: #111827;
+      --site-soft: #334155;
+      --site-muted: #64748b;
+      --site-accent: #2563eb;
+      --site-success: #047857;
+      --site-danger: #b45309;
+      --site-button-text: #ffffff;
+    }
+    body.site-drawer-open { overflow: hidden; }
+    .container {
+      max-width: 690px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .site-menu-button {
+      position: fixed;
+      top: 16px;
+      left: max(16px, calc((100vw - 690px) / 2 - 112px));
+      z-index: 80;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-menu-icon { font-size: 1.35rem; line-height: 1; }
+    .site-menu-label { letter-spacing: 0; }
+    .site-report-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 88;
+      background: rgba(3,7,18,0.58);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+    .site-report-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 90;
+      width: min(320px, calc(100vw - 48px));
+      padding: 18px;
+      background: var(--site-bg);
+      border-right: 1px solid var(--site-border);
+      transform: translateX(-105%);
+      transition: transform 0.2s ease;
+      box-shadow: 24px 0 60px rgba(0,0,0,0.38);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body.site-drawer-open .site-report-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.site-drawer-open .site-report-drawer { transform: translateX(0); }
+    .site-drawer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--site-border);
+    }
+    .site-drawer-kicker {
+      margin-bottom: 4px;
+      color: var(--site-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .site-drawer-title { color: var(--site-text); font-size: 1rem; font-weight: 850; line-height: 1.25; }
+    .site-drawer-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .site-drawer-link {
+      display: block;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      background: var(--site-panel);
+      color: var(--site-text);
+      text-decoration: none;
+    }
+    .site-drawer-link.site-drawer-primary {
+      border-color: transparent;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+    }
+    .site-drawer-link.site-drawer-primary span {
+      color: color-mix(in srgb, var(--site-button-text) 82%, transparent);
+    }
+    .site-drawer-link strong { display: block; font-size: 0.95rem; }
+    .site-drawer-link span { display: block; margin-top: 3px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.35; }
+    .site-top-subscribe {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 80;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+    .site-mobile-subscribe {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 78;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+    }
+    .site-report-footer {
+      width: min(690px, calc(100% - 32px));
+      margin: 34px auto 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .site-report-panel {
+      padding: 18px;
+      background: var(--site-panel);
+      border: 1px solid var(--site-border);
+      border-radius: 8px;
+      color: var(--site-text);
+    }
+    .site-report-panel h2 {
+      margin: 0 0 8px;
+      color: var(--site-text);
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+    .site-report-panel p { margin: 0 0 14px; color: var(--site-soft); line-height: 1.45; }
+    .site-report-panel label { display: block; margin: 10px 0 6px; color: var(--site-muted); font-size: 0.82rem; font-weight: 800; }
+    .site-report-panel input,
+    .site-report-panel textarea,
+    .site-report-panel select {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--site-border);
+      border-radius: 6px;
+      background: var(--site-panel-2);
+      color: var(--site-text);
+      padding: 0 10px;
+      font: inherit;
+    }
+    .site-report-panel textarea { min-height: 118px; padding: 10px; resize: vertical; }
+    .site-report-panel button {
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .site-report-panel button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .site-report-panel .form-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      min-height: 42px;
+      border-radius: 6px;
+      background: var(--site-accent);
+      color: var(--site-button-text);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .site-report-form-note { margin-top: 12px; color: var(--site-muted); font-size: 0.82rem; line-height: 1.4; }
+    .site-report-form-success { margin-top: 12px; color: var(--site-success); font-size: 0.88rem; font-weight: 800; }
+    .site-report-form-error { margin-top: 12px; color: var(--site-danger); font-size: 0.88rem; font-weight: 800; }
+    .site-report-credits {
+      grid-column: 1 / -1;
+      color: var(--site-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .card-votes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--card-border, var(--site-border));
+      color: var(--text-muted, var(--site-muted));
+      font-size: 0.78rem;
+    }
+    .card-votes-label { font-weight: 800; color: var(--text-soft, var(--site-soft)); }
+    .card-votes button {
+      width: auto;
+      min-height: 30px;
+      margin: 0;
+      padding: 4px 9px;
+      border: 1px solid var(--card-border, var(--site-border));
+      border-radius: 999px;
+      background: var(--quote-bg, var(--site-panel-2));
+      color: var(--text-body, var(--site-text));
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .card-votes button.active,
+    .card-votes button:hover {
+      border-color: var(--accent-color, var(--site-accent));
+      color: var(--accent-color, var(--site-accent));
+    }
+    .card-vote-status { min-height: 1em; color: var(--text-muted, var(--site-muted)); }
+    @media (max-width: 760px) {
+      body { padding: 24px 12px 88px !important; }
+      .site-menu-button { top: 12px; left: 12px; }
+      .site-top-subscribe { display: none; }
+      .site-mobile-subscribe { display: flex; }
+      .container header { padding-top: 92px !important; }
+      .container .level-toggle { top: 48px !important; left: 0 !important; }
+      .container .theme-toggle { top: 48px !important; right: 0 !important; }
+      .site-report-footer { width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="site-menu-button" id="siteMenuButton" aria-label="Open report menu" aria-controls="siteReportDrawer" aria-expanded="false"><span class="site-menu-icon" aria-hidden="true">&#9776;</span><span class="site-menu-label">Menu</span></button>
+  <div class="site-report-backdrop" data-site-menu-close></div>
+  <nav class="site-report-drawer" id="siteReportDrawer" aria-label="Report menu">
+    <div class="site-drawer-header">
+      <div>
+        <div class="site-drawer-kicker">Kruse Report</div>
+        <div class="site-drawer-title">Jul 26, 2026</div>
+      </div>
+      <button type="button" class="site-drawer-close" data-site-menu-close aria-label="Close report menu">&times;</button>
+    </div>
+    <a class="site-drawer-link site-drawer-primary" href="#get-report"><strong>Subscribe to daily email</strong><span>Get the next report in your inbox.</span></a>
+    <a class="site-drawer-link" href="../index.html"><strong>All reports</strong><span>Back to the archive.</span></a>
+    <a class="site-drawer-link" href="../latest/"><strong>Latest report</strong><span>Jump to the newest daily report.</span></a>
+    <a class="site-drawer-link" href="#report-feedback"><strong>Improve this report</strong><span>Leave feedback we can use later for prompt tuning.</span></a>
+    <a class="site-drawer-link" href="../unsubscribe/"><strong>Unsubscribe</strong><span>Remove your email from future sends.</span></a>
+  </nav>
+  <a class="site-top-subscribe" href="#get-report">Subscribe</a>
+  <a class="site-mobile-subscribe" href="#get-report">Subscribe to daily email</a>
+
+  <div class="container">
+    <header>
+      <div class="level-toggle" role="tablist" aria-label="Reader knowledge level">
+        <button type="button" data-level="noob"   aria-pressed="false">Noob</button>
+        <button type="button" data-level="pro"    aria-pressed="true">Pro</button>
+        <button type="button" data-level="hacker" aria-pressed="false">Hacker</button>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">🌙 Dark</button>
+      <h1>Kruse Report 26/07/2026</h1>
+      <div class="subtitle">Vascular aging mechanism, exercise safety protocol, and paradigm shift in cellular thermodynamics</div>
+    </header>
+      <div class="section-title">Twitter Updates</div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-26-1baifc0">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-0-details">
+          <span class="card-title">Endothelial NO decline, glycocalyx collapse, and vascular aging mechanism</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-0-details" class="card-details" hidden><div class="card-header"><span class="tag">Vascular aging mechanism</span><a href="https://x.com/i/status/2081199437439721764" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The progressive drop in <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-0" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-0" aria-expanded="false">eNOS</span> from 100% in the 20s to 35% in the 50s reflects systematic quantum-level collapse of the <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-1" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-1" aria-expanded="false">glycocalyx</span> driven by electronic stalling and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-2" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-2" aria-expanded="false">ISC</span> (forbidden spin-flips). NO is <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-3" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-3" aria-expanded="false">paramagnetic</span> like <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-4" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-4" aria-expanded="false">triplet oxygen</span>; when ISC fails, vessel disease results because vessel walls are made from <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-5" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-5" aria-expanded="false">CISS</span> chemicals that rely on ISC physics. Proper circadian solar exposure liberates NO while <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-6" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-6" aria-expanded="false">NIR</span> light breaks the NO-enzyme bond at <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-7" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-7" aria-expanded="false">CCO</span>, allowing paramagnetic triplet oxygen to enter cleanly. Without NIR purge, electrons back up behind NO-choked CCO, forcing ISC that converts safe paramagnetic oxygen into destructive <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-8" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-8" aria-expanded="false">diamagnetic singlet oxygen</span>, which oxidizes glycocalyx core proteins (syndecans, glypicans), stripping the endothelial layer&#39;s protective negative charge. Damaged proteins activate <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-9" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-9" aria-expanded="false">E3 ubiquitin ligases</span>, driving <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-10" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-10" aria-expanded="false">hyper-ubiquitination</span> and <span class="expandable-concept" data-card-id="card-0" data-concept-target="concept-11" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-11" aria-expanded="false">proteasomal degradation</span>, draining localized ATP and lowering baseline eNOS output. With the glycocalyx dielectric shield dissolved, native LDL diffuses into the intima, becomes oxidized in the singlet-oxygen-rich environment, and triggers foam cell formation. Different vascular phenotypes reflect different degrees of circadian compliance, not genetic destiny.</div><div id="concept-0" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>eNOS:</strong> Endothelial nitric oxide synthase; enzyme that produces nitric oxide in blood vessel lining. In this mechanism, eNOS output declines when the glycocalyx is damaged by singlet oxygen and the cell&#39;s energy is drained by excessive ubiquitination.
+    </div>
+<div id="concept-1" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>glycocalyx:</strong> Negatively charged carbohydrate-protein layer lining the inner surface of blood vessels; acts as a dielectric shield that repels LDL particles and as a mechanotransducer that signals eNOS to produce nitric oxide in response to blood flow.
+    </div>
+<div id="concept-2" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>ISC:</strong> Intersystem Crossing; quantum process where electrons undergo forbidden spin-flips, converting safe paramagnetic oxygen to destructive diamagnetic singlet oxygen. Occurs when electrons stall at the cytochrome c oxidase complex due to nitric oxide blockade.
+    </div>
+<div id="concept-3" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>paramagnetic:</strong> Magnetic property of molecules with unpaired electrons; triplet oxygen is paramagnetic and safe for mitochondrial respiration because it can accept electrons without generating reactive oxygen species.
+    </div>
+<div id="concept-4" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet oxygen:</strong> Ground state of molecular oxygen with two unpaired electrons in parallel spin; the safe form for ATP synthesis in mitochondria.
+    </div>
+<div id="concept-5" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>CISS:</strong> Chiral-Induced Spin Selectivity; quantum effect where chiral molecules preferentially transmit electrons of one spin state. Vessel wall proteins rely on this effect to maintain proper electron flow.
+    </div>
+<div id="concept-6" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>NIR:</strong> Near-infrared light; wavelengths around 700 - 1100 nm that penetrate tissue and drive mitochondrial function by breaking the nitric oxide bond at cytochrome c oxidase, allowing oxygen to enter the electron transport chain.
+    </div>
+<div id="concept-7" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>CCO:</strong> Cytochrome c oxidase; the final enzyme in the electron transport chain where oxygen is reduced to water. Nitric oxide can bind to and block this enzyme, causing electron stalling.
+    </div>
+<div id="concept-8" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>diamagnetic singlet oxygen:</strong> Excited state of oxygen with paired electrons; highly reactive and destructive to cellular components. Generated when electrons stall and undergo ISC; directly oxidizes and damages glycocalyx proteins.
+    </div>
+<div id="concept-9" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>E3 ubiquitin ligases:</strong> Enzymes that tag damaged proteins with ubiquitin for degradation; activated by oxidative stress from singlet oxygen. Their activation drains cellular ATP.
+    </div>
+<div id="concept-10" class="expanded-content" data-card-id="card-0" data-concept-level="pro" aria-hidden="true">
+      <strong>hyper-ubiquitination:</strong> Excessive tagging of proteins for degradation; drains cellular energy and accelerates aging. Triggered by singlet oxygen damage to glycocalyx and structural proteins.
+    </div>
+<div id="concept-11" class="expanded-content" data-card-id="card-0" data-concept-level="noob" aria-hidden="true">
+      <strong>proteasomal degradation:</strong> proteasomal degradation: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
+    </div></div><div class="source-quote">The progressive decline in endothelial Nitric Oxide (eNOS) production, dropping from 100% in your 20s to 35% in your 50s, is not an arbitrary chronological decay. It represents a systematic, quantum-level collapse of the endothelial glycocalyx and inner intimal wall, directly driven by electronic stalling, forbidden spin-flips (ISC failure), and a resulting hyper-ubiquitination cascade.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-1" data-vote-card-id="kruse-2026-07-26-stjqq1">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-1-details">
+          <span class="card-title">High-pressure medical cryotherapy (HPMC) with CO2 for exercise safety and water defragmentation</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-1-details" class="card-details" hidden><div class="card-header"><span class="tag">Exercise safety protocol</span><a href="https://x.com/i/status/2081085928257597919" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text"><span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-12" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-12" aria-expanded="false">HPMC</span> using pressurized CO2 can be used pre-exercise to defragment the water lattice and stabilize the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-13" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-13" aria-expanded="false">electron transport chain</span>, preventing <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-14" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-14" aria-expanded="false">singlet oxygen</span> generation and inflammation. Heavy water (<span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-15" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-15" aria-expanded="false">HDO</span>) has a higher freezing point (3.8°C) and different thermodynamic kinetics than light water (H2O). Forcing a targeted thermal shock at the tissue surface alters the localized <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-16" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-16" aria-expanded="false">dielectric constant</span>, forcing bulk water to rapidly structure into an <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-17" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-17" aria-expanded="false">EZ</span> lattice. Light water structures into organized, low-entropy liquid-crystalline matrices more efficiently than deuterated water, so the intense pressure-cold sweep temporarily pushes heavy deuterium atoms out of the immediate metabolic interface, effectively &quot;deuterium depleting&quot; the localized surface zone. When tissue is acutely injured, local mitochondrial respiration breaks down, causing electrons to stall and undergo <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-18" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-18" aria-expanded="false">ISC</span>, converting safe <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-19" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-19" aria-expanded="false">paramagnetic triplet oxygen</span>}} into destructive diamagnetic singlet oxygen. Intense rapid cooling from HPMC instantly slows vibrational kinetics of compromised tissue, stabilizes the electron transport chain, and prevents electrons from leaping onto ambient oxygen, keeping oxygen in its safe paramagnetic state and suppressing singlet oxygen generation. Clinical studies show immediate down-regulation of pro-inflammatory markers (TNF-alpha, IL-1 beta) and collapse in oxidative stress markers following HPMC. The rapid thermodynamic reset forces cells to rapidly re-sequester calcium back into the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-20" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-20" aria-expanded="false">mitochondrial matrix</span>} via the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-21" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-21" aria-expanded="false">MCU</span>}, eliminating structural protein damage that would otherwise trigger the <span class="expandable-concept" data-card-id="card-1" data-concept-target="concept-22" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-22" aria-expanded="false">ubiquitination</span>} cascade.</div><div id="concept-12" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>HPMC:</strong> High-Pressure Medical Cryotherapy; non-invasive treatment using pressurized CO2 to rapidly cool targeted tissue. The cold shock stabilizes the electron transport chain and alters water structure to push deuterium out of the metabolic zone.
+    </div>
+<div id="concept-13" class="expanded-content" data-card-id="card-1" data-concept-level="noob" aria-hidden="true">
+      <strong>electron transport chain:</strong> electron transport chain: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
+    </div>
+<div id="concept-14" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet oxygen:</strong> Excited, reactive form of oxygen with paired electrons; generated during mitochondrial dysfunction when electrons stall and undergo ISC. Causes cellular damage by oxidizing proteins and lipids.
+    </div>
+<div id="concept-15" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>HDO:</strong> Heavy water or deuterium oxide; water molecule containing deuterium instead of protium. Has different thermodynamic properties and is less efficient at forming organized water structures.
+    </div>
+<div id="concept-16" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>dielectric constant:</strong> Measure of a material&#39;s ability to store electrical energy; altered by temperature and water structure changes. Affects how water organizes and how charged molecules interact.
+    </div>
+<div id="concept-17" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>EZ:</strong> Exclusion Zone water; highly organized, structured water layer adjacent to hydrophilic surfaces. Forms more readily from light water than from deuterated water.
+    </div>
+<div id="concept-18" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>ISC:</strong> Intersystem Crossing; quantum process where electrons undergo forbidden spin-flips, converting safe paramagnetic oxygen to destructive diamagnetic singlet oxygen.
+    </div>
+<div id="concept-19" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>paramagnetic triplet oxygen:</strong> Ground state of molecular oxygen; safe for mitochondrial ATP synthesis. Stabilized by slowing electron transport kinetics through cooling.
+    </div>
+<div id="concept-20" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>mitochondrial matrix:</strong> Inner compartment of the mitochondrion where the citric acid cycle occurs and where calcium is stored via the MCU.
+    </div>
+<div id="concept-21" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>MCU:</strong> Mitochondrial calcium uniporter; channel that transports calcium into the mitochondrial matrix. Re-sequestering calcium stops the ubiquitination cascade.
+    </div>
+<div id="concept-22" class="expanded-content" data-card-id="card-1" data-concept-level="pro" aria-hidden="true">
+      <strong>ubiquitination:</strong> Post-translational modification where ubiquitin protein is attached to target proteins, marking them for degradation. Triggered by calcium overload and singlet oxygen damage.
+    </div></div><div class="source-quote">I think these treatments could be used to make exercise more safe because it is a rapid way to de-frag the water table. Clinicians observe that HPMC causes an immediate, profound relaxation of muscle spasms.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-2" data-vote-card-id="kruse-2026-07-26-yru7q7">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-2-details">
+          <span class="card-title">Mainstream molecular biology is converging on decentralized, thermodynamic view of cellular organization</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-2-details" class="card-details" hidden><div class="card-header"><span class="tag">Cellular paradigm shift</span><a href="https://x.com/i/status/2081026048020344858" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">A 2025 Journal of Molecular Biology review by Michael P. Hughes on <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-23" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-23" aria-expanded="false">LLPS</span>} represents a major paradigm shift in mainstream science toward decentralized, thermodynamic cellular organization. The paper frames cellular organization around liquid-liquid <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-24" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-24" aria-expanded="false">phase separation</span> rather than rigid, membrane-bound compartmentalization, transitioning away from treating the cell as a hard-coded blueprint of isolated chemical parts toward a dynamic, self-organizing physical environment ruled by solution chemistry, <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-25" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-25" aria-expanded="false">hydration forces</span>}, and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-26" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-26" aria-expanded="false">pressure gradients</span>}. The study reframes metabolism as mass transport across dynamic aqueous phases rather than linear isolated enzymatic steps in undifferentiated cytoplasm. Macromolecular phase transitions organize sub-phases to set up localized pH gradients and balance <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-27" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-27" aria-expanded="false">osmotic pressures</span>} natively, without needing centralized macro-structural anchors. <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-28" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-28" aria-expanded="false">ATP</span>} acts as a primary intracellular <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-29" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-29" aria-expanded="false">counterion</span>} and <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-30" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-30" aria-expanded="false">hydrotrope</span>}, linking cellular metabolism directly to physical solubilization and precipitation dynamics of nucleic acid-binding proteins, connecting metabolic state to structural phase volume. The cell is not a collection of static bags containing machines; it is an integrated, self-assembling <span class="expandable-concept" data-card-id="card-2" data-concept-target="concept-31" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-31" aria-expanded="false">thermodynamic circuit</span>} where pressure, charge, and the phase states of water dictate biological function.</div><div id="concept-23" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>LLPS:</strong> Liquid-liquid phase separation; process where proteins and RNA spontaneously form distinct liquid condensates within cells based on their solubility and hydration environment. Replaces the older model of rigid membrane-bound compartments.
+    </div>
+<div id="concept-24" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>phase separation:</strong> phase separation: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
+    </div>
+<div id="concept-25" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>hydration forces:</strong> Physical forces arising from water interactions with molecules; drive phase separation and cellular organization without requiring active energy expenditure.
+    </div>
+<div id="concept-26" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>pressure gradients:</strong> Differences in pressure across cellular regions; drive molecular transport and phase organization. Emerge naturally from phase separation rather than being imposed by pumps.
+    </div>
+<div id="concept-27" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>osmotic pressures:</strong> Pressure exerted by dissolved solutes; determines water movement across membranes and within condensates. Organized natively by phase separation.
+    </div>
+<div id="concept-28" class="expanded-content" data-card-id="card-2" data-concept-level="noob" aria-hidden="true">
+      <strong>ATP:</strong> Adenosine triphosphate; primary energy currency of cells. Also acts as a counterion and surfactant that prevents protein aggregation and maintains phase volume.
+    </div>
+<div id="concept-29" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>counterion:</strong> Positively or negatively charged ion that balances charge in a solution. ATP acts as a counterion in cellular condensates.
+    </div>
+<div id="concept-30" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>hydrotrope:</strong> Molecule that increases solubility of other molecules in water. ATP acts as a hydrotrope in cells, preventing pathological protein aggregation.
+    </div>
+<div id="concept-31" class="expanded-content" data-card-id="card-2" data-concept-level="pro" aria-hidden="true">
+      <strong>thermodynamic circuit:</strong> System where energy flow and phase transitions drive biological function through physical principles rather than genetic programming. The cell is a self-assembling thermodynamic circuit.
+    </div></div><div class="citations"><div class="citations-label">Citations</div><ul><li class="citation"><div class="citation-paper">Michael P. Hughes review article in Journal of Molecular Biology (2025)</div><div class="citation-claim">Frames cellular organization around LLPS and validates decentralized thermodynamic cellular model</div></li></ul></div><div class="source-quote">By framing cellular organization around liquid-liquid phase separation (LLPS) rather than rigid, membrane-bound compartmentalization, centralized science is transitioning away from treating the cell as a hard-coded blueprint of isolated chemical parts and moving toward my first-principles view: the cell as a dynamic, self-organizing physical environment ruled by solution chemistry, hydration forces, and pressure gradients.</div></div>
+      </div>
+      <div class="section-title">Forum Updates</div>
+      <div class="card empty-signal-card" data-vote-card-id="kruse-2026-07-26-tzi9ys">
+        <div class="card-header"><span class="tag">No selected signal</span></div>
+        <div class="item-text">Forum scraper found 32 posts in the last 24 hours. No new source-bound protocol, treatment, cited research, mechanism, or case detail passed the report gate for this section.</div>
+        <div class="source-quote">Skipped baseline reminders, chatter, unanswered questions, and unsupported claims instead of turning them into filler.</div>
+      </div>
+      <div class="section-title">LinkedIn Updates</div>
+      <div class="card collapsible-card is-collapsed" data-card-id="card-3" data-vote-card-id="kruse-2026-07-26-4qtxj">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-3-details">
+          <span class="card-title">TV screens trigger Landauer attack on DNA basechain; exercise becomes harmful when circadian rhythm is broken</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-3-details" class="card-details" hidden><div class="card-header"><span class="tag">Exercise toxicity in broken circadian terrain</span><a href="https://www.linkedin.com/pulse/excercise-can-toxin-when-you-misinformed-centralized-sceince-kruse-agyxe" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">TV screen light converts <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-32" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-32" aria-expanded="false">NAD+</span>} to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-33" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-33" aria-expanded="false">NADD+</span>} and shifts oxygen valence electrons from <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-34" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-34" aria-expanded="false">triplet state</span>} to <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-35" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-35" aria-expanded="false">singlet state</span>}, causing a drop in <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-36" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-36" aria-expanded="false">IMM</span>} voltage that signals <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-37" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">ubiquitin</span>}. <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">Ubiquitination</span>} is a <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">post-translational modification</span>} where ubiquitin is attached to substrate proteins, affecting their degradation, cellular location, activity, and interactions. This process operates best when DNA <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-40" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">basechain</span> is not encumbered by excess atomic mass (<span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-41" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">methylation</span>} and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-42" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">acetylation</span>} which drive <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-43" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-43" aria-expanded="false">UPE</span>} release). Circadian biology controls optimal health because post-translational modifications like ubiquitination are 100% dependent on light-dark and temperature changes that alter <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-44" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-44" aria-expanded="false">circadian signaling</span>, not food, exercise, or hormones. When DNA lattice is heavily weighted down by chronic uncoordinated methylation, mechanical stress slows enzymatic interactions, forcing <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-45" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-45" aria-expanded="false">electronic stalling</span>} and <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-46" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-46" aria-expanded="false">ISC</span>}, causing spike in UPE leakage. If an individual has a broken circadian rhythm due to artificial blue light from TV or lack of natural sunlight, DNA remains locked in a heavily weighted, high-mass state. Forcing that uncoupled system to run faster via intensive exercise or heavy eating multiplies the thermodynamic strain and forces a massive wave of ubiquitination to clear resulting structural damage, draining systemic NAD+ and accelerating cellular aging. TV screens cause a <span class="expandable-concept" data-card-id="card-3" data-concept-target="concept-47" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-47" aria-expanded="false">Landauer attack</span>} on the basechain that leads to this. Without the master coordination of circadian biology, the physical hardware of the cell cannot maintain its quantum fields. Health is not biochemical counting; it is a strict thermodynamic requirement to keep biological architecture light, coordinated, and perfectly synchronized with the natural frequencies of the planet.</div><div id="concept-32" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>NAD+:</strong> Nicotinamide adenine dinucleotide; critical electron carrier in mitochondrial respiration and cellular energy metabolism. Depleted by excessive ubiquitination.
+    </div>
+<div id="concept-33" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>NADD+:</strong> Deuterated form of NAD+; altered redox properties affect mitochondrial function. Generated when artificial light shifts oxygen spin state.
+    </div>
+<div id="concept-34" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>triplet state:</strong> Paramagnetic ground state of oxygen with two unpaired electrons; safe for ATP synthesis. Maintained by proper circadian light exposure.
+    </div>
+<div id="concept-35" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>singlet state:</strong> Excited state of oxygen with paired electrons; highly reactive and destructive. Generated by artificial light exposure and circadian uncoupling.
+    </div>
+<div id="concept-36" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>IMM:</strong> Inner mitochondrial membrane; site of electron transport chain and ATP synthesis. Voltage drop signals ubiquitin activation.
+    </div>
+<div id="concept-37" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>ubiquitin:</strong> Small protein that tags other proteins for degradation or cellular relocation. Activated when mitochondrial membrane potential drops.
+    </div>
+<div id="concept-38" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>Ubiquitination:</strong> Post-translational modification where ubiquitin is covalently attached to target proteins. Excessive ubiquitination drains NAD+ and accelerates aging.
+    </div>
+<div id="concept-39" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>post-translational modification:</strong> Chemical modification of a protein after it has been synthesized; includes ubiquitination, methylation, acetylation. Controlled by circadian signaling.
+    </div>
+<div id="concept-40" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>basechain:</strong> basechain (DNA backbone): a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
+    </div>
+<div id="concept-41" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>methylation:</strong> Addition of methyl groups (-CH3) to DNA or proteins; adds atomic mass and affects gene expression. Chronic uncoordinated methylation locks DNA in high-mass state.
+    </div>
+<div id="concept-42" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>acetylation:</strong> Addition of acetyl groups (-COCH3) to proteins; adds atomic mass and affects protein function. Contributes to DNA lattice weight.
+    </div>
+<div id="concept-43" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>UPE:</strong> Ultraweak photon emission; light released by cells during oxidative stress and singlet oxygen decay. Indicates cellular energy loss.
+    </div>
+<div id="concept-44" class="expanded-content" data-card-id="card-3" data-concept-level="noob" aria-hidden="true">
+      <strong>circadian signaling:</strong> circadian signaling: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
+    </div>
+<div id="concept-45" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>electronic stalling:</strong> Slowing or blockade of electron flow through the electron transport chain; leads to ISC and singlet oxygen generation. Caused by broken circadian rhythm.
+    </div>
+<div id="concept-46" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>ISC:</strong> Intersystem Crossing; quantum process where electrons undergo forbidden spin-flips, converting safe paramagnetic oxygen to destructive diamagnetic singlet oxygen.
+    </div>
+<div id="concept-47" class="expanded-content" data-card-id="card-3" data-concept-level="pro" aria-hidden="true">
+      <strong>Landauer attack:</strong> Information-theoretic concept where energy dissipation occurs during irreversible information destruction. Applied here to DNA basechain damage from artificial light exposure disrupting circadian signaling.
+    </div></div><div class="source-quote">TV screens add atomic mass to your basechain of DNA and the circadian clock genes. This leads to massive destruction of joints.</div></div>
+      </div>
+      <div class="section-title">Latest Podcast / Q&amp;A Summary</div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-4" data-vote-card-id="kruse-2026-07-26-90klez">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-4-details">
+          <span class="card-title">July 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-4-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/july-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Curated summary pending.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-26-hpqefp">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
+          <span class="card-title">June 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-5-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/june-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Curated summary pending.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-6" data-vote-card-id="kruse-2026-07-26-14udwr2">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-6-details">
+          <span class="card-title">May 2026 Quantum Biologic PowWow.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-6-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://optimalklubs.com/may-2026-quantum-biologic-powwow/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Curated summary pending.</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-7" data-vote-card-id="kruse-2026-07-26-6ireik">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-7-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-7-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://t.co/eagZOYY7XW" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Free transcript/caption check failed; retry before paid STT.</div><div class="source-quote">4. Here is how to extend the CO2 use to de-frag your surfaces before exercise. This is a way better option than supplements and peptides. Heavy water or HDO has a higher freezing point 3.8 degrees C and different thermodynamic transition kinetics than light water H2O. Forcing a targeted thermal shock at the tissue surface alters the localized dielectric constant. This alters the solvent boundaries, forcing bulk wate...</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-8" data-vote-card-id="kruse-2026-07-26-17tnzl3">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-8-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-8-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://t.co/6YWSCIOK0F" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Free transcript/caption check failed; retry before paid STT.</div><div class="source-quote">3. Why did Eastern block Russian countries use these machines? The podcast tells you why. NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained • Artificial light and circadian health • EMFs and the modern environment • T...</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-9" data-vote-card-id="kruse-2026-07-26-1f0120u">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-9-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-9-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://t.co/3LRrHR74w6" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Free transcript/caption check failed; retry before paid STT.</div><div class="source-quote">NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained • Artificial light and circadian health • EMFs and the modern environment • The Earth&#39;s changing magnetic field • Why Dr. Kruse believes modern medicine prioritizes ph...</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-10" data-vote-card-id="kruse-2026-07-26-1gndh97">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-10-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-10-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://forum.jackkruse.com/threads/how-do-the-four-physical-forces-sculpt-matrix-thermodynamics.33172/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Free transcript/caption check failed; retry before paid STT.</div><div class="source-quote">NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained/Space differences • Artificial light and circadian health • EMFs and the modern environment • The Earth&#39;s changing magnetic field • Why Dr. Kruse believes modern medic...</div></div>
+      </div>
+      <div class="card collapsible-card is-collapsed podcast-card" data-card-id="card-11" data-vote-card-id="kruse-2026-07-26-15o9eqp">
+        <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-11-details">
+          <span class="card-title">Latest Jack Kruse podcast.</span>
+          <span class="card-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="card-11-details" class="card-details" hidden><div class="card-header">
+      <span class="tag">Podcast / Q&amp;A</span>
+      <a href="https://forum.jackkruse.com/threads/jack-kruse-podcast-curriculum-youtube-edition-v1.23331/" target="_blank" rel="noopener noreferrer" class="source-link">Open source -&gt;</a>
+    </div><div class="item-text">Free transcript/caption check failed; retry before paid STT.</div><div class="source-quote">{ &quot;lightbox_close&quot;: &quot;Close&quot;, &quot;lightbox_next&quot;: &quot;Next&quot;, &quot;lightbox_previous&quot;: &quot;Previous&quot;, &quot;lightbox_error&quot;: &quot;The requested content cannot be loaded. Please try again later.&quot;, &quot;lightbox_start_slideshow&quot;: &quot;Start slideshow&quot;, &quot;lightbox_stop_slideshow&quot;: &quot;Stop slideshow&quot;, &quot;lightbox_full_screen&quot;: &quot;Full screen&quot;, &quot;lightbox_thumbnails&quot;: &quot;Thumbnails&quot;, &quot;lightbox_download&quot;: &quot;Download&quot;, &quot;lightbox_share&quot;: &quot;Share&quot;, &quot;lightbox_zoom&quot;: &quot;Z...</div></div>
+      </div>
+    <div class="locked-section">
+      <div class="locked-title">
+        <span>Interact with Report (Ask AI)</span>
+        <span class="locked-badge">Soon</span>
+      </div>
+    </div>
+    <footer>
+      Auto-generated by <a href="https://github.com/guyHouri/kruse-knowledge">kruse-knowledge</a>.
+      Source: <a href="https://x.com/DrJackKruse">@DrJackKruse</a>.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      function toggleCard(button) {
+        var detailsId = button.getAttribute('aria-controls');
+        if (!detailsId) return;
+        var details = document.getElementById(detailsId);
+        var card = button.closest && button.closest('.collapsible-card');
+        if (!details || !card) return;
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        details.hidden = !open;
+        card.classList.toggle('is-collapsed', !open);
+      }
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('.card-title-button');
+        if (!button) return;
+        toggleCard(button);
+      });
+    })();
+    (function () {
+      function targetFor(chip) {
+        if (!chip || chip.getAttribute('aria-disabled') === 'true') return null;
+        var targetId = chip.getAttribute('data-concept-target');
+        if (!targetId) return null;
+        var panel = document.getElementById(targetId);
+        var card = chip.closest && chip.closest('.card');
+        if (!panel || !card || panel.closest('.card') !== card) return null;
+        if (chip.getAttribute('data-card-id') !== panel.getAttribute('data-card-id')) return null;
+        return panel;
+      }
+      function toggleChip(chip) {
+        var panel = targetFor(chip);
+        if (!panel) return;
+        var open = !panel.classList.contains('open');
+        panel.classList.toggle('open', open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        chip.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      document.addEventListener('click', function (event) {
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        toggleChip(chip);
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        var chip = event.target.closest && event.target.closest('.expandable-concept[data-concept-target]');
+        if (!chip) return;
+        event.preventDefault();
+        toggleChip(chip);
+      });
+    })();
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var saved = null;
+      try { saved = localStorage.getItem('kruse-theme'); } catch (e) {}
+      if (saved === 'light') document.body.classList.add('light');
+      function syncLabel() {
+        if (!btn) return;
+        btn.textContent = document.body.classList.contains('light') ? '☀ Light' : '🌙 Dark';
+      }
+      syncLabel();
+      if (btn) btn.addEventListener('click', function () {
+        document.body.classList.toggle('light');
+        try { localStorage.setItem('kruse-theme', document.body.classList.contains('light') ? 'light' : 'dark'); } catch (e) {}
+        syncLabel();
+      });
+    })();
+    (function () {
+      var savedLevel = null;
+      try { savedLevel = localStorage.getItem('kruse-level'); } catch (e) {}
+      var initial = (savedLevel === 'noob' || savedLevel === 'pro' || savedLevel === 'hacker') ? savedLevel : 'pro';
+      function apply(level) {
+        document.body.classList.remove('level-noob', 'level-pro', 'level-hacker');
+        document.body.classList.add('level-' + level);
+        var btns = document.querySelectorAll('.level-toggle button');
+        for (var i = 0; i < btns.length; i++) {
+          var on = btns[i].getAttribute('data-level') === level;
+          btns[i].classList.toggle('active', on);
+          btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+        var chips = document.querySelectorAll('.expandable-concept[data-concept-target]');
+        for (var j = 0; j < chips.length; j++) {
+          var disabled = level === 'hacker' || (level === 'pro' && chips[j].getAttribute('data-concept-level') === 'noob');
+          chips[j].setAttribute('aria-disabled', disabled ? 'true' : 'false');
+          chips[j].setAttribute('tabindex', disabled ? '-1' : '0');
+        }
+        try { localStorage.setItem('kruse-level', level); } catch (e) {}
+      }
+      apply(initial);
+      var btns = document.querySelectorAll('.level-toggle button');
+      for (var i = 0; i < btns.length; i++) {
+        (function (b) {
+          b.addEventListener('click', function () { apply(b.getAttribute('data-level')); });
+        })(btns[i]);
+      }
+    })();
+  </script>
+<div class="site-report-footer">
+    <section class="site-report-panel" id="get-report" aria-labelledby="get-report-title">
+      <h2 id="get-report-title">Subscribe to Daily Kruse Summary</h2>
+      <p>Request email access to future daily reports.</p>
+      <form name="kruse-report-interest" method="POST" data-supabase-form="mailing-list">
+        <input type="hidden" name="form_type" value="kruse-report-interest" />
+        <input type="hidden" name="report_date" value="2026-07-26" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html" />
+        <p style="display:none"><label>Company <input name="company" /></label></p>
+        <label for="report-first-name-2026-07-26">First name</label>
+        <input id="report-first-name-2026-07-26" name="first_name" autocomplete="given-name" />
+        <label for="report-last-name-2026-07-26">Last name</label>
+        <input id="report-last-name-2026-07-26" name="last_name" autocomplete="family-name" />
+        <label for="report-email-2026-07-26">Email</label>
+        <input id="report-email-2026-07-26" name="email" type="email" autocomplete="email" required />
+        <label for="report-frequency-2026-07-26">Delivery</label>
+        <select id="report-frequency-2026-07-26" name="frequency">
+          <option>Daily</option>
+          <option>Only strong signal days</option>
+          <option>Weekly digest</option>
+        </select>
+        <label for="report-comments-2026-07-26">Comments</label>
+        <textarea id="report-comments-2026-07-26" name="comments"></textarea>
+        <button type="submit">Subscribe</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Your request is waiting for approval.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately to the mailing list.</div>
+    </section>
+    <section class="site-report-panel" id="report-feedback" aria-labelledby="report-feedback-title">
+      <h2 id="report-feedback-title">Improve future reports</h2>
+      <p>Tell us what was useful, confusing, missing, or too AI-ish. We will use this later to tune prompts.</p>
+      <form name="kruse-report-feedback" method="POST" data-supabase-form="feedback">
+        <input type="hidden" name="form_type" value="kruse-report-feedback" />
+        <input type="hidden" name="report_date" value="2026-07-26" />
+        <input type="hidden" name="report_url" value="https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html" />
+        <p style="display:none"><label>Website <input name="website" /></label></p>
+        <label for="feedback-first-name-2026-07-26">First name</label>
+        <input id="feedback-first-name-2026-07-26" name="first_name" autocomplete="given-name" />
+        <label for="feedback-last-name-2026-07-26">Last name</label>
+        <input id="feedback-last-name-2026-07-26" name="last_name" autocomplete="family-name" />
+        <label for="feedback-rating-2026-07-26">Overall</label>
+        <select id="feedback-rating-2026-07-26" name="rating">
+          <option>Useful</option>
+          <option>Mixed</option>
+          <option>Bad</option>
+        </select>
+        <label for="feedback-text-2026-07-26">Feedback</label>
+        <textarea id="feedback-text-2026-07-26" name="comments" required></textarea>
+        <label for="feedback-email-2026-07-26">Email (optional)</label>
+        <input id="feedback-email-2026-07-26" name="email" type="email" autocomplete="email" />
+        <button type="submit">Send feedback</button>
+        <div class="site-report-form-success" data-form-success hidden>Saved. Thank you.</div>
+        <div class="site-report-form-error" data-form-error hidden>Could not save. Please try again.</div>
+      </form>
+      <div class="site-report-form-note">Saved privately for prompt tuning.</div>
+    </section>
+    <div class="site-report-credits">Credits: Guy Houri and DrJackKruse.</div>
+  </div>
+<script>
+    (function () {
+      var button = document.getElementById('siteMenuButton');
+      var drawer = document.getElementById('siteReportDrawer');
+      if (!button || !drawer) return;
+
+      function setOpen(open) {
+        document.body.classList.toggle('site-drawer-open', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          var focusTarget = drawer.querySelector('a, button');
+          if (focusTarget) focusTarget.focus();
+        } else {
+          button.focus();
+        }
+      }
+
+      button.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('site-drawer-open'));
+      });
+
+      var closeTargets = document.querySelectorAll('[data-site-menu-close], .site-drawer-link');
+      for (var i = 0; i < closeTargets.length; i++) {
+        closeTargets[i].addEventListener('click', function () { setOpen(false); });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_SUPABASE = {"url":"https://zpxhovwsswnjdjibcvsh.supabase.co","key":"sb_publishable_afhmZKXzerLWNYENUqsaFg_XfVWjODD","tables":{"mailingList":"kruse_mailing_list","feedback":"kruse_report_feedback","cardVotes":"kruse_card_votes","cardVoteCounts":"kruse_card_vote_counts"}};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      if (!config || !config.url || !config.key) return;
+
+      function value(form, name) {
+        var field = form.querySelector('[name="' + name + '"]');
+        return field ? String(field.value || '').trim() : '';
+      }
+
+      function nullable(value) {
+        return value ? value : null;
+      }
+
+      function show(form, selector, text) {
+        var node = form.querySelector(selector);
+        if (!node) return;
+        if (text) node.textContent = text;
+        node.hidden = false;
+      }
+
+      function hide(form, selector) {
+        var node = form.querySelector(selector);
+        if (node) node.hidden = true;
+      }
+
+      function payloadFor(form, kind) {
+        var common = {
+          first_name: value(form, 'first_name'),
+          last_name: value(form, 'last_name'),
+          email: value(form, 'email').toLowerCase(),
+          comments: value(form, 'comments'),
+          report_date: nullable(value(form, 'report_date')),
+          report_url: nullable(value(form, 'report_url')),
+          page_url: window.location.href,
+          source: 'public-site'
+        };
+        if (kind === 'unsubscribe') {
+          return {
+            first_name: '',
+            last_name: '',
+            email: common.email,
+            comments: 'Unsubscribe request',
+            frequency: 'Unsubscribe',
+            report_date: null,
+            report_url: null,
+            page_url: common.page_url,
+            source: 'unsubscribe'
+          };
+        }
+        if (kind === 'mailing-list') {
+          common.frequency = value(form, 'frequency') || 'Daily';
+          return common;
+        }
+        return {
+          first_name: common.first_name,
+          last_name: common.last_name,
+          email: nullable(common.email),
+          rating: value(form, 'rating') || 'Useful',
+          comments: common.comments,
+          report_date: common.report_date,
+          report_url: common.report_url,
+          page_url: common.page_url,
+          source: common.source
+        };
+      }
+
+      async function submitToSupabase(form, kind) {
+        var table = kind === 'feedback' ? config.tables.feedback : config.tables.mailingList;
+        var payload = payloadFor(form, kind);
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          var text = await response.text();
+          throw new Error(text || ('Supabase returned ' + response.status));
+        }
+      }
+
+      document.addEventListener('submit', async function (event) {
+        var form = event.target;
+        if (!form || !form.hasAttribute('data-supabase-form')) return;
+        event.preventDefault();
+
+        hide(form, '[data-form-success]');
+        hide(form, '[data-form-error]');
+
+        var trap = form.querySelector('input[name="company"], input[name="website"]');
+        if (trap && trap.value) {
+          form.reset();
+          show(form, '[data-form-success]');
+          return;
+        }
+
+        var button = form.querySelector('button[type="submit"]');
+        if (button) button.disabled = true;
+        try {
+          await submitToSupabase(form, form.getAttribute('data-supabase-form'));
+          form.reset();
+          show(form, '[data-form-success]');
+        } catch (err) {
+          console.error(err);
+          show(form, '[data-form-error]', 'Could not save. Please try again.');
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
+    })();
+  </script>
+<script>
+    window.__KRUSE_REPORT = {"date":"2026-07-26","url":"https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html"};
+    (function () {
+      var config = window.__KRUSE_SUPABASE;
+      var report = window.__KRUSE_REPORT || {};
+      var table = config && config.tables && config.tables.cardVotes;
+      if (!config || !config.url || !config.key || !table) return;
+
+      function text(node) {
+        return node ? String(node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      }
+
+      function storageKey(cardId) {
+        return 'kruse-card-vote:' + cardId;
+      }
+
+      function getStored(cardId) {
+        try { return localStorage.getItem(storageKey(cardId)); } catch (e) { return null; }
+      }
+
+      function setStored(cardId, vote) {
+        try { localStorage.setItem(storageKey(cardId), vote); } catch (e) {}
+      }
+
+      function voterId() {
+        var key = 'kruse-vote-browser-id';
+        try {
+          var existing = localStorage.getItem(key);
+          if (existing) return existing;
+          var generated = (window.crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+          localStorage.setItem(key, generated);
+          return generated;
+        } catch (e) {
+          return 'ephemeral-' + Math.random().toString(36).slice(2);
+        }
+      }
+
+      function sourceUrl(card) {
+        var link = card.querySelector('.source-link[href]');
+        return link ? link.href : null;
+      }
+
+      function cardLabel(card) {
+        var tag = text(card.querySelector('.tag'));
+        var body = text(card.querySelector('.item-text')).slice(0, 180);
+        return [tag, body].filter(Boolean).join(': ');
+      }
+
+      function votePayload(card, vote) {
+        return {
+          card_id: card.getAttribute('data-vote-card-id'),
+          vote_type: vote,
+          report_date: report.date || null,
+          card_label: cardLabel(card),
+          source_url: sourceUrl(card),
+          voter_id: voterId(),
+          page_url: window.location.href,
+          source: 'report-card'
+        };
+      }
+
+      function setCount(card, vote, count) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (node) node.textContent = String(count || 0);
+      }
+
+      function increment(card, vote) {
+        var node = card.querySelector('[data-card-vote-count="' + vote + '"]');
+        if (!node) return;
+        var next = (parseInt(node.textContent || '0', 10) || 0) + 1;
+        node.textContent = String(next);
+      }
+
+      function setStatus(card, message) {
+        var node = card.querySelector('[data-card-vote-status]');
+        if (node) node.textContent = message || '';
+      }
+
+      function setActive(card, vote) {
+        var buttons = card.querySelectorAll('[data-card-vote]');
+        for (var i = 0; i < buttons.length; i++) {
+          var active = buttons[i].getAttribute('data-card-vote') === vote;
+          buttons[i].classList.toggle('active', active);
+          buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+        }
+      }
+
+      function shouldLoadRemoteCounts() {
+        return /^https?:$/.test(window.location.protocol)
+          && window.location.hostname !== 'localhost'
+          && window.location.hostname !== '127.0.0.1';
+      }
+
+      function installControls(cards) {
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          var cardId = card.getAttribute('data-vote-card-id');
+          if (!cardId || card.querySelector('.card-votes')) continue;
+          var controls = document.createElement('div');
+          controls.className = 'card-votes';
+          controls.innerHTML = '<span class="card-votes-label">Was this useful?</span>' +
+            '<button type="button" data-card-vote="up" aria-label="Upvote this card" aria-pressed="false">&#9650; <span data-card-vote-count="up">0</span></button>' +
+            '<button type="button" data-card-vote="down" aria-label="Downvote this card" aria-pressed="false">&#9660; <span data-card-vote-count="down">0</span></button>' +
+            '<span class="card-vote-status" data-card-vote-status aria-live="polite"></span>';
+          card.appendChild(controls);
+          var stored = getStored(cardId);
+          if (stored) setActive(card, stored);
+        }
+      }
+
+      async function loadCounts(cards) {
+        var ids = [];
+        for (var i = 0; i < cards.length; i++) {
+          var id = cards[i].getAttribute('data-vote-card-id');
+          if (id) ids.push(id);
+        }
+        if (!ids.length) return;
+        var countSource = (config.tables && config.tables.cardVoteCounts) || table;
+        var url = config.url + '/rest/v1/' + encodeURIComponent(countSource)
+          + '?select=card_id,vote_type,votes'
+          + '&card_id=in.(' + ids.map(encodeURIComponent).join(',') + ')';
+        if (report.date) url += '&report_date=eq.' + encodeURIComponent(report.date);
+        try {
+          var response = await fetch(url, {
+            headers: {
+              apikey: config.key,
+              authorization: 'Bearer ' + config.key
+            }
+          });
+          if (!response.ok) return;
+          var rows = await response.json();
+          var counts = {};
+          for (var r = 0; r < rows.length; r++) {
+            var row = rows[r] || {};
+            if (!row.card_id || !row.vote_type) continue;
+            counts[row.card_id] = counts[row.card_id] || { up: 0, down: 0 };
+            if (row.vote_type === 'up' || row.vote_type === 'down') {
+              counts[row.card_id][row.vote_type] += Number(row.votes || 1);
+            }
+          }
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            var cardCounts = counts[card.getAttribute('data-vote-card-id')] || { up: 0, down: 0 };
+            setCount(card, 'up', cardCounts.up);
+            setCount(card, 'down', cardCounts.down);
+          }
+        } catch (e) {}
+      }
+
+      async function saveVote(card, vote) {
+        var cardId = card.getAttribute('data-vote-card-id');
+        var existing = getStored(cardId);
+        if (existing) {
+          setStatus(card, existing === vote ? 'Already saved.' : 'Vote already saved.');
+          setActive(card, existing);
+          return;
+        }
+        setStatus(card, 'Saving...');
+        var response = await fetch(config.url + '/rest/v1/' + encodeURIComponent(table), {
+          method: 'POST',
+          headers: {
+            apikey: config.key,
+            authorization: 'Bearer ' + config.key,
+            'content-type': 'application/json',
+            prefer: 'return=minimal'
+          },
+          body: JSON.stringify(votePayload(card, vote))
+        });
+        if (!response.ok) throw new Error(await response.text());
+        setStored(cardId, vote);
+        setActive(card, vote);
+        increment(card, vote);
+        setStatus(card, 'Saved.');
+      }
+
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest && event.target.closest('[data-card-vote]');
+        if (!button) return;
+        var card = button.closest && button.closest('.card[data-vote-card-id]');
+        if (!card) return;
+        var vote = button.getAttribute('data-card-vote');
+        if (vote !== 'up' && vote !== 'down') return;
+        saveVote(card, vote).catch(function () {
+          setStatus(card, 'Could not save vote.');
+        });
+      });
+
+      var cards = Array.from(document.querySelectorAll('.card[data-vote-card-id]'));
+      installControls(cards);
+      if (shouldLoadRemoteCounts()) loadCounts(cards);
+    })();
+  </script>
+
+</body>
+</html>

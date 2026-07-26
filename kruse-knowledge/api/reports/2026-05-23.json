@@ -102,6 +102,48 @@
           }
         }
       ]
+    },
+    {
+      "title": "Latest Podcast / Q&A Summary",
+      "cards": [
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "February 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-02",
+            "episode_9e9d1925c6ce78c9"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        },
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "Latest Jack Kruse podcast",
+          "body_markdown": "Queued for transcript/caption discovery and summary",
+          "body_text": "Queued for transcript/caption discovery and summary",
+          "points": [],
+          "source_quote": "New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I'm greatful Nick asked me to to do this.",
+          "source_ids": [
+            "2058154854447513828",
+            "episode_2cf5055d39df0396"
+          ],
+          "source_urls": [
+            "https://t.co/tsF3mBMzko",
+            "https://x.com/i/status/2058154854447513828"
+          ],
+          "citations": [],
+          "concepts": {}
+        }
+      ]
     }
   ],
   "forum": {
@@ -144,5 +186,46 @@
       }
     ]
   },
-  "markdown": "# Kruse Report 2026-05-23\n\nDate: 2026-05-23\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-23.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-23.json\n\n## Headline\n\nCancer fat metabolism rebuttal, PMLE as deuterium flash-evaporation, and triplet oxygen collagen defects\n\n## Research & Mechanisms\n\n### Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation\n\nTag: Cancer Fat Oxidation\n\nThe Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform fatty acid oxidation. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt beta-oxidation pathways, CPT1A transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: 'cut glucose, eat saturated fat, kill cancer' protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.\n\nSources:\n- https://x.com/i/status/2058164146147872779\n\nConcepts:\n- fatty acid oxidation (noob): The process of breaking down fats into acetyl-CoA inside mitochondria to generate ATP through the electron transport chain.\n- beta-oxidation (pro): The mitochondrial pathway that breaks down fatty acids into two-carbon acetyl-CoA units for the Krebs cycle.\n- CPT1A (pro): Carnitine palmitoyltransferase 1A, the enzyme that transports long-chain fatty acids into mitochondria for beta-oxidation.\n\n### Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding\n\nTag: Triplet Oxygen Collagen\n\nTriplet oxygen is ground-state molecular oxygen with two unpaired electrons in parallel spin. Type 1 collagen synthesis requires oxygen for hydroxylation of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the sagittal suture, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.\n\nSource quote: \"Lack of triplet oxygen and it affects Type 1 collagen.\"\n\nSources:\n- https://x.com/i/status/2058174219972722789\n\nConcepts:\n- Triplet oxygen (pro): Ground-state molecular oxygen with two unpaired electrons in parallel spin, the form of oxygen used in aerobic respiration and enzymatic reactions.\n- Type 1 collagen (noob): The most abundant structural protein in the body, found in skin, bones, tendons, ligaments, and connective tissue.\n- hydroxylation (pro): The enzymatic addition of a hydroxyl group to proline or lysine in collagen, required for stable triple-helix formation and cross-linking.\n- sagittal suture (noob): The fibrous joint between the two parietal bones at the top of the skull, running front to back.\n\n## Blog Updates\n\n### CPC #84: NUBIAN PHYSICS FOR A MAGNETIC EXCURSION\n\nTag: CPC#84\n\nDoxycyline & tetracycline seems to cause an amazing and rapid sun tan. Do you know the connection to melanin production and isotopic sovereignty? Doxycycline and tetracycline are now off patent so now the BigHarma paradigm wants to bury them from your lives and use. PHYSICS OVER PHARMACY Life is not built around a BigHarma pharmacy ...\n\nSource quote: \"Doxycyline & tetracycline seems to cause an amazing and rapid sun tan.\"\n\nSources:\n- https://optimalklubs.com/cpc-84-nubian-physics-for-a-magnetic-excursion/\n\nConcepts:\n- CPC#84 (noob): CPC#84 is a Kruse blog/article archive reference from the CPC series, entry #84. It is source context for this report, not a formal scientific citation.\n\n## Forum Bullets\n\n### SUN ALLERGY........IS IT REALLY?\n\nKruse reframes PMLE as a deuterium flash-evaporation event, not a sun allergy. Winter's low-light, low-grounding environment allows heavy deuterium to accumulate in the skin's extracellular matrix. The vagus drain pipe and ventricular drainage become lattice locked by the isotopic load, forcing the skin to act as backup exhaust. When a patient takes doxycycline, the molecule's four-ring hydronaphthacene nucleus packed with delocalized electron clouds intercalates into the skin's water-rich extracellular matrix and hyper-accelerates the flash-evaporation event. This forces a choice between systemic Matrix Fire or activation of the POMC-melanin shield. Doxycycline acts as a light-harvesting molecular antenna that forces the system to resolve the deuterium overload, not as a photosensitizing allergen.\n\nThread: https://forum.jackkruse.com/threads/sun-allergy-is-it-really.32491/\n\nConcepts:\n- PMLE (noob): Polymorphous Light Eruption, a skin condition where red, itchy bumps or blisters appear after sun exposure, typically in spring or early summer.\n- deuterium flash-evaporation (pro): Rapid phase transition of heavy water from the skin's extracellular matrix when exposed to light and heat, releasing stored isotopic load.\n- vagus drain pipe (pro): The vagus nerve as a primary drainage pathway for metabolic waste, deuterium, and electromagnetic charge.\n- lattice lock (pro): Rigidity in the water structure of tissue caused by heavy deuterium or electromagnetic interference, blocking normal drainage and signaling.\n- hydronaphthacene nucleus (pro): The four-ring aromatic structure of tetracycline antibiotics like doxycycline, containing delocalized electrons that absorb and transfer light energy.\n- Matrix Fire (pro): Systemic inflammation and oxidative stress caused by unresolved deuterium or electromagnetic overload in the extracellular matrix.\n- POMC-melanin shield (pro): Pro-opiomelanocortin is a precursor system tied to melanin biology; in this framing, melanin absorbs and dissipates light energy to protect tissue.\n"
+  "podcasts": [
+    {
+      "title": "February 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-02",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "missing",
+      "canonical_episode_id": "episode_9e9d1925c6ce78c9",
+      "date_utc": "2026-02-01",
+      "time_utc": ""
+    },
+    {
+      "title": "Latest Jack Kruse podcast",
+      "status": "Queued for transcript/caption discovery and summary",
+      "preview_markdown": "New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I'm greatful Nick asked me to to do this.",
+      "preview_text": "New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I'm greatful Nick asked me to to do this.",
+      "source_url": "https://t.co/tsF3mBMzko",
+      "source_urls": [
+        "https://t.co/tsF3mBMzko",
+        "https://x.com/i/status/2058154854447513828"
+      ],
+      "source_type": "tweet",
+      "source_id": "2058154854447513828",
+      "media_type": "podcast",
+      "content_kind": "podcast",
+      "transcript_status": "missing",
+      "canonical_episode_id": "episode_2cf5055d39df0396",
+      "date_utc": "2026-05-23",
+      "time_utc": "11:55"
+    }
+  ],
+  "markdown": "# Kruse Report 2026-05-23\n\nDate: 2026-05-23\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-23.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-23.json\n\n## Headline\n\nCancer fat metabolism rebuttal, PMLE as deuterium flash-evaporation, and triplet oxygen collagen defects\n\n## Research & Mechanisms\n\n### Kruse rejects the Warburg-only model: some cancers weaponize fatty acid oxidation, not just glucose fermentation\n\nTag: Cancer Fat Oxidation\n\nThe Warburg effect describes cancer cells fermenting glucose even when oxygen is available. Seyfried extended this to glutamine fermentation. A widely circulated claim assumes all cancer mitochondria are uniformly defective and cannot perform fatty acid oxidation. Kruse rejects that shortcut. The rebuttal: tumor metabolism is heterogeneous. Some cancers retain or adapt beta-oxidation pathways, CPT1A transport into mitochondria, and OXPHOS coupling despite mitochondrial dysfunction. This means some tumors thrive on glucose, some on glutamine, and some weaponize fat metabolism. The practical risk: 'cut glucose, eat saturated fat, kill cancer' protocols can be dangerously overbroad. If a tumor uses fatty acid oxidation, a high-fat diet may fuel it rather than starve it. Tumor metabolic profiling becomes critical, not just glucose and glutamine tracking.\n\nSources:\n- https://x.com/i/status/2058164146147872779\n\nConcepts:\n- fatty acid oxidation (noob): The process of breaking down fats into acetyl-CoA inside mitochondria to generate ATP through the electron transport chain.\n- beta-oxidation (pro): The mitochondrial pathway that breaks down fatty acids into two-carbon acetyl-CoA units for the Krebs cycle.\n- CPT1A (pro): Carnitine palmitoyltransferase 1A, the enzyme that transports long-chain fatty acids into mitochondria for beta-oxidation.\n\n### Lack of triplet oxygen affects Type 1 collagen, explaining skull deformations without head-binding\n\nTag: Triplet Oxygen Collagen\n\nTriplet oxygen is ground-state molecular oxygen with two unpaired electrons in parallel spin. Type 1 collagen synthesis requires oxygen for hydroxylation of proline and lysine residues by prolyl hydroxylase and lysyl hydroxylase enzymes. These hydroxylated residues are critical for collagen cross-linking and structural stability. Without sufficient triplet oxygen, collagen is under-hydroxylated, leading to weak, malformed connective tissue. In the skull, this manifests as abnormal suture fusion, absence of the sagittal suture, and altered cranial geometry. Kruse reframes ancient skull anomalies as oxygen and collagen biology rather than cultural head-binding practices. Modern implication: collagen health in skin, joints, and bones depends on oxygen availability, which is affected by altitude, mitochondrial function, redox status, and environmental stress.\n\nSource quote: \"Lack of triplet oxygen and it affects Type 1 collagen.\"\n\nSources:\n- https://x.com/i/status/2058174219972722789\n\nConcepts:\n- Triplet oxygen (pro): Ground-state molecular oxygen with two unpaired electrons in parallel spin, the form of oxygen used in aerobic respiration and enzymatic reactions.\n- Type 1 collagen (noob): The most abundant structural protein in the body, found in skin, bones, tendons, ligaments, and connective tissue.\n- hydroxylation (pro): The enzymatic addition of a hydroxyl group to proline or lysine in collagen, required for stable triple-helix formation and cross-linking.\n- sagittal suture (noob): The fibrous joint between the two parietal bones at the top of the skull, running front to back.\n\n## Blog Updates\n\n### CPC #84: NUBIAN PHYSICS FOR A MAGNETIC EXCURSION\n\nTag: CPC#84\n\nDoxycyline & tetracycline seems to cause an amazing and rapid sun tan. Do you know the connection to melanin production and isotopic sovereignty? Doxycycline and tetracycline are now off patent so now the BigHarma paradigm wants to bury them from your lives and use. PHYSICS OVER PHARMACY Life is not built around a BigHarma pharmacy ...\n\nSource quote: \"Doxycyline & tetracycline seems to cause an amazing and rapid sun tan.\"\n\nSources:\n- https://optimalklubs.com/cpc-84-nubian-physics-for-a-magnetic-excursion/\n\nConcepts:\n- CPC#84 (noob): CPC#84 is a Kruse blog/article archive reference from the CPC series, entry #84. It is source context for this report, not a formal scientific citation.\n\n## Latest Podcast / Q&A Summary\n\n### February 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/february-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1165409749?autoplay=1&loop=0\n\n### Latest Jack Kruse podcast\n\nTag: Podcast / Q&A\n\nQueued for transcript/caption discovery and summary\n\nSource quote: \"New podcast between two clinicians about the biophysics of our patients in this modern world. This was probably my most enjoyable podcast of 2026 because it was high level decentralized medicine at its finest. I'm greatful Nick asked me to to do this.\"\n\nSources:\n- https://t.co/tsF3mBMzko\n- https://x.com/i/status/2058154854447513828\n\n## Forum Bullets\n\n### SUN ALLERGY........IS IT REALLY?\n\nKruse reframes PMLE as a deuterium flash-evaporation event, not a sun allergy. Winter's low-light, low-grounding environment allows heavy deuterium to accumulate in the skin's extracellular matrix. The vagus drain pipe and ventricular drainage become lattice locked by the isotopic load, forcing the skin to act as backup exhaust. When a patient takes doxycycline, the molecule's four-ring hydronaphthacene nucleus packed with delocalized electron clouds intercalates into the skin's water-rich extracellular matrix and hyper-accelerates the flash-evaporation event. This forces a choice between systemic Matrix Fire or activation of the POMC-melanin shield. Doxycycline acts as a light-harvesting molecular antenna that forces the system to resolve the deuterium overload, not as a photosensitizing allergen.\n\nThread: https://forum.jackkruse.com/threads/sun-allergy-is-it-really.32491/\n\nConcepts:\n- PMLE (noob): Polymorphous Light Eruption, a skin condition where red, itchy bumps or blisters appear after sun exposure, typically in spring or early summer.\n- deuterium flash-evaporation (pro): Rapid phase transition of heavy water from the skin's extracellular matrix when exposed to light and heat, releasing stored isotopic load.\n- vagus drain pipe (pro): The vagus nerve as a primary drainage pathway for metabolic waste, deuterium, and electromagnetic charge.\n- lattice lock (pro): Rigidity in the water structure of tissue caused by heavy deuterium or electromagnetic interference, blocking normal drainage and signaling.\n- hydronaphthacene nucleus (pro): The four-ring aromatic structure of tetracycline antibiotics like doxycycline, containing delocalized electrons that absorb and transfer light energy.\n- Matrix Fire (pro): Systemic inflammation and oxidative stress caused by unresolved deuterium or electromagnetic overload in the extracellular matrix.\n- POMC-melanin shield (pro): Pro-opiomelanocortin is a precursor system tied to melanin biology; in this framing, melanin absorbs and dissipates light energy to protect tissue.\n"
 }

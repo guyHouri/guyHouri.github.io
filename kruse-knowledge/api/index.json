@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-25",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-25.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-25.md",
+    "date": "2026-07-26",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-26.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-26.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-26",
+      "title": "Kruse Report 2026-07-26",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-26.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-26.md",
+      "headline": "Vascular aging mechanism, exercise safety protocol, and paradigm shift in cellular thermodynamics"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-25",

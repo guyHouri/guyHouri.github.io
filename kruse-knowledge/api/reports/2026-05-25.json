@@ -101,10 +101,56 @@
           }
         }
       ]
+    },
+    {
+      "title": "Latest Podcast / Q&A Summary",
+      "cards": [
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "February 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-02",
+            "episode_9e9d1925c6ce78c9"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        }
+      ]
     }
   ],
   "forum": {
     "bullets": []
   },
-  "markdown": "# Kruse Report 2026-05-25\n\nDate: 2026-05-25\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-25.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-25.json\n\n## Headline\n\nOptical switch dysfunction, deuterium tolerance, and skin cancer treatment preference\n\n## Twitter Updates\n\n_No selected source-bound cards for this section._\n\n## Forum Updates\n\n### Broken optical switch prevents deuterium handling; CCO-mediated endogenous DDW becomes essential\n\nTag: Optical switch, deuterium, CCO\n\nA patient with primary immunodeficiency disorder cannot tolerate dietary or environmental deuterium because her optical switch is damaged. Without a functional optical switch, she depends entirely on CCO (cytochrome c oxidase) to continuously generate her own DDW (deuterium-depleted water) internally. This mechanism explains why optical switch integrity determines whether a person can safely handle deuterium exposure.\n\nKey points:\n- **Mechanism.** Broken optical switch -> inability to process deuterium -> reliance on CCO-driven endogenous DDW synthesis.\n- **Clinical signal.** Patients with optical switch dysfunction require continuous CCO function to produce their own deuterium-depleted water.\n- **Practical meaning.** Optical switch status may predict deuterium tolerance; CCO support becomes a critical intervention for affected patients.\n\nSource quote: \"She cannot handle deuterium at all because her optical switch is broken. She needs CCO to always be making DDW and that is why the hack I gave you about DDW was my big clue.\"\n\nSources:\n- https://forum.jackkruse.com/threads/potential-gene-therapy-for-primary-immunodeficiency-disorder.30343/unread\n\nConcepts:\n- primary immunodeficiency disorder (noob): A group of genetic conditions in which the immune system is deficient or absent, making the body unable to fight infections effectively.\n- optical switch (pro): A molecular mechanism in cells that responds to light and regulates metabolic pathways; dysfunction impairs the ability to handle deuterium.\n- CCO (pro): Cytochrome c oxidase, the final enzyme in the electron transport chain; produces energy and can generate deuterium-depleted water.\n- cytochrome c oxidase (pro): The final enzyme in the electron transport chain that transfers electrons and pumps protons to generate cellular energy; can produce deuterium-depleted water.\n- DDW (pro): Deuterium-depleted water; water with reduced deuterium (heavy hydrogen) content; can be produced endogenously by CCO.\n- deuterium-depleted water (pro): Water with reduced deuterium (heavy hydrogen) content; can be produced endogenously by CCO function.\n\n### 5-FU is the preferred topical choice for skin cancer over ivermectin or fenbendazole\n\nTag: Skin cancer, topical treatment\n\nFor topical skin cancer treatment, 5-FU (5-fluorouracil) is Jack's preferred option compared to topical ivermectin or fenbendazole. This direct treatment preference guides selection when choosing a topical modality for skin lesions.\n\nKey points:\n- **Treatment.** 5-FU is the wiser topical choice for skin cancer.\n- **Practical meaning.** When evaluating topical agents for skin cancer, prioritize 5-FU over ivermectin or fenbendazole.\n\nSource quote: \"5-FU would be a wiser choice for the skin.\"\n\nSources:\n- https://forum.jackkruse.com/threads/topical-ivermectin-and-fenbendazole-for-skin-cancers.32830/\n\nConcepts:\n- topical (noob): Applied directly to the skin surface; a route of administration for medications that act locally on skin lesions.\n- 5-FU (noob): 5-fluorouracil; a topical chemotherapy agent commonly used to treat precancerous and cancerous skin lesions.\n- 5-fluorouracil (noob): A chemotherapy drug applied to the skin to treat precancerous and cancerous lesions by disrupting cancer cell growth.\n- ivermectin (noob): An antiparasitic medication sometimes used topically; less preferred than 5-FU for skin cancer treatment.\n- fenbendazole (noob): An antiparasitic drug; less preferred than 5-FU for topical skin cancer treatment.\n"
+  "podcasts": [
+    {
+      "title": "February 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-02",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "missing",
+      "canonical_episode_id": "episode_9e9d1925c6ce78c9",
+      "date_utc": "2026-02-01",
+      "time_utc": ""
+    }
+  ],
+  "markdown": "# Kruse Report 2026-05-25\n\nDate: 2026-05-25\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-25.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-25.json\n\n## Headline\n\nOptical switch dysfunction, deuterium tolerance, and skin cancer treatment preference\n\n## Twitter Updates\n\n_No selected source-bound cards for this section._\n\n## Forum Updates\n\n### Broken optical switch prevents deuterium handling; CCO-mediated endogenous DDW becomes essential\n\nTag: Optical switch, deuterium, CCO\n\nA patient with primary immunodeficiency disorder cannot tolerate dietary or environmental deuterium because her optical switch is damaged. Without a functional optical switch, she depends entirely on CCO (cytochrome c oxidase) to continuously generate her own DDW (deuterium-depleted water) internally. This mechanism explains why optical switch integrity determines whether a person can safely handle deuterium exposure.\n\nKey points:\n- **Mechanism.** Broken optical switch -> inability to process deuterium -> reliance on CCO-driven endogenous DDW synthesis.\n- **Clinical signal.** Patients with optical switch dysfunction require continuous CCO function to produce their own deuterium-depleted water.\n- **Practical meaning.** Optical switch status may predict deuterium tolerance; CCO support becomes a critical intervention for affected patients.\n\nSource quote: \"She cannot handle deuterium at all because her optical switch is broken. She needs CCO to always be making DDW and that is why the hack I gave you about DDW was my big clue.\"\n\nSources:\n- https://forum.jackkruse.com/threads/potential-gene-therapy-for-primary-immunodeficiency-disorder.30343/unread\n\nConcepts:\n- primary immunodeficiency disorder (noob): A group of genetic conditions in which the immune system is deficient or absent, making the body unable to fight infections effectively.\n- optical switch (pro): A molecular mechanism in cells that responds to light and regulates metabolic pathways; dysfunction impairs the ability to handle deuterium.\n- CCO (pro): Cytochrome c oxidase, the final enzyme in the electron transport chain; produces energy and can generate deuterium-depleted water.\n- cytochrome c oxidase (pro): The final enzyme in the electron transport chain that transfers electrons and pumps protons to generate cellular energy; can produce deuterium-depleted water.\n- DDW (pro): Deuterium-depleted water; water with reduced deuterium (heavy hydrogen) content; can be produced endogenously by CCO.\n- deuterium-depleted water (pro): Water with reduced deuterium (heavy hydrogen) content; can be produced endogenously by CCO function.\n\n### 5-FU is the preferred topical choice for skin cancer over ivermectin or fenbendazole\n\nTag: Skin cancer, topical treatment\n\nFor topical skin cancer treatment, 5-FU (5-fluorouracil) is Jack's preferred option compared to topical ivermectin or fenbendazole. This direct treatment preference guides selection when choosing a topical modality for skin lesions.\n\nKey points:\n- **Treatment.** 5-FU is the wiser topical choice for skin cancer.\n- **Practical meaning.** When evaluating topical agents for skin cancer, prioritize 5-FU over ivermectin or fenbendazole.\n\nSource quote: \"5-FU would be a wiser choice for the skin.\"\n\nSources:\n- https://forum.jackkruse.com/threads/topical-ivermectin-and-fenbendazole-for-skin-cancers.32830/\n\nConcepts:\n- topical (noob): Applied directly to the skin surface; a route of administration for medications that act locally on skin lesions.\n- 5-FU (noob): 5-fluorouracil; a topical chemotherapy agent commonly used to treat precancerous and cancerous skin lesions.\n- 5-fluorouracil (noob): A chemotherapy drug applied to the skin to treat precancerous and cancerous lesions by disrupting cancer cell growth.\n- ivermectin (noob): An antiparasitic medication sometimes used topically; less preferred than 5-FU for skin cancer treatment.\n- fenbendazole (noob): An antiparasitic drug; less preferred than 5-FU for topical skin cancer treatment.\n\n## Latest Podcast / Q&A Summary\n\n### February 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/february-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1165409749?autoplay=1&loop=0\n"
 }

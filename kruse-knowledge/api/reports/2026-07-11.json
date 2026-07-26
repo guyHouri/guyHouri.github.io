@@ -154,10 +154,134 @@
           }
         }
       ]
+    },
+    {
+      "title": "Latest Podcast / Q&A Summary",
+      "cards": [
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "June 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-06",
+            "episode_5f8bf7f5ff22e148"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1199486200?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        },
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "May 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-05",
+            "episode_b6e85a3633e027af"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1188926299?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        },
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "April 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-04",
+            "episode_d09f1d51bb3bd28a"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1182695378?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        }
+      ]
     }
   ],
   "forum": {
     "bullets": []
   },
-  "markdown": "# Kruse Report 2026-07-11\n\nDate: 2026-07-11\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-11.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.json\n\n## Headline\n\nSolar quantum yield and melanin isotopic fractionation; geomagnetic field morphogenesis coupling; RF exposure mechanisms in developing brains\n\n## Twitter Updates\n\n### Mechanism links a body signal to a practical change\n\nTag: Melanin and isotopic fractionation\n\nReduced quantum yield of the sun lowers melanin synthesis in humans, which impairs the body's ability to perform isotopic fractionation - the selective processing of different isotope forms. This fractionation deficit leads to heteroplasmy, a state of mixed mitochondrial DNA populations that Jack frames as an epigenetic driver of disease. The mechanism connects environmental light quality directly to cellular isotope handling and disease pathology, meaning that lowered sun exposure or poor light quality degrades a fundamental isotopic sorting function that healthy cells depend on.\n\nSource quote: \"Lowering the quantum yield of the sun lowers melanin in humans. This lowers your ability to isotoipicallly fractionate and leads to heteroplasmy.\"\n\nSources:\n- https://x.com/i/status/2075748607739691402\n\nConcepts:\n- quantum yield (noob): The efficiency with which photons (light particles) are converted into biological work; lower quantum yield means the sun's light carries less usable energy for cellular processes\n- melanin (noob): The pigment that colors skin, hair, and eyes; Jack proposes it also functions as a tool for selective isotope processing in cells\n- isotopic fractionation (pro): The selective separation and processing of different isotope forms (e.g., deuterium vs. protium) by biological systems; melanin is proposed as a key isotopic fractionation tool\n- heteroplasmy (pro): The presence of multiple different mitochondrial DNA sequences within a single cell or organism; Jack frames this as an epigenetic disease driver\n- epigenetic (pro): Changes in gene activity and expression that do not alter the underlying DNA sequence itself; can be caused by environmental factors and affect health\n\n### Geomagnetic field exposure is essential for proper morphogenesis; modern nnEMF disrupts the primordial 7.83 Hz signal\n\nTag: Geomagnetic field and development\n\nRedox and resonance are tightly coupled in nature, and magnetism couples to both. The sun's energy drives wave action and creates the Schumann pulse (7.83 Hz) via solar wind interaction with Earth's magnetosphere, which distributes energy through the ionosphere and to Earth via aurora and lightning. Living organisms screened from the geomagnetic field do not develop correctly, indicating that redox and resonance are deeply coupled to morphogenesis. Early life evolved synchronized to the 7.83 Hz baseline, but modern cellular activity in animals has drifted to other frequencies as the electromagnetic environment changed. The Schumann resonance frequency is closest to human deep relaxation brain states, suggesting primordial life may have operated in a similar state. Modern nnEMF at different frequencies disrupts this signal fidelity and alters the thalamus-generated waves that shape the life we develop.\n\nSource quote: \"When living things are screened [blocked] from this geomagnetic field, they don't develop correctly. This tells us that redox and resonance are deeply coupled to morphogenesis in a way we still need to understand.\"\n\nSources:\n- https://x.com/i/status/2075689883318800755\n\nConcepts:\n- resonance (pro): The tendency of a system to oscillate at maximum amplitude at a specific frequency; biological systems are proposed to resonate with Earth's geomagnetic field\n- Schumann pulse (noob): The electromagnetic resonance frequency (7.83 Hz) created by solar wind crashing into Earth's magnetosphere and distributed through the ionosphere and Earth; early life evolved synchronized to this frequency\n- magnetosphere (noob): The region of space around Earth where the planet's magnetic field dominates; shields life from harmful solar radiation\n- ionosphere (noob): The upper layer of Earth's atmosphere containing charged particles; interacts with the magnetosphere to distribute geomagnetic energy downward\n- morphogenesis (pro): The biological process by which organisms develop their shape and structure; Jack frames this as dependent on geomagnetic field exposure\n- thalamus (pro): A brain region that relays sensory information and regulates sleep and consciousness; Jack proposes it generates waves that influence development\n- geomagnetic field (noob): The earth's magnetic-field context at a location. Kruse uses it as a baseline environmental signal that biological electrical and magnetic behavior may align to.\n- 7.83 Hz (noob): A technical term used by the selected source. The report keeps \"7.83 Hz\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n## Forum Updates\n\n### 2026 review of 65 studies identifies four consistent non-thermal mechanisms of RF damage in developing brains\n\nTag: RF exposure and developing brain\n\nA 2026 review in Current Approaches in Psychiatry analyzed 65 experimental studies on developing brain exposure to 2.4 GHz and 5 GHz radio frequencies - the frequencies used by WiFi, baby monitors, tablets, and smart home devices. Across all 65 studies, four mechanisms consistently surfaced: increased oxidative stress, impaired synaptic plasticity, disrupted neurogenesis, and altered dendritic spine formation. Critically, these effects occurred at exposure levels where tissue heating was not the proposed mechanism, meaning they are non-thermal effects. The FCC exposure limits, adopted in 1996 and never updated, are based only on preventing excessive tissue heating. A developing brain is uniquely vulnerable because neurons are still migrating, synapses are forming, and neural circuits are being wired - a process that cannot be rewound. The reported outcomes included changes in learning, memory, motor activity, and anxiety-related behavior that persisted after exposure ended.\n\nSource quote: \"Across those 65 studies the same 4 mechanisms kept surfacing: 1/ Increased oxidative stress 2/ Impaired synaptic plasticity 3/ Disrupted neurogenesis 4/ Altered dendritic spine formation These reported effects occurred at exposure levels where heating was not the proposed mechanism.\"\n\nSources:\n- https://forum.jackkruse.com/threads/rustys-emf-thread.32381/unread\n\nConcepts:\n- 2.4 GHz (noob): A radio frequency used by WiFi, Bluetooth, and many wireless devices; one of the frequencies studied for effects on developing brains\n- 5 GHz (noob): A higher radio frequency used by newer WiFi standards and some wireless devices; also studied for developmental effects\n- oxidative stress (noob): An imbalance between harmful free radicals and the body's ability to neutralize them; damages cells and DNA\n- synaptic plasticity (pro): The ability of synapses (connections between neurons) to strengthen or weaken over time; essential for learning and memory\n- neurogenesis (pro): The birth and development of new neurons; occurs throughout life but is especially active during fetal development and early childhood\n- dendritic spine (pro): Small protrusions on dendrites (neuron branches) that receive signals from other neurons; their shape and number affect neural communication\n- non-thermal (noob): Effects that occur without significant heat generation; RF can damage cells through mechanisms other than heating\n- FCC exposure limits (noob): U.S. regulatory standards for safe RF radiation exposure; based on thermal effects only and not updated since 1996\n"
+  "podcasts": [
+    {
+      "title": "June 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1199486200?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-06",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "fetch_failed",
+      "canonical_episode_id": "episode_5f8bf7f5ff22e148",
+      "date_utc": "2026-06-01",
+      "time_utc": ""
+    },
+    {
+      "title": "May 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1188926299?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-05",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "fetch_failed",
+      "canonical_episode_id": "episode_b6e85a3633e027af",
+      "date_utc": "2026-05-01",
+      "time_utc": ""
+    },
+    {
+      "title": "April 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1182695378?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-04",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "fetch_failed",
+      "canonical_episode_id": "episode_d09f1d51bb3bd28a",
+      "date_utc": "2026-04-01",
+      "time_utc": ""
+    }
+  ],
+  "markdown": "# Kruse Report 2026-07-11\n\nDate: 2026-07-11\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-11.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-11.json\n\n## Headline\n\nSolar quantum yield and melanin isotopic fractionation; geomagnetic field morphogenesis coupling; RF exposure mechanisms in developing brains\n\n## Twitter Updates\n\n### Mechanism links a body signal to a practical change\n\nTag: Melanin and isotopic fractionation\n\nReduced quantum yield of the sun lowers melanin synthesis in humans, which impairs the body's ability to perform isotopic fractionation - the selective processing of different isotope forms. This fractionation deficit leads to heteroplasmy, a state of mixed mitochondrial DNA populations that Jack frames as an epigenetic driver of disease. The mechanism connects environmental light quality directly to cellular isotope handling and disease pathology, meaning that lowered sun exposure or poor light quality degrades a fundamental isotopic sorting function that healthy cells depend on.\n\nSource quote: \"Lowering the quantum yield of the sun lowers melanin in humans. This lowers your ability to isotoipicallly fractionate and leads to heteroplasmy.\"\n\nSources:\n- https://x.com/i/status/2075748607739691402\n\nConcepts:\n- quantum yield (noob): The efficiency with which photons (light particles) are converted into biological work; lower quantum yield means the sun's light carries less usable energy for cellular processes\n- melanin (noob): The pigment that colors skin, hair, and eyes; Jack proposes it also functions as a tool for selective isotope processing in cells\n- isotopic fractionation (pro): The selective separation and processing of different isotope forms (e.g., deuterium vs. protium) by biological systems; melanin is proposed as a key isotopic fractionation tool\n- heteroplasmy (pro): The presence of multiple different mitochondrial DNA sequences within a single cell or organism; Jack frames this as an epigenetic disease driver\n- epigenetic (pro): Changes in gene activity and expression that do not alter the underlying DNA sequence itself; can be caused by environmental factors and affect health\n\n### Geomagnetic field exposure is essential for proper morphogenesis; modern nnEMF disrupts the primordial 7.83 Hz signal\n\nTag: Geomagnetic field and development\n\nRedox and resonance are tightly coupled in nature, and magnetism couples to both. The sun's energy drives wave action and creates the Schumann pulse (7.83 Hz) via solar wind interaction with Earth's magnetosphere, which distributes energy through the ionosphere and to Earth via aurora and lightning. Living organisms screened from the geomagnetic field do not develop correctly, indicating that redox and resonance are deeply coupled to morphogenesis. Early life evolved synchronized to the 7.83 Hz baseline, but modern cellular activity in animals has drifted to other frequencies as the electromagnetic environment changed. The Schumann resonance frequency is closest to human deep relaxation brain states, suggesting primordial life may have operated in a similar state. Modern nnEMF at different frequencies disrupts this signal fidelity and alters the thalamus-generated waves that shape the life we develop.\n\nSource quote: \"When living things are screened [blocked] from this geomagnetic field, they don't develop correctly. This tells us that redox and resonance are deeply coupled to morphogenesis in a way we still need to understand.\"\n\nSources:\n- https://x.com/i/status/2075689883318800755\n\nConcepts:\n- resonance (pro): The tendency of a system to oscillate at maximum amplitude at a specific frequency; biological systems are proposed to resonate with Earth's geomagnetic field\n- Schumann pulse (noob): The electromagnetic resonance frequency (7.83 Hz) created by solar wind crashing into Earth's magnetosphere and distributed through the ionosphere and Earth; early life evolved synchronized to this frequency\n- magnetosphere (noob): The region of space around Earth where the planet's magnetic field dominates; shields life from harmful solar radiation\n- ionosphere (noob): The upper layer of Earth's atmosphere containing charged particles; interacts with the magnetosphere to distribute geomagnetic energy downward\n- morphogenesis (pro): The biological process by which organisms develop their shape and structure; Jack frames this as dependent on geomagnetic field exposure\n- thalamus (pro): A brain region that relays sensory information and regulates sleep and consciousness; Jack proposes it generates waves that influence development\n- geomagnetic field (noob): The earth's magnetic-field context at a location. Kruse uses it as a baseline environmental signal that biological electrical and magnetic behavior may align to.\n- 7.83 Hz (noob): A technical term used by the selected source. The report keeps \"7.83 Hz\" visible as source language; treat it as a term to verify in the linked source before turning it into a protocol.\n\n## Forum Updates\n\n### 2026 review of 65 studies identifies four consistent non-thermal mechanisms of RF damage in developing brains\n\nTag: RF exposure and developing brain\n\nA 2026 review in Current Approaches in Psychiatry analyzed 65 experimental studies on developing brain exposure to 2.4 GHz and 5 GHz radio frequencies - the frequencies used by WiFi, baby monitors, tablets, and smart home devices. Across all 65 studies, four mechanisms consistently surfaced: increased oxidative stress, impaired synaptic plasticity, disrupted neurogenesis, and altered dendritic spine formation. Critically, these effects occurred at exposure levels where tissue heating was not the proposed mechanism, meaning they are non-thermal effects. The FCC exposure limits, adopted in 1996 and never updated, are based only on preventing excessive tissue heating. A developing brain is uniquely vulnerable because neurons are still migrating, synapses are forming, and neural circuits are being wired - a process that cannot be rewound. The reported outcomes included changes in learning, memory, motor activity, and anxiety-related behavior that persisted after exposure ended.\n\nSource quote: \"Across those 65 studies the same 4 mechanisms kept surfacing: 1/ Increased oxidative stress 2/ Impaired synaptic plasticity 3/ Disrupted neurogenesis 4/ Altered dendritic spine formation These reported effects occurred at exposure levels where heating was not the proposed mechanism.\"\n\nSources:\n- https://forum.jackkruse.com/threads/rustys-emf-thread.32381/unread\n\nConcepts:\n- 2.4 GHz (noob): A radio frequency used by WiFi, Bluetooth, and many wireless devices; one of the frequencies studied for effects on developing brains\n- 5 GHz (noob): A higher radio frequency used by newer WiFi standards and some wireless devices; also studied for developmental effects\n- oxidative stress (noob): An imbalance between harmful free radicals and the body's ability to neutralize them; damages cells and DNA\n- synaptic plasticity (pro): The ability of synapses (connections between neurons) to strengthen or weaken over time; essential for learning and memory\n- neurogenesis (pro): The birth and development of new neurons; occurs throughout life but is especially active during fetal development and early childhood\n- dendritic spine (pro): Small protrusions on dendrites (neuron branches) that receive signals from other neurons; their shape and number affect neural communication\n- non-thermal (noob): Effects that occur without significant heat generation; RF can damage cells through mechanisms other than heating\n- FCC exposure limits (noob): U.S. regulatory standards for safe RF radiation exposure; based on thermal effects only and not updated since 1996\n\n## Latest Podcast / Q&A Summary\n\n### June 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/june-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1199486200?autoplay=1&loop=0\n\n### May 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/may-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1188926299?autoplay=1&loop=0\n\n### April 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/april-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1182695378?autoplay=1&loop=0\n"
 }

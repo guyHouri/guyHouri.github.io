@@ -11,9 +11,56 @@
     "html": "summary/kruse-summary/out/2026-05-21.html"
   },
   "summary_available": false,
-  "sections": [],
+  "sections": [
+    {
+      "title": "Latest Podcast / Q&A Summary",
+      "cards": [
+        {
+          "tag": "Podcast / Q&A",
+          "lead": "February 2026 Quantum Biologic PowWow",
+          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "points": [],
+          "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+          "source_ids": [
+            "optimal-klubs-qna-2026-02",
+            "episode_9e9d1925c6ce78c9"
+          ],
+          "source_urls": [
+            "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+            "https://player.vimeo.com/",
+            "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+          ],
+          "citations": [],
+          "concepts": {}
+        }
+      ]
+    }
+  ],
   "forum": {
     "bullets": []
   },
-  "markdown": "# Kruse Report 2026-05-21\n\nDate: 2026-05-21\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-21.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-21.json\n\n## Headline\n\nDaily Kruse report\n"
+  "podcasts": [
+    {
+      "title": "February 2026 Quantum Biologic PowWow",
+      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_url": "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+      "source_urls": [
+        "https://optimalklubs.com/february-2026-quantum-biologic-powwow/",
+        "https://player.vimeo.com/",
+        "https://player.vimeo.com/video/1165409749?autoplay=1&loop=0"
+      ],
+      "source_type": "optimal_klubs_qna",
+      "source_id": "optimal-klubs-qna-2026-02",
+      "media_type": "podcast",
+      "content_kind": "qna",
+      "transcript_status": "missing",
+      "canonical_episode_id": "episode_9e9d1925c6ce78c9",
+      "date_utc": "2026-02-01",
+      "time_utc": ""
+    }
+  ],
+  "markdown": "# Kruse Report 2026-05-21\n\nDate: 2026-05-21\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-05-21.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-05-21.json\n\n## Headline\n\nDaily Kruse report\n\n## Latest Podcast / Q&A Summary\n\n### February 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for February 2026. https://optimalklubs.com/february-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/february-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1165409749?autoplay=1&loop=0\n"
 }
