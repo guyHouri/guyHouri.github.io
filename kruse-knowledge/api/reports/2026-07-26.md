@@ -129,11 +129,11 @@ Concepts:
 - basechains (noob): basechain (DNA backbone): a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
 - circadian signaling (noob): circadian signaling: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
 
-## Latest Podcast / Q&A Summary
+## Latest PowWow / Q&A Summary
 
 ### July 2026 Quantum Biologic PowWow
 
-Tag: Podcast / Q&A
+Tag: PowWow / Q&A
 
 Key points:
 - Food signal: Fermented and live foods were treated as electron-spin and deuterium inputs, not just probiotic support.
@@ -149,7 +149,7 @@ Sources:
 
 ### June 2026 Quantum Biologic PowWow
 
-Tag: Podcast / Q&A
+Tag: PowWow / Q&A
 
 Key points:
 - Drug-recovery signal: GLP-1/Retta recovery was framed as vagal and redox repair, not simple appetite troubleshooting; environmental correction and forum protocols come first.
@@ -165,7 +165,7 @@ Sources:
 
 ### May 2026 Quantum Biologic PowWow
 
-Tag: Podcast / Q&A
+Tag: PowWow / Q&A
 
 Key points:
 - Diabetes signal: Type 1 diabetes was mapped through MITF/AMPAR, melanin, beta-cell lattice lock, and location; Central America was prioritized over volcanic places with magnetic hysteresis risk.
@@ -179,13 +179,15 @@ Sources:
 - https://player.vimeo.com/
 - https://player.vimeo.com/video/1188926299?autoplay=1&loop=0
 
-### HOW DO THE FOUR PHYSICAL FORCES SCULPT MATRIX THERMODYNAMICS?
+## Latest Podcast Summary
 
-Tag: Podcast / Q&A
+### Ground Breaking Episode on Quantum Biology, Mitochondria, Vaccine Injury & the Future of Healing
 
-Source text summary available.
+Tag: Podcast
 
-Source text lists this episode as covering why chronic illness is rising around the world, the role of mitochondria in health and disease, biological Landauer Attack linked to adjuvants, and vaccine injury and informed consent, plus 8 more source-listed topics.
+Source page topics available.
+
+Source page topic list includes why chronic illness is rising around the world, the role of mitochondria in health and disease, biological Landauer Attack linked to adjuvants, and vaccine injury and informed consent, plus 8 more source-listed topics.
 
 Key points:
 - Why chronic illness is rising around the world
@@ -203,28 +205,3 @@ Key points:
 
 Sources:
 - https://forum.jackkruse.com/threads/how-do-the-four-physical-forces-sculpt-matrix-thermodynamics.33172/
-
-### Jack Kruse Podcast Curriculum - Youtube Edition V1
-
-Tag: Podcast / Q&A
-
-Source text summary available.
-
-Source text lists this episode as covering why chronic illness is rising around the world, the role of mitochondria in health and disease, biological Landauer Attack in adjuvants, and vaccine injury and informed consent, plus 8 more source-listed topics.
-
-Key points:
-- Why chronic illness is rising around the world
-- The role of mitochondria in health and disease
-- Biological Landauer Attack in adjuvants
-- Vaccine injury and informed consent
-- Quantum biology explained
-- Artificial light and circadian health
-- EMFs and the modern environment
-- The Earth's changing magnetic field
-- Why Dr. Kruse believes modern medicine prioritizes pharmaceuticals over physics
-- Functional medicine vs. conventional medicine
-- Michelle Katz's personal healing journey
-- Decentralized medicine and the future of healthcare
-
-Sources:
-- https://forum.jackkruse.com/threads/jack-kruse-podcast-curriculum-youtube-edition-v1.23331/
