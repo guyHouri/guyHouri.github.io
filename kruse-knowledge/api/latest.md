@@ -179,50 +179,11 @@ Sources:
 - https://player.vimeo.com/
 - https://player.vimeo.com/video/1188926299?autoplay=1&loop=0
 
-### Podcast episode title needs source verification
-
-Tag: Podcast / Q&A
-
-Free transcript/caption check failed; retry before paid STT
-
-Source quote: "4. Here is how to extend the CO2 use to de-frag your surfaces before exercise. This is a way better option than supplements and peptides. Heavy water or HDO has a higher freezing point 3.8 degrees C and different thermodynamic transition kinetics than light water H2O. Forcing a targeted thermal shock at the tissue surface alters the localized dielectric constant. This alters the solvent boundaries, forcing bulk wate..."
-
-Sources:
-- https://t.co/eagZOYY7XW
-- https://x.com/i/status/2081091937906352419
-- https://t.co/3LRrHR74w6
-- https://t.co/6YWSCIOK0F
-
-### Podcast episode title needs source verification
-
-Tag: Podcast / Q&A
-
-Free transcript/caption check failed; retry before paid STT
-
-Source quote: "3. Why did Eastern block Russian countries use these machines? The podcast tells you why. NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained • Artificial light and circadian health • EMFs and the modern environment • T..."
-
-Sources:
-- https://t.co/6YWSCIOK0F
-- https://x.com/i/status/2081038250584453473
-- https://t.co/3LRrHR74w6
-
-### Podcast episode title needs source verification
-
-Tag: Podcast / Q&A
-
-Free transcript/caption check failed; retry before paid STT
-
-Source quote: "NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained • Artificial light and circadian health • EMFs and the modern environment • The Earth's changing magnetic field • Why Dr. Kruse believes modern medicine prioritizes ph..."
-
-Sources:
-- https://t.co/3LRrHR74w6
-- https://x.com/i/status/2081032881825046895
-
 ### HOW DO THE FOUR PHYSICAL FORCES SCULPT MATRIX THERMODYNAMICS?
 
 Tag: Podcast / Q&A
 
-Free transcript/caption check failed; retry before paid STT
+Podcast source found; summary pending
 
 Source quote: "NEW PODCAST OUT TODAY WHAT IS COVERED? • Why chronic illness is rising around the world • The role of mitochondria in health and disease • Biological Landauer Attack linked to adjuvants • Vaccine injury and informed consent • Quantum biology explained/Space differences • Artificial light and circadian health • EMFs and the modern environment • The Earth's changing magnetic field • Why Dr. Kruse believes modern medic..."
 
@@ -233,7 +194,7 @@ Sources:
 
 Tag: Podcast / Q&A
 
-Free transcript/caption check failed; retry before paid STT
+Podcast source found; summary pending
 
 Source quote: "{ "lightbox_close": "Close", "lightbox_next": "Next", "lightbox_previous": "Previous", "lightbox_error": "The requested content cannot be loaded. Please try again later.", "lightbox_start_slideshow": "Start slideshow", "lightbox_stop_slideshow": "Stop slideshow", "lightbox_full_screen": "Full screen", "lightbox_thumbnails": "Thumbnails", "lightbox_download": "Download", "lightbox_share": "Share", "lightbox_zoom": "Z..."
 

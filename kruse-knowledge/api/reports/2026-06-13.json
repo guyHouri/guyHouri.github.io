@@ -26,8 +26,8 @@
         {
           "tag": "Podcast / Q&A",
           "lead": "June 2026 Quantum Biologic PowWow",
-          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
-          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_markdown": "Protected Q&A page found; summary pending",
+          "body_text": "Protected Q&A page found; summary pending",
           "points": [],
           "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
           "source_ids": [
@@ -45,8 +45,8 @@
         {
           "tag": "Podcast / Q&A",
           "lead": "May 2026 Quantum Biologic PowWow",
-          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
-          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_markdown": "Protected Q&A page found; summary pending",
+          "body_text": "Protected Q&A page found; summary pending",
           "points": [],
           "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
           "source_ids": [
@@ -64,8 +64,8 @@
         {
           "tag": "Podcast / Q&A",
           "lead": "April 2026 Quantum Biologic PowWow",
-          "body_markdown": "Protected Q&A page found; transcript unavailable until audio/STT import",
-          "body_text": "Protected Q&A page found; transcript unavailable until audio/STT import",
+          "body_markdown": "Protected Q&A page found; summary pending",
+          "body_text": "Protected Q&A page found; summary pending",
           "points": [],
           "source_quote": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
           "source_ids": [
@@ -89,7 +89,7 @@
   "podcasts": [
     {
       "title": "June 2026 Quantum Biologic PowWow",
-      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "status": "Protected Q&A page found; summary pending",
       "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
       "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/",
       "summary_markdown": "",
@@ -113,7 +113,7 @@
     },
     {
       "title": "May 2026 Quantum Biologic PowWow",
-      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "status": "Protected Q&A page found; summary pending",
       "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
       "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/",
       "summary_markdown": "",
@@ -137,7 +137,7 @@
     },
     {
       "title": "April 2026 Quantum Biologic PowWow",
-      "status": "Protected Q&A page found; transcript unavailable until audio/STT import",
+      "status": "Protected Q&A page found; summary pending",
       "preview_markdown": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
       "preview_text": "Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/",
       "summary_markdown": "",
@@ -160,5 +160,5 @@
       "time_utc": ""
     }
   ],
-  "markdown": "# Kruse Report 2026-06-13\n\nDate: 2026-06-13\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.json\n\n## Headline\n\nNo high-signal updates passed the report gate for 2026-06-13.\n\n## Twitter Updates\n\n_No selected source-bound cards for this section._\n\n## Forum Updates\n\n_No selected source-bound cards for this section._\n\n## Latest Podcast / Q&A Summary\n\n### June 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/june-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1199486200?autoplay=1&loop=0\n\n### May 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/may-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1188926299?autoplay=1&loop=0\n\n### April 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; transcript unavailable until audio/STT import\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/april-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1182695378?autoplay=1&loop=0\n"
+  "markdown": "# Kruse Report 2026-06-13\n\nDate: 2026-06-13\nHTML: https://guyhouri.github.io/kruse-knowledge/reports/2026-06-13.html\nJSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-06-13.json\n\n## Headline\n\nNo high-signal updates passed the report gate for 2026-06-13.\n\n## Twitter Updates\n\n_No selected source-bound cards for this section._\n\n## Forum Updates\n\n_No selected source-bound cards for this section._\n\n## Latest Podcast / Q&A Summary\n\n### June 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; summary pending\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for June 2026. https://optimalklubs.com/june-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/june-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1199486200?autoplay=1&loop=0\n\n### May 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; summary pending\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for May 2026. https://optimalklubs.com/may-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/may-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1188926299?autoplay=1&loop=0\n\n### April 2026 Quantum Biologic PowWow\n\nTag: Podcast / Q&A\n\nProtected Q&A page found; summary pending\n\nSource quote: \"Latest Optimal Klubs monthly Q&A/PowWow recording available for April 2026. https://optimalklubs.com/april-2026-quantum-biologic-powwow/\"\n\nSources:\n- https://optimalklubs.com/april-2026-quantum-biologic-powwow/\n- https://player.vimeo.com/\n- https://player.vimeo.com/video/1182695378?autoplay=1&loop=0\n"
 }
