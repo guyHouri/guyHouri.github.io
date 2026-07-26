@@ -250,6 +250,14 @@ steps do not run.
     `https://notebooklm.google.com/notebook/6a5093c8-9b6b-4a9c-82b4-f3c541171db0`
     and the existing 114-file Drive folder
     `1RTf8rCpc2_olBPURIOBpPz_5ELzQ754r`.
+    The attached daily Drive file remains `twitter-daily.md`, but rclone writes
+    the generated `daily-bundles/daily-sources-001.md` content into that stable
+    file so NotebookLM sees the current daily JSON-derived source bundle.
+    After this live rclone step succeeds, the backend reruns
+    `db:daily-canonical-sync` for tweets/forum with
+    `--notebooklm-daily-source-bundled`, which marks Supabase rows as daily
+    NotebookLM-source bundled. If rclone fails, the marker sync is skipped and
+    rows stay or are written as not bundled.
 15. Optionally, when `NOTEBOOKLM_DRIVE_LIVE=true`, update a separate
     per-source Drive API registry with `tools/notebooklm-drive-publisher.mjs
     --live`. Do not enable both live paths unless their registries point at the
