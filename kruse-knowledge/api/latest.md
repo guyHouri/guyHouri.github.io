@@ -10,9 +10,9 @@ Hippocampus as bioelectric commutator, adiposity as protective capacitor, vascul
 
 ## Twitter Updates
 
-### Hippocampal pyramidal cells function as Hall Effect commutator, reversing electron flow during sleep to erase accumulated information and restore mitochondrial capacity
+### All day, the hippocampus helps route new signals through the brain. In deep sleep, traffic can run backward through those same memory cells, flipping the brain's electrical direction instead of just resting it.
 
-Tag: Brain polarity reversal mechanism
+Tag: Deep sleep reverse signaling
 
 The hippocampus's three-layer archicortex (molecular, polymorphic, pyramidal layers) acts as an unshielded information highway with a unique thermodynamic role. The dense parallel alignment of hippocampal pyramidal cells functions exactly like a solid-state electronic Hall Effect commutator, capable of shifting localized charge density to alter the brain's global DC field lines. During the day, forward-biased electron flow (dendrite to axon) processes sensory data and generates high entropy. During slow-wave sleep, this current reverses (axon to dendrite), flipping the brain's macroscopic magnetic and electrical vector potentials via Maxwellian electrodynamics. This retrograde nerve firing, discovered by Dr. Olga Bukalo, powers the Landauer Principle cleanup: reversing current flow converts the brain's electrical lines into a regenerative vacuum that dissipates the day's accumulated informational entropy as heat. This mechanism explains why sleep disruption prevents information clearance and accelerates cognitive and metabolic decline.
 
@@ -61,23 +61,6 @@ Concepts:
 - BMI paradox (noob): The observation that obese patients often have better health outcomes in acute illness than lean patients, contradicting weight-loss paradigm
 - adiposity (noob): adiposity: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
 - electronic surges (noob): electronic surges: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
-
-### 550 BPI tint glasses block blue light wavelengths and are Kruse's personal choice for circadian light management
-
-Tag: Blue-blocking glasses specification
-
-Kruse uses 550 BPI tint glasses from a specific vendor and wore them at his Prague talk. The 550 BPI (blue-light-blocking index) specification indicates the tint blocks blue light wavelengths in the 400 - 500 nm range while allowing other wavelengths through, reducing circadian disruption from artificial light exposure.
-
-Source quote: "I use 550 BPI tints from https://t.co/63RXRzKdYU I was wearing them at my Prague talk pictured below"
-
-Sources:
-- https://x.com/i/status/2081393306303369356
-
-Concepts:
-- 550 BPI (noob): A specific blue-light-blocking index rating; Kruse's recommended tint strength for circadian light management
-- BPI (blue-light-blocking index) (noob): A measure of how much blue light a lens blocks; 550 BPI is Kruse's recommended specification
-- circadian disruption (noob): circadian disruption: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
-- wavelength (noob): wavelength: a selected source term used by this report card as a named mechanism, marker, protocol, location, or technical/legal idea. Read the surrounding card text for the exact claim and treat this as a glossary pointer, not proof by itself.
 
 ### Piezo shockwave therapy in volcanic low-deuterium water pool jets
 
