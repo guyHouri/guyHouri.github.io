@@ -9,7 +9,7 @@
     "sitemap": "https://guyhouri.github.io/kruse-knowledge/sitemap.xml",
     "llms": "https://guyhouri.github.io/kruse-knowledge/llms.txt",
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml",
-    "latest_report": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html",
+    "latest_report": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-27.html",
     "latest_json": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown": "https://guyhouri.github.io/kruse-knowledge/api/latest.md",
     "latest_plain_html": "https://guyhouri.github.io/kruse-knowledge/latest-summary.html",
@@ -28,8 +28,8 @@
       "type": "latest",
       "title": "Latest Kruse Report",
       "url": "https://guyhouri.github.io/kruse-knowledge/latest/",
-      "canonical_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-26.html",
-      "description": "Redirects to the 2026-07-26 daily report."
+      "canonical_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-27.html",
+      "description": "Redirects to the 2026-07-27 daily report."
     },
     {
       "type": "unsubscribe",
@@ -39,6 +39,15 @@
     }
   ],
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-27",
+      "title": "Kruse Report 2026-07-27",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-27.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-27.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-27.md",
+      "headline": "Hippocampus as bioelectric commutator, adiposity as protective capacitor, vascular disease as circadian-driven quantum collapse"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-26",
