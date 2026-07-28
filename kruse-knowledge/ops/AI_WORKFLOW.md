@@ -1049,6 +1049,29 @@ is needed, say `Guy action: None`.
 
 Planner may create docs, issues, project entries, and worker prompts. Planner should not silently merge, deploy, spend money, write live Supabase, send email, or do destructive cleanup.
 
+## Production Service User Authorization
+
+Production service-user access is protected operational state. For the Hetzner
+daily backend, never leave NotebookLM/rclone config or state readable only by
+`root` or otherwise inaccessible to the `kruse` service user. This includes
+`/etc/kruse/rclone.conf`, `/etc/kruse/notebooklm-rclone-sources.json`,
+`/var/lib/kruse-daily/notebooklm-refresh`,
+`/var/lib/kruse-daily/notebooklm-rclone-sync`, and the configured
+`NOTEBOOKLM_RCLONE_LEGACY_BUNDLE_DIR`.
+
+After any manual/root repair, deploy change, secret restore, rclone
+reauthorization, or NotebookLM state mutation that touches those paths, finish
+by running the root-owned guard:
+
+```bash
+sudo /opt/kruse-knowledge/summary/kruse-summary/deploy/fix-notebooklm-permissions.sh --verify-rclone
+```
+
+Then run the daily backend preflight as `kruse` with `/etc/kruse/daily-backend.env`
+loaded. Do not close the task or say NotebookLM is healthy until the guard and
+preflight pass, or until the exact authorization blocker and next owner are
+recorded.
+
 ## Process Feedback Escalation
 
 When Guy flags a workflow failure or says something should not happen again, the

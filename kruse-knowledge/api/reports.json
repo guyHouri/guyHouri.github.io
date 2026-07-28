@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-27",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-27.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-27.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-27.md",
+    "date": "2026-07-28",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-28.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-28",
+      "title": "Kruse Report 2026-07-28",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-28.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.md",
+      "headline": "Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold."
+    },
     {
       "type": "daily-report",
       "date": "2026-07-27",
