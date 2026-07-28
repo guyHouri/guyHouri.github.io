@@ -89,6 +89,10 @@
     .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
     .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
     .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .card-media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+    .card-media-gallery figure { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-media-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); display: block; }
+    .card-media-gallery figcaption { color: var(--text-soft); font-size: 0.76rem; line-height: 1.3; }
     .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }
@@ -446,7 +450,7 @@
       </div>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">🌙 Dark</button>
       <h1>Kruse Report 28/07/2026</h1>
-      <div class="subtitle">Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold; BTC Prague secret notes frame blue-blocking glasses as CSF cleanup gear.</div>
+      <div class="subtitle">Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold; BTC Prague secret notes surface copper magnetic gear, phone shielding, mineral-water, and vagal travel hacks.</div>
     </header>
       <div class="section-title">Twitter Updates</div>
       <div class="card collapsible-card is-collapsed" data-card-id="card-0" data-vote-card-id="kruse-2026-07-28-4rgyg3">
@@ -612,24 +616,33 @@
     </div></div><div class="source-quote">duty cycle is through the roof. It would be set to continuous override. Also ambient RF at boundaries has risen about 5 fold at the start time.</div></div>
       </div>
       <div class="section-title">Podcast Updates</div>
-      <div class="card collapsible-card is-collapsed" data-card-id="card-5" data-vote-card-id="kruse-2026-07-28-k92gmj">
+      <div class="card collapsible-card is-collapsed media-card" data-card-id="card-5" data-vote-card-id="kruse-2026-07-28-vdymd">
         <button type="button" class="card-title-button" aria-expanded="false" aria-controls="card-5-details">
-
+          <span class="card-title-media"><img src="../assets/btcprague/copper-bracelet-clasp.jpeg" alt="Close-up of the copper bracelet clasp stamped COPPER" loading="lazy" decoding="async" /></span>
           <span class="card-title-copy">
-            <span class="card-title">BTC Prague Secret Notes: blue-blocking glasses as CSF cleanup gear</span>
+            <span class="card-title">BTC Prague secret notes: copper magnetic gear, phone shielding, and vagal travel hacks</span>
 
           </span>
           <span class="card-chevron" aria-hidden="true"></span>
         </button>
-        <div id="card-5-details" class="card-details" hidden><div class="card-header"><span class="tag">BTC Prague Secret Notes</span><a href="https://btcprague.com/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-body"><div class="item-text">The private BTC Prague transcript frames <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">blue-blocking glasses</span> as targeted optical gear, not a style accessory: block specific blue wavelengths so the <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">CSF vortex</span> can keep clearing the system. The note turns the joke of the <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-39" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">tinfoil hat</span> into a biological metaphor: the real shield is optical discipline around blue light, timing, and water flow.</div><div id="concept-37" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
-      <strong>blue-blocking glasses:</strong> Glasses that filter selected blue wavelengths; in this note, the point is targeted optical filtering rather than generic sunglasses.
+        <div id="card-5-details" class="card-details" hidden><div class="card-header"><span class="tag">BTC Prague Secret Notes</span><a href="https://btcprague.com/" target="_blank" rel="noopener noreferrer" class="source-link">Read full source →</a></div><div class="card-media-gallery"><figure><img src="../assets/btcprague/copper-bracelet-clasp.jpeg" alt="Close-up of the copper bracelet clasp stamped COPPER" loading="lazy" decoding="async" /><figcaption>Copper bracelet clasp shown during the BTC Prague notes discussion.</figcaption></figure><figure><img src="../assets/btcprague/copper-bracelet-hand.jpeg" alt="Copper magnetic bracelet held across a hand" loading="lazy" decoding="async" /><figcaption>Bracelet exterior showing alternating copper-toned links.</figcaption></figure><figure><img src="../assets/btcprague/copper-bracelet-wrist.jpeg" alt="Copper magnetic bracelet worn on a wrist" loading="lazy" decoding="async" /><figcaption>Bracelet fit on wrist for the travel/field-control note.</figcaption></figure><figure><img src="../assets/btcprague/copper-bracelet-open.jpeg" alt="Open copper bracelet showing inner inserts" loading="lazy" decoding="async" /><figcaption>Open bracelet view showing the inner insert pattern discussed in the transcript.</figcaption></figure><figure><img src="../assets/btcprague/magnetrx-amazon-screenshot.jpeg" alt="Amazon screenshot of MagnetRX magnetic copper bracelet" loading="lazy" decoding="async" /><figcaption>Amazon reference screenshot for the MagnetRX-style magnetic copper bracelet.</figcaption></figure></div><div class="card-body"><div class="item-text">The full BTC Prague transcript reads like a field-kit notebook. It describes a <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-37" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-37" aria-expanded="false">copper magnetic bracelet</span> / closed copper loop with neodymium and <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-38" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-38" aria-expanded="false">rare-earth magnets</span>, tied to Mayan magnetic-excursion language; a copper necklace or neck ring framed as a cheap <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-39" data-concept-level="pro" role="button" tabindex="0" aria-controls="concept-39" aria-expanded="false">vagal nerve stimulator</span> for travel and jet lag; <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-40" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-40" aria-expanded="false">CO2 water</span> plus Fleur de Sel as a mineral-water hack; a <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-41" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-41" aria-expanded="false">daylight computer</span>; and a <span class="expandable-concept" data-card-id="card-5" data-concept-target="concept-42" data-concept-level="noob" role="button" tabindex="0" aria-controls="concept-42" aria-expanded="false">Faraday phone bag</span> framed as EMF shielding. The common thread is external field control: metals, magnets, light, phone isolation, water chemistry, and vagal signaling are treated as terrain tools.</div><div id="concept-37" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>copper magnetic bracelet:</strong> The bracelet shown in the photos; in the transcript it is framed as a cheap copper-and-magnet travel tool rather than ordinary jewelry.
     </div>
 <div id="concept-38" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
-      <strong>CSF vortex:</strong> Kruse shorthand for cerebrospinal-fluid flow and spin dynamics; the report keeps the phrase as source language and treats it as a mechanism claim to verify against the transcript.
+      <strong>rare-earth magnets:</strong> Neodymium/rare-earth magnetic inserts; the transcript ties them to Mayan magnetic-excursion language and field-control reasoning.
     </div>
-<div id="concept-39" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
-      <strong>tinfoil hat:</strong> A joke phrase used here as a metaphor for shielding; the note reframes the shield as light discipline rather than literal foil.
-    </div></div><div class="source-quote">They block specific blue light...</div></div>
+<div id="concept-39" class="expanded-content" data-card-id="card-5" data-concept-level="pro" aria-hidden="true">
+      <strong>vagal nerve stimulator:</strong> A device or claimed proxy that stimulates the vagus nerve; the transcript frames copper neck gear as a cheap travel version of this idea.
+    </div>
+<div id="concept-40" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>CO2 water:</strong> Carbonated/mineral water in the note; the transcript pairs it with Fleur de Sel and dissolved rare-earth elements in the jet-lag hack.
+    </div>
+<div id="concept-41" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>daylight computer:</strong> A computer described in the transcript as readable outdoors/indoors without blue light, used as a melatonin-protection tool.
+    </div>
+<div id="concept-42" class="expanded-content" data-card-id="card-5" data-concept-level="noob" aria-hidden="true">
+      <strong>Faraday phone bag:</strong> A radio-shielding phone pouch; the note frames it as travel EMF protection rather than only SIM-swap or phone-security defense.
+    </div></div><div class="card-points"><ul class="bullet-list"><li>Bracelet/neck gear: the transcript frames low-cost copper magnetic jewelry as a travel tool, with rare-earth/neodymium inserts as the important payload.</li><li>Phone and computer controls: the daylight computer and Faraday phone bag are presented as light/EMF environment controls, not generic gadget advice.</li><li>Water/mineral layer: the notes connect CO2 water with Fleur de Sel/France-ocean salt and dissolved rare-earth elements for the jet-lag hack.</li><li>Vagus/deuterium claim: vagal stimulation is presented as the route for removing deuterium from the brain in the neurological-disorder claim.</li></ul></div><div class="source-quote">It&#39;s got neodymium magnets in it. These are rare earth elements...</div></div>
       </div>
     <div class="locked-section">
       <div class="locked-title">
