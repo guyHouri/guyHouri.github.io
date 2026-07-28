@@ -6,7 +6,7 @@ JSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.json
 
 ## Headline
 
-Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold.
+Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold; BTC Prague secret notes frame blue-blocking glasses as CSF cleanup gear.
 
 ## Twitter Updates
 
@@ -120,3 +120,21 @@ Concepts:
 ## LinkedIn Updates
 
 _No selected source-bound cards for this section._
+
+## Podcast Updates
+
+### BTC Prague Secret Notes: blue-blocking glasses as CSF cleanup gear
+
+Tag: BTC Prague Secret Notes
+
+The private BTC Prague transcript frames blue-blocking glasses as targeted optical gear, not a style accessory: block specific blue wavelengths so the CSF vortex can keep clearing the system. The note turns the joke of the tinfoil hat into a biological metaphor: the real shield is optical discipline around blue light, timing, and water flow.
+
+Source quote: "They block specific blue light..."
+
+Sources:
+- https://btcprague.com/
+
+Concepts:
+- blue-blocking glasses (noob): Glasses that filter selected blue wavelengths; in this note, the point is targeted optical filtering rather than generic sunglasses.
+- CSF vortex (pro): Kruse shorthand for cerebrospinal-fluid flow and spin dynamics; the report keeps the phrase as source language and treats it as a mechanism claim to verify against the transcript.
+- tinfoil hat (noob): A joke phrase used here as a metaphor for shielding; the note reframes the shield as light discipline rather than literal foil.
