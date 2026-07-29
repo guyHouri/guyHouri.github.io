@@ -178,3 +178,25 @@ Concepts:
 - electron spin (pro): A quantum property of electrons that determines their magnetic moment. Alignment of electron spins is controlled by magnetic fields and is essential for metabolism and light processing.
 - water lattice (pro): The structured arrangement of water molecules in cells, stabilized by hydrogen bonding and magnetic fields. Geometry determines how light is transmitted and how information is stored.
 - DDW (pro): Deuterium-depleted water; water with reduced deuterium content. Supports proper water lattice geometry and metabolic function. Expensive and optional in magnetically strong terrain but necessary in magnetically weak terrain.
+
+### July 2026 member call is visible for Q&A review
+
+Tag: Transcript ready
+
+Welcome everyone to this month's Quantum Biologic Powwow, July twenty twenty-six.
+
+Source quote: "Welcome everyone to this month's Quantum Biologic Powwow, July twenty twenty-six."
+
+Sources:
+- https://optimalklubs.com/july-2026-quantum-biologic-powwow/
+
+### May 2026 member call is visible for Q&A review
+
+Tag: Transcript ready
+
+Hello everyone, and welcome to the May two thousand and twenty-six Quantum Biologic Powwow.
+
+Source quote: "Hello everyone, and welcome to the May two thousand and twenty-six Quantum Biologic Powwow."
+
+Sources:
+- https://optimalklubs.com/may-2026-quantum-biologic-powwow/

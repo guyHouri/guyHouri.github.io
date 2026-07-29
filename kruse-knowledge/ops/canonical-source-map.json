@@ -718,12 +718,13 @@
     {
       "id": "podcast_transcripts",
       "label": "Podcast transcripts",
-      "scope": "Transcript markdown and transcript rows for podcast episodes.",
+      "scope": "Transcript markdown and transcript rows for podcast episodes, including owned Jack Kruse YouTube channel videos mapped as a podcast transcript subfamily.",
       "canonical": {
         "local": {
           "status": "defined_missing_in_canonical_archive",
           "primary_paths": [
-            "kruse-archive/podcasts/<YYYY>/<YYYY-MM>/<transcript>.md"
+            "kruse-archive/podcasts/<YYYY>/<YYYY-MM>/<transcript>.md",
+            "kruse-archive/podcasts/<YYYY>/<YYYY-MM>/youtube-channel/<transcript>.md"
           ],
           "current_noncanonical_paths": [
             "summary/kruse-summary/out/issue-225/transcripts/*.md",
@@ -732,23 +733,36 @@
           "state_paths": [
             "summary/kruse-summary/out/issue-225/rollup.json",
             "summary/kruse-summary/out/issue-225-paid-stt-final/rollup.json",
-            "summary/kruse-summary/out/issue-405/youtube-transcript-import-manifest.json"
+            "summary/kruse-summary/out/issue-405/youtube-transcript-import-manifest.json",
+            "summary/kruse-summary/out/issue-643/youtube-channel-live-import/*.json",
+            "summary/kruse-summary/.codex-tmp/youtube-channel-daily-refresh/<date>/*.json",
+            "$KRUSE_BACKEND_STATE_DIR/youtube-channel-daily-refresh/<date>/*.json"
           ],
-          "notes": "Current transcript artifacts exist under issue output paths. The canonical archive target is kruse-archive/podcasts, and Supabase Storage target is kruse-archive/podcasts."
+          "notes": "Current transcript artifacts exist under issue output paths. The canonical archive target is kruse-archive/podcasts, and Supabase Storage target is kruse-archive/podcasts. Issue #643 maps the owned channel https://www.youtube.com/@Dr.Jackkruse1 to kruse-archive/podcasts/<YYYY>/<YYYY-MM>/youtube-channel/ and uses public YouTube captions only. Issue #645 wires a daily new-only owned-channel refresh through the backend runner."
         }
       },
       "derived_outputs": [
         "summary/kruse-summary/out/issue-225/*.json",
-        "summary/kruse-summary/out/issue-405/*.json"
+        "summary/kruse-summary/out/issue-405/*.json",
+        "summary/kruse-summary/out/issue-643/youtube-channel-live-import/*.json",
+        "summary/kruse-summary/.codex-tmp/youtube-channel-daily-refresh/<date>/*.json",
+        "$KRUSE_BACKEND_STATE_DIR/youtube-channel-daily-refresh/<date>/*.json"
       ],
       "supabase": {
         "status": "target_defined_import_pending",
         "tables": [
           {
             "name": "kruse_podcast_transcripts",
-            "writer": "summary/kruse-summary/code/podcast-youtube-transcript-import-plan.js and summary/kruse-summary/code/podcast-supabase-import-execute.js",
+            "writer": "summary/kruse-summary/code/podcast-youtube-transcript-import-plan.js, summary/kruse-summary/code/podcast-supabase-import-execute.js, and summary/kruse-summary/code/youtube-channel-live-import-issue-643.js",
             "conflict_target": "canonical_episode_id",
-            "daily": false
+            "daily": "owned_youtube_channel_new_only"
+          },
+          {
+            "name": "media_items",
+            "writer": "summary/kruse-summary/code/youtube-channel-live-import-issue-643.js",
+            "conflict_target": "media_id",
+            "daily": "owned_youtube_channel_new_only",
+            "notes": "Used for owned YouTube channel transcript closeout evidence and canonical media registry coverage."
           }
         ],
         "storage_buckets": [
@@ -764,19 +778,23 @@
           "kruse-archive/podcasts/**/*.md",
           "transcribe_kruse/transcriptions/**/podcast*.md"
         ],
-        "tool": "tools/notebooklm-manifest.mjs"
+        "tool": "tools/notebooklm-manifest.mjs",
+        "notes": "Owned YouTube channel transcripts imported by issue #643 and refreshed daily by issue #645 are bundled through the existing podcast transcript NotebookLM source files."
       },
       "daily_sync": {
-        "status": "metadata_only_no_transcript_import",
-        "owner": "issue-specific import workers",
+        "status": "metadata_plus_owned_youtube_channel_new_transcript_import",
+        "owner": "backend daily runner plus issue-specific import workers",
         "steps": [
-          "Daily sync plans metadata rows with transcriptStorage=false. Transcript imports require a separate approved dry-run/live import task."
+          "Daily sync plans metadata rows with transcriptStorage=false for the general podcast backlog.",
+          "The backend daily runner runs the owned Jack Kruse YouTube channel refresh in new-only mode after report/email delivery and before NotebookLM refresh/sync."
         ],
         "commands": [
           "summary/kruse-summary: npm run db:podcast-youtube-import:dry -- --dry-run",
-          "summary/kruse-summary: npm run db:podcast-import:dry -- --dry-run"
+          "summary/kruse-summary: npm run db:podcast-import:dry -- --dry-run",
+          "summary/kruse-summary: node code/youtube-channel-live-import-issue-643.js --execute",
+          "summary/kruse-summary: node code/youtube-channel-live-import-issue-643.js --execute --new-only"
         ],
-        "writes_supabase": false
+        "writes_supabase": "owned_youtube_channel_new_only"
       },
       "evidence_checks": [
         {
