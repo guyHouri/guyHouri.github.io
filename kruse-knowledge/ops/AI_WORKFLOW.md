@@ -34,7 +34,7 @@ summaries in sync.
   branch or called out in handoff with a real access route.
 - Plain "yes", "ok", "go", "approved", or equivalent from Guy is approval for the current proposed scope. Do not require formal approval phrases.
 - Mission approval approves direction and task planning. Task approval approves named task issues or a named batch for execution.
-- Routine repo work does not need conversational permission. External-impact work still needs explicit approval at the point where it affects real money, production data, real users, secrets, or destructive external state.
+- Routine repo work does not need conversational permission. External-impact work still needs explicit approval at the point where it affects real money, production data, real users, secrets, or destructive external state, except for the standing scoped Supabase insert approval below.
 - If public-site or GitHub Pages code/config changed, deployment after merge is expected once checks pass and no hold remains.
 - Workers must add or update tests for code they add, including unit tests and integration/smoke tests where the repo has a reasonable test surface.
 - Worker test evidence must prove the changed behavior, not only show that broad or unrelated checks are green.
@@ -231,10 +231,12 @@ answer all of these before `ARCHIVE_OK: yes`:
 - Selected source count and IDs match the approved task scope.
 - Transcript markdown is non-empty and includes provider/model metadata.
 - Canonical Storage status is explicit: uploaded/read-back verified in
-  `kruse-archive`, or blocked because live Storage upload was not approved.
+  `kruse-archive`, or blocked by an explicit artifact-only/no-live-write task
+  choice, missing credentials, or an out-of-scope Storage target.
 - Canonical registry status is explicit: `media_items` or the approved
-  source-family table was upserted/read-back verified, or blocked because live
-  DB write was not approved.
+  source-family table was upserted/read-back verified, or blocked by an
+  explicit artifact-only/no-live-write task choice, missing credentials, or an
+  out-of-scope DB target.
 - Raw audio upload remains `false` unless a separate task explicitly approved
   raw-audio Storage upload.
 - Drive, NotebookLM, email, GitHub Actions, secrets, and local env/config
@@ -246,10 +248,11 @@ When an evidence manifest exists, run:
 node tools/check-canonical-transcript-closeout.mjs --manifest <evidence.json> --expect-count <n>
 ```
 
-If the guard fails because Storage or registry writes were outside approval,
-the final response must be `ARCHIVE_OK: no` and name the missing approval or
-next owner. Do not call local ignored transcript artifacts "canonical" unless
-the issue explicitly scoped a local-only or dry-run deliverable.
+If the guard fails because Storage or registry writes were not performed, the
+final response must be `ARCHIVE_OK: no` and name the exact artifact-only choice,
+credential blocker, scope blocker, or next owner. Do not call local ignored
+transcript artifacts "canonical" unless the issue explicitly scoped a
+local-only or dry-run deliverable.
 
 
 ## Final Response Closeout
@@ -613,7 +616,10 @@ Use this scale when Guy gives a 1-10 rating:
 Always ask before:
 
 - Paid API spend
-- Live Supabase writes
+- Live Supabase deletes, truncates, schema changes, migrations, broad backfills,
+  ambiguous production writes, or writes outside the approved issue scope. Do
+  not ask again for routine scoped Supabase inserts/upserts covered by
+  [Standing Supabase Insert Approval](#standing-supabase-insert-approval).
 - Sending email
 - Broad live scraping
 - Deleting or renaming production resources
@@ -622,6 +628,31 @@ Always ask before:
   gitignored `.env`, cookie, credential, PowerShell User/Machine env, or
   Codex/runtime env stores
 - Destructive cleanup
+
+### Standing Supabase Insert Approval
+
+Guy has standing-approved routine scoped Supabase DB inserts/upserts and
+canonical Supabase Storage object writes when they are required to complete an
+approved Kruse task. Workers must not stop, ask again, or classify work as
+`Waiting on Guy` solely because the next step is a Supabase insert/upsert when
+all of these are true:
+
+- The issue/task scope is approved, or Guy explicitly asked whether the item is
+  in Supabase, canonical, uploaded, available, or equivalent.
+- The target table, conflict target, bucket, and object path come from the task
+  card, `docs/ops/canonical-source-map.json`, or existing repo import tooling.
+- The write is bounded to the expected rows/objects for that task and uses
+  existing canonical Supabase credentials/secrets.
+- The worker records readback evidence in the handoff: table/bucket,
+  conflict target or object path, source IDs, row/object counts, and any hashes
+  or canonical IDs the importer can provide.
+
+This standing approval includes insert/upsert-style canonicalization and
+Storage uploads/overwrites to mapped canonical paths. It does not approve
+deletes, truncates, schema migrations, new tables/buckets, broad discovery or
+backfill beyond the approved task, paid STT/API spend, email sends,
+secret/env/config changes, production resource deletion/rename, private-source
+boundary changes not already in the approved task, or materially wider scope.
 
 ### Provider Credential Reuse Boundary
 
@@ -648,20 +679,24 @@ delivered:
 - `artifact-only`: a local/repo transcript artifact was created or verified,
   with no live import expected.
 - `import-ready/no-live-write`: the dry-run import plan includes the row, but
-  Supabase was not changed. The closeout must say `not in Supabase` and name
-  the exact next approval, credential, or owner needed for the live write.
+  Supabase was not changed. Use this only when Guy explicitly chose a dry-run
+  or artifact-only result, credentials are unavailable, or the live write is
+  outside the standing scoped insert approval. The closeout must say `not in
+  Supabase` and name the exact artifact-only choice, credential blocker,
+  out-of-scope approval, or owner needed for the live write.
 - `live Supabase imported`: the approved row was written to Supabase and a
   readback proves the exact canonical id/source id, transcript count/hash, and
   no unintended Storage/audio/email/paid side effects.
 
 Do not add generic no-live-write disclaimers to transcript or canonical-source
 closeouts. If Guy explicitly chooses an artifact-only or dry-run-only outcome,
-or if credentials/approval are genuinely unavailable, say `not in Supabase` and
-name the exact next approval, credential, or owner needed for the live write. If
-Guy asks whether an item is "in Supabase", "canonical", "uploaded",
-"available", or equivalent, the worker must either perform the scoped live
-import with readback proof or report the exact blocker; it must not call an
-import-ready artifact done as though it were live.
+or if credentials/scope are genuinely unavailable, say `not in Supabase` and
+name the exact artifact-only choice, credential blocker, scope blocker, or next
+owner needed for the live write. If Guy asks whether an item is "in Supabase",
+"canonical", "uploaded", "available", or equivalent, the worker must either
+perform the scoped live import with readback proof under the standing approval
+or report the exact blocker; it must not call an import-ready artifact done as
+though it were live.
 
 Public-site/GitHub Pages deployment:
 
@@ -1033,8 +1068,9 @@ Allowed queue/audit actions inside an approved scope:
 
 Forbidden without explicit approval: dirty, active, open-PR, private, or
 ambiguous worktree deletion; GitHub Actions dispatch/reruns while paused; live
-Supabase writes; email sends; broad scraping; paid API spend; secret/env
-mutation; production resource deletion/rename; or scope/product decisions.
+Supabase writes outside the standing scoped insert/upsert approval; email
+sends; broad scraping; paid API spend; secret/env mutation; production resource
+deletion/rename; or scope/product decisions.
 
 A queue/audit lane that sees the same unchanged finding on two consecutive passes
 must stop repeating passive status. It must take an allowed action, park the
@@ -1047,7 +1083,7 @@ Guy-action line, an already-handled line, a concrete next owner/action, and the
 reason the agent could not safely finish or transfer it first. If no Guy action
 is needed, say `Guy action: None`.
 
-Planner may create docs, issues, project entries, and worker prompts. Planner should not silently merge, deploy, spend money, write live Supabase, send email, or do destructive cleanup.
+Planner may create docs, issues, project entries, and worker prompts. Planner should not silently merge, deploy, spend money, write live Supabase outside the standing scoped insert/upsert approval, send email, or do destructive cleanup.
 
 ## Production Service User Authorization
 

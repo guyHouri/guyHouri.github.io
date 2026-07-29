@@ -15,14 +15,23 @@
     "feed": "https://guyhouri.github.io/kruse-knowledge/feed.xml"
   },
   "latest": {
-    "date": "2026-07-28",
-    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-28.html",
-    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.json",
-    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-28.md",
+    "date": "2026-07-29",
+    "html_url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-29.html",
+    "json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-29.json",
+    "markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-29.md",
     "latest_json_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.json",
     "latest_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/latest.md"
   },
   "reports": [
+    {
+      "type": "daily-report",
+      "date": "2026-07-29",
+      "title": "Kruse Report 2026-07-29",
+      "url": "https://guyhouri.github.io/kruse-knowledge/reports/2026-07-29.html",
+      "api_json_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-29.json",
+      "api_markdown_url": "https://guyhouri.github.io/kruse-knowledge/api/reports/2026-07-29.md",
+      "headline": "Sleep apnea as brainstem magnetic failure; Arc protein and memory; geographic terrain determines healing capacity"
+    },
     {
       "type": "daily-report",
       "date": "2026-07-28",

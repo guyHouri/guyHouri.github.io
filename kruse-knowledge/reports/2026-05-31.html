@@ -89,6 +89,10 @@
     .card-teaser { display: block; color: var(--text-soft); font-size: 0.88rem; font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
     .card-title-media { flex: 0 0 96px; width: 96px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); }
     .card-title-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .card-media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+    .card-media-gallery figure { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-media-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--card-border); border-radius: 8px; background: var(--quote-bg); display: block; }
+    .card-media-gallery figcaption { color: var(--text-soft); font-size: 0.76rem; line-height: 1.3; }
     .podcast-card .card-title-button { align-items: flex-start; }
     .card-chevron { flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid var(--card-border-hover); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-hover); font-weight: 700; }
     .card-chevron::before { content: "+"; line-height: 1; }

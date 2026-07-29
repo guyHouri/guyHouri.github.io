@@ -30,7 +30,7 @@ follow-up owner for any gap.
 | Optimal Klubs daily blogs | `summary/kruse-summary/curated/<date>-blogs.json` | `blog_articles` via daily blog state/sync | Excluded; report cards are derived | Backend daily runner blog fetch and canonical sync | None |
 | Podcast appearances | `summary/kruse-summary/curated/podcast-canonical-inventory.json` and `<date>-podcasts.json` | `kruse_podcast_transcripts` metadata rows | Metadata excluded until transcript markdown exists | Backend daily runner metadata/Q&A sidecar plus canonical sync | Full podcast discovery inventory is not daily refreshed |
 | Podcast transcripts | Target `kruse-archive/podcasts/<year>/<month>/*.md`; current artifacts under `summary/kruse-summary/out/issue-225*/transcripts/` | `kruse_podcast_transcripts`, `kruse-archive/podcasts/` | Included when archive markdown exists | Issue-specific import workers | Issue transcript artifacts are not yet in the canonical archive path or live Supabase import |
-| Q&A/PowWow | Daily metadata in `<date>-podcasts.json`; transcript targets `kruse-archive/qna/` and `kruse-archive/powwow/`; issue #451 and #484 status/results in `plans/issue-451-audio-transcript-*.json` and `plans/issue-484-qna-audio-canonical-normalization-result.json` | `kruse_podcast_transcripts`/`media_items`, `kruse-archive/qna|powwow/` | Q&A and PowWow are separate manifest families when transcript markdown exists | Daily metadata only | Issue #484 live-normalized 169 Q&A rows / 105 Q&A transcript Storage objects and 4 issue #450 PowWow rows; issue #451/#474 live-imported 79 PowWow STT rows / 77 transcript objects. Paid STT/live import stays a separate approval boundary for future rows |
+| Q&A/PowWow | Daily metadata in `<date>-podcasts.json`; transcript targets `kruse-archive/qna/` and `kruse-archive/powwow/`; issue #451 and #484 status/results in `plans/issue-451-audio-transcript-*.json` and `plans/issue-484-qna-audio-canonical-normalization-result.json` | `kruse_podcast_transcripts`/`media_items`, `kruse-archive/qna|powwow/` | Q&A and PowWow are separate manifest families when transcript markdown exists | Daily metadata only | Issue #484 live-normalized 169 Q&A rows / 105 Q&A transcript Storage objects and 4 issue #450 PowWow rows; issue #451/#474 live-imported 79 PowWow STT rows / 77 transcript objects. Paid STT and future row selection stay separate task-approval boundaries; scoped inserts/upserts within an approved task use the standing approval |
 | Webinars | Target `kruse-archive/webinars/<year>/*.md`; issue #451/#484 status/result evidence in `plans/issue-451-audio-transcript-*.json` and `plans/issue-484-qna-audio-canonical-normalization-result.json`; external source root can be `D:/kruse/webinars` | `media_items`, `kruse-archive/webinars/` | Included when transcript markdown exists | None | Issue #451/#474 live-imported 89 webinar STT media rows / 84 transcript objects; issue #484 live-normalized one legacy webinar row/object. Future webinar discovery/import is still not daily-owned; raw audio is deferred by policy |
 | NotebookLM exports | Derived manifest/delta from `tools/notebooklm-daily-refresh.mjs`, `tools/notebooklm-drive-publisher.mjs`, and `tools/notebooklm-rclone-sync.mjs` | None by policy | `summary/kruse-summary/out/notebooklm-refresh/<date>/`, `summary/kruse-summary/out/notebooklm-rclone-sync/<date>/`, and stable Drive file IDs in the private registry | Backend daily runner when `NOTEBOOKLM_RCLONE_LIVE=true` for the 114-file Gemini Notebook Drive registry; optional Drive API path when `NOTEBOOKLM_DRIVE_LIVE=true` | NotebookLM Personal/Pro source attachment is not automated; new Drive files must be added individually once; PowWow is selected as its own source family |
 | Daily reports | `summary/kruse-summary/out/<date>.html` and `docs/reports/<date>.html` | Target `daily_reports`, `kruse-summary/reports/` | Excluded; reports are derived summaries | Backend daily runner local/public publish | Supabase report archive target exists but is not imported by daily sync |
@@ -46,11 +46,13 @@ follow-up owner for any gap.
   `supabase.tables[].conflict_target` for DB upserts, and use
   `supabase.storage_buckets[].bucket` plus `object_prefix` for markdown or
   transcript Storage objects.
-- If live Supabase writes are approved for the task, write the row/object to
-  the mapped destination and record the row/object count in the handoff. If
-  live writes are not approved, produce or update a dry-run/import plan that
-  names the exact table, conflict target, bucket/object path, source ID, source
-  URL or local path, expected count, and next owner.
+- For approved tasks, routine scoped Supabase inserts/upserts and mapped
+  Storage object writes are standing-approved. Write the row/object to the
+  mapped destination and record readback evidence in the handoff: table/bucket,
+  conflict target or object path, source ID, source URL or local path, and
+  row/object count. Use a dry-run/import plan only when Guy explicitly chose
+  artifact-only/no-live-write, credentials are unavailable, or the write is
+  outside the standing approval.
 - A chat note, `.codex-tmp` file, issue output folder, report HTML, or
   NotebookLM bundle is not enough by itself for a discovered source.
 - Supabase rows should point to canonical source or Storage paths when content
