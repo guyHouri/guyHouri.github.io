@@ -11,7 +11,7 @@ Latest summary Markdown: https://guyhouri.github.io/kruse-knowledge/api/latest.m
 Latest plain HTML: https://guyhouri.github.io/kruse-knowledge/latest-summary.html
 Latest plain text: https://guyhouri.github.io/kruse-knowledge/latest-summary.txt
 RSS feed: https://guyhouri.github.io/kruse-knowledge/feed.xml
-Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-29.html
+Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-30.html
 
 ## Core Pages
 
@@ -23,6 +23,7 @@ Latest report: https://guyhouri.github.io/kruse-knowledge/reports/2026-07-29.htm
 
 ## Daily Reports
 
+- [2026-07-30 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-30.html): Sleep pathology via spin-flip collapse, EBV lipid raft disruption in MS, and microtubule water-slaving - three mechanism refinements on circadian, immune, and consciousness biophysics.
 - [2026-07-29 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-29.html): Sleep apnea as brainstem magnetic failure; Arc protein and memory; geographic terrain determines healing capacity
 - [2026-07-28 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-28.html): Magnetic terrain collapse drives dimagnetic oxygen pathology; fetal brain builds sensory circuits via internal photon signaling; geomagnetic excursions create localized sediment chaos without disabling surface magnetism; Australia RF duty cycle elevated 5-fold; BTC Prague secret notes surface copper magnetic gear, phone shielding, mineral-water, and vagal travel hacks.
 - [2026-07-27 - Kruse Report](https://guyhouri.github.io/kruse-knowledge/reports/2026-07-27.html): Hippocampus as bioelectric commutator, adiposity as protective capacitor, vascular disease as circadian-driven quantum collapse

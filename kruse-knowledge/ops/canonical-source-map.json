@@ -844,11 +844,13 @@
           ],
           "state_paths": [
             "summary/kruse-summary/code/fetch-qna-updates.js",
+            "summary/kruse-summary/code/qna-summary-state.js",
+            "summary/kruse-summary/supabase/qna-summary-state.sql",
             "plans/issue-451-audio-transcript-canonical-status.json",
             "plans/issue-451-audio-transcript-supabase-import-result.json",
             "plans/issue-484-qna-audio-canonical-normalization-result.json"
           ],
-          "notes": "The daily job records protected Q&A/PowWow page metadata. Issue #484 live-normalized 169 Q&A media_items rows to 105 canonical kruse-archive/qna transcript objects and normalized 4 issue #450 PowWow rows against existing kruse-archive objects. Issue #451/#474 live-imported PowWow STT evidence for 79 media_items rows and 77 transcript Storage objects; future rows still need bounded STT/import approval."
+          "notes": "The daily job records protected Q&A/PowWow page metadata and uses qna-summary-state.js/qna-summary-state.sql to suppress recordings after their first Daily Kruse Summary appearance. Issue #484 live-normalized 169 Q&A media_items rows to 105 canonical kruse-archive/qna transcript objects and normalized 4 issue #450 PowWow rows against existing kruse-archive objects. Issue #451/#474 live-imported PowWow STT evidence for 79 media_items rows and 77 transcript Storage objects; future rows still need bounded STT/import approval."
         }
       },
       "derived_outputs": [
@@ -860,8 +862,8 @@
         "tables": [
           {
             "name": "kruse_podcast_transcripts",
-            "writer": "summary/kruse-summary/code/podcast-supabase-import-plan.js via daily-canonical-sync.js",
-            "conflict_target": "canonical_episode_id",
+            "writer": "summary/kruse-summary/code/podcast-supabase-import-plan.js via daily-canonical-sync.js and summary/kruse-summary/code/qna-summary-state.js for daily summary presentation state",
+            "conflict_target": "canonical_episode_id or summary_uuid",
             "daily": true
           },
           {
@@ -894,11 +896,13 @@
         "status": "automatic_metadata_only",
         "owner": "summary/kruse-summary/code/daily-backend-runner.js",
         "steps": [
+          "Backfill Q&A summary state",
           "Fetch Optimal Klubs Q&A updates",
           "Build combined daily input",
           "Sync daily canonical Supabase rows"
         ],
         "commands": [
+          "summary/kruse-summary: npm run db:qna-summary-backfill -- --execute",
           "summary/kruse-summary: npm run fetch-qna -- --date=$TARGET --months=4 --limit=3",
           "summary/kruse-summary: npm run db:daily-canonical-sync -- --date=$DATE --execute"
         ],
