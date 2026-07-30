@@ -10,7 +10,7 @@ Sleep pathology via spin-flip collapse, EBV lipid raft disruption in MS, and mic
 
 ## Twitter Updates
 
-### Missing near-infrared light is linked to failed sleep-phase splicing repair
+### Mechanism links a body signal to a practical change
 
 Tag: Sleep collapse mechanism
 
