@@ -23,9 +23,10 @@ flowchart LR
 - The backend URL owns execution.
 - GitHub Actions is not the daily scheduler and not the daily executor.
 - The old daily GitHub Actions runner and GitHub recovery runner are removed.
-- GitHub remains the source repository and public Pages repository host; the
-  backend may commit generated artifacts and publish Pages using normal git
-  credentials configured on the backend server.
+- GitHub remains the source repository. GitHub Pages remains a fallback/legacy
+  public host during migration, but Hetzner can publish the static site directly
+  with `KRUSE_SITE_PUBLISH_TARGET=hetzner-direct` or dual-publish with
+  `KRUSE_SITE_PUBLISH_TARGET=both`.
 
 ## Scheduler
 
@@ -64,7 +65,8 @@ Supabase sends:
   "source": "supabase-pg-cron",
   "mode": "normal",
   "date": "YYYY-MM-DD",
-  "approved_send": true
+  "approved_send": true,
+  "site_publish_target": "github-pages"
 }
 ```
 
@@ -126,6 +128,9 @@ KRUSE_DAILY_INSTALL
 KRUSE_DAILY_GIT_USER_NAME
 KRUSE_DAILY_GIT_USER_EMAIL
 KRUSE_SITE_PUBLIC_BASE_URL
+KRUSE_SITE_PUBLISH_TARGET
+KRUSE_DIRECT_SITE_ROOT
+KRUSE_DIRECT_SITE_RETAIN_RELEASES
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SERVICE_ROLE_KEY
@@ -421,6 +426,14 @@ environment variables, then loads `/etc/kruse/daily-backend.env` on the server.
 It prints host, key path, mode, date, and runner args only. It must not print
 backend tokens, Gmail app passwords, Supabase service-role keys, or provider
 secrets.
+
+The Hetzner ops gateway must run recovery commands through the repo-owned
+`summary/kruse-summary/deploy/kruse-codex-run-as-kruse.py` helper installed at
+`/usr/local/lib/kruse-codex-run-as-kruse.py`. That helper must preserve
+interior spaces in env values when loading `/etc/kruse/daily-backend.env`, so
+manual recovery and the scheduled `kruse-daily-backend.service` see the same
+effective credentials. Do not replace it with shell-word tokenization; that can
+truncate Gmail app-passwords pasted in Google's spaced display format.
 
 Run the backend runner directly:
 

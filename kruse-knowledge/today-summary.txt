@@ -6,7 +6,7 @@ JSON: https://guyhouri.github.io/kruse-knowledge/api/reports/2026-08-02.json
 
 Headline
 
-Cholesterol as quantum magnetic hardware; Arc capsids as retroviral memory storage; Ehlers-Danlos as terrain-driven phenotype
+Dynamo failure and viral memory hardware; Ehlers-Danlos as terrain-driven phenotype
 
 Twitter Updates
 
@@ -57,9 +57,17 @@ DM#107: DECENTRALIZED MEDICINE #107: WHEN THE DYNAMO FAILS EXOSOMES AND VIRAL MA
 
 Tag: DM#107
 
-Your brain is loaded with a magnetic fat called cholesterol. The human brain makes up only 2% of total body weight, yet it contains roughly 25% of the body’s total cholesterol pool. This massive concentration is not accidental; cholesterol is a dense, highly specialized lipid that serves as a high-capacity dielectric capacitor, a topological insulator, ...
+DM#107's new signal is the evolutionary field story, not the opening cholesterol hook. Kruse frames a weakened planetary dynamo as pressure for biology to build internal viral and exosomal hardware that can hold memory, buffer field noise, and keep oxygen chemistry on the paramagnetic side when the external magnetic environment becomes less reliable.
 
-Source quote: "Your brain is loaded with a magnetic fat called cholesterol."
+Key points:
+- Dynamo failure -> internal hardware: declining geomagnetic support is framed as the reason biology had to move spin and memory stabilization inside the organism.
+- Arc/Gag capsids become memory hardware: Arc is treated as co-opted retroviral Gag protein that builds virus-like capsids for memory-specific mRNA and spin-coherent storage.
+- Exosomes are the non-infectious analogue: cholesterol-rich vesicles are presented as mobile Faraday cages that buffer field noise, protect cargo, and chelate reactive metals.
+- Neuropsin/380 nm is the switch: morning UV-A/violet light is framed as the signal that keeps tissue oxygen in the paramagnetic triplet state instead of singlet-oxygen noise.
+- Sleep apnea becomes an electrical rescue loop: airway collapse is reframed as an emergency adrenaline spike that force-starts a stalled lattice and field circuit.
+- The 20,000-gene paradox is the genomic angle: human complexity is tied less to coding-gene count and more to noncoding viral hardware plus exosomal routing.
+
+Source quote: "When the dynamo weakened from the Carboniferous era, genes were deleted and viral elements were expanded in the genome of mammals."
 
 Sources:
 - https://optimalklubs.com/decentralize-medicine-107-when-the-dynamo-fails-exosomes-and-viral-marketing-rises/
