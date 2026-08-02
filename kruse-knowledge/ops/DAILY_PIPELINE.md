@@ -125,6 +125,9 @@ KRUSE_DAILY_BACKEND_HOST
 KRUSE_DAILY_BACKEND_PORT
 KRUSE_BACKEND_STATE_DIR
 KRUSE_DAILY_INSTALL
+KRUSE_DAILY_FAILURE_RECOVERY_SIGNAL
+KRUSE_DAILY_FAILURE_RECOVERY_DISABLED
+KRUSE_DAILY_QNA_FATAL
 KRUSE_DAILY_GIT_USER_NAME
 KRUSE_DAILY_GIT_USER_EMAIL
 KRUSE_SITE_PUBLIC_BASE_URL
@@ -178,6 +181,9 @@ The repo-side PR is not the same thing as live cutover. To cut over production:
 1. Deploy the repo on the backend host.
 2. Install `summary/kruse-summary/deploy/kruse-daily-backend.service.example`
    as the backend service.
+   Install `summary/kruse-summary/deploy/kruse-codex-officer.path.example` as
+   `kruse-codex-officer.path` so child-runner failures wake the existing Codex
+   officer immediately.
 3. Fill `/etc/kruse/daily-backend.env` from
    `summary/kruse-summary/deploy/kruse-daily-backend.env.example`.
 4. Expose `POST /jobs/daily-kruse-summary` over HTTPS.
@@ -226,6 +232,10 @@ The backend runner checks state before spending API budget:
 - Supabase `daily_watchdog_dispatches` blocks duplicate backend dispatches
   inside the last 23 hours.
 - The backend HTTP server allows one active daily runner at a time.
+- The failure wake signal records `last-sent.json`, generated report existence,
+  docs/site report existence, and the public report URL so Codex recovery can
+  choose diagnosis-only, `send-existing`, or normal rebuild without duplicate
+  sends/publishes.
 
 ## Daily Run Steps
 
@@ -339,7 +349,8 @@ includes the report date, failure reason, and a Hetzner `journalctl` pointer.
 | Explicit operator preflight tests fail | Stop before scraping/publishing/email and attempt an admin-only failure alert | This happens only when `--run-tests` or `KRUSE_DAILY_RUN_TESTS=true` is explicitly set; scheduled production does not run tests before the report |
 | X scrape fails | Stop before summary and email | Missing source data makes the report unreliable |
 | Forum scrape fails after retries | Write an empty sidecar with `scrape_error` and publish an explicit forum-failed report unless forced | A transient forum outage should be visible but not silently treated as zero activity |
-| Optimal Klubs blog/Q&A check fails | Stop unless a valid reusable sidecar exists | The daily report should not silently miss protected-source updates |
+| Optimal Klubs blog check fails | Stop unless a valid reusable sidecar exists | Blog updates are daily source material and should not silently disappear |
+| Optimal Klubs Q&A check fails because the backend cookie/session/headless login is gated | Write an explicit zero-Q&A warning sidecar with checked-month evidence and continue unless `KRUSE_DAILY_QNA_FATAL=true` | Q&A is a side lane; a stale protected-source session should wake recovery and be visible, not kill the whole daily report |
 | Supabase mailing-list sync fails | Stop before approved send | We do not guess recipients |
 | Anthropic generation or validation fails | Stop before approved send | No validated report means no send |
 | NotebookLM Drive live preflight fails | Stop before scraping/cost/publishing when live mode is required | A dry-run export must not masquerade as the live NotebookLM refresh |
@@ -370,6 +381,29 @@ journalctl -u kruse-daily-backend.service -n 200 --no-pager
 cd /opt/kruse-knowledge
 git -c safe.directory=/opt/kruse-knowledge status --short --branch
 ```
+
+For Optimal Klubs Q&A incidents, generic `login_or_protected_page` output is a
+symptom, not a root-cause diagnosis. Retest with the service user, service
+working directory, and service EnvironmentFile, and use the redacted auth probe
+so secrets never appear in logs:
+
+```bash
+sudo systemd-run --wait --pipe --collect \
+  --uid=kruse --gid=kruse \
+  -p WorkingDirectory=/opt/kruse-knowledge/summary/kruse-summary \
+  -p EnvironmentFile=/etc/kruse/daily-backend.env \
+  -- /usr/bin/node code/qna-auth-probe.js --date=YYYY-MM-DD --months=4 --limit=3
+```
+
+The probe must show the exact URL/month tested, cookie-path status, browser
+login status, env presence by name/length only, and whether real Q&A items were
+found. On 2026-08-02, the production-equivalent retest on `ubuntu-4gb-fsn1-1`
+classified the failure as a stale or insufficient static
+`OPTIMAL_KLUBS_COOKIE`: August 2026 was not yet published, the July/June/May
+URLs were correct but protected under the cookie path, and the saved service
+username/password browser-login path successfully fetched the July, June, and
+May 2026 Q&A pages with recording links. That is not a missing env-name,
+monthly-URL fallback, or broken Q&A source problem.
 
 The production runner fetches `origin/main` and fast-forwards the server
 checkout before daily scraping/building when Git publishing is enabled. A dirty

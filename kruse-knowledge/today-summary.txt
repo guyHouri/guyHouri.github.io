@@ -57,15 +57,15 @@ DM#107: DECENTRALIZED MEDICINE #107: WHEN THE DYNAMO FAILS EXOSOMES AND VIRAL MA
 
 Tag: DM#107
 
-DM#107's new signal is the evolutionary field story, not the opening cholesterol hook. Kruse frames a weakened planetary dynamo as pressure for biology to build internal viral and exosomal hardware that can hold memory, buffer field noise, and keep oxygen chemistry on the paramagnetic side when the external magnetic environment becomes less reliable.
+DM#107 is not mainly a cholesterol article. The new move is that Kruse connects a weaker planetary magnetic field to the body's need for its own internal information shields: Arc capsids inside neurons, exosomes moving between cells, neuropsin switching oxygen chemistry with 380 nm light, and emergency stress loops such as sleep apnea when the circuit fails. The article turns viruses and exosomes into part of the same story: biology borrowing viral-style containers to protect memory, cargo, and spin order when the outside field is no longer enough.
 
 Key points:
-- Dynamo failure -> internal hardware: declining geomagnetic support is framed as the reason biology had to move spin and memory stabilization inside the organism.
-- Arc/Gag capsids become memory hardware: Arc is treated as co-opted retroviral Gag protein that builds virus-like capsids for memory-specific mRNA and spin-coherent storage.
-- Exosomes are the non-infectious analogue: cholesterol-rich vesicles are presented as mobile Faraday cages that buffer field noise, protect cargo, and chelate reactive metals.
-- Neuropsin/380 nm is the switch: morning UV-A/violet light is framed as the signal that keeps tissue oxygen in the paramagnetic triplet state instead of singlet-oxygen noise.
-- Sleep apnea becomes an electrical rescue loop: airway collapse is reframed as an emergency adrenaline spike that force-starts a stalled lattice and field circuit.
-- The 20,000-gene paradox is the genomic angle: human complexity is tied less to coding-gene count and more to noncoding viral hardware plus exosomal routing.
+- The old hook is cholesterol; the new claim is field failure. Kruse says the weakening geodynamo made biology depend less on the planet's background field and more on internal containers that can hold order locally.
+- Arc is the memory example. Kruse presents Arc as borrowed retroviral hardware: a virus-like shell neurons use to move memory-related mRNA while protecting the spin state of the cargo.
+- Exosomes become the body-wide version of the same trick. Kruse describes them as cholesterol-rich packets that travel between cells, shield their contents from electromagnetic noise, and help buffer reactive metals.
+- Neuropsin is the light switch in the model. Morning 380 nm light is presented as the signal that keeps oxygen in the safer triplet/paramagnetic state; bad light, deuterium, and nnEMF push the system toward singlet-oxygen damage.
+- Sleep apnea is recast as a circuit failure, not just a blocked airway. In this telling, the nighttime collapse starts with a stalled water/light/magnetic circuit, and the adrenaline surge is an emergency jump-start.
+- The gene-count point is the evolutionary punchline. Kruse argues that human complexity does not require millions of protein-coding genes because some of the missing work is done by viral remnants, noncoding regions, and exosome-style routing.
 
 Source quote: "When the dynamo weakened from the Carboniferous era, genes were deleted and viral elements were expanded in the genome of mammals."
 
@@ -73,6 +73,7 @@ Sources:
 - https://optimalklubs.com/decentralize-medicine-107-when-the-dynamo-fails-exosomes-and-viral-marketing-rises/
 
 Concepts:
+- DM#107 (noob): DM#107 is a Kruse blog/article archive reference from the DM series, entry #107. It is source context for this report, not a formal scientific citation.
 - Cholesterol (noob): A waxy lipid molecule essential for cell membranes, hormone production, and brain function. The brain contains 25% of the body's total cholesterol despite being only 2% of body weight, reflecting its critical role in neural structure and function.
 - Dielectric capacitor (noob): Dielectric capacitor is a selected source term in this blog article. It identifies source context for the article claim and should be read with the surrounding card text.
 - Topological insulator (noob): Topological insulator is a selected source term in this blog article. It identifies source context for the article claim and should be read with the surrounding card text.
@@ -169,7 +170,6 @@ Concepts:
 - Ischemic death (noob): Ischemic death is a selected source term in this blog article. It identifies source context for the article claim and should be read with the surrounding card text.
 - Vascular decay (noob): Vascular decay is a selected source term in this blog article. It identifies source context for the article claim and should be read with the surrounding card text.
 - Chronic fatigue (noob): Chronic fatigue is a selected source term in this blog article. It identifies source context for the article claim and should be read with the surrounding card text.
-- DM#107 (noob): DM#107 is a Kruse blog/article archive reference from the DM series, entry #107. It is source context for this report, not a formal scientific citation.
 - magnetic fat (noob): Cholesterol, which comprises 25% of the brain's total lipid pool despite the brain being only 2% of body weight. It is called 'magnetic' because its rigid structure and role in organizing magnetic domains make it essential for quantum biological signaling.
 - dielectric capacitor (pro): A device that stores electrical energy by separating opposite charges across an insulating material. Cholesterol's rigid ring structure acts as a high-capacity dielectric capacitor in cell membranes, maintaining neuronal voltage with minimal energy cost.
 - topological insulator (pro): A material that conducts electricity on its surface but is insulating in its interior. Cholesterol-rich membranes act as topological insulators, protecting intracellular signaling from external electromagnetic noise.
