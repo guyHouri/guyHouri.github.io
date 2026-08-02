@@ -146,6 +146,9 @@ OPTIMALKLUBS_PASSWORD
 GEMINI_API_KEY
 KRUSE_ADMIN_ALERT_RECIPIENTS
 KRUSE_BOT_TOKEN or backend git credentials for repo writes
+KRUSE_YOUTUBE_CHANNEL_REFRESH_REQUIRED
+KRUSE_YTDLP_PATH
+KRUSE_YOUTUBE_CHANNEL_WRITE_DAILY_SUMMARY_SIDECAR
 NOTEBOOKLM_RCLONE_LIVE
 NOTEBOOKLM_RCLONE_REQUIRE_LIVE
 NOTEBOOKLM_RCLONE_SOURCE_REGISTRY
@@ -230,21 +233,29 @@ steps do not run.
 3. Install missing Node dependencies unless disabled by backend config.
 4. Scrape X into `scrapers/twitter_to_md/data/<date>.json`.
 5. Scrape forum activity into `scrapers/forum_to_md/daily/<date>.json`.
-6. Fetch Optimal Klubs blog updates into
+6. Backfill blog and Q&A summary state.
+7. Fetch Optimal Klubs blog updates into
    `summary/kruse-summary/curated/<date>-blogs.json`.
-7. Fetch Optimal Klubs Q&A/podcast pointers into
+8. Fetch LinkedIn Pulse articles into
+   `summary/kruse-summary/curated/<date>-linkedin.json`.
+9. Fetch Optimal Klubs Q&A/podcast pointers into
    `summary/kruse-summary/curated/<date>-podcasts.json`.
-8. Sync Supabase mailing-list rows into
+10. Refresh the owned YouTube channel with `yt-dlp`, import new caption
+    transcripts into Supabase/Storage, and merge same-day imports into
+    `summary/kruse-summary/curated/<date>-podcasts.json`.
+11. Process podcast transcript sidecar rows so available transcripts are ready
+    for report input.
+12. Sync Supabase mailing-list rows into
    `summary/kruse-summary/mailing_list.json`.
-9. Build combined input at
+13. Build combined input at
     `summary/kruse-summary/curated/<date>-input.json`.
-10. Run the Anthropic daily digest chain and validation.
-11. Render `summary/kruse-summary/out/<date>.html`.
-12. Sync canonical daily rows to Supabase with
+14. Run the Anthropic daily digest chain and validation.
+15. Render `summary/kruse-summary/out/<date>.html`.
+16. Sync canonical daily rows to Supabase with
     `npm run db:daily-canonical-sync -- --date=<date> --execute`.
-13. Build NotebookLM refresh artifacts into
+17. Build NotebookLM refresh artifacts into
     `summary/kruse-summary/out/notebooklm-refresh/<date>/`.
-14. When `NOTEBOOKLM_RCLONE_LIVE=true`, update the real Gemini Notebook source
+18. When `NOTEBOOKLM_RCLONE_LIVE=true`, update the real Gemini Notebook source
     files in place with `tools/notebooklm-rclone-sync.mjs --live`. Production
     uses the existing notebook
     `https://notebooklm.google.com/notebook/6a5093c8-9b6b-4a9c-82b4-f3c541171db0`
@@ -258,19 +269,19 @@ steps do not run.
     `--notebooklm-daily-source-bundled`, which marks Supabase rows as daily
     NotebookLM-source bundled. If rclone fails, the marker sync is skipped and
     rows stay or are written as not bundled.
-15. Optionally, when `NOTEBOOKLM_DRIVE_LIVE=true`, update a separate
+19. Optionally, when `NOTEBOOKLM_DRIVE_LIVE=true`, update a separate
     per-source Drive API registry with `tools/notebooklm-drive-publisher.mjs
     --live`. Do not enable both live paths unless their registries point at the
     same intended NotebookLM source set.
-16. Build the static site in `summary/kruse-summary/site`.
-17. Mirror the static site into `docs`.
-18. Commit generated artifacts and push to `main`.
-19. Publish the public Pages copy from `docs`.
-20. Verify the live public report URL.
-21. Send mailing-list email when the scheduler payload or manual runner includes
+20. Build the static site in `summary/kruse-summary/site`.
+21. Mirror the static site into `docs`.
+22. Commit generated artifacts and push to `main`.
+23. Publish the public Pages copy from `docs`.
+24. Verify the live public report URL.
+25. Send mailing-list email when the scheduler payload or manual runner includes
     an approved send path.
-22. Skip mailing-list email only for build-only/manual unapproved runs.
-23. Write `last-sent.json` only after approved email succeeds.
+26. Skip mailing-list email only for build-only/manual unapproved runs.
+27. Write `last-sent.json` only after approved email succeeds.
 
 Production scheduled daily runs do not run test suites before scraping or
 generating the report. Tests remain developer, PR, and explicit operator
